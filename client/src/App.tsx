@@ -1,24 +1,18 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Switch, Route } from 'react-router-dom';
+import Login from './components/Auth0Test/Login';
+import Landing from './components/Auth0Test/Landing';
+import Auth0Test from './pages/Auth0Test';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+        <Route path="/" exact component={Auth0Test} />
+        <Route path="/landing" exact component={Landing} />
+      </Switch>
     </div>
   );
 }
