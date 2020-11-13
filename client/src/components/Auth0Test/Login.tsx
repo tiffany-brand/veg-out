@@ -1,31 +1,33 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { useAuth0 } from '../../contexts/auth0-context';
+import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
-
-function Login() {
+function Login(): JSX.Element {
 
     const { isLoading, user, loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
     return (
         <div>
             <Link to="/">
+                {/* If not logged, show the Log In button */}
                 {!isLoading && !user && (
                     <>
                         <button onClick={loginWithRedirect}>
                             Log In
-                    </button>
+                        </button>
                     </>
                 )}
 
+                {/* If logged in, show the Log Out button  */}
                 {!isLoading && user && (
                     <>
                         <button onClick={() => logout({ returnTo: window.location.origin })}>
                             Log Out
-                    </button>
+                        </button>
                     </>
                 )}
             </Link>
+            {/* If logged in, show the button to go inside the app to the protected route */}
             {isAuthenticated && (
                 <Link to="/landing"><button>Go Inside</button></Link>
             )}
@@ -34,4 +36,4 @@ function Login() {
 
 
 }
-export default withRouter(Login);
+export default Login;

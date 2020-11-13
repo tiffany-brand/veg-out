@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { useAuth0 } from '../../contexts/auth0-context';
-import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import logo from '../../assets/images/Vegemon-logo.png';
 
 
@@ -11,9 +10,9 @@ function Landing(): JSX.Element {
 
     return (
         <div>
-            <img width="300px" src={logo} />
+            <img width="300px" src={logo} alt="Vegemon" />
             <h1>Welcome to the landing page, {user.name}</h1>
-            <img src={user.picture} />
+            <img src={user.picture} alt={user.name} />
             <br></br>
             <h2>User Object</h2>
             <p>{JSON.stringify(user, null, 2)}</p>
@@ -23,4 +22,10 @@ function Landing(): JSX.Element {
     );
 
 }
-export default withRouter(Landing)
+
+// to protect a route, use the withAuthenticationRequired higher order function
+// if not logged in when hitting this route, user will be redirected to login page
+
+export default withAuthenticationRequired(Landing, {
+    onRedirecting: () => (<div>Redirecting you to the login page...</div>)
+});
