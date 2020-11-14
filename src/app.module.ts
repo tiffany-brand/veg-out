@@ -13,6 +13,7 @@ import { UsersModule } from './users/users.module';
 import { VeggiesModule } from './veggies/veggies.module';
 import { MeallogModule } from './meallog/meallog.module';
 import { CharacterchoicesModule } from './characterchoices/characterchoices.module';
+import { ChallengesModule } from './challenges/challenges.module';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { CharacterchoicesModule } from './characterchoices/characterchoices.modu
     database: process.env.DB_DATABASE,
     entities: [User, Veggie, MealLog, CharacterChoice],
     synchronize: true
-  }), UsersModule, VeggiesModule, MeallogModule, CharacterchoicesModule],
+  }), UsersModule, VeggiesModule, MeallogModule, CharacterchoicesModule, ChallengesModule],
   controllers: [AppController],
   providers: [AppService],
 })
