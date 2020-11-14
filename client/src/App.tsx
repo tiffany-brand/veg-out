@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
-import Landing from './components/Auth0Test/Landing';
-import Auth0Test from './pages/Auth0Test';
+import Landing from './views/Auth0Test/Landing';
+import Auth0Test from './views/Auth0Test';
 import Wrapper from './components/Wrapper/Wrapper';
-import Keith from './pages/KeithTest'
+import Keith from './views/KeithTest'
 
 function App() {
   return (
