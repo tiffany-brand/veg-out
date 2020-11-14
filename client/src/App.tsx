@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Landing from './components/Auth0Test/Landing';
 import Auth0Test from './pages/Auth0Test';
 import Wrapper from './components/Wrapper/Wrapper';
+import Keith from './pages/KeithTest'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Auth0Test} />
           <Route path="/landing" exact component={Landing} />
+          <Route path="/keith-dev-test" exact component={Keith} />
         </Switch>
       </Wrapper>
     </div>
