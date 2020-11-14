@@ -4,12 +4,9 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { User } from './users/user.entity';
+import { Veggie } from './veggies/veggie.entity';
 import { UsersModule } from './users/users.module';
-
-const logIt = () => {
-  console.log(process.env);
-}
-logIt();
+import { VeggiesModule } from './veggies/veggies.module';
 
 @Module({
   imports: [
@@ -20,9 +17,9 @@ logIt();
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    entities: [User],
+    entities: [User, Veggie],
     synchronize: true
-  }), UsersModule],
+  }), UsersModule, VeggiesModule],
   controllers: [AppController],
   providers: [AppService],
 })
