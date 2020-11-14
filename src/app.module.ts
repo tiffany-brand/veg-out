@@ -27,5 +27,4 @@ export class AppModule {
   constructor(private connection: Connection) { }
 }
 
-// The ormconfig.json file in root should connect to the TypeOrmModule 
-// which creates the database connection.  We need to turn "synchronize" to false before production.
+//  We need to turn "synchronize" to false before production.
