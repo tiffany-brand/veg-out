@@ -1,0 +1,7 @@
+div.App {
+  margin: 1vh;
+  border: 4px solid #8eb9a6;
+  display: flex;
+  justify-content: center;
+  min-height: 98vh;
+}
