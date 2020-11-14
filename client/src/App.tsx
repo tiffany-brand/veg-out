@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Landing from './components/Auth0Test/Landing';
 import Auth0Test from './pages/Auth0Test';
 import Wrapper from './components/Wrapper/Wrapper';
+import Canvas from './components/Canvas/Canvas';
 
 function App() {
   return (
