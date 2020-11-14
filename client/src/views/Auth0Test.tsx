@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from '../components/Auth0Test/Login';
+import Login from './Auth0Test/Login';
 
 function Auth0Test(): JSX.Element {
 
