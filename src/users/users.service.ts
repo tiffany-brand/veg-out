@@ -13,8 +13,12 @@ export class UsersService {
 
   create(createUserDto: CreateUserDto): Promise<User> {
     const user = new User();
+    user.email = createUserDto.email;
+    user.auth0ID = createUserDto.auth0ID;
     user.firstName = createUserDto.firstName;
     user.lastName = createUserDto.lastName;
+    user.username = createUserDto.username;
+    
 
     return this.usersRepository.save(user);
   }

@@ -6,11 +6,23 @@ export class User {
   _id: string;
 
   @Column()
+  email: string;
+
+  @Column({
+    type:"varchar",
+    length: 255,
+    unique: true,
+  })
+  auth0ID: string;
+
+  @Column()
   firstName: string;
 
   @Column()
   lastName: string;
 
-  @Column({ default: true })
-  isActive: boolean;
+  @Column()
+  username: string;
+
+
 }
