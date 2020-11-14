@@ -5,8 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { User } from './users/user.entity';
 import { Veggie } from './veggies/veggie.entity';
+import { MealLog } from './meallog/meallog.entity';
 import { UsersModule } from './users/users.module';
 import { VeggiesModule } from './veggies/veggies.module';
+import { MeallogModule } from './meallog/meallog.module';
 
 @Module({
   imports: [
@@ -17,9 +19,9 @@ import { VeggiesModule } from './veggies/veggies.module';
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    entities: [User, Veggie],
+    entities: [User, Veggie, MealLog],
     synchronize: true
-  }), UsersModule, VeggiesModule],
+  }), UsersModule, VeggiesModule, MeallogModule],
   controllers: [AppController],
   providers: [AppService],
 })
