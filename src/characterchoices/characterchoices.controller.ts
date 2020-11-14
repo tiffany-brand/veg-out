@@ -3,7 +3,7 @@ import { CreateCharacterChoiceDTO } from './dto/create-characterchoice.dto';
 import { CharacterChoice } from './characterchoice.entity';
 import { CharacterchoicesService } from './characterchoices.service';
 
-@Controller('characterchoices')
+@Controller('api/characterchoices')
 export class CharacterchoicesController {
     constructor(private readonly characterchoiceservice: CharacterchoicesService) {}
 
