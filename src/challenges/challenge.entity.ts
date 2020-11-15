@@ -15,7 +15,7 @@ export class Challenge {
         type: "datetime",
         nullable: true
     })
-    lastAttackTime: "string";
+    lastAttackTime: string;
 
     @OneToOne(() => User )
     @JoinColumn()

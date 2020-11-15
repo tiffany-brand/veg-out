@@ -9,6 +9,7 @@ import { Veggie } from './veggies/veggie.entity';
 import { MealLog } from './meallog/meallog.entity';
 import { CharacterChoice } from './characterchoices/characterchoice.entity';
 import { PlayerCharacter } from './playercharacter/playercharacter.entity';
+import { Challenge } from './challenges/challenge.entity';
 // Module Imports
 import { UsersModule } from './users/users.module';
 import { VeggiesModule } from './veggies/veggies.module';
@@ -26,7 +27,7 @@ import { PlayercharacterModule } from './playercharacter/playercharacter.module'
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    entities: [User, Veggie, MealLog, CharacterChoice, PlayerCharacter],
+    entities: [User, Veggie, MealLog, CharacterChoice, PlayerCharacter, Challenge],
     synchronize: true
   }), UsersModule, VeggiesModule, MeallogModule, CharacterchoicesModule, ChallengesModule, PlayercharacterModule],
   controllers: [AppController],
