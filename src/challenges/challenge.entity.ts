@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { User } from '../users/user.entity';
-
+import { PlayerCharacter } from '../playercharacter/playercharacter.entity';
 @Entity()
 export class Challenge {
     @PrimaryGeneratedColumn("uuid")
@@ -22,10 +22,15 @@ export class Challenge {
     @Column({
         nullable: true
     })
-    lastAttackerID: User;
+    lastAttacker: User;
 
-    // upon finishing the player character section, add Player one here
-
-    // then add Player two here.
+    @OneToOne(() => PlayerCharacter)
+    @JoinColumn()
+    player_one: PlayerCharacter;
+    
+    @OneToOne(() => PlayerCharacter)
+    @JoinColumn()
+    player_two: PlayerCharacter;
+    
 
 }
