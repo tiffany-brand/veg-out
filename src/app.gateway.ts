@@ -1,8 +1,11 @@
 import { Logger } from '@nestjs/common';
-import {OnGatewayInit, SubscribeMessage, WebSocketGateway} from '@nestjs/websockets';
+import {OnGatewayInit, SubscribeMessage, WebSocketGateway, WebSocketServer, WsResponse} from '@nestjs/websockets';
+import { Server, Socket } from 'socket.io';
 
 @WebSocketGateway()
 export class AppGateway implements OnGatewayInit{
+
+    @WebSocketServer() wss:Server;
 
     private logger: Logger = new Logger('AppGateway');
 
@@ -11,9 +14,9 @@ export class AppGateway implements OnGatewayInit{
     }
 
 
-    @SubscribeMessage('message')
-    handleMessage(client: any, payload:any):string {
-        return "Hello World";
+    @SubscribeMessage('msgToServer')
+    handleMessage(client: Socket, text:string):void {
+        this.wss.emit('msgToClient', text);
 
     }
 }
