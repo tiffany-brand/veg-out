@@ -4,7 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 import Landing from './views/Auth0Test/Landing';
 import Auth0Test from './views/Auth0Test';
 import Wrapper from './components/Wrapper/Wrapper';
-import Keith from './views/KeithTest'
+import Keith from './views/KeithTest';
+import Caterpillar from "./assets/svg/caterpillar.svg";
 
 function App() {
   return (
