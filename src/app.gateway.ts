@@ -1,9 +1,9 @@
 import { Logger } from '@nestjs/common';
-import {OnGatewayInit, SubscribeMessage, WebSocketGateway, WebSocketServer, WsResponse} from '@nestjs/websockets';
+import {OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit, SubscribeMessage, WebSocketGateway, WebSocketServer, WsResponse} from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
 @WebSocketGateway()
-export class AppGateway implements OnGatewayInit{
+export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect{
 
     @WebSocketServer() wss:Server;
 
@@ -11,6 +11,14 @@ export class AppGateway implements OnGatewayInit{
 
     afterInit(server:any){
         this.logger.log('this log worked!')
+    }
+
+    handleConnection(client:any, ...args: any[]){
+        throw new Error("handleconnect messssaggge")
+    }
+
+    handleDisconnect(client:any, ...args: any[]){
+        throw new Error("handleconnect messssaggge")
     }
 
 
