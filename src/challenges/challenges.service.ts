@@ -16,7 +16,6 @@ export class ChallengesService {
         const newChallenge = new Challenge();
         newChallenge.date_started = createchallengeDTO.date_started;
         newChallenge.lastAttackTime = createchallengeDTO.lastAttackTime;
-        newChallenge.lastAttacker = createchallengeDTO.lastAttacker;
         newChallenge.player_one = createchallengeDTO.player_one;
         newChallenge.player_two = createchallengeDTO.player_two;
 

@@ -17,12 +17,10 @@ export class Challenge {
     })
     lastAttackTime: string;
 
-    @OneToOne(() => User )
+    @OneToOne(() => User, {nullable: true} )
     @JoinColumn()
-    @Column({
-        nullable: true
-    })
     lastAttacker: User;
+    // this should be nullable
 
     @OneToOne(() => PlayerCharacter)
     @JoinColumn()

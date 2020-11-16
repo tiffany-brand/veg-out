@@ -33,11 +33,8 @@ export class PlayerCharacter {
     @Column()
     character_name: string;
     
-    @OneToOne(() => Challenge)
+    @OneToOne(() => Challenge, {nullable: true})
     @JoinColumn()
-    @Column({
-        nullable: true
-    })
     current_challenge: Challenge;
-
+    // This should be nullable
 }
