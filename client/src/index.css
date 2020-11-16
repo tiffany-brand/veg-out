@@ -1,0 +1,12 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #afe4cd;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  color: #156e58;
+}
