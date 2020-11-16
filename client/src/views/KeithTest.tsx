@@ -1,5 +1,5 @@
 import React from 'react';
-import Challenges from '../components/Challenges/Challenges';
+import Challenges from './Challenges/Challenges';
 
 export default function KeithTest() {
 
