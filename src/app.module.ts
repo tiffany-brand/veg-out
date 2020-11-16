@@ -3,13 +3,20 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
+// Entity Imports
 import { User } from './users/user.entity';
+import { Veggie } from './veggies/veggie.entity';
+import { MealLog } from './meallog/meallog.entity';
+import { CharacterChoice } from './characterchoices/characterchoice.entity';
+import { PlayerCharacter } from './playercharacter/playercharacter.entity';
+import { Challenge } from './challenges/challenge.entity';
+// Module Imports
 import { UsersModule } from './users/users.module';
-
-const logIt = () => {
-  console.log(process.env);
-}
-logIt();
+import { VeggiesModule } from './veggies/veggies.module';
+import { MeallogModule } from './meallog/meallog.module';
+import { CharacterchoicesModule } from './characterchoices/characterchoices.module';
+import { ChallengesModule } from './challenges/challenges.module';
+import { PlayercharacterModule } from './playercharacter/playercharacter.module';
 
 @Module({
   imports: [
@@ -20,9 +27,9 @@ logIt();
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    entities: [User],
+    entities: [User, Veggie, MealLog, CharacterChoice, PlayerCharacter, Challenge],
     synchronize: true
-  }), UsersModule],
+  }), UsersModule, VeggiesModule, MeallogModule, CharacterchoicesModule, ChallengesModule, PlayercharacterModule],
   controllers: [AppController],
   providers: [AppService],
 })
@@ -30,5 +37,4 @@ export class AppModule {
   constructor(private connection: Connection) { }
 }
 
-// The ormconfig.json file in root should connect to the TypeOrmModule 
-// which creates the database connection.  We need to turn "synchronize" to false before production.
+//  We need to turn "synchronize" to false before production.
