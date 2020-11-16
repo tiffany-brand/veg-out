@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AppGateway } from './app.gateway';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 // Entity Imports
@@ -31,7 +32,7 @@ import { PlayercharacterModule } from './playercharacter/playercharacter.module'
     synchronize: true
   }), UsersModule, VeggiesModule, MeallogModule, CharacterchoicesModule, ChallengesModule, PlayercharacterModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppGateway],
 })
 export class AppModule {
   constructor(private connection: Connection) { }
