@@ -13,12 +13,12 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
         this.logger.log('this log worked!')
     }
 
-    handleConnection(client:any, ...args: any[]){
-        throw new Error("handleconnect messssaggge")
+    handleConnection(client:Socket, ...args: any[]){
+        this.logger.log(`client has connected: ${client.id}`)
     }
 
-    handleDisconnect(client:any, ...args: any[]){
-        throw new Error("handleconnect messssaggge")
+    handleDisconnect(client:Socket, ...args: any[]){
+        this.logger.log(`client has disconnected: ${client.id}`)
     }
 
 
