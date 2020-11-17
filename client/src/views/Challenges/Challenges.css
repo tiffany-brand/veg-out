@@ -1,9 +1,3 @@
-div.challenges-container {
-  width: 96vw;
-  display: flex;
-  justify-content: space-around;
-}
-
 div.card-holder {
   margin-top: 10px;
   text-align: center;
