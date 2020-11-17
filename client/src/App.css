@@ -6,3 +6,32 @@ div.App {
   justify-content: center;
   min-height: 98vh;
 }
+
+div.card-container {
+  width: 96vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+div.card-holder {
+  margin-top: 10px;
+  text-align: center;
+  width: 35vw;
+}
+
+input[type=text] {
+  height:35px;
+  padding: 0px 10px;
+  color: #156e58;
+  font-family: 'VT323', monospace;
+  font-size: 25px;
+  width: 96%;
+  margin-bottom: 10px;
+  border: 2px solid #8eb9a6;
+  border-radius: 5px;
+  background-color: #dddddd;
+}
+input[type=text]:focus {
+  outline: none;
+  border: 2px solid #000;
+}
