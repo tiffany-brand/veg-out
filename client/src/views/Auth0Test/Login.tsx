@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import logo from '../../assets/images/Vegemon-logo.png';
@@ -6,6 +6,16 @@ import logo from '../../assets/images/Vegemon-logo.png';
 function Login(): JSX.Element {
 
     const { isLoading, user, loginWithRedirect, logout, isAuthenticated } = useAuth0();
+    const [currentUser, setCurrentUser] = useState({});
+
+    const loginUser = () => {
+        loginWithRedirect()
+            .then(res => {
+                // api call to check for auth0id
+                // if user is returned setCurrentUser to user from db
+                // else create user and setCurrentUse to new user
+            })
+    }
 
     return (
         <div>
