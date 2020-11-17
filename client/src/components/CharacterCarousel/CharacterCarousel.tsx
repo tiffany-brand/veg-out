@@ -5,8 +5,6 @@ import "./CharacterCarousel.css";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
-import { Button } from "@material-ui/core";
-import TextField from '@material-ui/core/TextField';
 
 import bunny from "../../svg/bunny.svg";
 import caterpillar from "../../svg/caterpillar_trimmed.svg";
@@ -30,7 +28,19 @@ const CharacterCarousel: React.FC<{}> = () =>  {
 
     const classes = useStyles();
 
-    let imgUrls = [bunny, caterpillar];
+    let characterChoices = [
+        {
+            name: "bunny",
+            url: bunny,
+        },
+        {
+            name: "caterpillar of death",
+            url: caterpillar,
+        },
+    ];
+
+    let imgUrls = [characterChoices[0].url, characterChoices[1].url];
+
 
     // first in array is a state prop : interface state current... , set replaces this.setState... = useState : this.setState = 0
     const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
@@ -48,8 +58,13 @@ const CharacterCarousel: React.FC<{}> = () =>  {
         const shouldResetCharacterIndex = currentCharacterIndex === lastCharacter;
         const index = shouldResetCharacterIndex ? 0 : currentCharacterIndex + 1;
 
+
         setCurrentCharacterIndex(index);
     }
+
+    let characterChoice = characterChoices[currentCharacterIndex].name;
+
+    console.log(characterChoice);
 
     return (
         <Grid container spacing={3} className="carousel-grid">
@@ -67,6 +82,9 @@ const CharacterCarousel: React.FC<{}> = () =>  {
                     <CharacterArrow direction="right" clickFunction={ nextCharacter } glyph="&#9654;" />
                 </div>
             </div>
+            <Grid item xs={12}>
+                <h1>{characterChoice}</h1>
+            </Grid>
         </Grid>
     );
 }

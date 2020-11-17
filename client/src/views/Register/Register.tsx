@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Register.css';
+import Button from "@material-ui/core/Button";
 
 // ***** REMEMBER TO REMOVE *****
 //Import User Array for testing
 import { userList } from '../../utils/testUserArray'
+import CharacterCarousel from '../../components/CharacterCarousel/CharacterCarousel';
 
 export default function Register() {
 
@@ -47,6 +49,15 @@ export default function Register() {
 
   };
 
+
+  // character selection
+
+  const commitCharacterChoice = () => {
+    console.log("bunny or caterpillar");
+  };
+
+
+
   return (
     <div className="register-container">
       <h1>USERNAME/CHARACTER REGISTRATION</h1>
@@ -55,10 +66,12 @@ export default function Register() {
         <div className="username-confirm">
           {usernameConfirmArea}
         </div>
-        <Link to="/character-selection">
           <button disabled={!usernameAvailable} onClick={commitUsername}>CONFIRM</button>
-        </Link>
       </div>
+      <CharacterCarousel />
+      <Link to="/home">
+        <Button onClick={commitCharacterChoice}>Go!</Button>
+      </Link>
     </div>
   )
 }

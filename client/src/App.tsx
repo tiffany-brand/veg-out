@@ -5,7 +5,6 @@ import './App.css';
 
 import Auth0Test from './views/Auth0Test';
 import Challenges from './views/Challenges/Challenges';
-import CharacterSelection from './views/CharacterSelection/CharacterSelection';
 import Community from './views/Community/Community'
 import Home from './views/Home/Home'
 import Landing from './views/Auth0Test/Landing';
@@ -20,7 +19,6 @@ function App() {
         <Switch>
           <Route path="/" exact component={Auth0Test} />
           <Route path="/challenges" exact component={Challenges} />
-          <Route path="/character-selection" exact component={CharacterSelection} />
           <Route path="/community" exact component={Community} />
           <Route path="/home" exact component={Home} />
           <Route path="/landing" exact component={Landing} />
