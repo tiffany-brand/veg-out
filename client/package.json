@@ -46,6 +46,8 @@
     ]
   },
   "devDependencies": {
+    "@svgr/webpack": "^5.5.0",
+    "svg-url-loader": "^6.0.0",
     "webpack": "4.44.2"
   }
 }

@@ -5,6 +5,7 @@ import Landing from './views/Auth0Test/Landing';
 import Auth0Test from './views/Auth0Test';
 import Wrapper from './components/Wrapper/Wrapper';
 import Challenges from './views/Challenges/Challenges';
+import CharacterSelection from './views/CharacterSelection/CharacterSelection';
 import Home from './views/Home/Home'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/landing" exact component={Landing} />
           <Route path="/home" exact component={Home} />
           <Route path="/challenges" exact component={Challenges} />
+          <Route path="/character-selection" exact component={CharacterSelection} />
         </Switch>
       </Wrapper>
     </div>
