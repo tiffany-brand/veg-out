@@ -7,6 +7,8 @@ import Wrapper from './components/Wrapper/Wrapper';
 import Challenges from './views/Challenges/Challenges';
 import CharacterSelection from './views/CharacterSelection/CharacterSelection';
 import Home from './views/Home/Home'
+import Register from './views/Register/Register';
+import SplashPage from './views/SplashPage/SplashPage';
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           <Route path="/home" exact component={Home} />
           <Route path="/challenges" exact component={Challenges} />
           <Route path="/character-selection" exact component={CharacterSelection} />
+          <Route path="/register" exact component={Register} />
         </Switch>
       </Wrapper>
     </div>
