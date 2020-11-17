@@ -6,3 +6,15 @@ div.App {
   justify-content: center;
   min-height: 98vh;
 }
+
+div.card-container {
+  width: 96vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+div.card-holder {
+  margin-top: 10px;
+  text-align: center;
+  width: 35vw;
+}

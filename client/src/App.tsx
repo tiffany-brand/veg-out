@@ -6,6 +6,8 @@ import Auth0Test from './views/Auth0Test';
 import Wrapper from './components/Wrapper/Wrapper';
 import Challenges from './views/Challenges/Challenges';
 import Home from './views/Home/Home'
+import Community from './views/Community/Community'
+import PlantLog from './views/PlantLog/PlantLog';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/landing" exact component={Landing} />
           <Route path="/home" exact component={Home} />
           <Route path="/challenges" exact component={Challenges} />
+          <Route path="/community" exact component={Community} />
+          <Route path="/plant-log" exact component={PlantLog} />
         </Switch>
       </Wrapper>
     </div>
