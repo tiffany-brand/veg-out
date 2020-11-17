@@ -15,9 +15,9 @@ export class PlayercharacterService {
         const newPlayer = new PlayerCharacter();
         newPlayer.character = createplayercharacterDTO.character;
         newPlayer.user = createplayercharacterDTO.user;
-        newPlayer.currentSTR = createplayercharacterDTO.currentSTR;
-        newPlayer.currentDEX = createplayercharacterDTO.currentDEX;
-        newPlayer.currentINT = createplayercharacterDTO.currentINT;
+        newPlayer.currenthealth = createplayercharacterDTO.currenthealth;
+        newPlayer.currentoffense = createplayercharacterDTO.currentoffense;
+        newPlayer.currentdefense = createplayercharacterDTO.currentdefense;
         newPlayer.character_name = createplayercharacterDTO.character_name;
 
         return this.playercharacterrepository.save(newPlayer);

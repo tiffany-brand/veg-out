@@ -34,4 +34,8 @@ export class UsersService {
   async remove(id: string): Promise<void> {
     await this.usersRepository.delete(id);
   }
+
+  findAuth(auth0ID: string): Promise<User | void> {
+    return this.usersRepository.findOne({auth0ID: auth0ID})
+  }
 }

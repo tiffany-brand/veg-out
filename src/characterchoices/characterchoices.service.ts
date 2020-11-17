@@ -15,9 +15,6 @@ export class CharacterchoicesService {
     create(createcharacterchoiceDTO: CreateCharacterChoiceDTO): Promise<CharacterChoice> {
         const newCharacter = new CharacterChoice();
         newCharacter.monster_type = createcharacterchoiceDTO.monster_type;
-        newCharacter.startingSTR = createcharacterchoiceDTO.startingSTR;
-        newCharacter.startingDEX = createcharacterchoiceDTO.startingDEX;
-        newCharacter.startingINT = createcharacterchoiceDTO.startingINT;
         newCharacter.image = createcharacterchoiceDTO.image;
 
         return this.characterchoiceRepository.save(newCharacter);
