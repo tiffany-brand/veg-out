@@ -5,6 +5,7 @@ import Landing from './views/Auth0Test/Landing';
 import Auth0Test from './views/Auth0Test';
 import Wrapper from './components/Wrapper/Wrapper';
 import Challenges from './views/Challenges/Challenges';
+import CharacterSelection from './views/CharacterSelection/CharacterSelection';
 import Home from './views/Home/Home'
 import Community from './views/Community/Community'
 import PlantLog from './views/PlantLog/PlantLog';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/challenges" exact component={Challenges} />
           <Route path="/community" exact component={Community} />
           <Route path="/plant-log" exact component={PlantLog} />
+          <Route path="/character-selection" exact component={CharacterSelection} />
         </Switch>
       </Wrapper>
     </div>
