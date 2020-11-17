@@ -1,7 +1,13 @@
+div.carousel-grid {
+    align-items: center;
+}
+
 div.character-carousel {
     align-items: center;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    padding-bottom: 40px;
 }
 
 div.left-arrow {
@@ -12,10 +18,5 @@ div.left-arrow {
 div.right-arrow {
     text-align: left;
     padding-left: 20px;
-
-}
-
-h1 {
-    padding-top: 40px;
 
 }
