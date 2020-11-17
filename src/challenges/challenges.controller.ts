@@ -3,7 +3,7 @@ import { CreateChallengeDTO } from './dto/create-challenge.dto';
 import { Challenge } from './challenge.entity';
 import { ChallengesService } from './challenges.service';
 
-@Controller('challenges')
+@Controller('api/challenges')
 export class ChallengesController {
     constructor(private readonly challengeService: ChallengesService) {}
 
