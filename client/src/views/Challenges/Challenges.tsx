@@ -1,6 +1,6 @@
 import React from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
-import UserData from '../../components/UserDetails/UserData';
+import UserData from '../../components/UserData/UserData';
 import './Challenges.css';
 
 export default function Challenges() {
@@ -9,7 +9,7 @@ export default function Challenges() {
   const currentChallengesLI = ["Current Challenge", "Another Current", "Last Current"];
 
   return (
-    <div className="challenges-container">
+    <div className="card-container">
       <div className="card-holder">
         <h2>PENDING CHALLENGES</h2>
         <DetailCard>

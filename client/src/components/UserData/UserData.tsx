@@ -1,5 +1,5 @@
 import React from 'react';
-import './UserDetails.css';
+import './UserData.css';
 
 interface IUserData {
   level: string;

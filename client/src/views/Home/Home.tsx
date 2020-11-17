@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import DetailCard from '../../components/DetailCard/DetailCard';
-import UserData from '../../components/UserDetails/UserData';
+import UserData from '../../components/UserData/UserData';
 import './Home.css';
 
 const plantPowerData = {
@@ -18,7 +19,7 @@ const challengeData = {
 export default function Home() {
 
   return (
-    <div className="challenges-container">
+    <div className="card-container">
       <div className="card-holder">
         <h2>PLANT POWER</h2>
         <DetailCard>
@@ -39,7 +40,7 @@ export default function Home() {
           <ul>
             <li>RECORD: {challengeData.wins} / {challengeData.losses}</li>
             <li>ACTIVE: {challengeData.active}</li>
-            <li>+ NEW CHALLENGE +</li>
+            <li><Link to="/community">+ NEW CHALLENGE +</Link></li>
           </ul>
         </DetailCard>
       </div>
