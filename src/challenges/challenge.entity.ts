@@ -11,17 +11,6 @@ export class Challenge {
     })
     date_started: string;
 
-    @Column({
-        type: "datetime",
-        nullable: true
-    })
-    lastAttackTime: string;
-
-    @OneToOne(() => User, {nullable: true} )
-    @JoinColumn()
-    lastAttacker: User;
-    // this should be nullable
-
     @OneToOne(() => PlayerCharacter)
     @JoinColumn()
     player_one: PlayerCharacter;
@@ -29,6 +18,17 @@ export class Challenge {
     @OneToOne(() => PlayerCharacter)
     @JoinColumn()
     player_two: PlayerCharacter;
-    
 
+    @OneToOne(() => User )
+    @JoinColumn()
+    user_one: User;
+
+    @OneToOne(() => User)
+    @JoinColumn()
+    user_two: User;
+    
+    @Column({
+        type:"datetime"
+    })
+    date_ending: string;
 }
