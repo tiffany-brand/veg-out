@@ -1,21 +1,11 @@
 import React from 'react';
+import SocketComp from "../../components/Socket/SocketComp";
 
 
 function SocketTest(){
 
     return (
-        <div>
-        <h1>socket test</h1>
-  <form>
-  <input type="text">
-    <br />
-    </input>
-    <button type="submit">send</button>
-  </form>
-  <div id="messages">
-
-  </div>
-</div>
+<SocketComp />
     );
 
 }
