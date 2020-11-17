@@ -1,62 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import { Link } from 'react-router-dom';
-import UserData from '../../components/UserData/UserData';
 import './Community.css';
 
-const communityList = [
-  {
-    name: "Marcus",
-    character: "./assets/images/vegabunny-50.png",
-    infoPage: "https://www.espncricinfo.com/india/content/player/625383.html",
-    challengeLink: "https://www.espncricinfo.com/india/content/player/625383.html"
-  },
-  {
-    name: "Paula",
-    character: "./assets/images/vegabunny-50.png",
-    infoPage: "https://www.espncricinfo.com/india/content/player/625383.html",
-    challengeLink: "https://www.espncricinfo.com/india/content/player/625383.html"
-  },
-  {
-    name: "Gwendoline",
-    character: "./assets/images/vegabunny-50.png",
-    infoPage: "https://www.espncricinfo.com/india/content/player/625383.html",
-    challengeLink: "https://www.espncricinfo.com/india/content/player/625383.html"
-  },
-  {
-    name: "Jerome",
-    character: "./assets/images/vegabunny-50.png",
-    infoPage: "https://www.espncricinfo.com/india/content/player/625383.html",
-    challengeLink: "https://www.espncricinfo.com/india/content/player/625383.html"
-  }
-]
-
-const suggestedOpponents = [
-  {
-    name: "Bruce",
-    character: "./assets/images/vegabunny-50.png",
-    infoPage: "https://www.espncricinfo.com/india/content/player/625383.html",
-    challengeLink: "https://www.espncricinfo.com/india/content/player/625383.html"
-  },
-  {
-    name: "Marylyn",
-    character: "./assets/images/vegabunny-50.png",
-    infoPage: "https://www.espncricinfo.com/india/content/player/625383.html",
-    challengeLink: "https://www.espncricinfo.com/india/content/player/625383.html"
-  },
-  {
-    name: "Donna",
-    character: "./assets/images/vegabunny-50.png",
-    infoPage: "https://www.espncricinfo.com/india/content/player/625383.html",
-    challengeLink: "https://www.espncricinfo.com/india/content/player/625383.html"
-  },
-  {
-    name: "Roger",
-    character: "./assets/images/vegabunny-50.png",
-    infoPage: "https://www.espncricinfo.com/india/content/player/625383.html",
-    challengeLink: "https://www.espncricinfo.com/india/content/player/625383.html"
-  }
-]
+//****** REMEMBER TO DELETE *******
+// Sample data for build/test
+import { communityList, suggestedOpponents } from "../../utils/testUserArray"
 
 export default function Community() {
 
