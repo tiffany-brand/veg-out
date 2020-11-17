@@ -31,4 +31,9 @@ export class UsersController {
   findAuth(@Param('id') id: string): Promise<User | void> {
     return this.usersService.findAuth(id);
   }
+
+  @Post('/seed')
+  injectSeed(): Promise<User[]> {
+    return this.usersService.injectSeed();
+  }
 }
