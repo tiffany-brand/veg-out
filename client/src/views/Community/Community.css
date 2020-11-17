@@ -1,0 +1,23 @@
+div.community-container {
+  width: 96vw;
+}
+
+h1 {
+  display: block;
+  text-align: center;
+}
+
+h3 {
+  padding-bottom: 10px;
+}
+
+img.member-character {
+  width: 25px;
+  height: 25px;
+}
+
+div.search-results {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #f28327;
+}
