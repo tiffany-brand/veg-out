@@ -12,13 +12,15 @@ function App() {
   return (
 
       <Wrapper>
+      
 
         <Switch>
           <Route path="/" exact component={Auth0Test} />
           <Route path="/landing" exact component={Landing} />
-          <Route path="/socket" exact component={SocketTest} />
           <Route path="/home" exact component={Home} />
           <Route path="/challenges" exact component={Challenges} />
+          <Route path="/socket" exact component={SocketTest} />
+
         </Switch>
       </Wrapper>
     
