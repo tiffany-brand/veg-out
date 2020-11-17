@@ -26,4 +26,9 @@ export class UsersController {
   remove(@Param('id') id: string): Promise<void> {
     return this.usersService.remove(id);
   }
+
+  @Get('/auth/:id')
+  findAuth(@Param('id') id: string): Promise<User | void> {
+    return this.usersService.findAuth(id);
+  }
 }
