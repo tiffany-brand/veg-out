@@ -18,5 +18,10 @@ export default {
     // Saves a user to the database
     saveUser: function (userData: ICurrentUser) {
         return axios.post("/api/users", userData);
+    },
+    // Gets the user with the give Auth0 id
+    getAuthUser: function (auth0ID: string) {
+        return axios.get("/api/users/auth/" + auth0ID);
     }
+
 };
