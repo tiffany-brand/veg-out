@@ -38,4 +38,5 @@ export class UsersService {
   findAuth(auth0ID: string): Promise<User | void> {
     return this.usersRepository.findOne({auth0ID: auth0ID})
   }
+
 }
