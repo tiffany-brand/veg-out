@@ -1,11 +1,10 @@
-// import React from 'react';
-// import Caterpiller from "../../assets/svg/caterpillar.svg"
+import React from 'react';
+import CharacterCarousel from '../../components/CharacterCarousel/CharacterCarousel';
+import "./CharacterSelection.css";
 
-// export default function CharacterSelection() {
-//     return (
-//         <div>
-//             <Caterpiller />
-//         </div>
-//     );
-// };
-export{};
+export default function CharacterSelection() {
+
+    return (
+        <CharacterCarousel />
+    );
+};
