@@ -11,14 +11,23 @@ export class CharacterChoice {
     })
     monster_type: string;
 
-    @Column()
-    startingSTR: number;
+    @Column({
+        type: "int",
+        default: 50
+    })
+    startinghealth: number;
 
-    @Column()
-    startingDEX: number;
+    @Column({
+        type: "int",
+        default: 10
+    })
+    startingoffense: number;
 
-    @Column()
-    startingINT: number;
+    @Column({
+        type: "int",
+        default: 10
+    })
+    startingdefense: number;
 
     @Column({
         type: "varchar",
