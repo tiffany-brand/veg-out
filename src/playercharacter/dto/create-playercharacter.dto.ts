@@ -5,9 +5,9 @@ import { User } from "src/users/user.entity";
 export class CreatePlayerCharacterDTO {
     character: CharacterChoice;
     user: User;
-    currentSTR: number;
-    currentDEX: number;
-    currentINT: number;
+    currenthealth: number;
+    currentoffense: number;
+    currentdefense: number;
     character_name: string;
     
 }
