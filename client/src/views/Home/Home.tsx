@@ -31,14 +31,14 @@ export default function Home() {
 
   // const [userData, setUserData] = useState<ICurrentUser>()
 
-  // useEffect(() => {
-  //   API.getAuthUser(auth0ID)
-  //     .then(res => {
+  useEffect(() => {
+    API.getAuthUser(auth0ID)
+      .then(res => {
 
-  //       setUserData(res.data)
-  //     }
-  //     );
-  // }, []);
+        setUserData(res.data)
+      }
+      );
+  }, []);
 
   useEffect(() => {
 
