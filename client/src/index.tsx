@@ -13,7 +13,6 @@ ReactDOM.render(
       domain="vegemon.us.auth0.com"
       clientId="Zs5GycXDlzEbTqtTInwuIqRIAz1CTkeH"
       redirectUri={window.location.origin}>
-
       <BrowserRouter>
         <App />
       </BrowserRouter>

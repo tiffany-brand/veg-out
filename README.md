@@ -1,75 +1,84 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+<img src="client/src/assets/images/Vegemon-logo.png" alt="Vegemon" />
 
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+<a href="/">Deployed on Heroku!</a>
 
-## Description
+ ## Table Of Contents
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+ 1. [User Story](#userstory)
+ 2. [Description](#description)
+ 3. [Installation](#installation)
+ 4. [Technologies Used](#usage)
+ 5. [Future Deveolpments](#futuredevelopments)
+ 6. [Contributors](#contributors)
+ 7. [License](#license)
 
-## Installation
+ ## User Story <a href="userstory"></a>
 
-```bash
-$ npm install
+   ``` 
+   AS an individual trying to better my health
+   I WANT to better my health and increase plant diversity in my diet
+
+   AS a user
+   I WANT an application that helps track my diet
+   AND to have incentives and healthy competition
+   SO THAT I stay on track with my goals
+
+   ```
+
+ ## Description <a href="description"></a>
+
+ Vegemon is an application designed to help users eat healthier by encouraging them to increase the amount and diversity of vegetables in their diet.
+
+When a user creates an account, they choose a playable character. The character starts with a base levels of the following stats: Health, Defense, and Offense. As the use goes through their day, they log the vegetables that they eat at each meal. The characters' stats are increased for each vegetable that is logged, with the type of stat being corellated to the actual benefits of the vegetable itself. 
+
+Users can choose to set time-based challenges with eachother, and at the end of the alotted time whichever character has the best stats wins. 
+
+Users are presented with information about the health benefits of the foods they are eating as they are inputted, and have access to a log of all inputted items. 
+
+
+ ## Installation <a href="installation"></a>
+
+ Installation can be performed with
+
+ ``` 
+ npm install
+ ```
+or
+
+```
+yarn install
 ```
 
-## Running the app
 
-```bash
-# development
-$ npm run start
+ ## Technologies Used <a href="usage"></a>
 
-# watch mode
-$ npm run start:dev
+ <ul>
+ <li>NestJS</li>
+ <li>TypeORM</li>
+ <li>TypeScript</li>
+ <li>SocketIO</li>
+ <li>Express</li>
+ <li>React</li>
+</ul>
 
-# production mode
-$ npm run start:prod
-```
+ ## Future Developments <a href="futuredevelopments"></a>
 
-## Test
+ Connecting the application to a nutritional database for a broader informational component
 
-```bash
-# unit tests
-$ npm run test
+ ## Contributors <a href="contributors"></a>
 
-# e2e tests
-$ npm run test:e2e
+<ul>
+<li>Tiffany Brand</li>
+<li>Chad Laflamme</li>
+<li>Keith Tharp</li>
+<li>Rachel Campbell</li>
+<li>Marc Langlois</li>
+</ul>
 
-# test coverage
-$ npm run test:cov
-```
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+ ## License <a href="license"></a>
 
-## Stay in touch
+MIT License
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-  Nest is [MIT licensed](LICENSE).
+ 
