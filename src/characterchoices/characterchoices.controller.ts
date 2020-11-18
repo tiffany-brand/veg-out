@@ -26,4 +26,9 @@ export class CharacterchoicesController {
     remove(@Param('id') id: string ): Promise<void> {
         return this.characterchoiceservice.remove(id);
     }
+
+    @Post('/seed')
+    injectSeed(): Promise<CharacterChoice[]> {
+        return this.characterchoiceservice.injectSeed();
+    }
 }
