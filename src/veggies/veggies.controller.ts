@@ -26,4 +26,9 @@ export class VeggiesController {
     remove(@Param('id') id: string): Promise<void> {
       return this.veggiesService.remove(id);
     }
+
+    @Post('/seed')
+    injectSeed(): Promise<Veggie[]> {
+      return this.veggiesService.injectSeed();
+    }
 }

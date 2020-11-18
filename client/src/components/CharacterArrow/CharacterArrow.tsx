@@ -1,4 +1,5 @@
 import React from 'react';
+import "./CharacterArrow.css";
 
 interface IProps {
     direction: any;
