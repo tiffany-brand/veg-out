@@ -16,14 +16,23 @@ export class PlayerCharacter {
     @JoinColumn()
     user: User;
 
-    @Column()
-    currentSTR: number;
+    @Column({
+        type: "int",
+        nullable: true
+    })
+    currenthealth: number;
 
-    @Column()
-    currentDEX: number;
+    @Column({
+        type: "int",
+        nullable: true
+    })
+    currentoffense: number;
 
-    @Column()
-    currentINT: number;
+    @Column({
+        type: "int",
+        nullable: true
+    })
+    currentdefense: number;
 
     @Column({
         default: false
