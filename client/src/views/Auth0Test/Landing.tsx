@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import logo from '../../assets/images/Vegemon-logo.png';
+import { useStoreContext } from '../../state/GlobalState';
 
 
 function Landing(): JSX.Element {
 
     const { user } = useAuth0();
+    const [state, dispatch] = useStoreContext();
+
+    useEffect(() => {
+        console.log(state.currentUser);
+
+    }, [])
 
     return (
         <div>

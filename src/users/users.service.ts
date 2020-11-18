@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
+import { userSeed } from './seeds/userSeed';
 
 @Injectable()
 export class UsersService {
@@ -38,4 +39,9 @@ export class UsersService {
   findAuth(auth0ID: string): Promise<User | void> {
     return this.usersRepository.findOne({auth0ID: auth0ID})
   }
+
+  injectSeed(): Promise<User[]> {
+    return this.usersRepository.save(userSeed);
+  }
+
 }
