@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import UserData from '../../components/UserData/UserData';
-import './Home.css';
-import ICurrentUser from '../../interfaces/ICurrentUser'
-import { useStoreContext } from '../../state/GlobalState';
-
-import CharacterAPI from '../../utils/playercharacterAPI'
-import API from '../../utils/userAPI'
+import './PlayerDetail.css';
 
 const plantPowerData = {
   totalHP: 345,
@@ -23,32 +18,13 @@ const challengeData = {
 
 export default function Home() {
 
-  const [state, dispatch] = useStoreContext();
-  console.log(state.currentUser.auth0ID);
-  console.log(state.currentUser);
-
-  console.log(state.currentUser.username);
-
-  // const [userData, setUserData] = useState<ICurrentUser>()
-
-  // useEffect(() => {
-  //   API.getAuthUser(auth0ID)
-  //     .then(res => {
-
-  //       setUserData(res.data)
-  //     }
-  //     );
-  // }, []);
-
-  // useEffect(() => {
-
-  // }, []);
-
-
   return (
-    <div className="home-container">
-      <h1>{state.currentUser.username} DETAILS</h1>
+    <div className="player-details-container">
+      <h1>Challenger Details</h1>
       <div className="card-container">
+        <div className="user-data-holder">
+          <UserData />
+        </div>
         <div className="card-holder">
           <h2>PLANT POWER</h2>
           <DetailCard>
@@ -59,9 +35,6 @@ export default function Home() {
             </ul>
           </DetailCard>
 
-        </div>
-        <div className="user-data-holder">
-          <UserData />
         </div>
         <div className="card-holder">
           <h2>CHALLENGES</h2>
