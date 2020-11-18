@@ -19,7 +19,7 @@ function Gameplay(p1: object, p2: object) {
     }
 
     else {
-        winner = "tie";
+        winner = "It's a tie";
     }
 
     return winner;
