@@ -64,16 +64,7 @@ export default function Register() {
     <div className="register-container">
       <h1>USERNAME/CHARACTER REGISTRATION</h1>
       <CharacterCarousel onChange={commitCharacterChoice} />
-      <div className="register-inputs">
-        <input onChange={handleInputChange} type="text" name="user-name" placeholder="Enter Username" />
-        <div className="username-confirm">
-          {usernameConfirmArea}
-        </div>
-      <Link to="/home">
-          <button disabled={!usernameAvailable} onClick={commitCharacterChoice}>CONFIRM</button>
-        {/* <Button onClick={commitCharacterChoice}>Go!</Button> */}
-      </Link>
-      </div>
+      
     </div>
   )
 }

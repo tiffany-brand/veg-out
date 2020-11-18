@@ -2,18 +2,21 @@ import React, { useState, useEffect} from 'react';
 import CharacterArrow from '../CharacterArrow/CharacterArrow';
 import CharacterSlide from '../CharacterSlide/CharacterSlide';
 import "./CharacterCarousel.css";
-import characterAPI from '../../utils/createCharacterChoiceAPI';
+import characterChoiceAPI from '../../utils/createCharacterChoiceAPI';
+import playerCharacterAPI from '../../utils/playercharacterAPI';
+import { userList } from '../../utils/testUserArray';
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
 
-// import bunny from "../../svg/bunny.svg";
-// import caterpillar from "../../svg/caterpillar_trimmed.svg";
 import ICharacterChoices from '../../interfaces/ICharacterChoices';
+import IPlayerCharacter from '../../interfaces/IPlayerCharacter';
+import { useStoreContext } from '../../state/GlobalState';
+import { Link } from 'react-router-dom';
 
 interface IProps {
     onChange: () => void
-}
+};
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,42 +33,58 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-
-const getData = async () => {
-
-    const caterpillarCharacter = await characterAPI.getCharacterChoices().then(response => {
-        return response.data;
-    });
-
-    console.log(caterpillarCharacter);
-
-}
-
-getData();
-
 const CharacterCarousel: React.FC<IProps> = () =>  {
 
-    
     const classes = useStyles();
 
-    // let characterChoices = getData();
+    const [usernameAvailable, setUsernameAvailable] = useState<boolean>(false);
+  const [usernameConfirmArea, setUsernameConfirmArea] = useState<string>("Username can not be blank.");
+  const [newUsername, setNewUsername] = useState<string>("");
 
-   
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const activeSearch = event.target.value
+    const matchSearch = userList.filter((el) => (
+      el.userName?.toLowerCase().includes(activeSearch.toLowerCase())
+    ))
 
 
-    // first in array is a state prop : interface state current... , set replaces this.setState... = useState : this.setState = 0
+    if (!activeSearch || activeSearch === " ") {
+      setUsernameConfirmArea("Username can not be blank.");
+      return;
+    }
+
+    if (activeSearch.length < 4) {
+      setUsernameConfirmArea("Username must be greater than 3 characters.")
+      return;
+    }
+
+    if (matchSearch.length > 0) {
+      setUsernameAvailable(false);
+      setUsernameConfirmArea(`${activeSearch} is NOT available.`);
+    }
+
+    if (matchSearch.length === 0) {
+      setUsernameAvailable(true);
+      setUsernameConfirmArea(`${activeSearch} is available.`);
+      setNewUsername(activeSearch);
+    }
+
+  };
+
+    const [state, dispatch] = useStoreContext();
+
     const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
 
-    const [characterChoices, setCharacterChoices] = useState<ICharacterChoices[]>([])
+    const [characterChoices, setCharacterChoices] = useState<ICharacterChoices[]>([]);
 
     useEffect(() => {
-        characterAPI.getCharacterChoices().then(response => {
+        characterChoiceAPI.getCharacterChoices().then(response => {
             setCharacterChoices(response.data)
             ;
         });
       }, []);
+
     
-    //   let imgUrls = [characterChoices[0].image, characterChoices[1].url];
     
     const previousCharacter = () => {
         const lastCharacter = characterChoices.length - 1;
@@ -73,7 +92,7 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
         const index = shouldResetCharacterIndex ? lastCharacter : currentCharacterIndex - 1;
 
         setCurrentCharacterIndex(index);
-    }
+    };
 
     const nextCharacter = () => {
         const lastCharacter = characterChoices.length - 1;
@@ -82,17 +101,31 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
 
 
         setCurrentCharacterIndex(index);
-    }
+    };
 
-    let characterChoice = ""
+    let characterChoice = "";
 
     if(characterChoices[currentCharacterIndex] !== undefined){
         characterChoice = characterChoices[currentCharacterIndex]!!.monster_type;
-        console.log(characterChoices[currentCharacterIndex].image)
+    };
+
+    const saveCharacterChoice = () => {
+        if (characterChoices[currentCharacterIndex] !== undefined){
+            const chosenCharacter = characterChoices[currentCharacterIndex]
+            const playerCharacter: IPlayerCharacter = {
+                character_id : chosenCharacter._id,
+                user_id : state.currentUser._id ,
+                currenthealth : chosenCharacter.startinghealth,
+                currentoffense : chosenCharacter.startingoffense,
+                currentdefense : chosenCharacter.startingdefense,
+                character_name: chosenCharacter.monster_type,
+        }
+        
+        playerCharacterAPI.savePlayerCharacter(playerCharacter)
+        }
+        
     }
-
     
-
 
     return (
         <Grid container spacing={3} className="carousel-grid">
@@ -113,7 +146,18 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
             <Grid item xs={12}>
                 <h1>{characterChoice}</h1>
             </Grid>
+            <div className="register-inputs">
+        <input onChange={handleInputChange} type="text" name="user-name" placeholder="Enter Username" />
+        <div className="username-confirm">
+          {usernameConfirmArea}
+        </div>
+      <Link to="/home">
+          <button disabled={!usernameAvailable} onClick={saveCharacterChoice}>CONFIRM</button>
+        {/* <Button onClick={commitCharacterChoice}>Go!</Button> */}
+      </Link>
+      </div>
         </Grid>
+        
     );
 }
 
