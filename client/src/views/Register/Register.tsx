@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Register.css';
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 
 // ***** REMEMBER TO REMOVE *****
 //Import User Array for testing
 import { userList } from '../../utils/testUserArray'
 import CharacterCarousel from '../../components/CharacterCarousel/CharacterCarousel';
+import characterAPI from '../../utils/createCharacterChoiceAPI';
 
 export default function Register() {
 
@@ -44,16 +45,17 @@ export default function Register() {
 
   };
 
-  const commitUsername = () => {
-    console.log(newUsername);
+  // const commitUsername = () => {
+  //   console.log(newUsername);
 
-  };
+  // };
 
 
   // character selection
 
   const commitCharacterChoice = () => {
-    console.log("bunny or caterpillar");
+
+    console.log(characterAPI.getCharacterChoices);
   };
 
 
@@ -61,17 +63,17 @@ export default function Register() {
   return (
     <div className="register-container">
       <h1>USERNAME/CHARACTER REGISTRATION</h1>
+      <CharacterCarousel onChange={commitCharacterChoice} />
       <div className="register-inputs">
         <input onChange={handleInputChange} type="text" name="user-name" placeholder="Enter Username" />
         <div className="username-confirm">
           {usernameConfirmArea}
         </div>
-          <button disabled={!usernameAvailable} onClick={commitUsername}>CONFIRM</button>
-      </div>
-      <CharacterCarousel onChange={commitCharacterChoice} />
       <Link to="/home">
-        <Button onClick={commitCharacterChoice}>Go!</Button>
+          <button disabled={!usernameAvailable} onClick={commitCharacterChoice}>CONFIRM</button>
+        {/* <Button onClick={commitCharacterChoice}>Go!</Button> */}
       </Link>
+      </div>
     </div>
   )
 }
