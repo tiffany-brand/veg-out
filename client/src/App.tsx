@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { StoreProvider } from './state/GlobalState';
 
 import './App.css';
 
@@ -16,18 +17,20 @@ import Wrapper from './components/Wrapper/Wrapper';
 function App() {
   return (
     <div className="App">
-      <Wrapper>
-        <Switch>
-          <Route path="/" exact component={Auth0Test} />
-          <Route path="/challenges" exact component={Challenges} />
-          <Route path="/character-selection" exact component={CharacterSelection} />
-          <Route path="/community" exact component={Community} />
-          <Route path="/home" exact component={Home} />
-          <Route path="/landing" exact component={Landing} />
-          <Route path="/plant-log" exact component={PlantLog} />
-          <Route path="/register" exact component={Register} />
-        </Switch>
-      </Wrapper>
+      <StoreProvider>
+        <Wrapper>
+          <Switch>
+            <Route path="/" exact component={Auth0Test} />
+            <Route path="/challenges" exact component={Challenges} />
+            <Route path="/character-selection" exact component={CharacterSelection} />
+            <Route path="/community" exact component={Community} />
+            <Route path="/home" exact component={Home} />
+            <Route path="/landing" exact component={Landing} />
+            <Route path="/plant-log" exact component={PlantLog} />
+            <Route path="/register" exact component={Register} />
+          </Switch>
+        </Wrapper>
+      </StoreProvider>
     </div>
   );
 }
