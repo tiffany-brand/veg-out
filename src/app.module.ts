@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, Global } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppGateway } from './app.gateway';
@@ -19,6 +19,7 @@ import { CharacterchoicesModule } from './characterchoices/characterchoices.modu
 import { ChallengesModule } from './challenges/challenges.module';
 import { PlayercharacterModule } from './playercharacter/playercharacter.module';
 
+@Global()
 @Module({
   imports: [
   TypeOrmModule.forRoot({
@@ -33,6 +34,8 @@ import { PlayercharacterModule } from './playercharacter/playercharacter.module'
   }), UsersModule, VeggiesModule, MeallogModule, CharacterchoicesModule, ChallengesModule, PlayercharacterModule],
   controllers: [AppController],
   providers: [AppService, AppGateway],
+  exports: [AppGateway]
+  
 })
 export class AppModule {
   constructor(private connection: Connection) { }
