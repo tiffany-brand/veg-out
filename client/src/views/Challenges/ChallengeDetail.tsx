@@ -1,37 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DetailCard from '../../components/DetailCard/DetailCard';
-import gameplay from "../../components/Gameplay/gameplay";
 
-function Winner(): JSX.Element {
+function ChallengeDetail(): JSX.Element {
 
-  //The following objects would be replaced with
-  // objects obtained fom table data
+    //The following objects would be replaced with
+    // objects obtained fom table data
 
-  const player1 = {
-    currentattack: 20,
-    currentdefense: 30,
-    currenthealth: 100,
-    character_name: "p1 name",
-    veggiesEaten: 30,
-    characterIMG: "/"
-  };
+    const player1 = {
+        currentattack: 20,
+        currentdefense: 30,
+        currenthealth: 100,
+        character_name: "p1 name",
+        veggiesEaten: 30,
+        characterIMG: "/"
+    };
 
-  const player2 = {
+    const player2 = {
 
-    currentattack: 30,
-    currentdefense: 20,
-    currenthealth: 100,
-    character_name: "p2 name",
-    veggiesEaten: 30,
-    characterIMG: "/"
+        currentattack: 30,
+        currentdefense: 20,
+        currenthealth: 100,
+        character_name: "p2 name",
+        veggiesEaten: 30,
+        characterIMG: "/"
 
-  };
+    };
 
-  const win = gameplay(player1, player2);
 
-  return (
 
+    return (
+      <div>
 
     <div className="card-container">
       <div className="card-holder">
@@ -45,22 +44,22 @@ function Winner(): JSX.Element {
           </ul>
           <img src={player1.characterIMG} alt="character image" />
         </DetailCard>
-      </div>
+        </div>
+        </div>
 
-
-
+        <div className="card-container">
       <div className="card-holder">
         <h2>And the winner is...</h2>
         <DetailCard>
           <h2>
-            {win} !
+              {win} !
           </h2>
           <img src="/" alt="image of trophy" />
         </DetailCard>
-      </div>
+        </div>
+        </div>
 
-
-
+        <div className="card-container">
       <div className="card-holder">
         <h2>{player1.character_name}</h2>
         <DetailCard>
@@ -73,12 +72,12 @@ function Winner(): JSX.Element {
           <img src={player2.characterIMG} alt="character image" />
 
         </DetailCard>
-      </div>
+        </div>
+        </div>
 
+        <Link to="/"><button>Home</button></Link>
 
-      <Link to="/"><button>Home</button></Link>
-    </div>
-
+        </div>
   )
 
 };
