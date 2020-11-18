@@ -4,5 +4,5 @@ export default interface ICurrentUser {
     _id?: string;
     firstName?: string;
     lastName?: string;
-    userName?: string;
+    username?: string;
 }
