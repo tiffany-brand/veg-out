@@ -1,5 +1,4 @@
-function Gameplay(p1: object, p2: object) {
-
+function Gameplay(p1: any, p2: any){
     const player1 = p1;
     const player2 = p2;
     let winner = undefined;
