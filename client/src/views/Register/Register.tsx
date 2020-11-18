@@ -68,7 +68,7 @@ export default function Register() {
         </div>
           <button disabled={!usernameAvailable} onClick={commitUsername}>CONFIRM</button>
       </div>
-      <CharacterCarousel />
+      <CharacterCarousel onChange={commitCharacterChoice} />
       <Link to="/home">
         <Button onClick={commitCharacterChoice}>Go!</Button>
       </Link>

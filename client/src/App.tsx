@@ -13,6 +13,7 @@ import PlantLog from './views/PlantLog/PlantLog';
 import Register from './views/Register/Register';
 import Wrapper from './components/Wrapper/Wrapper';
 import GameBoard from './views/GameBoard/GameBoard';
+import Menu from './components/Menu/Menu';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/register" exact component={Register} />
             <Route path="/game-board" exact component={GameBoard} />
           </Switch>
+          <Menu />
         </Wrapper>
       </StoreProvider>
     </div>

@@ -3,6 +3,7 @@ import GameBoardImage from "../../svg/fight_club.gif";
 import bunny from "../../svg/bunny.svg";
 import caterpillar from "../../svg/caterpillar_trimmed.svg";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
+import CharacterAPI from "../../utils/playercharacterAPI";
 
 // need access to users character
 // who will win
@@ -14,8 +15,6 @@ interface ICharacterData {
     name: string;
     url: string;
   }
-  
-
 
 const GameBoard: React.FC<ICharacterData> = () => {
 
@@ -33,6 +32,10 @@ const GameBoard: React.FC<ICharacterData> = () => {
             url: caterpillar,
         },
     ];
+
+    console.log(CharacterAPI.getPlayerCharacters());
+
+
 
     return (
         <div>

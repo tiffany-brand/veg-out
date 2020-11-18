@@ -9,6 +9,10 @@ import Grid from '@material-ui/core/Grid';
 import bunny from "../../svg/bunny.svg";
 import caterpillar from "../../svg/caterpillar_trimmed.svg";
 
+interface IProps {
+    onChange: () => void
+}
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -24,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const CharacterCarousel: React.FC<{}> = () =>  {
+const CharacterCarousel: React.FC<IProps> = () =>  {
 
     const classes = useStyles();
 
