@@ -40,7 +40,8 @@ function Login(): JSX.Element {
                             currentUser: {
                                 _id: res.data._id,
                                 email: res.data.email,
-                                auth0ID: res.data.auth0ID
+                                auth0ID: res.data.auth0ID,
+                                username: res.data.username
                             }
                         })
 
