@@ -13,6 +13,7 @@ import Landing from './views/Auth0Test/Landing';
 import PlantLog from './views/PlantLog/PlantLog';
 import Register from './views/Register/Register';
 import Wrapper from './components/Wrapper/Wrapper';
+import Winner from './views/Winner/Winner';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/landing" exact component={Landing} />
             <Route path="/plant-log" exact component={PlantLog} />
             <Route path="/register" exact component={Register} />
+            <Route path="/winner" exact component={Winner} />
           </Switch>
         </Wrapper>
       </StoreProvider>
