@@ -45,21 +45,7 @@ function ChallengeDetail(): JSX.Element {
           <img src={player1.characterIMG} alt="character image" />
         </DetailCard>
         </div>
-        </div>
 
-        <div className="card-container">
-      <div className="card-holder">
-        <h2>And the winner is...</h2>
-        <DetailCard>
-          <h2>
-              {win} !
-          </h2>
-          <img src="/" alt="image of trophy" />
-        </DetailCard>
-        </div>
-        </div>
-
-        <div className="card-container">
       <div className="card-holder">
         <h2>{player1.character_name}</h2>
         <DetailCard>
@@ -81,4 +67,4 @@ function ChallengeDetail(): JSX.Element {
   )
 
 };
-export default Winner;
+export default ChallengeDetail;
