@@ -64,8 +64,6 @@ const CharacterCarousel: React.FC<{}> = () =>  {
 
     let characterChoice = characterChoices[currentCharacterIndex].name;
 
-    console.log(characterChoice);
-
     return (
         <Grid container spacing={3} className="carousel-grid">
             <Grid item xs={12}>
