@@ -12,11 +12,8 @@ import Landing from './views/Auth0Test/Landing';
 import PlantLog from './views/PlantLog/PlantLog';
 import Register from './views/Register/Register';
 import Wrapper from './components/Wrapper/Wrapper';
-<<<<<<< HEAD
 import PlayerDetails from './views/PlayerDetails/PlayerDetails'
-=======
 import Winner from './views/Winner/Winner';
->>>>>>> 54719cdd8baaf01de62ed3974d77a3d84a42c407
 import GameBoard from './views/GameBoard/GameBoard';
 import Menu from './components/Menu/Menu';
 
