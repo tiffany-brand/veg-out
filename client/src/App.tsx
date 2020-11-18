@@ -13,6 +13,7 @@ import Landing from './views/Auth0Test/Landing';
 import PlantLog from './views/PlantLog/PlantLog';
 import Register from './views/Register/Register';
 import Wrapper from './components/Wrapper/Wrapper';
+import PlayerDetails from './views/PlayerDetails/PlayerDetails'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <StoreProvider>
         <Wrapper>
           <Switch>
+            <Route path="/keith-dev" exact component={PlayerDetails} />
             <Route path="/" exact component={Auth0Test} />
             <Route path="/challenges" exact component={Challenges} />
             <Route path="/character-selection" exact component={CharacterSelection} />
