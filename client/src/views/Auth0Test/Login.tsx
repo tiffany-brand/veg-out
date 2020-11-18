@@ -40,7 +40,8 @@ function Login(): JSX.Element {
                             currentUser: {
                                 _id: res.data._id,
                                 email: res.data.email,
-                                auth0ID: res.data.auth0ID
+                                auth0ID: res.data.auth0ID,
+                                username: res.data.username
                             }
                         })
 
@@ -77,7 +78,7 @@ function Login(): JSX.Element {
             </Link>
             {/* If logged in, show the button to go inside the app to the protected route */}
             {isAuthenticated && (
-                <Link to="/landing"><button>Go Inside</button></Link>
+                <Link to="/home"><button>Go Inside</button></Link>
             )}
         </div>
     )

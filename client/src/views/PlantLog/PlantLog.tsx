@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
-import { Link } from 'react-router-dom';
-import UserDetails from '../../components/UserData/UserData'
-import UserData from '../../components/UserData/UserData';
 import './PlantLog.css';
 
 interface IPlant {

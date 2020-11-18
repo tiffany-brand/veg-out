@@ -12,8 +12,11 @@ import Landing from './views/Auth0Test/Landing';
 import PlantLog from './views/PlantLog/PlantLog';
 import Register from './views/Register/Register';
 import Wrapper from './components/Wrapper/Wrapper';
+import PlayerDetails from './views/PlayerDetails/PlayerDetails'
+import Winner from './views/Winner/Winner';
 import GameBoard from './views/GameBoard/GameBoard';
 import Menu from './components/Menu/Menu';
+
 
 function App() {
   return (
@@ -21,6 +24,7 @@ function App() {
       <StoreProvider>
         <Wrapper>
           <Switch>
+            <Route path="/keith-dev" exact component={PlayerDetails} />
             <Route path="/" exact component={Auth0Test} />
             <Route path="/challenges" exact component={Challenges} />
             <Route path="/community" exact component={Community} />
@@ -28,7 +32,9 @@ function App() {
             <Route path="/landing" exact component={Landing} />
             <Route path="/plant-log" exact component={PlantLog} />
             <Route path="/register" exact component={Register} />
+            <Route path="/winner" exact component={Winner} />
             <Route path="/game-board" exact component={GameBoard} />
+
           </Switch>
           <Menu />
         </Wrapper>
