@@ -75,9 +75,21 @@ function Login(): JSX.Element {
                     </>
                 )}
             </Link>
-            {/* If logged in, show the button to go inside the app to the protected route */}
+            {/* If logged in and have a username, go to the home page */}
             {isAuthenticated && (
-                <Link to="/landing"><button>Go Inside</button></Link>
+                state.currentUser.username && (
+                    <>
+                        <Link to="/home"><button>Go Home</button></Link>
+                        <Link to="/landing"><button>Go Landing</button></Link>
+                    </>
+                )
+            )}
+            {/* If logged in but no username, go to the register page */}
+            {isAuthenticated && (
+                <>
+                    <Link to="/register"><button>Go Register</button></Link>
+                    <Link to="/landing"><button>Go Landing</button></Link>
+                </>
             )}
         </div>
     )
