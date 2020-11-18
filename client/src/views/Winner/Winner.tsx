@@ -13,7 +13,8 @@ function Winner(): JSX.Element {
         currentdefense: 30,
         currenthealth: 100,
         character_name: "p1 name",
-        veggiesEaten: 30
+        veggiesEaten: 30,
+        characterIMG: "/"
     };
 
     const player2 = {
@@ -22,7 +23,8 @@ function Winner(): JSX.Element {
         currentdefense: 20,
         currenthealth: 100,
         character_name: "p2 name",
-        veggiesEaten: 30
+        veggiesEaten: 30,
+        characterIMG: "/"
 
     };
 
@@ -41,6 +43,7 @@ function Winner(): JSX.Element {
             <li>DEFENSE: {player1.currentdefense}</li>
             <li>VEGGIES LOGGED: {player1.veggiesEaten}</li>
           </ul>
+          <img src={player1.characterIMG} alt="character image" />
         </DetailCard>
         </div>
         </div>
@@ -67,6 +70,8 @@ function Winner(): JSX.Element {
             <li>DEFENSE: {player2.currentdefense}</li>
             <li>VEGGIES LOGGED: {player2.veggiesEaten}</li>
           </ul>
+          <img src={player2.characterIMG} alt="character image" />
+
         </DetailCard>
         </div>
         </div>
