@@ -13,6 +13,7 @@ import ICharacterChoices from '../../interfaces/ICharacterChoices';
 import IPlayerCharacter from '../../interfaces/IPlayerCharacter';
 import { useStoreContext } from '../../state/GlobalState';
 import { Link } from 'react-router-dom';
+import { SET_CHARACTER } from '../../state/actions';
 
 interface IProps {
     onChange: () => void
@@ -122,9 +123,18 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
         }
         
         playerCharacterAPI.savePlayerCharacter(playerCharacter)
+
+        // saves to the global state and makes it accessible throughout application
+        dispatch({
+            type: SET_CHARACTER,
+            userCharacter: playerCharacter
+        });
+
         }
         
     }
+
+
     
 
     return (
