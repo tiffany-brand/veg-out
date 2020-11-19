@@ -2,36 +2,83 @@ export const userSeed = [
     {
     email: "email@email.com",
     auth0ID: "098lkj",
-    firstName: "Bill",
-    lastName: "Brasky",
-    username: "Big Boy Brasky"
+    username: "Big Boy Brasky",
+    character_name:"veggie guy",
+    character_id: 123,
+    challenged: false,
+    currentChallenge: null,
+    currenthealth: 100,
+    currentoffense: 100,
+    currentdefense:100,
+    win: 2,
+    loss: 3,
+    tie: 4,
+    level: 1
+
+
 },
 {
     email: "notemail@notemail.com",
     auth0ID: "mqt375",
-    firstName: "Church",
-    lastName: "Lady",
-    username: "Church Lady Rocks"
+    username: "Church Lady Rocks",
+    character_name:"broccolitti",
+    character_id: 223,
+    challenged: true,
+    currentChallenge: 1,
+    currenthealth: 110,
+    currentoffense: 110,
+    currentdefense:130,
+    win: 3,
+    loss: 3,
+    tie: 1,
+    level: 1
 },
 {
     email: "VanByTheRiver@anotheremail.com",
     auth0ID: "321cba",
-    firstName: "Matt",
-    lastName: "Foley",
-    username: "Government Cheez"
+    username: "Government Cheez",
+    character_name:"Frank",
+    character_id: 1234,
+    challenged: false,
+    currentChallenge: null,
+    currenthealth: 150,
+    currentoffense: 103,
+    currentdefense:180,
+    win: 4,
+    loss: 2,
+    tie: 1,
+    level: 1
 },
 {
     email: "ZepplinRocks@email.com",
     auth0ID: "574shg",
-    firstName: "Garth",
-    lastName: "Algar",
-    username: "Pearl4Lyfe"
+    username: "Pearl4Lyfe",
+    character_name:"sick potato",
+    character_id: 666,
+    challenged: true,
+    currentChallenge: 1,
+    currenthealth: 140,
+    currentoffense: 200,
+    currentdefense:140,
+    win: 5,
+    loss: 3,
+    tie: 2,
+    level: 1
 },
 {
     email: "superstar@email.com",
     auth0ID: "luv486",
-    firstName: "Mary Katherine",
-    lastName: "Gallagher",
-    username: "Ima Superstar"
+    username: "Ima Superstar",
+    character_name:"big pun",
+    character_id: 567,
+    challenged: false,
+    currentChallenge: null,
+    currenthealth: 145,
+    currentoffense: 120,
+    currentdefense:160,
+    win: 3,
+    loss: 4,
+    tie: 1,
+    level: 1
 }
 ]
