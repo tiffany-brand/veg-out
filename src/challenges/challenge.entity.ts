@@ -16,22 +16,26 @@ export class Challenge {
     player_one: User;
 
     @Column({
-        type: "int"
+        type: "int",
+        nullable: true
     })
     player_one_health: number;
 
     @Column({
-        type: "int"
+        type: "int",
+        nullable: true
     })
     player_one_offense: number;
 
     @Column({
-        type: "int"
+        type: "int",
+        nullable: true
     })
     player_one_defense: number;
 
     @Column({
-        type: "int"
+        type: "int",
+        nullable: true
     })
     player_one_plantTotal: number;
 
@@ -41,22 +45,26 @@ export class Challenge {
     player_two: User;
 
     @Column({
-        type: "int"
+        type: "int",
+        nullable: true
     })
     player_two_health: number;
 
     @Column({
-        type: "int"
+        type: "int",
+        nullable: true
     })
     player_two_offense: number;
 
     @Column({
-        type: "int"
+        type: "int",
+        nullable: true
     })
     player_two_defense: number;
 
     @Column({
-        type: "int"
+        type: "int",
+        nullable: true
     })
     player_two_plantTotal: number;
     
