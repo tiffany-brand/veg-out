@@ -30,7 +30,6 @@ export class UsersService {
     user.tie = createUserDto.tie;
     user.level = createUserDto.level;
 
-
     return this.usersRepository.save(user);
   }
 
@@ -53,5 +52,4 @@ export class UsersService {
   injectSeed(): Promise<User[]> {
     return this.usersRepository.save(userSeed);
   }
-
 }

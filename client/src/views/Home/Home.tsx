@@ -6,59 +6,37 @@ import './Home.css';
 import ICurrentUser from '../../interfaces/ICurrentUser'
 import { useStoreContext } from '../../state/GlobalState';
 
-import CharacterAPI from '../../utils/playercharacterAPI'
-import API from '../../utils/userAPI'
-
-const testCharacterAPI = {
-  _id: "2457658i",
-  currenthealth: 45,
-  currentoffense: 56,
-  currentdefense: 67,
-  challenged: false,
-  character_name: "ron"
-};
-
-const challengeData = {
-  wins: 17,
-  losses: 6,
-  active: 4
-};
+import userAPI from '../../utils/userAPI'
 
 export default function Home() {
 
   const [state, dispatch] = useStoreContext();
-  console.log(state.currentUser.auth0ID);
-  console.log(state.currentUser);
 
-  console.log(state.currentUser.username);
+  // Set current user details in state
+  const [userForNow, setUserForNow] = useState<ICurrentUser>({})
+  // Gather the current user
+  useEffect(() => {
+    userAPI.getUser("452cea4a-1646-4d18-b807-49e5dee1b308")
+      .then(res => {
+        setUserForNow(res.data);
 
-  // const [userData, setUserData] = useState<ICurrentUser>()
-
-  // useEffect(() => {
-  //   API.getAuthUser(auth0ID)
-  //     .then(res => {
-
-  //       setUserData(res.data)
-  //     }
-  //     );
-  // }, []);
-
-  // useEffect(() => {
-
-  // }, []);
-
+        // if (res.data.currentChallenge === null) {
+        //   setUserForNow({ ...userForNow, currentChallenge: "None" })
+        // }
+      })
+  }, [])
 
   return (
     <div className="home-container">
-      <h1>{state.currentUser.username} DETAILS</h1>
+      <h1>{userForNow.username} DETAILS</h1>
       <div className="card-container">
         <div className="card-holder">
           <h2>PLANT POWER</h2>
           <DetailCard>
             <ul>
-              <li>TOTAL HP: {testCharacterAPI.currenthealth}</li>
-              <li>OFFENSE: {testCharacterAPI.currentoffense}</li>
-              <li>DEFENSE: {testCharacterAPI.currentdefense}</li>
+              <li>TOTAL HP: {userForNow.currenthealth}</li>
+              <li>OFFENSE: {userForNow.currentoffense}</li>
+              <li>DEFENSE: {userForNow.currentdefense}</li>
             </ul>
           </DetailCard>
 
@@ -68,10 +46,10 @@ export default function Home() {
         </div>
         <div className="card-holder">
           <h2>CHALLENGES</h2>
-          <DetailCard>
+          <DetailCard level={userForNow.level} character={userForNow.firstName}>
             <ul>
-              <li>RECORD: {challengeData.wins} / {challengeData.losses}</li>
-              <li>ACTIVE: {challengeData.active}</li>
+              <li>RECORD: {userForNow.win} / {userForNow.loss}</li>
+              <li>ACTIVE: {userForNow.currentChallenge}</li>
               <li><Link to="/community">+ NEW CHALLENGE +</Link></li>
             </ul>
           </DetailCard>

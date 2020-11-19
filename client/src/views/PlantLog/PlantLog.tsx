@@ -12,31 +12,31 @@ import userAPI from '../../utils/userAPI'
 export default function PlantLog() {
   const [state, dispatch] = useStoreContext();
 
-  const [availablePlants, setAvailablePlants] = useState<IVeggies[]>([])
   const [currentMeal, setCurrentMeal] = useState<IVeggies[]>([]);
   const [searchArray, setSearchArray] = useState<IVeggies[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
+  // Get the plants API and set them to state
+  const [availablePlants, setAvailablePlants] = useState<IVeggies[]>([])
   useEffect(() => {
-
     veggieAPI.getVeggies()
       .then(res => {
         setAvailablePlants(res.data)
       })
-
   }, []);
 
+  // Set current user details in state
   const [userForNow, setUserForNow] = useState<ICurrentUser>({})
-
+  // Gather the current user
   useEffect(() => {
-    userAPI.getUser("538a717e-6629-4c9a-8a1d-a5145e9ba555")
+    userAPI.getUser("452cea4a-1646-4d18-b807-49e5dee1b308")
       .then(res => {
         setUserForNow(res.data);
         setMealStats({ currenthealth: res.data.currenthealth, currentoffense: res.data.currentoffense, currentdefense: res.data.currentdefense })
       })
   }, [])
 
-
+  //As user types populate search results
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const activeSearch = event.target.value.toLowerCase()
     const currentSearch = availablePlants.filter((el) => (
@@ -46,33 +46,30 @@ export default function PlantLog() {
     setSearchTerm(activeSearch);
   };
 
-
+  //Create state to hold tallied plant power prior to adding to current user
   const [mealStats, setMealStats] = useState({
     currenthealth: userForNow.currenthealth || 0,
     currentdefense: userForNow.currentdefense || 0,
     currentoffense: userForNow.currentoffense || 0
   })
 
+  console.log(mealStats);
+
+  // Append added plant to current meal and tally total values
   const addPlant = (plant: IVeggies) => {
     setCurrentMeal([...currentMeal, plant])
     const newHealth = mealStats.currenthealth + plant.total_HP;
     const newDefense = mealStats.currentdefense + plant.defense;
     const newOffense = mealStats.currentoffense + plant.offense;
-
     setMealStats({ ...mealStats, currenthealth: newHealth, currentdefense: newDefense, currentoffense: newOffense })
   };
 
-  console.log(mealStats);
-
-
+  // Update user's plant power with current meal.
   const logCurrentMeal = () => {
-
     userAPI.saveUser({ ...userForNow, currenthealth: mealStats.currenthealth, currentdefense: mealStats.currentdefense, currentoffense: mealStats.currentoffense })
       .then(res => {
         console.log(res.data);
-
       })
-
   };
 
   return (
