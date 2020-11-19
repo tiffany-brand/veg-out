@@ -1,5 +1,6 @@
 import React from 'react';
 import './UserData.css';
+import bunny from '../../svg/bunny.svg'
 
 interface IUserData {
   level: string;
@@ -8,7 +9,7 @@ interface IUserData {
 
 const userData: IUserData = {
   level: "Forager",
-  character: "./assets/images/vegabunny-400.png"
+  character: bunny
 }
 
 export default function UserData() {

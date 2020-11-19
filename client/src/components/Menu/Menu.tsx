@@ -6,7 +6,11 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ReactDOM from "react-router-dom";
+import { Link } from "react-router-dom";
+import './Menu.css'
+import { useAuth0 } from '@auth0/auth0-react';
+
+
 
 const useStyles = makeStyles({
   list: {
@@ -15,11 +19,19 @@ const useStyles = makeStyles({
   fullList: {
     width: 'auto',
   },
+  menuIcon: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    fontFamily: 'VT323',
+    fontSize: 30,
+  }
 });
 
 type Anchor = 'left';
 
 export default function TemporaryDrawer() {
+  const { logout, isAuthenticated } = useAuth0();
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
@@ -31,6 +43,29 @@ export default function TemporaryDrawer() {
     setState({ ...state, [anchor]: open });
   };
 
+  const viewArray = [
+    {
+      label: "Home",
+      link: "/home"
+    },
+    {
+      label: "Community",
+      link: "/community"
+    },
+    {
+      label: "Challenges",
+      link: "/challenges"
+    },
+    {
+      label: "Plant Log",
+      link: "/plant-log"
+    },
+    {
+      label: "Log Out",
+      link: "/"
+    },
+  ]
+
   const list = (anchor: Anchor) => (
     <div
       className={clsx(classes.list)}
@@ -38,11 +73,14 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Home', 'Community', 'Challenge'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
+        {viewArray.map((item, index) => (
+          <ListItem button key={index}>
+            <Link to={item.link}>
+              <ListItemText primary={item.label} />
+            </Link>
           </ListItem>
         ))}
+        <ListItem onClick={() => logout({ returnTo: window.location.origin })}>Log Out</ListItem>
       </List>
     </div>
   );
@@ -51,7 +89,8 @@ export default function TemporaryDrawer() {
     <div>
       {(['left'] as Anchor[]).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>Menu</Button>
+          <div className="menu-i" onClick={toggleDrawer(anchor, true)}>i</div>
+          {/* <Button className={classes.menuIcon} onClick={toggleDrawer(anchor, true)}>i</Button> */}
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>
