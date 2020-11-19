@@ -45,10 +45,10 @@ export default function Register() {
 
   };
 
-  // const commitUsername = () => {
-  //   console.log(newUsername);
+  const commitUsername = () => {
+    console.log(newUsername);
 
-  // };
+  };
 
 
   // character selection

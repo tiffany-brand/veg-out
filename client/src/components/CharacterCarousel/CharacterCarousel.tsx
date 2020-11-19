@@ -3,18 +3,21 @@ import CharacterArrow from '../CharacterArrow/CharacterArrow';
 import CharacterSlide from '../CharacterSlide/CharacterSlide';
 import "./CharacterCarousel.css";
 import characterChoiceAPI from '../../utils/createCharacterChoiceAPI';
-import playerCharacterAPI from '../../utils/playercharacterAPI';
+// import playerCharacterAPI from '../../utils/playercharacterAPI';
+import userAPI from "../../utils/userAPI";
 import { userList } from '../../utils/testUserArray';
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
 
-// import ICharacterChoices from '../../interfaces/ICharacterChoices';
-import IPlayerCharacter from '../../interfaces/IPlayerCharacter';
+import ICurrentUser from "../../interfaces/ICurrentUser";
 import { useStoreContext } from '../../state/GlobalState';
 import { Link } from 'react-router-dom';
 import { SET_CHARACTER } from '../../state/actions';
 import ICharacterResponse from '../../interfaces/ICharacterResponse';
+
+import bunny from "../../svg/bunny.svg";
+
 
 interface IProps {
     onChange: () => void
@@ -37,9 +40,9 @@ const useStyles = makeStyles((theme) => ({
 
 const CharacterCarousel: React.FC<IProps> = () =>  {
 
-    const classes = useStyles();
+  const classes = useStyles();
 
-    const [usernameAvailable, setUsernameAvailable] = useState<boolean>(false);
+  const [usernameAvailable, setUsernameAvailable] = useState<boolean>(false);
   const [usernameConfirmArea, setUsernameConfirmArea] = useState<string>("Username can not be blank.");
   const [newUsername, setNewUsername] = useState<string>("");
 
@@ -73,61 +76,61 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
 
   };
 
-    const [state, dispatch] = useStoreContext();
+  const [state, dispatch] = useStoreContext();
 
-    const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
+  const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
 
-    const [characterChoices, setCharacterChoices] = useState<ICharacterResponse[]>([]);
+  const [characterChoices, setCharacterChoices] = useState<ICharacterResponse[]>([]);
 
-    useEffect(() => {
-        characterChoiceAPI.getCharacterChoices().then(response => {
-            setCharacterChoices(response.data)
-            ;
-        });
-      }, []);
+  useEffect(() => {
+    characterChoiceAPI.getCharacterChoices().then(response => {
+        setCharacterChoices(response.data)
+        ;
+    });
+  }, []);
 
     
     
-    const previousCharacter = () => {
-        const lastCharacter = characterChoices.length - 1;
-        const shouldResetCharacterIndex = currentCharacterIndex === 0;
-        const index = shouldResetCharacterIndex ? lastCharacter : currentCharacterIndex - 1;
+  const previousCharacter = () => {
+      const lastCharacter = characterChoices.length - 1;
+      const shouldResetCharacterIndex = currentCharacterIndex === 0;
+      const index = shouldResetCharacterIndex ? lastCharacter : currentCharacterIndex - 1;
 
-        setCurrentCharacterIndex(index);
-    };
+      setCurrentCharacterIndex(index);
+  };
 
-    const nextCharacter = () => {
-        const lastCharacter = characterChoices.length - 1;
-        const shouldResetCharacterIndex = currentCharacterIndex === lastCharacter;
-        const index = shouldResetCharacterIndex ? 0 : currentCharacterIndex + 1;
+  const nextCharacter = () => {
+      const lastCharacter = characterChoices.length - 1;
+      const shouldResetCharacterIndex = currentCharacterIndex === lastCharacter;
+      const index = shouldResetCharacterIndex ? 0 : currentCharacterIndex + 1;
 
 
-        setCurrentCharacterIndex(index);
-    };
+      setCurrentCharacterIndex(index);
+  };
 
-    let characterChoice = "";
+  let characterChoice = "";
 
-    if(characterChoices[currentCharacterIndex] !== undefined){
-        characterChoice = characterChoices[currentCharacterIndex]!!.monster_type;
-    };
+  if(characterChoices[currentCharacterIndex] !== undefined){
+      characterChoice = characterChoices[currentCharacterIndex]!!.monster_type;
+  };
 
     //user_id in IPlayerCharacter.tsx is not optional, but in ICurrentUser (which is being used by GlobalState) it is. So it is possible for currentUser._id to be undefined based on the interface that is being used. 
 
-    //also the backend is expecting a character object and a user object but the interface that the endpoint is wanting uses character_id and user_id. Data mismatch.
+    //also the backend is expecting a character object and a user object but the interface that the endpoint is wanting uses character_id and user_id. Data mism
 
     const saveCharacterChoice = () => {
         if (characterChoices[currentCharacterIndex] !== undefined){
             const chosenCharacter = characterChoices[currentCharacterIndex]
-            const playerCharacter: IPlayerCharacter = {
+            const playerCharacter: ICurrentUser = {
                 character_id : chosenCharacter._id,
-                user_id : state.currentUser._id ,
+                _id : state.currentUser._id ,
                 currenthealth : chosenCharacter.startinghealth,
                 currentoffense : chosenCharacter.startingoffense,
                 currentdefense : chosenCharacter.startingdefense,
-                character_name: chosenCharacter.monster_type,
         }
         
-        playerCharacterAPI.savePlayerCharacter(playerCharacter)
+        // playerCharacterAPI.savePlayerCharacter(playerCharacter)
+        userAPI.saveUser(playerCharacter);
 
         // saves to the global state and makes it accessible throughout application
         dispatch({
@@ -140,7 +143,7 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
     }
 
 
-    
+    console.log(`line 146 in character carousel ${JSON.stringify(state.userCharacter)}`);
 
     return (
         <Grid container spacing={3} className="carousel-grid">
@@ -157,6 +160,7 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
                 <div className="right-arrow">
                     <CharacterArrow direction="right" clickFunction={ nextCharacter } glyph="&#9654;" />
                 </div>
+                <img src={bunny} alt="" />
             </div>
             <Grid item xs={12}>
                 <h1>{characterChoice}</h1>

@@ -29,7 +29,7 @@ export class User {
   @Column({
     nullable: true
   })
-  character_id: number;
+  character_id: string;
 
   @Column({
     nullable: false,
