@@ -1,7 +1,17 @@
 export class CreateUserDto {
     email: string;
     auth0ID: string;
-    firstName: string;
-    lastName: string;
     username: string;
+    character_name:string;
+    character_id: number;
+    challenged: boolean;
+    currentChallenge: number;
+    currenthealth: number;
+    currentoffense: number;
+    currentdefense:number;
+    win: number;
+    loss: number;
+    tie: number;
+    level: number;
+
 }
