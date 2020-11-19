@@ -18,7 +18,7 @@ export class UsersService {
     user.auth0ID = createUserDto.auth0ID;
     user.username = createUserDto.username;
     user.character_name = createUserDto.character_name;
-    user.character_id = createUserDto.character_id;
+    user.character_image = createUserDto.character_image;
     user.challenged = createUserDto.challenged;
     user.currentChallenge = createUserDto.currentChallenge;
     user.currenthealth = createUserDto.currenthealth;

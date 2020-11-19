@@ -3,7 +3,7 @@ export class CreateUserDto {
     auth0ID: string;
     username: string;
     character_name:string;
-    character_id: number;
+    character_image: string;
     challenged: boolean;
     currentChallenge: number;
     currenthealth: number;
