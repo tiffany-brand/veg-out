@@ -25,6 +25,14 @@ export default function PlantLog() {
       })
 
   }, []);
+
+  useEffect(() => {
+    userAPI.getUser(state.currentUser._id)
+      .then(res => {
+        console.log(res.data);
+      })
+  }, [])
+
   console.log(availablePlants);
 
 
@@ -43,7 +51,7 @@ export default function PlantLog() {
   };
 
   const logCurrentMeal = () => {
-    userAPI.saveUser({ ...state.currentUser, })
+    // userAPI.saveUser({ ...state.currentUser, })
 
   };
 
