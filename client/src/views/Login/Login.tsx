@@ -17,6 +17,8 @@ function Login(): JSX.Element {
             userAPI.getAuthUser(user.sub)
                 .then(res => {
                     if (res.data === "") {
+                        console.log("No user found");
+
                         // if no user found, create new user in db, then set state
                         userAPI.saveUser({ email: user.email, auth0ID: user.sub })
                             .then(res => {
