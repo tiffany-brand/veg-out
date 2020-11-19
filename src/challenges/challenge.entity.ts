@@ -11,13 +11,54 @@ export class Challenge {
     })
     date_started: string;
 
-    @ManyToOne(() => User, user => user.challenger )
+    @ManyToOne(() => User, user => user.player_one )
     
-    challenger: User;
+    player_one: User;
 
-    @ManyToOne(() => User, user => user.defender)
+    @Column({
+        type: "int"
+    })
+    player_one_health: number;
+
+    @Column({
+        type: "int"
+    })
+    player_one_offense: number;
+
+    @Column({
+        type: "int"
+    })
+    player_one_defense: number;
+
+    @Column({
+        type: "int"
+    })
+    player_one_plantTotal: number;
+
+    @ManyToOne(() => User, user => user.player_two 
+    )
     
-    defender: User;
+    player_two: User;
+
+    @Column({
+        type: "int"
+    })
+    player_two_health: number;
+
+    @Column({
+        type: "int"
+    })
+    player_two_offense: number;
+
+    @Column({
+        type: "int"
+    })
+    player_two_defense: number;
+
+    @Column({
+        type: "int"
+    })
+    player_two_plantTotal: number;
     
     @Column({
         type:"datetime"

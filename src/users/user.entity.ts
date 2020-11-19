@@ -30,7 +30,7 @@ export class User {
   @Column({
     nullable: true
   })
-  character_id: number;
+  character_image: string;
 
   @Column({
     nullable: false,
@@ -88,10 +88,10 @@ export class User {
   @OneToMany(() => MealLog, meallog => meallog.userID)
   mealLogs: MealLog;
 
-  @OneToMany(() => Challenge, challenge => challenge.challenger)
-  challenger: Challenge;
+  @OneToMany(() => Challenge, challenge => challenge.player_one)
+  player_one: Challenge;
 
-  @OneToMany(() => Challenge, challenge => challenge.defender)
-  defender: Challenge;
+  @OneToMany(() => Challenge, challenge => challenge.player_two)
+  player_two: Challenge;
 
 }

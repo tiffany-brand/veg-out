@@ -15,8 +15,14 @@ export class ChallengesService {
     create(createchallengeDTO: CreateChallengeDTO): Promise<Challenge> {
         const newChallenge = new Challenge();
         newChallenge.date_started = createchallengeDTO.date_started;
-        newChallenge.challenger = createchallengeDTO.challenger;
-        newChallenge.defender = createchallengeDTO.defender;
+        newChallenge.player_one = createchallengeDTO.player_one;
+        newChallenge.player_one_health = createchallengeDTO.player_one_health;
+        newChallenge.player_one_offense = createchallengeDTO.player_one_offense;
+        newChallenge.player_one_defense = createchallengeDTO.player_one_defense;
+        newChallenge.player_two = createchallengeDTO.player_two;
+        newChallenge.player_two_health = createchallengeDTO.player_two_health;
+        newChallenge.player_two_offense = createchallengeDTO.player_two_offense;
+        newChallenge.player_two_defense = createchallengeDTO.player_two_defense;
         newChallenge.date_ending = createchallengeDTO.date_ending;
 
         return this.challengeRepository.save(newChallenge);
