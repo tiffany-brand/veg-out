@@ -9,11 +9,12 @@ import { userList } from '../../utils/testUserArray';
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
 
-import ICharacterChoices from '../../interfaces/ICharacterChoices';
+// import ICharacterChoices from '../../interfaces/ICharacterChoices';
 import IPlayerCharacter from '../../interfaces/IPlayerCharacter';
 import { useStoreContext } from '../../state/GlobalState';
 import { Link } from 'react-router-dom';
 import { SET_CHARACTER } from '../../state/actions';
+import ICharacterResponse from '../../interfaces/ICharacterResponse';
 
 interface IProps {
     onChange: () => void
@@ -76,7 +77,7 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
 
     const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
 
-    const [characterChoices, setCharacterChoices] = useState<ICharacterChoices[]>([]);
+    const [characterChoices, setCharacterChoices] = useState<ICharacterResponse[]>([]);
 
     useEffect(() => {
         characterChoiceAPI.getCharacterChoices().then(response => {
@@ -109,6 +110,10 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
     if(characterChoices[currentCharacterIndex] !== undefined){
         characterChoice = characterChoices[currentCharacterIndex]!!.monster_type;
     };
+
+    //user_id in IPlayerCharacter.tsx is not optional, but in ICurrentUser (which is being used by GlobalState) it is. So it is possible for currentUser._id to be undefined based on the interface that is being used. 
+
+    //also the backend is expecting a character object and a user object but the interface that the endpoint is wanting uses character_id and user_id. Data mismatch.
 
     const saveCharacterChoice = () => {
         if (characterChoices[currentCharacterIndex] !== undefined){
