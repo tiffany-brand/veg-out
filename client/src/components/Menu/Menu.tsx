@@ -8,6 +8,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from "react-router-dom";
 import './Menu.css'
+import { useAuth0 } from '@auth0/auth0-react';
+
+
 
 const useStyles = makeStyles({
   list: {
@@ -28,6 +31,7 @@ const useStyles = makeStyles({
 type Anchor = 'left';
 
 export default function TemporaryDrawer() {
+  const { logout, isAuthenticated } = useAuth0();
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
@@ -76,6 +80,7 @@ export default function TemporaryDrawer() {
             </Link>
           </ListItem>
         ))}
+        <ListItem onClick={() => logout({ returnTo: window.location.origin })}>Log Out</ListItem>
       </List>
     </div>
   );
