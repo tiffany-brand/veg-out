@@ -3,7 +3,6 @@ import CharacterArrow from '../CharacterArrow/CharacterArrow';
 import CharacterSlide from '../CharacterSlide/CharacterSlide';
 import "./CharacterCarousel.css";
 import characterChoiceAPI from '../../utils/createCharacterChoiceAPI';
-// import playerCharacterAPI from '../../utils/playercharacterAPI';
 import userAPI from "../../utils/userAPI";
 import { userList } from '../../utils/testUserArray';
 
@@ -42,9 +41,23 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
 
   const classes = useStyles();
 
+  const [state, dispatch] = useStoreContext();
+
   const [usernameAvailable, setUsernameAvailable] = useState<boolean>(false);
   const [usernameConfirmArea, setUsernameConfirmArea] = useState<string>("Username can not be blank.");
   const [newUsername, setNewUsername] = useState<string>("");
+
+
+  const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
+
+  const [characterChoices, setCharacterChoices] = useState<ICharacterResponse[]>([]);
+
+  useEffect(() => {
+    characterChoiceAPI.getCharacterChoices().then(response => {
+        setCharacterChoices(response.data)
+        ;
+    });
+  }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const activeSearch = event.target.value
@@ -76,18 +89,7 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
 
   };
 
-  const [state, dispatch] = useStoreContext();
-
-  const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
-
-  const [characterChoices, setCharacterChoices] = useState<ICharacterResponse[]>([]);
-
-  useEffect(() => {
-    characterChoiceAPI.getCharacterChoices().then(response => {
-        setCharacterChoices(response.data)
-        ;
-    });
-  }, []);
+ 
 
     
     
@@ -143,7 +145,7 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
     }
 
 
-    console.log(`line 146 in character carousel ${JSON.stringify(state.userCharacter)}`);
+    console.log(`line 146 in character carousel ${JSON.stringify(state.currentUser)}`);
 
     return (
         <Grid container spacing={3} className="carousel-grid">
