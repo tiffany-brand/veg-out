@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DetailCard from '../../components/DetailCard/DetailCard';
+import challengesAPI from '../../utils/challengesAPI';
 
 function ChallengeDetail(): JSX.Element {
 
     //The following objects would be replaced with
     // objects obtained fom table data
+
+    const challengeID="1";
 
     const player1 = {
         currentattack: 20,
@@ -27,6 +30,11 @@ function ChallengeDetail(): JSX.Element {
 
     };
 
+    let currentChallenge: any = {};
+
+    challengesAPI.getChallenge(challengeID).then(res=>{
+      currentChallenge=res.data[0];
+    }).catch(err=> console.log(err));
 
 
     return (

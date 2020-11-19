@@ -1,3 +1,4 @@
+
 export default interface ICurrentUser {
     email: string;
     auth0ID: string;
@@ -5,4 +6,5 @@ export default interface ICurrentUser {
     firstName?: string;
     lastName?: string;
     username?: string;
+
 }

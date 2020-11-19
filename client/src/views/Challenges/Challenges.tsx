@@ -2,11 +2,59 @@ import React from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import UserData from '../../components/UserData/UserData';
 import './Challenges.css';
+import challengesAPI from '../../utils/challengesAPI';
+import userAPI from '../../utils/userAPI';
+import { User } from '@auth0/auth0-react/dist/auth-state';
 
 export default function Challenges() {
 
-  const pendingChallengesLI = ["Pending Challenge", "Another Pending", "Last Pender"];
-  const currentChallengesLI = ["Current Challenge", "Another Current", "Last Current"];
+  //Thefollowing two IDs will be substituted for global state vars
+const currentUserID= "1";
+const opponentUserID= "2";
+
+let pendingChallengesLI: any[] = [] ;
+let currentChallengesLI: any[]=[];
+
+let currentObj: User = {};
+let opponentObj: User ={};
+
+
+
+  function getUser(){
+  userAPI.getUser(currentUserID).then(res =>{
+    currentObj=res.data[0];
+  }).catch(err=> console.log(err));
+
+  if(currentObj.challenged === true){
+
+      challengesAPI.getChallenge(currentObj.currentChallenge).then(res=>{
+    currentChallengesLI.push(res);
+  }).catch(err=> console.log(err));
+
+  }
+
+  else {console.log("no challenges");
+   return}
+
+}
+
+function getOpponent(){
+
+  if (currentChallengesLI.length >= 0){
+
+    userAPI.getUser(opponentUserID).then(res =>{
+      opponentObj=res.data[0];
+    }).catch(err=> console.log(err));
+  
+
+  }
+  else{console.log("no challenger");
+  return}
+}
+
+  
+getUser();
+getOpponent();
 
   return (
     <div className="card-container">

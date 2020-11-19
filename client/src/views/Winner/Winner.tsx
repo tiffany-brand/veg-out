@@ -2,11 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import gameplay from "../../components/Gameplay/gameplay";
+import challengesAPI from "../../utils/challengesAPI";
+
 
 function Winner(): JSX.Element {
 
   //The following objects would be replaced with
   // objects obtained fom table data
+
+  const challengeID="1";
+
 
   const player1 = {
     currentattack: 20,
@@ -27,6 +32,14 @@ function Winner(): JSX.Element {
     characterIMG: "/"
 
   };
+
+  let currentChallenge: any = {};
+
+  challengesAPI.getChallenge(challengeID).then(res=>{
+    currentChallenge=res.data[0];
+  }).catch(err=> console.log(err));
+
+
 
   const win = gameplay(player1, player2);
 
