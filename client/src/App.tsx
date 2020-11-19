@@ -4,11 +4,11 @@ import { StoreProvider } from './state/GlobalState';
 
 import './App.css';
 
-import Auth0Test from './views/Auth0Test';
+import Login from './views/Login/Login';
 import Challenges from './views/Challenges/Challenges';
 import Community from './views/Community/Community'
 import Home from './views/Home/Home'
-import Landing from './views/Auth0Test/Landing';
+import Landing from './views/Login/Landing';
 import PlantLog from './views/PlantLog/PlantLog';
 import Register from './views/Register/Register';
 import Wrapper from './components/Wrapper/Wrapper';
@@ -25,7 +25,7 @@ function App() {
         <Wrapper>
           <Switch>
             <Route path="/keith-dev" exact component={PlayerDetails} />
-            <Route path="/" exact component={Auth0Test} />
+            <Route path="/" exact component={Login} />
             <Route path="/challenges" exact component={Challenges} />
             <Route path="/community" exact component={Community} />
             <Route path="/home" exact component={Home} />

@@ -68,28 +68,27 @@ function Login(): JSX.Element {
                 )}
 
                 {/* If logged in, show the Log Out button  */}
-                {!isLoading && user && (
+                {/* {!isLoading && user && (
                     <>
                         <button onClick={() => logout({ returnTo: window.location.origin })}>
                             Log Out
                         </button>
                     </>
-                )}
+                )} */}
             </Link>
             {/* If logged in and have a username, go to the home page */}
             {isAuthenticated && (
                 state.currentUser.username && (
                     <>
                         <Link to="/home"><button>Go Home</button></Link>
-                        <Link to="/landing"><button>Go Landing</button></Link>
                     </>
                 )
             )}
             {/* If logged in but no username, go to the register page */}
             {isAuthenticated && (
                 <>
-                    <Link to="/register"><button>Go Register</button></Link>
-                    <Link to="/landing"><button>Go Landing</button></Link>
+                    <Link to="/register"><button>Choose a Character</button></Link>
+
                 </>
             )}
         </div>
