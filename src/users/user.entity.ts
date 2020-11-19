@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { MealLog } from '../meallog/meallog.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -9,7 +10,7 @@ export class User {
   email: string;
 
   @Column({
-    type:"varchar",
+    type: "varchar",
     length: 255,
     unique: true,
   })
@@ -31,7 +32,7 @@ export class User {
   character_id: number;
 
   @Column({
-    nullable: false, 
+    nullable: false,
     default: false
   })
   challenged: boolean;
@@ -43,46 +44,47 @@ export class User {
 
   @Column({
     nullable: false,
-    default:100
+    default: 100
   })
   currenthealth: number;
 
   @Column({
     nullable: false,
-    default:100
+    default: 100
   })
   currentoffense: number;
 
   @Column({
     nullable: false,
-    default:100
+    default: 100
   })
   currentdefense: number;
 
   @Column({
     nullable: false,
-    default:0
+    default: 0
   })
   win: number;
 
   @Column({
     nullable: false,
-    default:0
+    default: 0
   })
   loss: number;
 
   @Column({
     nullable: false,
-    default:0
+    default: 0
   })
   tie: number;
 
   @Column({
     nullable: false,
-    default:1
+    default: 1
   })
   level: number;
 
-
+  @OneToMany(() => MealLog, meallog => meallog.userID)
+  mealLogs: MealLog;
 
 }
