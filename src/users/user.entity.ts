@@ -1,3 +1,4 @@
+import { Challenge } from 'src/challenges/challenge.entity';
 import { MealLog } from 'src/meallog/meallog.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
@@ -86,5 +87,11 @@ export class User {
 
   @OneToMany(() => MealLog, meallog => meallog.userID)
   mealLogs: MealLog;
+
+  @OneToMany(() => Challenge, challenge => challenge.challenger)
+  challenger: Challenge;
+
+  @OneToMany(() => Challenge, challenge => challenge.defender)
+  defender: Challenge;
 
 }

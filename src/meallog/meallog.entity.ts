@@ -15,7 +15,7 @@ export class MealLog {
     
     userID: User;
 
-    @ManyToOne(() => Veggie)
+    @ManyToOne(() => Veggie, veggie => veggie.meallogs)
    
     veggieID: Veggie;
 }

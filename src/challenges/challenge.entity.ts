@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
 import { User } from '../users/user.entity';
-import { PlayerCharacter } from '../playercharacter/playercharacter.entity';
+
 @Entity()
 export class Challenge {
     @PrimaryGeneratedColumn("uuid")
@@ -11,21 +11,13 @@ export class Challenge {
     })
     date_started: string;
 
-    @OneToOne(() => PlayerCharacter)
-    @JoinColumn()
-    player_one: PlayerCharacter;
+    @ManyToOne(() => User, user => user.challenger )
     
-    @OneToOne(() => PlayerCharacter)
-    @JoinColumn()
-    player_two: PlayerCharacter;
+    challenger: User;
 
-    @OneToOne(() => User )
-    @JoinColumn()
-    user_one: User;
-
-    @OneToOne(() => User)
-    @JoinColumn()
-    user_two: User;
+    @ManyToOne(() => User, user => user.defender)
+    
+    defender: User;
     
     @Column({
         type:"datetime"
