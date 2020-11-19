@@ -9,10 +9,13 @@ import { useStoreContext } from '../../state/GlobalState';
 import CharacterAPI from '../../utils/playercharacterAPI'
 import API from '../../utils/userAPI'
 
-const plantPowerData = {
-  totalHP: 345,
-  offensePower: 498,
-  defensePower: 546
+const testCharacterAPI = {
+  _id: "2457658i",
+  currenthealth: 45,
+  currentoffense: 56,
+  currentdefense: 67,
+  challenged: false,
+  character_name: "ron"
 };
 
 const challengeData = {
@@ -53,9 +56,9 @@ export default function Home() {
           <h2>PLANT POWER</h2>
           <DetailCard>
             <ul>
-              <li>TOTAL HP: {plantPowerData.totalHP}</li>
-              <li>OFFENSE: {plantPowerData.offensePower}</li>
-              <li>DEFENSE: {plantPowerData.defensePower}</li>
+              <li>TOTAL HP: {testCharacterAPI.currenthealth}</li>
+              <li>OFFENSE: {testCharacterAPI.currentoffense}</li>
+              <li>DEFENSE: {testCharacterAPI.currentdefense}</li>
             </ul>
           </DetailCard>
 
