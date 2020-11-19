@@ -12,10 +12,10 @@ export class MealLog {
     date: string;
 
     @ManyToOne(() => User, user => user.mealLogs)
-    
+
     userID: User;
 
-    @ManyToOne(() => Veggie)
-   
+    @ManyToOne(() => Veggie, veggie => veggie.meallogs)
+
     veggieID: Veggie;
 }
