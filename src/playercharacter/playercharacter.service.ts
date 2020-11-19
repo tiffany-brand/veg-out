@@ -6,34 +6,32 @@ import { CreatePlayerCharacterDTO } from './dto/create-playercharacter.dto';
 
 @Injectable()
 export class PlayercharacterService {
-  constructor(
-    @InjectRepository(PlayerCharacter)
-    private readonly playercharacterrepository: Repository<PlayerCharacter>,
-  ) {}
+    constructor(
+        @InjectRepository(PlayerCharacter)
+        private readonly playercharacterrepository: Repository<PlayerCharacter>
+    ) { }
 
-  create(
-    createplayercharacterDTO: CreatePlayerCharacterDTO,
-  ): Promise<PlayerCharacter> {
-    const newPlayer = new PlayerCharacter();
-    newPlayer.character = createplayercharacterDTO.character;
-    newPlayer.user = createplayercharacterDTO.user;
-    newPlayer.currenthealth = createplayercharacterDTO.currenthealth;
-    newPlayer.currentoffense = createplayercharacterDTO.currentoffense;
-    newPlayer.currentdefense = createplayercharacterDTO.currentdefense;
-    newPlayer.character_name = createplayercharacterDTO.character_name;
+    create(createplayercharacterDTO: CreatePlayerCharacterDTO): Promise<PlayerCharacter> {
+        const newPlayer = new PlayerCharacter();
+        newPlayer.character = createplayercharacterDTO.character;
+        newPlayer.user = createplayercharacterDTO.user;
+        newPlayer.currenthealth = createplayercharacterDTO.currenthealth;
+        newPlayer.currentoffense = createplayercharacterDTO.currentoffense;
+        newPlayer.currentdefense = createplayercharacterDTO.currentdefense;
+        newPlayer.character_name = createplayercharacterDTO.character_name;
 
-    return this.playercharacterrepository.save(newPlayer);
-  }
+        return this.playercharacterrepository.save(newPlayer);
+    }
 
-  findAll(): Promise<PlayerCharacter[]> {
-    return this.playercharacterrepository.find();
-  }
+    findAll(): Promise<PlayerCharacter[]> {
+        return this.playercharacterrepository.find();
+    }
 
-  findOne(id: string): Promise<PlayerCharacter> {
-    return this.playercharacterrepository.findOne(id);
-  }
+    findOne(id: string): Promise<PlayerCharacter> {
+        return this.playercharacterrepository.findOne(id);
+    }
 
-  async remove(id: string): Promise<void> {
-    await this.playercharacterrepository.delete(id);
-  }
+    async remove(id: string): Promise<void> {
+        await this.playercharacterrepository.delete(id);
+    }
 }

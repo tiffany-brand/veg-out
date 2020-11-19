@@ -1,6 +1,6 @@
 export default interface IPlayerCharacter {
-    character_id: string | undefined;
-    user_id: string | undefined;
+    character_id: string;
+    user_id: string;
     currenthealth: number;
     currentoffense: number;
     currentdefense: number;
