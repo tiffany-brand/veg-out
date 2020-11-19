@@ -66,7 +66,7 @@ export default function Register() {
         <div className="username-confirm">
           {usernameConfirmArea}
         </div>
-          <button disabled={!usernameAvailable} onClick={commitUsername}>CONFIRM</button>
+        <button disabled={!usernameAvailable} onClick={commitUsername}>CONFIRM</button>
       </div>
       <CharacterCarousel onChange={commitCharacterChoice} />
       <Link to="/home">

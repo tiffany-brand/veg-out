@@ -20,9 +20,6 @@ export default function Home() {
       .then(res => {
         setUserForNow(res.data);
 
-        // if (res.data.currentChallenge === null) {
-        //   setUserForNow({ ...userForNow, currentChallenge: "None" })
-        // }
       })
   }, [])
 
