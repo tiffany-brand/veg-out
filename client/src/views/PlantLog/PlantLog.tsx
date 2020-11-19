@@ -26,15 +26,15 @@ export default function PlantLog() {
 
   }, []);
 
+  const [userForNow, setUserForNow] = useState<ICurrentUser>({})
+
   useEffect(() => {
-    userAPI.getUser(state.currentUser._id)
+    userAPI.getUser("538a717e-6629-4c9a-8a1d-a5145e9ba555")
       .then(res => {
-        console.log(res.data);
+        setUserForNow(res.data);
+        setMealStats({ currenthealth: res.data.currenthealth, currentoffense: res.data.currentoffense, currentdefense: res.data.currentdefense })
       })
   }, [])
-
-  console.log(availablePlants);
-
 
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,12 +46,32 @@ export default function PlantLog() {
     setSearchTerm(activeSearch);
   };
 
+
+  const [mealStats, setMealStats] = useState({
+    currenthealth: userForNow.currenthealth || 0,
+    currentdefense: userForNow.currentdefense || 0,
+    currentoffense: userForNow.currentoffense || 0
+  })
+
   const addPlant = (plant: IVeggies) => {
     setCurrentMeal([...currentMeal, plant])
+    const newHealth = mealStats.currenthealth + plant.total_HP;
+    const newDefense = mealStats.currentdefense + plant.defense;
+    const newOffense = mealStats.currentoffense + plant.offense;
+
+    setMealStats({ ...mealStats, currenthealth: newHealth, currentdefense: newDefense, currentoffense: newOffense })
   };
 
+  console.log(mealStats);
+
+
   const logCurrentMeal = () => {
-    // userAPI.saveUser({ ...state.currentUser, })
+
+    userAPI.saveUser({ ...userForNow, currenthealth: mealStats.currenthealth, currentdefense: mealStats.currentdefense, currentoffense: mealStats.currentoffense })
+      .then(res => {
+        console.log(res.data);
+
+      })
 
   };
 
