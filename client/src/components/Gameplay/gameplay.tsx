@@ -3,8 +3,8 @@ function Gameplay(p1: any, p2: any){
     const player2 = p2;
     let winner = undefined;
 
-    const p1attack = player1.currentattack / player2.currentattack;
-    const p2attack = player2.currentattack / player1.curentattack;
+    const p1attack = player1.currentattack / player2.currentdefense;
+    const p2attack = player2.currentattack / player1.curentdefense;
 
     const p1turns = player2.currenthealth / p1attack;
     const p2turns = player1.currenthealth / p2attack;
