@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { MealLog } from 'src/meallog/meallog.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class Veggie {
@@ -28,5 +29,7 @@ export class Veggie {
   })
   info: string;
 
+  @OneToMany(()=> MealLog, meallog => meallog.veggieID)
+  meallogs: MealLog;
 
 }

@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { MealLog } from 'src/meallog/meallog.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -83,6 +84,7 @@ export class User {
   })
   level: number;
 
-
+  @OneToMany(() => MealLog, meallog => meallog.userID)
+  mealLogs: MealLog;
 
 }
