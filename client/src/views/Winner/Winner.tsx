@@ -8,7 +8,7 @@ import userAPI from "../../utils/userAPI";
 
 function Winner(): JSX.Element {
 
-//The following objects would be replaced with
+  //The following objects would be replaced with
   // objects obtained fom table data
 
   const currentChallenge = "1";
@@ -17,7 +17,7 @@ function Winner(): JSX.Element {
   let p1Obj: any = {};
   let p2Obj: any = {};
   let challengeObj: any = {};
-
+  let win: any = "";
 
 
 
@@ -49,12 +49,24 @@ function Winner(): JSX.Element {
 
   }
 
+  function getWinner() {
+    let winner = gameplay(challengeObj);
+    if (winner = p1Obj._id) {
+      win = p1Obj.username
+    }
+    else {
+      win = p2Obj.username
+    }
+  }
+
+
 
   getChallenge();
   getP1();
   getP2();
-  
-    const win = gameplay(p1Obj, p2Obj)
+  getWinner();
+
+
 
   return (
     <div>
