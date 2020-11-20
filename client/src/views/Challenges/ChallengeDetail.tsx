@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import {useStoreContext} from '../../state/GlobalState';
+import { SET_CHALLENGES } from "../../state/actions";
+import challengesAPI from '../../utils/challengesAPI';
 
 
 function ChallengeDetail(): JSX.Element {
@@ -9,6 +11,32 @@ function ChallengeDetail(): JSX.Element {
 
   const [state, dispatch] = useStoreContext();
  
+  function getChal() {
+
+
+
+    if (state.challenges.date_started === "" && state.currentUser.currentChallenge != undefined) {
+
+      let tempId = state.currentUser.currentChallenge;
+      let chalID = tempId.toString();
+
+      challengesAPI.getChallenge(chalID).then(res => {
+
+        dispatch({
+          type: SET_CHALLENGES,
+          challenges: {
+            ...state.challenges,
+            ...res.data
+          }
+        });
+        console.log(state.challenges)
+      }).catch(err => console.log(err));
+    }
+    else { console.log("else fired" + state.currentUser) }
+
+  }
+
+  getChal();
 
   return (
     <div>
@@ -49,7 +77,6 @@ function ChallengeDetail(): JSX.Element {
         </div>
       </div>
 
-      <Link to="/"><button>Home</button></Link>
 
     </div>
   )

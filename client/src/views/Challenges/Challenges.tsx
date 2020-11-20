@@ -111,7 +111,6 @@ export default function Challenges() {
         </p>
       </DetailCard>
     </div>
-    <Link to="/"><button>Home</button></Link>
   </div>)
 
 

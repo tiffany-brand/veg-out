@@ -6,6 +6,7 @@ import './App.css';
 
 import Login from './views/Login/Login';
 import Challenges from './views/Challenges/Challenges';
+import ChallengeDetail from './views/Challenges/ChallengeDetail';
 import Community from './views/Community/Community'
 import Home from './views/Home/Home'
 import Landing from './views/Login/Landing';
@@ -28,6 +29,7 @@ function App() {
               <Route path="/keith-dev" exact component={PlayerDetails} />
               <Route path="/" exact component={Login} />
               <Route path="/challenges" exact component={Challenges} />
+              <Route path="/challengeDetail" exact component={ChallengeDetail} />
               <Route path="/community" exact component={Community} />
               <Route path="/home" exact component={Home} />
               <Route path="/landing" exact component={Landing} />
