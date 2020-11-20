@@ -4,7 +4,7 @@ import UserData from '../../components/UserData/UserData';
 import './Challenges.css';
 import challengesAPI from '../../utils/challengesAPI';
 import {useStoreContext} from "../../state/GlobalState";
-import {LOADING} from "../../state/actions";
+import {LOADING, SET_CHALLENGES} from "../../state/actions";
 
 export default function Challenges(){
 
@@ -12,27 +12,31 @@ export default function Challenges(){
 
 const[state, dispatch] = useStoreContext();
 
-let challengeObj:any = {};
-let opponent:any = "";
 
+let opponent: string="";
 
-
-console.log(state.loading)
+console.log(state.challenges)
 
 
  function getChal(){
 
 
 
-  if (state.currentUser.challenged === true && state.currentUser.currentChallenge!= undefined) {
+  if (state.challenges.date_started === "" && state.currentUser.currentChallenge!= undefined) {
 
     let tempId = state.currentUser.currentChallenge;
     let chalID = tempId.toString();
 
     challengesAPI.getChallenge(chalID).then(res => {
-      challengeObj = res.data;
-      console.log(challengeObj);
-      return getOpponent();
+
+      dispatch({
+        type: SET_CHALLENGES,
+        challenges:{
+          ...state.challenges,
+          ...res
+        }
+      });
+      console.log(state.challenges)
     }).catch(err => console.log(err));
   }
   else{console.log("else fired" + state.currentUser)}
@@ -41,24 +45,18 @@ console.log(state.loading)
 
  function getOpponent(){
       if 
-      (challengeObj.player_one._id == state.currentUser._id)
-      {opponent = challengeObj.player_two.username;
-        return displayPage()
-      }
+      (state.challenges.player_one._id == state.currentUser._id)
+      {opponent = state.challenges.player_two.username;
+       }
       else{
-        opponent = challengeObj.player_one.username;
-        return displayPage()
-        
+        opponent = state.challenges.player_one.username;
 
 }
 
  }
+if (state.currentUser.challenged)
 
 
-
-
-
-function displayPage(){
       return( <div className="card-container">
           <div className="card-holder">
             <h2>PENDING CHALLENGES</h2>
@@ -77,12 +75,11 @@ function displayPage(){
             <DetailCard>
               <p>
                 Versus: {opponent}
-                Ends: {challengeObj.date_ending}
+                Ends: {state.challenges.date_ending}
               </p>
             </DetailCard>
           </div>
-        </div>)}
+        </div>)
 
-return getChal()
   
 };
