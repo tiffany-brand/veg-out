@@ -33,7 +33,7 @@ export default function Challenges() {
           type: SET_CHALLENGES,
           challenges: {
             ...state.challenges,
-            ...res
+            ...res.data
           }
         });
         console.log(state.challenges)
