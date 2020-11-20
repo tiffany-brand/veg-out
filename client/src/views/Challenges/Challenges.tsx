@@ -12,59 +12,60 @@ export default function Challenges() {
 
 
   //Thefollowing two IDs will be substituted for global state vars
-const currentUserID= "1";
+  const currentUserID = "1";
 
 
-let currentObj: any = {};
-let opponentObj: any = {};
-let challengeObj: any ={};
+  let currentObj: any = {};
+  let opponentObj: any = {};
+  let challengeObj: any = {};
 
 
 
 
-  function getUser(){
+  function getUser() {
 
-  userAPI.getUser(currentUserID).then(res =>{
-    currentObj=res.data[0];
-    console.log(currentObj)
-  }).catch(err=> console.log(err));
+    userAPI.getUser(currentUserID).then(res => {
+      currentObj = res.data[0];
+      console.log(currentObj)
+    }).catch(err => console.log(err));
 
-  if(currentObj.challenged === true){
+    if (currentObj.challenged === true) {
 
-      challengesAPI.getChallenge(currentObj.currentChallenge).then(res=>{
-    challengeObj=res.data[0];
-    console.log(challengeObj)
-  }).catch(err=> console.log(err));
+      challengesAPI.getChallenge(currentObj.currentChallenge).then(res => {
+        challengeObj = res.data[0];
+        console.log(challengeObj)
+      }).catch(err => console.log(err));
+
+    }
+
+    else {
+      console.log("no challenges");
+      return
+    }
 
   }
 
-  else {console.log("no challenges");
-   return}
+  function getOpponent() {
 
-}
+    let searchId: string = ""
 
-function getOpponent(){
+    if (challengeObj.playerOne_id === currentObj._id) {
+      searchId = challengeObj.playerTwo_id
+    }
+    else {
+      searchId = challengeObj.playerOne_id;
+    }
+    userAPI.getUser(searchId).then(res => {
+      opponentObj = res.data[0];
+      console.log(opponentObj)
+    }).catch(err => console.log(err));
 
-  let searchId:string=""
-
-  if (challengeObj.playerOne_id === currentObj._id){
-    searchId=challengeObj.playerTwo_id
   }
-  else
-  {
-    searchId=challengeObj.playerOne_id;
-  }
-  userAPI.getUser(searchId).then(res =>{
-    opponentObj=res.data[0];
-    console.log(opponentObj)
-  }).catch(err=> console.log(err));
-
-}
 
 
-  
-getUser();
-getOpponent();
+
+  getUser();
+  getOpponent();
 
   return (
     <div className="card-container">

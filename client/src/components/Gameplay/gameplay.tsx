@@ -1,20 +1,19 @@
-function Gameplay(p1: any, p2: any){
-    const player1 = p1;
-    const player2 = p2;
+function Gameplay(challenge:any){
+    const chal = challenge
     let winner = undefined;
 
-    const p1attack = player1.currentattack / player2.currentdefense;
-    const p2attack = player2.currentattack / player1.curentdefense;
+    const p1attack = chal.player_one_offense / chal.player_two_defense;
+    const p2attack = chal.player_two_offense / chal.player_one_defense;
 
-    const p1turns = player2.currenthealth / p1attack;
-    const p2turns = player1.currenthealth / p2attack;
+    const p1turns = chal.player_two_health / p1attack;
+    const p2turns = chal.player_one_health / p2attack;
 
     if (p1turns < p2turns) {
-        winner = player1.character_name;
+        winner = chal.playerOne_id
     }
 
     else if (p2turns > p1turns) {
-        winner = player2.character_name;
+        winner = chal.playerTwo_id;
     }
 
     else {
