@@ -1,39 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import UserData from '../../components/UserData/UserData';
 import './Challenges.css';
 import challengesAPI from '../../utils/challengesAPI';
 import userAPI from '../../utils/userAPI';
-import { User } from '@auth0/auth0-react/dist/auth-state';
+import GlobalState from "../../state/GlobalState"
 
 
-export default function Challenges() {
+class Challenges extends Component{
+
+  state={
+    isLoading: true,
+    opponent: ""
+
+  }
 
 
 
   //Thefollowing two IDs will be substituted for global state vars
-  const currentUserID = "1";
-
-
-  let currentObj: any;
-  let opponentObj: any;
-  let challengeObj: any = {};
+  const currentUserID = React.useContext(GlobalState.id)
 
 
 
 
-     function getUser() {
+
+
+
+getUser() {
 
     userAPI.getUser(currentUserID).then(res => {
       currentObj = res.data;
       console.log(currentObj);
-      getChallenge();
+      this.getChallenge();
     }).catch(err => console.log(err));
   }
 
-   function getChallenge(){
+getChallenge=()=>{
 
-    if (currentObj.challenged === true) {
+    if (this.state.currentObj.challenged === true) {
 
       let tempId = currentObj.currentChallenge;
       let chalID = tempId.toString();
@@ -41,7 +45,7 @@ export default function Challenges() {
       challengesAPI.getChallenge(chalID).then(res => {
         challengeObj = res.data;
         console.log(challengeObj);
-        getOpponent();
+        determineOpponent();
       }).catch(err => console.log(err));
 
     }
@@ -54,27 +58,28 @@ export default function Challenges() {
 
   }
 
-   function getOpponent() {
+  function determineOpponent(){
 
-    let searchId=""
+    if (challengeObj.player_one._id == currentObj._id)
+    {opponent = challengeObj.player_two.username}
+    else{
+      opponent = challengeObj.player_one.username
+    };
 
-    if (challengeObj.playerOne_id == currentObj._id) {
-      searchId = challengeObj.playerTwo_id.toString()
-    }
-    else {
-      let tempId = challengeObj.playerOne_id;
-      searchId = tempId.toString();
-    }
-    userAPI.getUser(searchId).then(res => {
-      opponentObj = res.data;
-      console.log(opponentObj)
-    }).catch(err => console.log(err));
+    console.log(opponent);
+
+    
+
+
 
   }
 
 
 
+
   getUser();
+
+  
 
   return (
     <div className="card-container">
@@ -94,7 +99,7 @@ export default function Challenges() {
         <h2>CURRENT CHALLENGES</h2>
         <DetailCard>
           <p>
-            Versus: {opponentObj.username}
+            Versus: {opponent}
             Ends: {challengeObj.date_ending}
           </p>
         </DetailCard>
