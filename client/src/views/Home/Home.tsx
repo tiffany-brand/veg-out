@@ -23,6 +23,9 @@ export default function Home() {
       })
   }, [])
 
+  console.log(state.currentUser);
+
+
   return (
     <div className="home-container">
       <h1>{userForNow.username} DETAILS</h1>
