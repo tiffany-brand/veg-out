@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import UserData from '../../components/UserData/UserData';
 import './Challenges.css';
 import challengesAPI from '../../utils/challengesAPI';
 import { useStoreContext } from "../../state/GlobalState";
-import { LOADING, SET_CHALLENGES } from "../../state/actions";
+import { SET_CHALLENGES } from "../../state/actions";
+
 
 export default function Challenges() {
 
@@ -46,10 +47,10 @@ export default function Challenges() {
   function getOpponent() {
     if
       (state.challenges.player_one._id == state.currentUser._id) {
-      return state.challenges.player_two.username;
+      opponent = state.challenges.player_two.username;
     }
     else {
-      return state.challenges.player_one.username;
+      opponent = state.challenges.player_one.username;
 
     }
 
@@ -83,7 +84,7 @@ export default function Challenges() {
   else{
     getChal();}
     
-  
+  getOpponent();
 
   return (<div className="card-container">
     <div className="card-holder">
@@ -102,7 +103,7 @@ export default function Challenges() {
       <h2>CURRENT CHALLENGES</h2>
       <DetailCard>
         <p>
-          Versus: {getOpponent}
+          Versus: {opponent}
           <br />
                 Ends: {state.challenges.date_ending}
         </p>
