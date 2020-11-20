@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { Repository } from 'typeorm';
 import { Challenge } from './challenge.entity';
 import { CreateChallengeDTO } from './dto/create-challenge.dto'
@@ -38,4 +39,5 @@ export class ChallengesService {
     async remove(id: string): Promise<void> {
         await this.challengeRepository.delete(id);
     }
+
 }

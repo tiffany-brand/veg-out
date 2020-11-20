@@ -17,9 +17,7 @@ export class MealLog {
     })
     userID: User;
 
-    @ManyToOne(() => Veggie, veggie => veggie.meallogs)
-    @Column({
-        type:'varchar'
-    })
+    @ManyToOne(() => Veggie, veggie => veggie.meallogs,
+    {eager: true})
     veggieID: Veggie;
 }

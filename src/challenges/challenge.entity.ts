@@ -11,10 +11,8 @@ export class Challenge {
     })
     date_started: string;
 
-    @ManyToOne(() => User, user => user.player_one )
-    @Column({
-        type: 'varchar'
-    })
+    @ManyToOne(() => User, user => user.player_one,
+    {eager: true} )
     player_one: User;
 
     @Column({
@@ -42,10 +40,7 @@ export class Challenge {
     player_one_plantTotal: number;
 
     @ManyToOne(() => User, user => user.player_two 
-    )
-    @Column({
-        type: 'varchar'
-    })
+    , {eager: true})
     player_two: User;
 
     @Column({
