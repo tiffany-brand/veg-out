@@ -12,7 +12,9 @@ export class Challenge {
     date_started: string;
 
     @ManyToOne(() => User, user => user.player_one )
-    
+    @Column({
+        type: 'varchar'
+    })
     player_one: User;
 
     @Column({
@@ -41,7 +43,9 @@ export class Challenge {
 
     @ManyToOne(() => User, user => user.player_two 
     )
-    
+    @Column({
+        type: 'varchar'
+    })
     player_two: User;
 
     @Column({
