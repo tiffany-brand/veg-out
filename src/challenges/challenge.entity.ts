@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
 import { User } from '../users/user.entity';
-import { PlayerCharacter } from '../playercharacter/playercharacter.entity';
+
 @Entity()
 export class Challenge {
     @PrimaryGeneratedColumn("uuid")
@@ -11,21 +11,62 @@ export class Challenge {
     })
     date_started: string;
 
-    @OneToOne(() => PlayerCharacter)
-    @JoinColumn()
-    player_one: PlayerCharacter;
+    @ManyToOne(() => User, user => user.player_one )
     
-    @OneToOne(() => PlayerCharacter)
-    @JoinColumn()
-    player_two: PlayerCharacter;
+    player_one: User;
 
-    @OneToOne(() => User )
-    @JoinColumn()
-    user_one: User;
+    @Column({
+        type: "int",
+        nullable: true
+    })
+    player_one_health: number;
 
-    @OneToOne(() => User)
-    @JoinColumn()
-    user_two: User;
+    @Column({
+        type: "int",
+        nullable: true
+    })
+    player_one_offense: number;
+
+    @Column({
+        type: "int",
+        nullable: true
+    })
+    player_one_defense: number;
+
+    @Column({
+        type: "int",
+        nullable: true
+    })
+    player_one_plantTotal: number;
+
+    @ManyToOne(() => User, user => user.player_two 
+    )
+    
+    player_two: User;
+
+    @Column({
+        type: "int",
+        nullable: true
+    })
+    player_two_health: number;
+
+    @Column({
+        type: "int",
+        nullable: true
+    })
+    player_two_offense: number;
+
+    @Column({
+        type: "int",
+        nullable: true
+    })
+    player_two_defense: number;
+
+    @Column({
+        type: "int",
+        nullable: true
+    })
+    player_two_plantTotal: number;
     
     @Column({
         type:"datetime"
