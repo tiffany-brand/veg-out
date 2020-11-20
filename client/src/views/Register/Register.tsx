@@ -55,10 +55,10 @@ export default function Register() {
 
   // character selection
 
-  // const commitCharacterChoice = () => {
+  const commitCharacterChoice = () => {
 
-  //   console.log(characterAPI.getCharacterChoices);
-  // };
+    console.log(characterAPI.getCharacterChoices);
+  };
 
 
 

@@ -88,15 +88,6 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
     }
 
   };
-
-
-  // const commitUsername = () => {
-  //   console.log(newUsername);
-
-  // };
- 
-
-    
     
   const previousCharacter = () => {
       const lastCharacter = characterChoices.length - 1;
@@ -121,25 +112,19 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
       characterChoice = characterChoices[currentCharacterIndex]!!.monster_type;
   };
 
-    //user_id in IPlayerCharacter.tsx is not optional, but in ICurrentUser (which is being used by GlobalState) it is. So it is possible for currentUser._id to be undefined based on the interface that is being used. 
-
-    //also the backend is expecting a character object and a user object but the interface that the endpoint is wanting uses character_id and user_id. Data mism
-
     const saveCharacterChoice = () => {
         if (characterChoices[currentCharacterIndex] !== undefined){
             const chosenCharacter = characterChoices[currentCharacterIndex]
             const playerCharacter: ICurrentUser = {
-                character_id : chosenCharacter._id,
-                _id : state.currentUser._id ,
+                ...state.currentUser,
                 currenthealth : chosenCharacter.startinghealth,
                 currentoffense : chosenCharacter.startingoffense,
                 currentdefense : chosenCharacter.startingdefense,
+                character_name : chosenCharacter.monster_type,
         }
         
-        // playerCharacterAPI.savePlayerCharacter(playerCharacter)
         userAPI.saveUser(playerCharacter);
 
-        // saves to the global state and makes it accessible throughout application
         dispatch({
             type: SET_CHARACTER,
             userCharacter: playerCharacter
@@ -151,16 +136,15 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
 
     const commitUsername = () => {
       console.log(newUsername);
-  
+
+
+
     };
 
     const runUsernameCharacterSave = () => {
       saveCharacterChoice();
       commitUsername();
     }
-
-
-    console.log(`line 146 in character carousel ${JSON.stringify(state.currentUser)}`);
 
     return (
         <Grid container spacing={3} className="carousel-grid">
