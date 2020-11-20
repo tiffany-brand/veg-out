@@ -16,6 +16,7 @@ import { SET_CHARACTER } from '../../state/actions';
 import ICharacterResponse from '../../interfaces/ICharacterResponse';
 
 import bunny from "../../svg/bunny.svg";
+import caterpillar from "../../svg/caterpillar_trimmed.svg";
 
 
 interface IProps {
@@ -131,18 +132,31 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
         });
 
         }
-        
-    }
 
-    const commitUsername = () => {
-      console.log(newUsername);
-
-    };
+      }
+      
+       const commitUsername = () => {
+         console.log(newUsername);
+   
+       };
 
     const runUsernameCharacterSave = () => {
       saveCharacterChoice();
       commitUsername();
     }
+
+
+    let characterImage = "";
+if (characterChoices[currentCharacterIndex]){
+    if (characterChoices[currentCharacterIndex].image === "./svg/caterpillar.svg") {
+        characterImage = bunny;
+      } else if (characterChoices[currentCharacterIndex].image === "./svg/bunny.svg") {
+        characterImage = caterpillar;
+      };
+      
+      console.log(characterImage);
+}
+
 
     return (
         <Grid container spacing={3} className="carousel-grid">
@@ -154,12 +168,11 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
                     <CharacterArrow direction="left" clickFunction={ previousCharacter } glyph="&#9664;" />
                 </div>
                 <div className={classes.center}>
-                   <CharacterSlide url={ characterChoices[currentCharacterIndex] !== undefined ? characterChoices[currentCharacterIndex].image : "" } />
+                   <CharacterSlide url={characterImage} />
                 </div>
                 <div className="right-arrow">
                     <CharacterArrow direction="right" clickFunction={ nextCharacter } glyph="&#9654;" />
                 </div>
-                <img src={bunny} alt="" />
             </div>
             <Grid item xs={12}>
                 <h1>{characterChoice}</h1>
