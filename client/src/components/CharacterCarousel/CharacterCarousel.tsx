@@ -89,6 +89,11 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
 
   };
 
+
+  // const commitUsername = () => {
+  //   console.log(newUsername);
+
+  // };
  
 
     
@@ -144,6 +149,16 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
         
     }
 
+    const commitUsername = () => {
+      console.log(newUsername);
+  
+    };
+
+    const runUsernameCharacterSave = () => {
+      saveCharacterChoice();
+      commitUsername();
+    }
+
 
     console.log(`line 146 in character carousel ${JSON.stringify(state.currentUser)}`);
 
@@ -173,8 +188,7 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
           {usernameConfirmArea}
         </div>
       <Link to="/home">
-          <button disabled={!usernameAvailable} onClick={saveCharacterChoice}>CONFIRM</button>
-        {/* <Button onClick={commitCharacterChoice}>Go!</Button> */}
+          <button disabled={!usernameAvailable} onClick={runUsernameCharacterSave}>CONFIRM</button>
       </Link>
       </div>
         </Grid>

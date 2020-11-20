@@ -53,18 +53,12 @@ export default function Register() {
 
   };
 
-  const commitUsername = () => {
-    console.log(newUsername);
-
-  };
-
-
   // character selection
 
-  const commitCharacterChoice = () => {
+  // const commitCharacterChoice = () => {
 
-    console.log(characterAPI.getCharacterChoices);
-  };
+  //   console.log(characterAPI.getCharacterChoices);
+  // };
 
 
 
