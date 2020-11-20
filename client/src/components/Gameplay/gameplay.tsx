@@ -9,11 +9,11 @@ function Gameplay(challenge:any){
     const p2turns = chal.player_one_health / p2attack;
 
     if (p1turns < p2turns) {
-        winner = chal.playerOne_id
+        winner = chal.player_one.username;
     }
 
     else if (p2turns > p1turns) {
-        winner = chal.playerTwo_id;
+        winner = chal.player_two.username;
     }
 
     else {

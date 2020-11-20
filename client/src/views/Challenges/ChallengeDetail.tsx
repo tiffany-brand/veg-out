@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DetailCard from '../../components/DetailCard/DetailCard';
-import {useStoreContext} from '../../state/GlobalState'
+import {useStoreContext} from '../../state/GlobalState';
+
 
 function ChallengeDetail(): JSX.Element {
 

@@ -5,6 +5,7 @@ import './Challenges.css';
 import challengesAPI from '../../utils/challengesAPI';
 import { useStoreContext } from "../../state/GlobalState";
 import { SET_CHALLENGES } from "../../state/actions";
+import { Link } from 'react-router-dom';
 
 
 export default function Challenges() {
@@ -105,10 +106,12 @@ export default function Challenges() {
         <p>
           Versus: {opponent}
           <br />
+          
                 Ends: {state.challenges.date_ending}
         </p>
       </DetailCard>
     </div>
+    <Link to="/"><button>Home</button></Link>
   </div>)
 
 
