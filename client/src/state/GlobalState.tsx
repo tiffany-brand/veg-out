@@ -24,9 +24,20 @@ const initialState: State = {
         _id: "",
         email: "",
         auth0ID: "",
-        firstName: "",
-        lastName: "",
-        username: ""
+        username: "",
+        character_name: "",
+        character_image: "",
+        character_id: "",
+        challenged: false,
+        currentChallenge: 0,
+        currenthealth: 0,
+        currentoffense: 0,
+        currentdefense: 0,
+        win: 0,
+        loss: 0,
+        tie: 0,
+        level: 0
+
     },
     userCharacter: {
         _id: "",

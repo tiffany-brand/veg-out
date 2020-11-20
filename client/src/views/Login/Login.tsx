@@ -26,6 +26,7 @@ function Login(): JSX.Element {
                                 dispatch({
                                     type: SET_CURRENT_USER,
                                     currentUser: {
+                                        ...state.currentUser,
                                         _id: res.data._id,
                                         email: res.data.email,
                                         auth0ID: res.data.auth0ID
@@ -40,6 +41,7 @@ function Login(): JSX.Element {
                         dispatch({
                             type: SET_CURRENT_USER,
                             currentUser: {
+                                ...state.currentUser,
                                 _id: res.data._id,
                                 email: res.data.email,
                                 auth0ID: res.data.auth0ID,
