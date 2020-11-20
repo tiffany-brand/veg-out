@@ -23,7 +23,7 @@ function ChallengeDetail(): JSX.Element {
 
 
     challengesAPI.getChallenge(currentChallenge).then(res => {
-      challengeObj = res.data[0];
+      challengeObj = res.data;
       console.log(challengeObj)
     }).catch(err => console.log(err));
 
@@ -32,7 +32,7 @@ function ChallengeDetail(): JSX.Element {
   function getP1() {
 
     userAPI.getUser(challengeObj.playerOne_id).then(res => {
-      p1Obj = res.data[0];
+      p1Obj = res.data;
       console.log(p1Obj)
     }).catch(err => console.log(err));
 
@@ -41,7 +41,7 @@ function ChallengeDetail(): JSX.Element {
   function getP2() {
 
     userAPI.getUser(challengeObj.playerTwo_id).then(res => {
-      p2Obj = res.data[0];
+      p2Obj = res.data;
       console.log(p2Obj)
     }).catch(err => console.log(err));
 

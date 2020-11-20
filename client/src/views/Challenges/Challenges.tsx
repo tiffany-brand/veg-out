@@ -25,14 +25,14 @@ export default function Challenges() {
   function getUser() {
 
     userAPI.getUser(currentUserID).then(res => {
-      currentObj = res.data[0];
+      currentObj = res.data;
       console.log(currentObj)
     }).catch(err => console.log(err));
 
     if (currentObj.challenged === true) {
 
       challengesAPI.getChallenge(currentObj.currentChallenge).then(res => {
-        challengeObj = res.data[0];
+        challengeObj = res.data;
         console.log(challengeObj)
       }).catch(err => console.log(err));
 
@@ -56,7 +56,7 @@ export default function Challenges() {
       searchId = challengeObj.playerOne_id;
     }
     userAPI.getUser(searchId).then(res => {
-      opponentObj = res.data[0];
+      opponentObj = res.data;
       console.log(opponentObj)
     }).catch(err => console.log(err));
 
