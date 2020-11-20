@@ -3,6 +3,7 @@ import { CreateChallengeDTO } from './dto/create-challenge.dto';
 import { Challenge } from './challenge.entity';
 import { ChallengesService } from './challenges.service';
 
+
 @Controller('api/challenges')
 export class ChallengesController {
     constructor(private readonly challengeService: ChallengesService) {}
@@ -26,4 +27,5 @@ export class ChallengesController {
     remove(@Param('id') id: string): Promise<void> {
       return this.challengeService.remove(id);
     }
+
 }

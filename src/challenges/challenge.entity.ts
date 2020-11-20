@@ -11,8 +11,8 @@ export class Challenge {
     })
     date_started: string;
 
-    @ManyToOne(() => User, user => user.player_one )
-    
+    @ManyToOne(() => User, user => user.player_one,
+    {eager: true} )
     player_one: User;
 
     @Column({
@@ -40,8 +40,7 @@ export class Challenge {
     player_one_plantTotal: number;
 
     @ManyToOne(() => User, user => user.player_two 
-    )
-    
+    , {eager: true})
     player_two: User;
 
     @Column({
