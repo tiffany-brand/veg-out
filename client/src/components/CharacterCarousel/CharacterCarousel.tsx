@@ -137,8 +137,6 @@ const CharacterCarousel: React.FC<IProps> = () =>  {
     const commitUsername = () => {
       console.log(newUsername);
 
-
-
     };
 
     const runUsernameCharacterSave = () => {
