@@ -139,16 +139,14 @@ const CharacterCarousel: React.FC<IProps> = () => {
 
   }
 
-  const commitUsername = () => {
-    console.log(newUsername);
-
-
+  let characterImage = "";
+  if (characterChoices[currentCharacterIndex]) {
+    if (characterChoices[currentCharacterIndex].image === "./svg/caterpillar.svg") {
+      characterImage = caterpillar;
+    } else if (characterChoices[currentCharacterIndex].image === "./svg/bunny.svg") {
+      characterImage = bunny;
+    }
   };
-
-  const runUsernameCharacterSave = () => {
-    saveCharacterChoice();
-    commitUsername();
-  }
 
   return (
     <Grid container spacing={3} className="carousel-grid">
@@ -160,12 +158,11 @@ const CharacterCarousel: React.FC<IProps> = () => {
           <CharacterArrow direction="left" clickFunction={previousCharacter} glyph="&#9664;" />
         </div>
         <div className={classes.center}>
-          <CharacterSlide url={characterChoices[currentCharacterIndex] !== undefined ? characterChoices[currentCharacterIndex].image : ""} />
+          <CharacterSlide url={characterImage} />
         </div>
         <div className="right-arrow">
           <CharacterArrow direction="right" clickFunction={nextCharacter} glyph="&#9654;" />
         </div>
-        <img src={bunny} alt="" />
       </div>
       <Grid item xs={12}>
         <h1>{characterChoice}</h1>
@@ -176,7 +173,7 @@ const CharacterCarousel: React.FC<IProps> = () => {
           {usernameConfirmArea}
         </div>
         <Link to="/home">
-          <button disabled={!usernameAvailable} onClick={runUsernameCharacterSave}>CONFIRM</button>
+          <button disabled={!usernameAvailable} onClick={saveCharacterChoice}>CONFIRM</button>
         </Link>
       </div>
     </Grid>
