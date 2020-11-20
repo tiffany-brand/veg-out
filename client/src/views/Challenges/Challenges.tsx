@@ -15,45 +15,55 @@ export default function Challenges() {
   const currentUserID = "1";
 
 
-  let currentObj: any = {};
-  let opponentObj: any = {};
+  let currentObj: any;
+  let opponentObj: any;
   let challengeObj: any = {};
 
 
 
 
-  function getUser() {
+     function getUser() {
 
     userAPI.getUser(currentUserID).then(res => {
       currentObj = res.data;
-      console.log(currentObj)
+      console.log(currentObj);
+      getChallenge();
     }).catch(err => console.log(err));
+  }
+
+   function getChallenge(){
 
     if (currentObj.challenged === true) {
 
-      challengesAPI.getChallenge(currentObj.currentChallenge).then(res => {
+      let tempId = currentObj.currentChallenge;
+      let chalID = tempId.toString();
+
+      challengesAPI.getChallenge(chalID).then(res => {
         challengeObj = res.data;
-        console.log(challengeObj)
+        console.log(challengeObj);
+        getOpponent();
       }).catch(err => console.log(err));
 
     }
 
     else {
       console.log("no challenges");
+      
       return
     }
 
   }
 
-  function getOpponent() {
+   function getOpponent() {
 
-    let searchId: string = ""
+    let searchId=""
 
-    if (challengeObj.playerOne_id === currentObj._id) {
-      searchId = challengeObj.playerTwo_id
+    if (challengeObj.playerOne_id == currentObj._id) {
+      searchId = challengeObj.playerTwo_id.toString()
     }
     else {
-      searchId = challengeObj.playerOne_id;
+      let tempId = challengeObj.playerOne_id;
+      searchId = tempId.toString();
     }
     userAPI.getUser(searchId).then(res => {
       opponentObj = res.data;
@@ -65,7 +75,6 @@ export default function Challenges() {
 
 
   getUser();
-  getOpponent();
 
   return (
     <div className="card-container">
