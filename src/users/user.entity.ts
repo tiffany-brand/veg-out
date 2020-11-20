@@ -1,3 +1,4 @@
+import { Challenge } from '../challenges/challenge.entity';
 import { MealLog } from '../meallog/meallog.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
@@ -29,7 +30,7 @@ export class User {
   @Column({
     nullable: true
   })
-  character_id: string;
+  character_image: string;
 
   @Column({
     nullable: false,
@@ -86,5 +87,11 @@ export class User {
 
   @OneToMany(() => MealLog, meallog => meallog.userID)
   mealLogs: MealLog;
+
+  @OneToMany(() => Challenge, challenge => challenge.player_one)
+  player_one: Challenge;
+
+  @OneToMany(() => Challenge, challenge => challenge.player_two)
+  player_two: Challenge;
 
 }
