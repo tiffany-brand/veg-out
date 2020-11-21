@@ -5,10 +5,13 @@ import UserData from '../../components/UserData/UserData';
 import './Home.css';
 import ICurrentUser from '../../interfaces/ICurrentUser'
 import { useStoreContext } from '../../state/GlobalState';
+import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUser';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { SET_CURRENT_USER, SET_CHALLENGES } from '../../state/actions';
 
 import userAPI from '../../utils/userAPI'
 
-export default function Home() {
+function Home() {
 
   const [state, dispatch] = useStoreContext();
   const [loggedInUser, setLoggedInUser] = useState<ICurrentUser>({});
@@ -18,6 +21,21 @@ export default function Home() {
       .then(res => setLoggedInUser(res.data))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    if (!state.currentUser._id) {
+      const storedState = loadFromLocalStorage()
+      dispatch({
+        type: SET_CURRENT_USER,
+        currentUser: storedState.currentUser
+      });
+      dispatch({
+        type: SET_CHALLENGES,
+        challenges: storedState.challenges
+      })
+    } else saveToLocalStorage(state);
+  }, [])
+
 
   return (
     <div className="home-container">
@@ -52,3 +70,7 @@ export default function Home() {
   )
 
 };
+
+export default withAuthenticationRequired(Home, {
+  onRedirecting: () => (<div>Redirecting you to the login page...</div>)
+});
