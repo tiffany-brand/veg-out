@@ -29,7 +29,19 @@ function Login(): JSX.Element {
                                         ...state.currentUser,
                                         _id: res.data._id,
                                         email: res.data.email,
-                                        auth0ID: res.data.auth0ID
+                                        auth0ID: res.data.auth0ID,
+                                        username: res.data.username,
+                                        character_name: res.data.character_name,
+                                        character_image: res.data.character_image,
+                                        character_id: res.data.character_id,
+                                        challenged: res.data.challenged,
+                                        currentChallenge: res.data.currentChallenge,
+                                        currenthealth: res.data.currenthealth,
+                                        currentoffense: res.data.currentoffense,
+                                        win: res.data.win,
+                                        loss: res.data.loss,
+                                        tie: res.data.tie,
+                                        level: res.data.level
                                     }
                                 })
                             })
@@ -45,7 +57,19 @@ function Login(): JSX.Element {
                                 _id: res.data._id,
                                 email: res.data.email,
                                 auth0ID: res.data.auth0ID,
-                                username: res.data.username
+                                username: res.data.username,
+                                character_name: res.data.character_name,
+                                character_image: res.data.character_image,
+                                character_id: res.data.character_id,
+                                challenged: res.data.challenged,
+                                currentChallenge: res.data.currentChallenge,
+                                currenthealth: res.data.currenthealth,
+                                currentoffense: res.data.currentoffense,
+                                win: res.data.win,
+                                loss: res.data.loss,
+                                tie: res.data.tie,
+                                level: res.data.level
+
                             }
                         })
 
@@ -89,11 +113,13 @@ function Login(): JSX.Element {
                 )
             )}
             {/* If logged in but no username, go to the register page */}
-            {isAuthenticated && (
-                <>
-                    <Link to="/register"><button>Choose a Character</button></Link>
 
-                </>
+            {isAuthenticated && (
+                !state.currentUser.username && (
+                    <>
+                        <Link to="/register"><button>Choose a Character</button></Link>
+                    </>
+                )
             )}
         </div>
     )
