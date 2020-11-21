@@ -12,44 +12,35 @@ export default function Home() {
 
   const [state, dispatch] = useStoreContext();
 
-  // Set current user details in state
-  const [userForNow, setUserForNow] = useState<ICurrentUser>({})
-  // Gather the current user
-  useEffect(() => {
-    userAPI.getUser("452cea4a-1646-4d18-b807-49e5dee1b308")
-      .then(res => {
-        setUserForNow(res.data);
+  console.log(JSON.stringify(state.currentUser.username));
 
-      })
-  }, [])
-
-  console.log(state.currentUser);
+  console.log(JSON.stringify(state.currentUser));
 
 
   return (
     <div className="home-container">
-      <h1>{userForNow.username} DETAILS</h1>
+      <h1>{state.currentUser.username} DETAILS</h1>
       <div className="card-container">
         <div className="card-holder">
           <h2>PLANT POWER</h2>
           <DetailCard>
             <ul>
-              <li>TOTAL HP: {userForNow.currenthealth}</li>
-              <li>OFFENSE: {userForNow.currentoffense}</li>
-              <li>DEFENSE: {userForNow.currentdefense}</li>
+              <li>TOTAL HP: {state.currentUser.currenthealth}</li>
+              <li>OFFENSE: {state.currentUser.currentoffense}</li>
+              <li>DEFENSE: {state.currentUser.currentdefense}</li>
             </ul>
           </DetailCard>
 
         </div>
         <div className="user-data-holder">
-          <UserData />
+          <UserData level={state.currentUser.level} character_image={state.currentUser.character_image} />
         </div>
         <div className="card-holder">
           <h2>CHALLENGES</h2>
-          <DetailCard level={userForNow.level} character={userForNow.firstName}>
+          <DetailCard>
             <ul>
-              <li>RECORD: {userForNow.win} / {userForNow.loss}</li>
-              <li>ACTIVE: {userForNow.currentChallenge}</li>
+              <li>RECORD: {state.currentUser.win} / {state.currentUser.loss}</li>
+              <li>ACTIVE: {state.currentUser.currentChallenge}</li>
               <li><Link to="/community">+ NEW CHALLENGE +</Link></li>
             </ul>
           </DetailCard>

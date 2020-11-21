@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import UserData from '../../components/UserData/UserData';
 import './PlayerDetail.css';
+import { useStoreContext } from '../../state/GlobalState';
 
 const plantPowerData = {
   totalHP: 345,
@@ -18,12 +19,14 @@ const challengeData = {
 
 export default function Home() {
 
+  const [state, dispatch] = useStoreContext();
+
   return (
     <div className="player-details-container">
       <h1>Challenger Details</h1>
       <div className="card-container">
         <div className="user-data-holder">
-          <UserData />
+          <UserData level={state.currentUser.level} character_image={state.currentUser.character_image} />
         </div>
         <div className="card-holder">
           <h2>PLANT POWER</h2>
