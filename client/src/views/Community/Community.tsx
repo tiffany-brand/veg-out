@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import ICurrentUser from '../../interfaces/ICurrentUser'
 import userAPI from '../../utils/userAPI'
+
 import { Link } from 'react-router-dom';
 import './Community.css';
 
