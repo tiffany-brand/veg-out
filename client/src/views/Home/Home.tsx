@@ -14,11 +14,13 @@ import userAPI from '../../utils/userAPI'
 function Home() {
 
   const [state, dispatch] = useStoreContext();
+  const [loggedInUser, setLoggedInUser] = useState<ICurrentUser>({});
 
-  console.log(JSON.stringify(state.currentUser.username));
-
-  console.log(JSON.stringify(state.currentUser));
-
+  useEffect(() => {
+    userAPI.getUser(state.currentUser._id)
+      .then(res => setLoggedInUser(res.data))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     if (!state.currentUser._id) {
@@ -43,22 +45,22 @@ function Home() {
           <h2>PLANT POWER</h2>
           <DetailCard>
             <ul>
-              <li>TOTAL HP: {state.currentUser.currenthealth}</li>
-              <li>OFFENSE: {state.currentUser.currentoffense}</li>
-              <li>DEFENSE: {state.currentUser.currentdefense}</li>
+              <li>TOTAL HP: {loggedInUser.currenthealth}</li>
+              <li>OFFENSE: {loggedInUser.currentoffense}</li>
+              <li>DEFENSE: {loggedInUser.currentdefense}</li>
             </ul>
           </DetailCard>
 
         </div>
         <div className="user-data-holder">
-          <UserData level={state.currentUser.level} character_image={state.currentUser.character_image} />
+          <UserData level={loggedInUser.level} character_image={loggedInUser.character_image} />
         </div>
         <div className="card-holder">
           <h2>CHALLENGES</h2>
           <DetailCard>
             <ul>
-              <li>RECORD: {state.currentUser.win} / {state.currentUser.loss}</li>
-              <li>ACTIVE: {state.currentUser.currentChallenge}</li>
+              <li>RECORD: {loggedInUser.win} / {loggedInUser.loss}</li>
+              <li>ACTIVE: {loggedInUser.currentChallenge}</li>
               <li><Link to="/community">+ NEW CHALLENGE +</Link></li>
             </ul>
           </DetailCard>
