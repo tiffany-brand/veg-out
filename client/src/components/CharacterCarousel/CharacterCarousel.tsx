@@ -122,9 +122,10 @@ const CharacterCarousel: React.FC<IProps> = () => {
         currentoffense: chosenCharacter.startingoffense,
         currentdefense: chosenCharacter.startingdefense,
         character_name: chosenCharacter.monster_type,
-        username: newUsername
+        username: newUsername,
+        character_image: characterImageName
       }
-
+      console.log(`playerCharacter b4 DB save ${JSON.stringify(playerCharacter)}`)
       userAPI.saveUser(playerCharacter);
 
       dispatch({
@@ -140,11 +141,14 @@ const CharacterCarousel: React.FC<IProps> = () => {
   }
 
   let characterImage = "";
+  let characterImageName = "";
   if (characterChoices[currentCharacterIndex]) {
     if (characterChoices[currentCharacterIndex].image === "./svg/caterpillar.svg") {
       characterImage = caterpillar;
+      characterImageName = "caterpillar";
     } else if (characterChoices[currentCharacterIndex].image === "./svg/bunny.svg") {
       characterImage = bunny;
+      characterImageName = "bunny";
     }
   };
 
