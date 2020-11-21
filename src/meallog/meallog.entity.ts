@@ -12,9 +12,12 @@ export class MealLog {
     date: string;
 
     @ManyToOne(() => User, user => user.mealLogs)
-
+    @Column({
+        type: 'varchar'
+    })
     userID: User;
 
-    @ManyToOne(() => Veggie, veggie => veggie.meallogs)
+    @ManyToOne(() => Veggie, veggie => veggie.meallogs,
+    {eager: true})
     veggieID: Veggie;
 }

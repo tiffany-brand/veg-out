@@ -1,7 +1,7 @@
 import axios from "axios";
 import ICharacterChoices from "../interfaces/ICharacterChoices";
 
-
+// TODO rename to characterChoiceAPI since it does more than create
 export default {
 
     // Gets all Character Choices

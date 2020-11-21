@@ -6,6 +6,7 @@ import './App.css';
 
 import Login from './views/Login/Login';
 import Challenges from './views/Challenges/Challenges';
+import ChallengeDetail from './views/Challenges/ChallengeDetail';
 import Community from './views/Community/Community'
 import Home from './views/Home/Home'
 import Landing from './views/Login/Landing';
@@ -21,24 +22,27 @@ import Menu from './components/Menu/Menu';
 function App() {
   return (
     <div className="App">
-      <StoreProvider>
-        <Wrapper>
-          <Switch>
-            <Route path="/keith-dev" exact component={PlayerDetails} />
-            <Route path="/" exact component={Login} />
-            <Route path="/challenges" exact component={Challenges} />
-            <Route path="/community" exact component={Community} />
-            <Route path="/home" exact component={Home} />
-            <Route path="/landing" exact component={Landing} />
-            <Route path="/plant-log" exact component={PlantLog} />
-            <Route path="/register" exact component={Register} />
-            <Route path="/winner" exact component={Winner} />
-            <Route path="/game-board" exact component={GameBoard} />
+      <div className="contain">
+        <StoreProvider>
+          <Wrapper>
+            <Switch>
+              <Route path="/keith-dev" exact component={PlayerDetails} />
+              <Route path="/" exact component={Login} />
+              <Route path="/challenges" exact component={Challenges} />
+              <Route path="/challengeDetail" exact component={ChallengeDetail} />
+              <Route path="/community" exact component={Community} />
+              <Route path="/home" exact component={Home} />
+              <Route path="/landing" exact component={Landing} />
+              <Route path="/plant-log" exact component={PlantLog} />
+              <Route path="/register" exact component={Register} />
+              <Route path="/winner" exact component={Winner} />
+              <Route path="/game-board" exact component={GameBoard} />
 
-          </Switch>
-          <Menu />
-        </Wrapper>
-      </StoreProvider>
+            </Switch>
+            <Menu />
+          </Wrapper>
+        </StoreProvider>
+      </div>
     </div>
   );
 }

@@ -1,13 +1,14 @@
+
 export default interface ICurrentUser {
     email?: string;
     auth0ID?: string;
     _id?: string;
-    firstName?: string;
-    lastName?: string;
     username?: string;
+    character_name?: string;
+    character_image?: string;
     character_id?: string;
-    currentChallenge?: string;
-    challenged?: true;
+    challenged?: boolean;
+    currentChallenge?: number;
     currenthealth?: number;
     currentoffense?: number;
     currentdefense?: number;
