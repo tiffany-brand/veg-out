@@ -5,6 +5,7 @@ import userAPI from '../../utils/userAPI';
 import { useStoreContext } from '../../state/GlobalState';
 import logo from '../../assets/images/Vegemon-logo.png';
 import { LOADING, SET_CURRENT_USER } from '../../state/actions';
+import { saveToLocalStorage } from '../../utils/persistUser';
 
 function Login(): JSX.Element {
 
@@ -22,53 +23,58 @@ function Login(): JSX.Element {
                         // if no user found, create new user in db, then set state
                         userAPI.saveUser({ email: user.email, auth0ID: user.sub })
                             .then(res => {
+                                const { _id, email, auth0ID, username, character_name, character_image, character_id, challenged, currentChallenge, currenthealth, currentoffense, win, loss, tie, level
+                                } = res.data;
                                 dispatch({ type: LOADING });
                                 dispatch({
                                     type: SET_CURRENT_USER,
                                     currentUser: {
                                         ...state.currentUser,
-                                        _id: res.data._id,
-                                        email: res.data.email,
-                                        auth0ID: res.data.auth0ID,
-                                        username: res.data.username,
-                                        character_name: res.data.character_name,
-                                        character_image: res.data.character_image,
-                                        character_id: res.data.character_id,
-                                        challenged: res.data.challenged,
-                                        currentChallenge: res.data.currentChallenge,
-                                        currenthealth: res.data.currenthealth,
-                                        currentoffense: res.data.currentoffense,
-                                        win: res.data.win,
-                                        loss: res.data.loss,
-                                        tie: res.data.tie,
-                                        level: res.data.level
+                                        _id,
+                                        email,
+                                        auth0ID,
+                                        username,
+                                        character_name,
+                                        character_image,
+                                        character_id,
+                                        challenged,
+                                        currentChallenge,
+                                        currenthealth,
+                                        currentoffense,
+                                        win,
+                                        loss,
+                                        tie,
+                                        level
                                     }
                                 })
                             })
                             .catch(err => console.log(err));
                     } else {
                         console.log("user found")
+                        const { _id,
+                            email, auth0ID, username, character_name, character_image, character_id, challenged, currentChallenge, currenthealth, currentoffense, win, loss, tie, level
+                        } = res.data;
                         // if user found, set state for logged in user
                         dispatch({ type: LOADING });
                         dispatch({
                             type: SET_CURRENT_USER,
                             currentUser: {
                                 ...state.currentUser,
-                                _id: res.data._id,
-                                email: res.data.email,
-                                auth0ID: res.data.auth0ID,
-                                username: res.data.username,
-                                character_name: res.data.character_name,
-                                character_image: res.data.character_image,
-                                character_id: res.data.character_id,
-                                challenged: res.data.challenged,
-                                currentChallenge: res.data.currentChallenge,
-                                currenthealth: res.data.currenthealth,
-                                currentoffense: res.data.currentoffense,
-                                win: res.data.win,
-                                loss: res.data.loss,
-                                tie: res.data.tie,
-                                level: res.data.level
+                                _id,
+                                email,
+                                auth0ID,
+                                username,
+                                character_name,
+                                character_image,
+                                character_id,
+                                challenged,
+                                currentChallenge,
+                                currenthealth,
+                                currentoffense,
+                                win,
+                                loss,
+                                tie,
+                                level
 
                             }
                         })
@@ -78,8 +84,13 @@ function Login(): JSX.Element {
                 .catch(err => console.log(err));
 
             console.log(state.currentUser);
+
         }
     }, [])
+
+    useEffect(() => {
+        saveToLocalStorage(state);
+    }, [state])
 
     return (
         <div>
@@ -94,15 +105,6 @@ function Login(): JSX.Element {
                         </button>
                     </>
                 )}
-
-                {/* If logged in, show the Log Out button  */}
-                {/* {!isLoading && user && (
-                    <>
-                        <button onClick={() => logout({ returnTo: window.location.origin })}>
-                            Log Out
-                        </button>
-                    </>
-                )} */}
             </Link>
             {/* If logged in and have a username, go to the home page */}
             {isAuthenticated && (
@@ -113,7 +115,6 @@ function Login(): JSX.Element {
                 )
             )}
             {/* If logged in but no username, go to the register page */}
-
             {isAuthenticated && (
                 !state.currentUser.username && (
                     <>
