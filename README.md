@@ -8,7 +8,7 @@
  2. [Description](#description)
  3. [Installation](#installation)
  4. [Technologies Used](#usage)
- 5. [Future Deveolpments](#futuredevelopments)
+ 5. [Future Developments](#futuredevelopments)
  6. [Contributors](#contributors)
  7. [License](#license)
 

@@ -15,8 +15,10 @@ export class MeallogService {
     create(createMealLogDTO: CreateMealLogDTO): Promise<MealLog> {
         const newLog = new MealLog();
         newLog.date = createMealLogDTO.date;
+        newLog.mealLabel = createMealLogDTO.mealLabel;
+        newLog.mealVeggies = createMealLogDTO.mealVeggies;
         newLog.userID = createMealLogDTO.userID;
-        newLog.veggieID = createMealLogDTO.veggieID;
+        
 
         return this.meallogRepository.save(newLog);
     }
