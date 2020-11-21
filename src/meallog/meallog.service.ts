@@ -14,6 +14,7 @@ export class MeallogService {
 
     create(createMealLogDTO: CreateMealLogDTO): Promise<MealLog> {
         const newLog = new MealLog();
+        newLog._id = createMealLogDTO._id;
         newLog.date = createMealLogDTO.date;
         newLog.mealLabel = createMealLogDTO.mealLabel;
         newLog.mealVeggies = createMealLogDTO.mealVeggies;
