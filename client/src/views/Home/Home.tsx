@@ -11,7 +11,7 @@ import { SET_CURRENT_USER, SET_CHALLENGES } from '../../state/actions';
 
 import userAPI from '../../utils/userAPI'
 
-export default function Home() {
+function Home() {
 
   const [state, dispatch] = useStoreContext();
 
@@ -68,3 +68,7 @@ export default function Home() {
   )
 
 };
+
+export default withAuthenticationRequired(Home, {
+  onRedirecting: () => (<div>Redirecting you to the login page...</div>)
+});
