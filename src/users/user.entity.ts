@@ -85,6 +85,11 @@ export class User {
   })
   level: number;
 
+  @Column({
+    type: "simple-array"
+  })
+  lifetimeUniqueVeggies: string[];
+
   @OneToMany(() => MealLog, meallog => meallog.userID)
   mealLogs: MealLog;
 
