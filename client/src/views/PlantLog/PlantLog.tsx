@@ -1,18 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import { useStoreContext } from '../../state/GlobalState';
+import { DateTime } from 'luxon';
 import './PlantLog.css';
 
+// Importing our interfaces
 import IVeggies from "../../interfaces/IVeggies";
+import ICurrentUser from '../../interfaces/ICurrentUser';
+import IMealLog from '../../interfaces/IMealLog'
+
+// Importing APIs
 import veggieAPI from '../../utils/veggiesAPI';
+import userAPI from '../../utils/userAPI';
+import mealAPI from '../../utils/mealLogAPI';
+import mealLogAPI from '../../utils/mealLogAPI';
 
-import ICurrentUser from '../../interfaces/ICurrentUser'
-import userAPI from '../../utils/userAPI'
+const date = DateTime.local().toFormat('yyyyLLdd');
 
+// Begin functional component.
 export default function PlantLog() {
+  // Bring in Global Sate to identify logged in user.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [state, dispatch] = useStoreContext();
+
+  // Set state for currently logging user
   const [loggingUser, setLoggingUser] = useState<ICurrentUser>({})
 
+  // Call the APIs for veggies and user data
   useEffect(() => {
     Promise.all([userAPI.getUser(state.currentUser._id), veggieAPI.getVeggies()])
       .then(([userRes, veggieRes]) => {
@@ -23,18 +37,20 @@ export default function PlantLog() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Put veggie API into state
+  const [availablePlants, setAvailablePlants] = useState<IVeggies[]>([])
+
+  // Set state for veggie search
   const [currentMeal, setCurrentMeal] = useState<IVeggies[]>([]);
   const [searchArray, setSearchArray] = useState<IVeggies[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
+
   //Create state to hold tallied plant power prior to adding to current user
   const [mealStats, setMealStats] = useState({
     mealHealth: 0,
     mealDefense: 0,
     mealOffense: 0
   })
-
-  // Get the plants API and set them to state
-  const [availablePlants, setAvailablePlants] = useState<IVeggies[]>([])
 
   //As user types populate search results
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,10 +72,10 @@ export default function PlantLog() {
 
   };
 
-  // Update DB with current meal with current meal.
+  // Update DB with current meal
   const logCurrentMeal = () => {
-    console.log(loggingUser);
 
+    // Get the needed data from current meal and existing user totals
     const { currenthealth, currentoffense, currentdefense } = loggingUser;
     const { mealHealth, mealDefense, mealOffense } = mealStats;
     const updatedStats = {
@@ -68,10 +84,20 @@ export default function PlantLog() {
       offense: (currentoffense || 0) + mealOffense
     }
 
+    // **** Update User table ****
     userAPI.saveUser({ ...loggingUser, currenthealth: updatedStats.health, currentdefense: updatedStats.defense, currentoffense: updatedStats.offense })
-      .then(res => {
-        console.log(res.data);
-      })
+
+    // Build array from meal's veggies
+    const mealVeggiesArray = currentMeal.map((item: any) => {
+      return item._id;
+    })
+
+    // **** Update Meal-Log table
+    mealLogAPI.saveMealLog({
+      date: date,
+      mealVeggies: mealVeggiesArray,
+      userID: loggingUser._id!
+    })
   };
 
   return (

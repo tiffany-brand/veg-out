@@ -16,7 +16,8 @@ export default function Home() {
   useEffect(() => {
     userAPI.getUser(state.currentUser._id)
       .then(res => setLoggedInUser(res.data))
-  })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="home-container">
