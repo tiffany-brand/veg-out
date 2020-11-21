@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
 import { TestButton } from './TestButton';
 import { TestButton2 } from './TestButton2';
 
