@@ -1,25 +1,27 @@
 import React from 'react';
 import { TestButton } from './TestButton';
-import { TestButton2 } from './TestButton2';
+// import { TestButton2 } from './TestButton2';
+// import { LeafButton } from './Leaf';
+import { CaterpillarComponent } from './CaterpillarComponent';
 
 // export default function ShowTheButton()
 class ShowTheButton extends React.Component {
 
     render() {
 
-        const isTrue = false;
+        const isTrue = true;
         let button;
 
         if(isTrue) {
             button = <TestButton />;
         } else {
-            button = <TestButton2 />;
+            button = <CaterpillarComponent />;
         }
 
         return (
-            <div>
+            <>
                 {button}
-            </div>
+            </>
         );
     };
 }
