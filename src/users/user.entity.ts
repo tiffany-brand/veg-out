@@ -85,7 +85,8 @@ export class User {
   level: number;
 
   @Column({
-    type: "simple-array"
+    type: "simple-array",
+    nullable: true
   })
   lifetimeUniqueVeggies: string[];
 

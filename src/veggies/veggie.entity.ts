@@ -36,7 +36,10 @@ export class Veggie {
     })
     info: string;
 
-    @OneToMany(() => MealLog, meallog => meallog.veggieID)
-    meallogs: MealLog;
+
+
+    // Please leave column below for potential post MVP work.
+    // @OneToMany(() => MealLog, meallog => meallog.veggieID)
+    // meallogs: MealLog;
 
 }
