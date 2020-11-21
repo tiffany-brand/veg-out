@@ -89,11 +89,13 @@ function Login(): JSX.Element {
                 )
             )}
             {/* If logged in but no username, go to the register page */}
-            {isAuthenticated && (
-                <>
-                    <Link to="/register"><button>Choose a Character</button></Link>
 
-                </>
+            {isAuthenticated && (
+                !state.currentUser.username && (
+                    <>
+                        <Link to="/register"><button>Choose a Character</button></Link>
+                    </>
+                )
             )}
         </div>
     )
