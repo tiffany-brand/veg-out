@@ -29,6 +29,7 @@ export class UsersService {
     user.loss = createUserDto.loss;
     user.tie = createUserDto.tie;
     user.level = createUserDto.level;
+    user.lifetimeUniqueVeggies = createUserDto.lifetimeUniqueVeggies;
 
     return this.usersRepository.save(user);
   }

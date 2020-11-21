@@ -14,5 +14,6 @@ export class CreateUserDto {
     loss: number;
     tie: number;
     level: number;
+    lifetimeUniqueVeggies: string[];
 
 }

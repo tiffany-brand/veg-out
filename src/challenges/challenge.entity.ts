@@ -40,6 +40,12 @@ export class Challenge {
     })
     player_one_plantTotal: number;
 
+    @Column({
+        type:"simple-array",
+        nullable: true
+    })
+    player_one_uniqueVeggies: string[];
+
     @ManyToOne(() => User, user => user.player_two 
     , {eager: true})
     player_two: User;
@@ -67,6 +73,12 @@ export class Challenge {
         nullable: true
     })
     player_two_plantTotal: number;
+
+    @Column({
+        type:"simple-array",
+        nullable: true
+    })
+    player_two_uniqueVeggies: string[];
     
     @Column({
         type:"datetime"
