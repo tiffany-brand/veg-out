@@ -8,11 +8,11 @@ import challengesAPI from '../../utils/challengesAPI';
 
 
 
-function Winner(): JSX.Element {
+function Winner(){
 
   const [state, dispatch] = useStoreContext();
 
-  const win = Gameplay(state.challenges);
+ 
 
   function getChal() {
 
@@ -32,16 +32,23 @@ function Winner(): JSX.Element {
             ...res.data
           }
         });
-        console.log(state.challenges)
+        console.log(state.challenges);
       }).catch(err => console.log(err));
     }
-    else { console.log("else fired" + state.currentUser) }
+    else { console.log("else fired" + state.currentUser);}
 
   }
 
-  getChal();
 
+function displayPage(){ 
+  if(state.challenges.date_started=""){
+    return (
+    <div>Loading...</div>
+    )
+  }
+  else{
 
+  const win = Gameplay(state.challenges);
 
   return (
     <div>
@@ -90,8 +97,13 @@ function Winner(): JSX.Element {
     </div>
     
   )
+  }
+}
 
+  getChal();
 
+  return displayPage()
+  
 };
 export default Winner;
 
