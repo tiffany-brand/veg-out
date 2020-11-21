@@ -7,12 +7,10 @@ import './PlantLog.css';
 // Importing our interfaces
 import IVeggies from "../../interfaces/IVeggies";
 import ICurrentUser from '../../interfaces/ICurrentUser';
-import IMealLog from '../../interfaces/IMealLog'
 
 // Importing APIs
 import veggieAPI from '../../utils/veggiesAPI';
 import userAPI from '../../utils/userAPI';
-import mealAPI from '../../utils/mealLogAPI';
 import mealLogAPI from '../../utils/mealLogAPI';
 
 const date = DateTime.local().toFormat('yyyyLLdd');
@@ -32,6 +30,7 @@ export default function PlantLog() {
       .then(([userRes, veggieRes]) => {
         setLoggingUser(userRes.data);
         setAvailablePlants(veggieRes.data);
+        setSearchArray(availablePlants);
       }
       )
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -98,6 +97,9 @@ export default function PlantLog() {
       mealVeggies: mealVeggiesArray,
       userID: loggingUser._id!
     })
+
+    // Clear the current meal area
+    setCurrentMeal([]);
   };
 
   return (
@@ -107,15 +109,9 @@ export default function PlantLog() {
         <div className="card-holder">
           <h2>ADD PLANTS</h2>
           <DetailCard>
-            <h3>- Recently Added -</h3>
-            <ul>
-              {availablePlants.slice(0, 3).map(function (plant, index) {
-                return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
-              })}
-            </ul>
             <h3>- Search Plants -</h3>
             <input onChange={handleInputChange} type="text" name="user-name" placeholder="Enter Plant Name" value={searchTerm} />
-            <div className="search-results" id="search-results">{searchArray.slice(0, 3).map(function (plant, index) {
+            <div className="search-results" id="search-results">{searchArray.slice(0, 4).map(function (plant, index) {
               return <p onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</p>
             })}</div>
           </DetailCard>
@@ -123,7 +119,7 @@ export default function PlantLog() {
         <div className="card-holder">
           <h2>CURRENT MEAL</h2>
           <DetailCard>
-            <ul>
+            <ul id="current-meal-area">
               {currentMeal.map(function (plant, index) {
                 return <li key={index}>{plant.plantName}</li>
               })}
