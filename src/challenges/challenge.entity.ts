@@ -15,6 +15,7 @@ export class Challenge {
     {eager: true} )
     player_one: User;
 
+
     @Column({
         type: "int",
         nullable: true
