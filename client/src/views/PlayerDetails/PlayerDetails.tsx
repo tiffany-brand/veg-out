@@ -51,10 +51,8 @@ function PlayerDetails() {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    console.log("user in state " + JSON.stringify(state.currentUser))
     if (!state.currentUser._id) {
       const storedState = loadFromLocalStorage()
-      console.log("storedState " + JSON.stringify(storedState))
       dispatch({
         type: SET_CURRENT_USER,
         currentUser: storedState.currentUser
