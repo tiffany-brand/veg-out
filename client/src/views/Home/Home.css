@@ -3,3 +3,7 @@ div.card-holder {
   text-align: center;
   width: 35vw;
 }
+
+.home-container h1 {
+  padding-bottom: 15px;
+}

@@ -8,7 +8,7 @@ export default {
         return axios.get("/api/users");
     },
     // Gets the user with the given id
-    getUser: function (id: string) {
+    getUser: function (id: string | undefined) {
         return axios.get("/api/users/" + id);
     },
     // Deletes the user with the given id

@@ -5,6 +5,7 @@ import UserData from '../../components/UserData/UserData';
 import userAPI from '../../utils/userAPI';
 import ICurrentUser from '../../interfaces/ICurrentUser';
 import './PlayerDetail.css';
+import { useStoreContext } from '../../state/GlobalState';
 
 const plantPowerData = {
   totalHP: 345,
@@ -42,12 +43,14 @@ export default function PlayerDetails() {
 
   }, []);
 
+  const [state, dispatch] = useStoreContext();
+
   return (
     <div className="player-details-container">
       <h1>{player.username} Details</h1>
       <div className="card-container">
         <div className="user-data-holder">
-          <UserData />
+          <UserData level={state.currentUser.level} character_image={state.currentUser.character_image} />
         </div>
         <div className="card-holder">
           <h2>PLANT POWER</h2>

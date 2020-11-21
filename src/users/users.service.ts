@@ -10,7 +10,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
-  ) {}
+  ) { }
 
   create(createUserDto: CreateUserDto): Promise<User> {
     const user = new User();
@@ -30,7 +30,6 @@ export class UsersService {
     user.tie = createUserDto.tie;
     user.level = createUserDto.level;
 
-
     return this.usersRepository.save(user);
   }
 
@@ -47,11 +46,10 @@ export class UsersService {
   }
 
   findAuth(auth0ID: string): Promise<User | void> {
-    return this.usersRepository.findOne({auth0ID: auth0ID})
+    return this.usersRepository.findOne({ auth0ID: auth0ID })
   }
 
   injectSeed(): Promise<User[]> {
     return this.usersRepository.save(userSeed);
   }
-
 }
