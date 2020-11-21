@@ -22,5 +22,9 @@ div.card-holder {
   justify-content: space-around;
   margin-top: 10px;
   text-align: center;
-  width: 20%;
+  width: 35vw;
+}
+
+.home-container h1 {
+  padding-bottom: 15px;
 }
