@@ -1,4 +1,5 @@
 export class CreateUserDto {
+    _id: string;
     email: string;
     auth0ID: string;
     username: string;

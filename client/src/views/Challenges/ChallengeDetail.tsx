@@ -1,69 +1,84 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DetailCard from '../../components/DetailCard/DetailCard';
+import {useStoreContext} from '../../state/GlobalState';
+import { SET_CHALLENGES } from "../../state/actions";
+import challengesAPI from '../../utils/challengesAPI';
+
 
 function ChallengeDetail(): JSX.Element {
 
-    //The following objects would be replaced with
-    // objects obtained fom table data
 
-    const player1 = {
-        currentattack: 20,
-        currentdefense: 30,
-        currenthealth: 100,
-        character_name: "p1 name",
-        veggiesEaten: 30,
-        characterIMG: "/"
-    };
-
-    const player2 = {
-
-        currentattack: 30,
-        currentdefense: 20,
-        currenthealth: 100,
-        character_name: "p2 name",
-        veggiesEaten: 30,
-        characterIMG: "/"
-
-    };
+  const [state, dispatch] = useStoreContext();
+ 
+  function getChal() {
 
 
 
-    return (
-      <div>
+    if (state.challenges.date_started === "" && state.currentUser.currentChallenge != undefined) {
 
-    <div className="card-container">
-      <div className="card-holder">
-        <h2>{player1.character_name}</h2>
-        <DetailCard>
-          <ul>
-            <li>HP: {player1.currenthealth}</li>
-            <li>OFFENSE: {player1.currentattack}</li>
-            <li>DEFENSE: {player1.currentdefense}</li>
-            <li>VEGGIES LOGGED: {player1.veggiesEaten}</li>
-          </ul>
-          <img src={player1.characterIMG} alt="character image" />
-        </DetailCard>
+      let tempId = state.currentUser.currentChallenge;
+      let chalID = tempId.toString();
+
+      challengesAPI.getChallenge(chalID).then(res => {
+
+        dispatch({
+          type: SET_CHALLENGES,
+          challenges: {
+            ...state.challenges,
+            ...res.data
+          }
+        });
+        console.log(state.challenges)
+      }).catch(err => console.log(err));
+    }
+    else { console.log("else fired" + state.currentUser) }
+
+  }
+
+  getChal();
+
+  return (
+    <div>
+
+      <div className="card-container">
+        <div className="card-holder">
+          <h2>{state.challenges.player_one.username}</h2>
+          <DetailCard>
+            <ul>
+              <li>HP: {state.challenges.player_one_health}</li>
+              <li>OFFENSE: {state.challenges.player_one_offense}</li>
+              <li>DEFENSE: {state.challenges.player_one_defense}</li>
+              <li>VEGGIES LOGGED: {state.challenges.player_one_plantTotal}</li>
+            </ul>
+            <img src={state.challenges.player_one.character_image} alt="character image" />
+          </DetailCard>
         </div>
 
-      <div className="card-holder">
-        <h2>{player1.character_name}</h2>
-        <DetailCard>
-          <ul>
-            <li>HP: {player2.currenthealth}</li>
-            <li>OFFENSE: {player2.currentattack}</li>
-            <li>DEFENSE: {player2.currentdefense}</li>
-            <li>VEGGIES LOGGED: {player2.veggiesEaten}</li>
-          </ul>
-          <img src={player2.characterIMG} alt="character image" />
-
-        </DetailCard>
-        </div>
+        <div className="card-holder">
+          <h2>Challenge Ends:</h2>
+          <DetailCard>
+            <h3>{state.challenges.date_ending}</h3>
+          </DetailCard>
         </div>
 
-        <Link to="/"><button>Home</button></Link>
+        <div className="card-holder">
+          <h2>{state.challenges.player_two.username}</h2>
+          <DetailCard>
+            <ul>
+              <li>HP: {state.challenges.player_two_health}</li>
+              <li>OFFENSE: {state.challenges.player_two_offense}</li>
+              <li>DEFENSE: {state.challenges.player_two_defense}</li>
+              <li>VEGGIES LOGGED: {state.challenges.player_two_plantTotal}</li>
+            </ul>
+            <img src={state.challenges.player_two.character_image} alt="character image" />
 
+          </DetailCard>
         </div>
+      </div>
+
+
+    </div>
   )
 
 };

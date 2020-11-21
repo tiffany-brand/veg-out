@@ -1,3 +1,4 @@
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const SET_CHARACTER = "SET_CHARACTER";
+export const SET_CHALLENGES ="SET_CHALLENGES";
 export const LOADING = "LOADING";
