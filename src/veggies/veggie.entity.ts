@@ -6,26 +6,33 @@ export class Veggie {
     @PrimaryGeneratedColumn("uuid")
     _id: string;
 
-    @Column()
+    @Column({
+        type: "varchar", 
+        unique: true
+    })
     plantName: string;
 
     @Column({
-        type: "smallint"
+        type: "smallint",
+        default: 10
     })
     total_HP: number;
 
     @Column({
-        type: "smallint"
+        type: "smallint", 
+        default: 5
     })
     offense: number;
 
     @Column({
-        type: "smallint"
+        type: "smallint",
+        default: 5
     })
     defense: number;
 
     @Column({
-        type: "text"
+        type: "text", 
+        nullable: true
     })
     info: string;
 
