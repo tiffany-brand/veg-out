@@ -11,30 +11,30 @@ import userAPI from '../../utils/userAPI'
 
 export default function PlantLog() {
   const [state, dispatch] = useStoreContext();
+  const [loggingUser, setLoggingUser] = useState<ICurrentUser>({})
+
+  useEffect(() => {
+    Promise.all([userAPI.getUser(state.currentUser._id), veggieAPI.getVeggies()])
+      .then(([userRes, veggieRes]) => {
+        setLoggingUser(userRes.data);
+        setAvailablePlants(veggieRes.data);
+      }
+      )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [currentMeal, setCurrentMeal] = useState<IVeggies[]>([]);
   const [searchArray, setSearchArray] = useState<IVeggies[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  //Create state to hold tallied plant power prior to adding to current user
+  const [mealStats, setMealStats] = useState({
+    mealHealth: 0,
+    mealDefense: 0,
+    mealOffense: 0
+  })
 
   // Get the plants API and set them to state
   const [availablePlants, setAvailablePlants] = useState<IVeggies[]>([])
-  useEffect(() => {
-    veggieAPI.getVeggies()
-      .then(res => {
-        setAvailablePlants(res.data)
-      })
-  }, []);
-
-  // Set current user details in state
-  const [userForNow, setUserForNow] = useState<ICurrentUser>({})
-  // Gather the current user
-  useEffect(() => {
-    userAPI.getUser("452cea4a-1646-4d18-b807-49e5dee1b308")
-      .then(res => {
-        setUserForNow(res.data);
-        setMealStats({ currenthealth: res.data.currenthealth, currentoffense: res.data.currentoffense, currentdefense: res.data.currentdefense })
-      })
-  }, [])
 
   //As user types populate search results
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,27 +46,29 @@ export default function PlantLog() {
     setSearchTerm(activeSearch);
   };
 
-  //Create state to hold tallied plant power prior to adding to current user
-  const [mealStats, setMealStats] = useState({
-    currenthealth: userForNow.currenthealth || 0,
-    currentdefense: userForNow.currentdefense || 0,
-    currentoffense: userForNow.currentoffense || 0
-  })
-
-  console.log(mealStats);
-
   // Append added plant to current meal and tally total values
   const addPlant = (plant: IVeggies) => {
     setCurrentMeal([...currentMeal, plant])
-    const newHealth = mealStats.currenthealth + plant.total_HP;
-    const newDefense = mealStats.currentdefense + plant.defense;
-    const newOffense = mealStats.currentoffense + plant.offense;
-    setMealStats({ ...mealStats, currenthealth: newHealth, currentdefense: newDefense, currentoffense: newOffense })
+    const newHealth = mealStats.mealHealth + plant.total_HP;
+    const newDefense = mealStats.mealDefense + plant.defense;
+    const newOffense = mealStats.mealOffense + plant.offense;
+    setMealStats({ mealHealth: newHealth, mealDefense: newDefense, mealOffense: newOffense })
+
   };
 
-  // Update user's plant power with current meal.
+  // Update DB with current meal with current meal.
   const logCurrentMeal = () => {
-    userAPI.saveUser({ ...userForNow, currenthealth: mealStats.currenthealth, currentdefense: mealStats.currentdefense, currentoffense: mealStats.currentoffense })
+    console.log(loggingUser);
+
+    const { currenthealth, currentoffense, currentdefense } = loggingUser;
+    const { mealHealth, mealDefense, mealOffense } = mealStats;
+    const updatedStats = {
+      health: (currenthealth || 0) + mealHealth,
+      defense: (currentdefense || 0) + mealDefense,
+      offense: (currentoffense || 0) + mealOffense
+    }
+
+    userAPI.saveUser({ ...loggingUser, currenthealth: updatedStats.health, currentdefense: updatedStats.defense, currentoffense: updatedStats.offense })
       .then(res => {
         console.log(res.data);
       })
