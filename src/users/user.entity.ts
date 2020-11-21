@@ -40,7 +40,7 @@ export class User {
   @Column({
     nullable: true
   })
-  currentChallenge: number;
+  currentChallenge: string;
 
   @Column({
     nullable: false,
