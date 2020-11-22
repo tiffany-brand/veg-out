@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
-import ICurrentUser from '../../interfaces/ICurrentUser'
-import userAPI from '../../utils/userAPI'
+import ICurrentUser from '../../interfaces/ICurrentUser';
+import IChallenges from '../../interfaces/IChallenges';
+import userAPI from '../../utils/userAPI';
+import challengesAPI from '../../utils/challengesAPI';
+import {useStoreContext} from '../../state/GlobalState';
 
 import { Link } from 'react-router-dom';
 import './Community.css';
@@ -21,6 +24,42 @@ export default function Community() {
     setSearchArray(currentSearch)
     setSearchTerm(activeSearch);
   };
+
+  const [state] = useStoreContext();
+
+  function startChal(opp:ICurrentUser){
+
+    const opponent = opp;
+    const today= Date.now();
+    const endDate= new Date(today+7)
+    const challenge:IChallenges={
+      date_started: today.toString(),
+      date_ending: endDate.toString(),
+      player_one: state.currentUser,
+      player_two: opp,
+      player_one_health:100,
+      player_one_defense:100,
+      player_one_offense:100,
+      player_one_plantTotal:0,
+      player_two_health:100,
+      player_two_defense:100,
+      player_two_offense:100,
+      player_two_plantTotal:0
+      
+
+
+    };
+
+
+
+
+    challengesAPI.saveChallenge(challenge)
+    .then(res=> {
+      alert("New Challenge Has Begun!");
+      console.log(res);
+    }).catch(err=> console.log(err));
+
+  }
 
 
   useEffect(() => {
@@ -51,7 +90,7 @@ export default function Community() {
             <h3>- Search Opponents -</h3>
             <input onChange={handleInputChange} type="text" name="user-name" placeholder="Enter Username" value={searchTerm} />
             <div className="search-results" id="search-results">{searchArray.slice(0, 3).map(function (user, index) {
-              return <p key={index}>{user.username} +</p>
+              return <p key={index}>{user.username}  <button onClick={()=>startChal(user)}>+</button> </p>
             })}</div>
           </DetailCard>
         </div>
