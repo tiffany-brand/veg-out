@@ -33,8 +33,8 @@ export default function Community() {
     const today= Date.now();
     const endDate= new Date(today+7)
     const challenge:IChallenges={
-      date_started: today.toString(),
-      date_ending: endDate.toString(),
+      date_started: ""/*today.toString()*/,
+      date_ending:"" /*endDate.toString()*/,
       player_one: state.currentUser,
       player_two: opponent,
       player_one_health:100,
