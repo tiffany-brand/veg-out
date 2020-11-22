@@ -1,4 +1,6 @@
-
+div.parent {
+  justify-content: flex-start;
+}
 div.detail-card {
   position: relative;
   background-color: #e9e5c2;

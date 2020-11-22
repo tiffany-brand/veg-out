@@ -68,7 +68,8 @@ export default function Challenges() {
 
       </div>
       <div className="user-data-holder">
-      <UserData level={state.currentUser.level} character_image={state.currentUser.character_image} />
+      <UserData level={state.currentUser.level} character_name={state.currentUser.character_name} 
+       />
       </div>
       <div className="card-holder">
         <h2>CURRENT CHALLENGES</h2>
@@ -98,7 +99,7 @@ export default function Challenges() {
 
     </div>
     <div className="user-data-holder">
-    <UserData level={state.currentUser.level} character_image={state.currentUser.character_image} />
+    <UserData level={state.currentUser.level} character_name={state.currentUser.character_name} />
     </div>
     <div className="card-holder">
       <h2>CURRENT CHALLENGES</h2>
