@@ -36,7 +36,7 @@ export default function Community() {
       date_started: today.toString(),
       date_ending: endDate.toString(),
       player_one: state.currentUser,
-      player_two: opp,
+      player_two: opponent,
       player_one_health:100,
       player_one_defense:100,
       player_one_offense:100,
