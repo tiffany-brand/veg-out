@@ -5,9 +5,17 @@ import IChallenges from '../../interfaces/IChallenges';
 import userAPI from '../../utils/userAPI';
 import challengesAPI from '../../utils/challengesAPI';
 import {useStoreContext} from '../../state/GlobalState';
-
+import {DateTime} from 'luxon';
 import { Link } from 'react-router-dom';
 import './Community.css';
+
+const d = DateTime.local()
+
+const date = DateTime.local().toFormat('yyyyLLdd');
+const week =  DateTime.local().plus({days: 5}).toISODate();
+
+
+
 
 export default function Community() {
 
@@ -27,16 +35,16 @@ export default function Community() {
 
   const [state] = useStoreContext();
 
-  function startChal(opp:ICurrentUser){
+  function startChal(opp:any){
 
     const opponent = opp;
-    const today= Date.now();
-    const endDate= new Date(today+7)
-    const challenge:IChallenges={
-      date_started: ""/*today.toString()*/,
-      date_ending:"" /*endDate.toString()*/,
-      player_one: state.currentUser,
-      player_two: opponent,
+
+
+    const challenge={
+      date_started: date,
+      date_ending:week,
+      player_one: state.currentUser._id,
+      player_two: opponent._id,
       player_one_health:100,
       player_one_defense:100,
       player_one_offense:100,
