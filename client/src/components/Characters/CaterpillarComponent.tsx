@@ -1,5 +1,4 @@
 import React from 'react';
-import './Caterpillar.css';
 
 // probably need to pass a class in depending on the view probably idk may be able to do that in parent 
 

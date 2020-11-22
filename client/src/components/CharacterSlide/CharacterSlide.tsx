@@ -10,6 +10,8 @@ const CharacterSlide: React.FC<IProps> = (props: IProps) => {
         backgroundPosition: "center"
     };
 
+    console.log(props.url);
+
     return (
         <div className="character-slide" style={styles}>
             <img src={props.url} alt="" />
