@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import { useStoreContext } from '../../state/GlobalState';
 import { DateTime } from 'luxon';
@@ -102,6 +102,26 @@ export default function PlantLog() {
     setCurrentMeal([]);
   };
 
+
+
+  const searchDisplayArea = useRef(
+    availablePlants.sort(() => .5 - Math.random()).slice(0, 5).map(function (plant, index) {
+      return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
+    })
+  );
+  console.log(searchTerm);
+
+  if (!searchTerm) {
+    searchDisplayArea.current = searchArray.sort(() => .5 - Math.random()).slice(0, 5).map(function (plant, index) {
+      return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
+    })
+  } else {
+    searchDisplayArea.current = searchArray.slice(0, 5).map(function (plant, index) {
+      return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
+    })
+  }
+
+
   return (
     <div className="plant-log-container">
       <h1>PLANT LOG</h1>
@@ -109,11 +129,10 @@ export default function PlantLog() {
         <div className="card-holder">
           <h2>ADD PLANTS</h2>
           <DetailCard>
-            <h3>- Search Plants -</h3>
-            <input onChange={handleInputChange} type="text" name="user-name" placeholder="Enter Plant Name" value={searchTerm} />
-            <div className="search-results" id="search-results">{searchArray.slice(0, 4).map(function (plant, index) {
-              return <p onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</p>
-            })}</div>
+            <input onChange={handleInputChange} type="text" name="user-name" placeholder="Search Plant Name" value={searchTerm} />
+            <ul className="search-results" id="search-results">
+              {searchDisplayArea.current}
+            </ul>
           </DetailCard>
         </div>
         <div className="card-holder">
