@@ -1,4 +1,25 @@
+div.home-container {
+  max-width: inherit;
+  width: inherit;
+  max-height: inherit;
+  height: inherit;
+}
+
+div.card-container {
+  /* display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; */
+
+  /* right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0; */
+  margin: auto;
+}
+
 div.card-holder {
+  justify-content: space-around;
   margin-top: 10px;
   text-align: center;
   width: 35vw;

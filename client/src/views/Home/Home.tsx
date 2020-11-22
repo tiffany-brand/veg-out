@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import UserData from '../../components/UserData/UserData';
@@ -37,6 +37,7 @@ function Home() {
   }, [])
 
 
+  console.log(loggedInUser.character_name);
   return (
     <div className="home-container">
       <h1>{state.currentUser.username} DETAILS</h1>
@@ -53,7 +54,7 @@ function Home() {
 
         </div>
         <div className="user-data-holder">
-          <UserData level={loggedInUser.level} character_image={loggedInUser.character_image} />
+          <UserData level={loggedInUser.level} character_name={loggedInUser.character_name} />
         </div>
         <div className="card-holder">
           <h2>CHALLENGES</h2>

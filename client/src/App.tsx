@@ -18,11 +18,10 @@ import Winner from './views/Winner/Winner';
 import GameBoard from './views/GameBoard/GameBoard';
 import Menu from './components/Menu/Menu';
 
-
 function App() {
   return (
     <div className="App">
-      <div className="contain">
+      <div className="app-container app-border">
         <StoreProvider>
           <Wrapper>
             <Switch>
@@ -37,12 +36,11 @@ function App() {
               <Route path="/register" exact component={Register} />
               <Route path="/winner" exact component={Winner} />
               <Route path="/game-board" exact component={GameBoard} />
-
             </Switch>
             <Menu />
           </Wrapper>
         </StoreProvider>
-      </div>
+        </div>
     </div>
   );
 }

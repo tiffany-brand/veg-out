@@ -69,7 +69,7 @@ function PlayerDetails() {
       <h1>{player.username} Details</h1>
       <div className="card-container">
         <div className="user-data-holder">
-          <UserData level={state.currentUser.level} character_image={state.currentUser.character_image} />
+          <UserData level={state.currentUser.level} character_name={state.currentUser.character_name} />
         </div>
         <div className="card-holder">
           <h2>PLANT POWER</h2>

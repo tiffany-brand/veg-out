@@ -4,12 +4,8 @@ import bunny from "../../svg/bunny.svg";
 import caterpillar from "../../svg/caterpillar_trimmed.svg";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import CharacterAPI from "../../utils/playercharacterAPI";
+import { TestButtonParent } from '../../components/Test/TestButtonParent';
 
-// need access to users character
-// who will win
-// win & lose animation based on score
-
-// 
 
 interface ICharacterData {
     name: string;
@@ -43,6 +39,7 @@ const GameBoard: React.FC<ICharacterData> = () => {
             <img src={characterData[0].url} alt={characterData[0].name} />
             <img src={characterData[1].url} alt={characterData[1].name} />
             <ModalComponent />
+            <TestButtonParent />
         </div>
     );
 }
