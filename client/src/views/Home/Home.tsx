@@ -1,22 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import UserData from '../../components/UserData/UserData';
 import './Home.css';
 import ICurrentUser from '../../interfaces/ICurrentUser'
 import { useStoreContext } from '../../state/GlobalState';
+import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUser';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { SET_CURRENT_USER, SET_CHALLENGES } from '../../state/actions';
 
 import userAPI from '../../utils/userAPI'
 
-export default function Home() {
+function Home() {
 
   const [state, dispatch] = useStoreContext();
+  const [loggedInUser, setLoggedInUser] = useState<ICurrentUser>({});
 
-  console.log(JSON.stringify(state.currentUser.username));
+  useEffect(() => {
+    userAPI.getUser(state.currentUser._id)
+      .then(res => setLoggedInUser(res.data))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  console.log(JSON.stringify(state.currentUser));
+  useEffect(() => {
+    if (!state.currentUser._id) {
+      const storedState = loadFromLocalStorage()
+      dispatch({
+        type: SET_CURRENT_USER,
+        currentUser: storedState.currentUser
+      });
+      dispatch({
+        type: SET_CHALLENGES,
+        challenges: storedState.challenges
+      })
+    } else saveToLocalStorage(state);
+  }, [])
 
 
+  console.log(loggedInUser.character_name);
   return (
     <div className="home-container">
       <h1>{state.currentUser.username} DETAILS</h1>
@@ -25,22 +46,22 @@ export default function Home() {
           <h2>PLANT POWER</h2>
           <DetailCard>
             <ul>
-              <li>TOTAL HP: {state.currentUser.currenthealth}</li>
-              <li>OFFENSE: {state.currentUser.currentoffense}</li>
-              <li>DEFENSE: {state.currentUser.currentdefense}</li>
+              <li>TOTAL HP: {loggedInUser.currenthealth}</li>
+              <li>OFFENSE: {loggedInUser.currentoffense}</li>
+              <li>DEFENSE: {loggedInUser.currentdefense}</li>
             </ul>
           </DetailCard>
 
         </div>
         <div className="user-data-holder">
-          <UserData level={state.currentUser.level} character_image={state.currentUser.character_image} />
+          <UserData level={loggedInUser.level} character_name={loggedInUser.character_name} />
         </div>
         <div className="card-holder">
           <h2>CHALLENGES</h2>
           <DetailCard>
             <ul>
-              <li>RECORD: {state.currentUser.win} / {state.currentUser.loss}</li>
-              <li>ACTIVE: {state.currentUser.currentChallenge}</li>
+              <li>RECORD: {loggedInUser.win} / {loggedInUser.loss}</li>
+              <li>ACTIVE: {loggedInUser.currentChallenge}</li>
               <li><Link to="/community">+ NEW CHALLENGE +</Link></li>
             </ul>
           </DetailCard>
@@ -50,3 +71,7 @@ export default function Home() {
   )
 
 };
+
+export default withAuthenticationRequired(Home, {
+  onRedirecting: () => (<div>Redirecting you to the login page...</div>)
+});

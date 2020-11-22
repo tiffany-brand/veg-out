@@ -6,6 +6,10 @@ import userAPI from '../../utils/userAPI';
 import ICurrentUser from '../../interfaces/ICurrentUser';
 import './PlayerDetail.css';
 import { useStoreContext } from '../../state/GlobalState';
+import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUser';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { SET_CURRENT_USER, SET_CHALLENGES } from '../../state/actions';
+
 
 const plantPowerData = {
   totalHP: 345,
@@ -26,7 +30,8 @@ type Props = {
 // needs to take an id as props
 // props: Props
 
-export default function PlayerDetails() {
+function PlayerDetails() {
+  const { isLoading, user, loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
   const id = "2712c5c1-2a4d-4ee7-8ff9-f42fafe633fd";
 
@@ -45,12 +50,26 @@ export default function PlayerDetails() {
 
   const [state, dispatch] = useStoreContext();
 
+  useEffect(() => {
+    if (!state.currentUser._id) {
+      const storedState = loadFromLocalStorage()
+      dispatch({
+        type: SET_CURRENT_USER,
+        currentUser: storedState.currentUser
+      });
+      dispatch({
+        type: SET_CHALLENGES,
+        challenges: storedState.challenges
+      })
+    } else saveToLocalStorage(state);
+  }, [])
+
   return (
     <div className="player-details-container">
       <h1>{player.username} Details</h1>
       <div className="card-container">
         <div className="user-data-holder">
-          <UserData level={state.currentUser.level} character_image={state.currentUser.character_image} />
+          <UserData level={state.currentUser.level} character_name={state.currentUser.character_name} />
         </div>
         <div className="card-holder">
           <h2>PLANT POWER</h2>
@@ -78,3 +97,7 @@ export default function PlayerDetails() {
   )
 
 };
+
+export default withAuthenticationRequired(PlayerDetails, {
+  onRedirecting: () => (<div>Redirecting you to the login page...</div>)
+});

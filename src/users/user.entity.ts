@@ -13,7 +13,6 @@ export class User {
   @Column({
     type: "varchar",
     length: 255,
-    // unique: true,
   })
   auth0ID: string;
 
@@ -84,6 +83,12 @@ export class User {
     default: 1
   })
   level: number;
+
+  @Column({
+    type: "simple-array",
+    nullable: true
+  })
+  lifetimeUniqueVeggies: string[];
 
   @OneToMany(() => MealLog, meallog => meallog.userID)
   mealLogs: MealLog;

@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Veggie } from './veggie.entity';
 import { CreateVeggieDTO } from './dto/create-veggie.dto';
-import { veggieSeed } from './seed/veggieSeed';
+import { newVeggieSeed } from './seed/newVeggieSeed';
 
 @Injectable()
 export class VeggiesService {
@@ -36,6 +36,11 @@ export class VeggiesService {
   }
 
   injectSeed(): Promise<Veggie[]> {
-    return this.veggiesRepository.save(veggieSeed);
+    const newSeeds = [];
+    newVeggieSeed.map((veggie) => {
+      newSeeds.push({"plantName": veggie});
+    })
+    
+    return this.veggiesRepository.save(newSeeds);
   }
 }

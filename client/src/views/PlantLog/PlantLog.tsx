@@ -1,40 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import { useStoreContext } from '../../state/GlobalState';
+import { DateTime } from 'luxon';
 import './PlantLog.css';
 
+// Importing our interfaces
 import IVeggies from "../../interfaces/IVeggies";
+import ICurrentUser from '../../interfaces/ICurrentUser';
+
+// Importing APIs
 import veggieAPI from '../../utils/veggiesAPI';
+import userAPI from '../../utils/userAPI';
+import mealLogAPI from '../../utils/mealLogAPI';
 
-import ICurrentUser from '../../interfaces/ICurrentUser'
-import userAPI from '../../utils/userAPI'
+const date = DateTime.local().toFormat('yyyyLLdd');
 
+// Begin functional component.
 export default function PlantLog() {
+  // Bring in Global Sate to identify logged in user.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [state, dispatch] = useStoreContext();
 
+  // Set state for currently logging user
+  const [loggingUser, setLoggingUser] = useState<ICurrentUser>({})
+
+  // Call the APIs for veggies and user data
+  useEffect(() => {
+    Promise.all([userAPI.getUser(state.currentUser._id), veggieAPI.getVeggies()])
+      .then(([userRes, veggieRes]) => {
+        setLoggingUser(userRes.data);
+        setAvailablePlants(veggieRes.data);
+        setSearchArray(availablePlants);
+      }
+      )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Put veggie API into state
+  const [availablePlants, setAvailablePlants] = useState<IVeggies[]>([])
+
+  // Set state for veggie search
   const [currentMeal, setCurrentMeal] = useState<IVeggies[]>([]);
   const [searchArray, setSearchArray] = useState<IVeggies[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  // Get the plants API and set them to state
-  const [availablePlants, setAvailablePlants] = useState<IVeggies[]>([])
-  useEffect(() => {
-    veggieAPI.getVeggies()
-      .then(res => {
-        setAvailablePlants(res.data)
-      })
-  }, []);
-
-  // Set current user details in state
-  const [userForNow, setUserForNow] = useState<ICurrentUser>({})
-  // Gather the current user
-  useEffect(() => {
-    userAPI.getUser("452cea4a-1646-4d18-b807-49e5dee1b308")
-      .then(res => {
-        setUserForNow(res.data);
-        setMealStats({ currenthealth: res.data.currenthealth, currentoffense: res.data.currentoffense, currentdefense: res.data.currentdefense })
-      })
-  }, [])
+  //Create state to hold tallied plant power prior to adding to current user
+  const [mealStats, setMealStats] = useState({
+    mealHealth: 0,
+    mealDefense: 0,
+    mealOffense: 0
+  })
 
   //As user types populate search results
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,30 +61,45 @@ export default function PlantLog() {
     setSearchTerm(activeSearch);
   };
 
-  //Create state to hold tallied plant power prior to adding to current user
-  const [mealStats, setMealStats] = useState({
-    currenthealth: userForNow.currenthealth || 0,
-    currentdefense: userForNow.currentdefense || 0,
-    currentoffense: userForNow.currentoffense || 0
-  })
-
-  console.log(mealStats);
-
   // Append added plant to current meal and tally total values
   const addPlant = (plant: IVeggies) => {
     setCurrentMeal([...currentMeal, plant])
-    const newHealth = mealStats.currenthealth + plant.total_HP;
-    const newDefense = mealStats.currentdefense + plant.defense;
-    const newOffense = mealStats.currentoffense + plant.offense;
-    setMealStats({ ...mealStats, currenthealth: newHealth, currentdefense: newDefense, currentoffense: newOffense })
+    const newHealth = mealStats.mealHealth + plant.total_HP;
+    const newDefense = mealStats.mealDefense + plant.defense;
+    const newOffense = mealStats.mealOffense + plant.offense;
+    setMealStats({ mealHealth: newHealth, mealDefense: newDefense, mealOffense: newOffense })
+
   };
 
-  // Update user's plant power with current meal.
+  // Update DB with current meal
   const logCurrentMeal = () => {
-    userAPI.saveUser({ ...userForNow, currenthealth: mealStats.currenthealth, currentdefense: mealStats.currentdefense, currentoffense: mealStats.currentoffense })
-      .then(res => {
-        console.log(res.data);
-      })
+
+    // Get the needed data from current meal and existing user totals
+    const { currenthealth, currentoffense, currentdefense } = loggingUser;
+    const { mealHealth, mealDefense, mealOffense } = mealStats;
+    const updatedStats = {
+      health: (currenthealth || 0) + mealHealth,
+      defense: (currentdefense || 0) + mealDefense,
+      offense: (currentoffense || 0) + mealOffense
+    }
+
+    // **** Update User table ****
+    userAPI.saveUser({ ...loggingUser, currenthealth: updatedStats.health, currentdefense: updatedStats.defense, currentoffense: updatedStats.offense })
+
+    // Build array from meal's veggies
+    const mealVeggiesArray = currentMeal.map((item: any) => {
+      return item._id;
+    })
+
+    // **** Update Meal-Log table
+    mealLogAPI.saveMealLog({
+      date: date,
+      mealVeggies: mealVeggiesArray,
+      userID: loggingUser._id!
+    })
+
+    // Clear the current meal area
+    setCurrentMeal([]);
   };
 
   return (
@@ -79,15 +109,9 @@ export default function PlantLog() {
         <div className="card-holder">
           <h2>ADD PLANTS</h2>
           <DetailCard>
-            <h3>- Recently Added -</h3>
-            <ul>
-              {availablePlants.slice(0, 3).map(function (plant, index) {
-                return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
-              })}
-            </ul>
             <h3>- Search Plants -</h3>
             <input onChange={handleInputChange} type="text" name="user-name" placeholder="Enter Plant Name" value={searchTerm} />
-            <div className="search-results" id="search-results">{searchArray.slice(0, 3).map(function (plant, index) {
+            <div className="search-results" id="search-results">{searchArray.slice(0, 4).map(function (plant, index) {
               return <p onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</p>
             })}</div>
           </DetailCard>
@@ -95,7 +119,7 @@ export default function PlantLog() {
         <div className="card-holder">
           <h2>CURRENT MEAL</h2>
           <DetailCard>
-            <ul>
+            <ul id="current-meal-area">
               {currentMeal.map(function (plant, index) {
                 return <li key={index}>{plant.plantName}</li>
               })}

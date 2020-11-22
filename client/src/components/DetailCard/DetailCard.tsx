@@ -4,8 +4,10 @@ import './DetailCard.css';
 export default function DetailCard(props: any) {
 
   return (
-    <div className="detail-card" >
-      {props.children}
+    <div className="parent">
+      <div className="detail-card" >
+        {props.children}
+      </div>
     </div>
   );
 }
