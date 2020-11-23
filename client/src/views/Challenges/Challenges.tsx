@@ -21,10 +21,7 @@ export default function Challenges() {
 
 
   function getChal() {
-
-
-
-    if (state.challenges.date_started === "" && state.currentUser.currentChallenge != undefined) {
+if(state.currentUser.currentChallenge!==undefined){
 
       let tempId = state.currentUser.currentChallenge;
       let chalID = tempId.toString();
@@ -41,8 +38,8 @@ export default function Challenges() {
         console.log(state.challenges)
       }).catch(err => console.log(err));
     }
-    else { console.log("else fired" + state.currentUser) }
-
+    else{console.log("current challenge undefined")}
+    
   }
 
   function getOpponent() {
@@ -56,8 +53,6 @@ export default function Challenges() {
     }
 
   }
-
-  
   if (state.currentUser.challenged === false) {
     return (<div className="card-container">
       <div className="card-holder">
@@ -86,6 +81,8 @@ export default function Challenges() {
   }
 
   else{
+
+    if(!state.challenges.player_two){
     getChal();}
     
   getOpponent();
@@ -115,6 +112,6 @@ export default function Challenges() {
       </DetailCard>
     </div>
   </div>)
-
+  }
 
 };

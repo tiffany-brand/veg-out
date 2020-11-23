@@ -6,7 +6,7 @@ import userAPI from '../../utils/userAPI';
 import challengesAPI from '../../utils/challengesAPI';
 import {useStoreContext} from '../../state/GlobalState';
 import {DateTime} from 'luxon';
-import {SET_CURRENT_USER} from '../../state/actions';
+import {SET_CHALLENGES, SET_CURRENT_USER} from '../../state/actions';
 import { Link } from 'react-router-dom';
 import './Community.css';
 
@@ -61,22 +61,31 @@ export default function Community() {
 
     challengesAPI.saveChallenge(challenge)
     .then(res=> {
-      alert("New Challenge Has Begun!");
-      console.log(res);
-    }).catch(err=> console.log(err));
-      
-    userAPI.saveUser({ ...state.currentUser, challenged:true, currentChallenge:ID });
 
-    dispatch({
+      dispatch({
+        type: SET_CHALLENGES,
+        challenges: {
+          ...state.challenges,
+          ...res.data
+        }
+      });
+      dispatch({
         type: SET_CURRENT_USER,
         currentUser: {
           ...state.currentUser,
           challenged: true,
-          currentChallenge: ID
+          currentChallenge: res.data._id
         }
       });
-    
 
+      userAPI.saveUser({ ...state.currentUser, challenged:true, currentChallenge:res.data._id });
+
+
+      alert("New Challenge Has Begun!");
+     
+    }).catch(err=> console.log(err));
+      
+    
 
   }
 else {
