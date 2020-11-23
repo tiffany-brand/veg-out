@@ -6,6 +6,7 @@ import userAPI from '../../utils/userAPI';
 import challengesAPI from '../../utils/challengesAPI';
 import {useStoreContext} from '../../state/GlobalState';
 import {DateTime} from 'luxon';
+import {SET_CURRENT_USER} from '../../state/actions';
 import { Link } from 'react-router-dom';
 import './Community.css';
 
@@ -33,14 +34,15 @@ export default function Community() {
     setSearchTerm(activeSearch);
   };
 
-  const [state] = useStoreContext();
+  const [state, dispatch] = useStoreContext();
 
   function startChal(opp:any){
 
+  if (state.currentUser.challenged===false){
     const opponent = opp;
-
-
+    const ID = Math.floor(Math.random()* 10000)
     const challenge={
+      _id: ID.toString(),
       date_started: date,
       date_ending:week,
       player_one: state.currentUser._id,
@@ -54,11 +56,7 @@ export default function Community() {
       player_two_offense:100,
       player_two_plantTotal:0
       
-
-
     };
-
-
 
 
     challengesAPI.saveChallenge(challenge)
@@ -66,8 +64,26 @@ export default function Community() {
       alert("New Challenge Has Begun!");
       console.log(res);
     }).catch(err=> console.log(err));
+      
+    userAPI.saveUser({ ...state.currentUser, challenged:true, currentChallenge:ID });
+
+    dispatch({
+        type: SET_CURRENT_USER,
+        currentUser: {
+          ...state.currentUser,
+          challenged: true,
+          currentChallenge: ID
+        }
+      });
+    
+
 
   }
+else {
+  alert("Please complete your current challenge before starting a new one!")
+  }
+
+}
 
 
   useEffect(() => {

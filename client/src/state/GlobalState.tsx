@@ -56,6 +56,7 @@ const initialState: State = {
     },
     challenges: {
 
+        _id:"",
         date_started: "",
         player_one: {},
         player_one_health: 0,

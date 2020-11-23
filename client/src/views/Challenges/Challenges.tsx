@@ -56,6 +56,8 @@ export default function Challenges() {
     }
 
   }
+
+  
   if (state.currentUser.challenged === false) {
     return (<div className="card-container">
       <div className="card-holder">
