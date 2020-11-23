@@ -1,12 +1,25 @@
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+  /* padding: 0;
+  margin: 0; */
+  /* box-sizing: border-box; */
+  /* justify-self: center; */
 }
 
-body {
-  background-color: #afe4cd;
-  font-family: 'VT323', monospace;
-  font-size: 18px;
-  color: #156e58;
+div#root {
+  /* width: 100vh;
+  height: 100vh; */
+  /* background: url("./svg/border.gif");
+  background-repeat: no-repeat; */
+  /* display: grid;
+  justify-content: center;
+  align-items: center; */
 }
+
+
+/* position: relative;
+margin: 1vh;
+padding: 5px;
+border: 4px solid #8eb9a6;
+/* display: flex; */
+/* justify-content: center;
+min-height: 98vh; */
