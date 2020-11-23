@@ -8,7 +8,7 @@ export default interface ICurrentUser {
     character_image?: string;
     character_id?: string;
     challenged?: boolean;
-    currentChallenge?: number;
+    currentChallenge?: string;
     currenthealth?: number;
     currentoffense?: number;
     currentdefense?: number;

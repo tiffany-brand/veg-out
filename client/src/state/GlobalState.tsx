@@ -35,7 +35,7 @@ const initialState: State = {
         character_image: "",
         character_id: "",
         challenged: false,
-        currentChallenge: 0,
+        currentChallenge: "",
         currenthealth: 0,
         currentoffense: 0,
         currentdefense: 0,

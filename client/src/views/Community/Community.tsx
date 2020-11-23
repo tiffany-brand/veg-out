@@ -40,9 +40,11 @@ export default function Community() {
 
   if (state.currentUser.challenged===false){
     const opponent = opp;
-    const ID = Math.floor(Math.random()* 10000)
+   
     const challenge={
-      _id: ID.toString(),
+
+      _id:"",
+     //Need to include empty _id string to let state allow holding that data later
       date_started: date,
       date_ending:week,
       player_one: state.currentUser._id,

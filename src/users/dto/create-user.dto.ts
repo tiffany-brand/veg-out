@@ -6,7 +6,7 @@ export class CreateUserDto {
     character_name: string;
     character_image: string;
     challenged: boolean;
-    currentChallenge: number;
+    currentChallenge: string;
     currenthealth: number;
     currentoffense: number;
     currentdefense: number;

@@ -1,7 +1,8 @@
 
 
 export default interface IChallenges {
-    _id: string;
+    
+    _id:string,
     date_started: string;
     player_one: any;
     player_one_health: number;

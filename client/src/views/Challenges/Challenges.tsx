@@ -53,6 +53,36 @@ if(state.currentUser.currentChallenge!==undefined){
     }
 
   }
+
+  function view(){
+
+    return (<div className="card-container">
+      <div className="card-holder">
+        <h2>PENDING CHALLENGES</h2>
+        <DetailCard>
+          <p>
+            No pending challenges
+                </p>
+        </DetailCard>
+  
+      </div>
+      <div className="user-data-holder">
+      <UserData level={state.currentUser.level} character_name={state.currentUser.character_name} />
+      </div>
+      <div className="card-holder">
+        <h2>CURRENT CHALLENGES</h2>
+        <DetailCard>
+          <p>
+            Versus: {opponent}
+            <br />
+            
+                  Ends: {state.challenges.date_ending}
+          </p>
+        </DetailCard>
+      </div>
+    </div>)
+    }
+    
   if (state.currentUser.challenged === false) {
     return (<div className="card-container">
       <div className="card-holder">
@@ -83,35 +113,14 @@ if(state.currentUser.currentChallenge!==undefined){
   else{
 
     if(!state.challenges.player_two){
-    getChal();}
-    
+    getChal();
   getOpponent();
-
-  return (<div className="card-container">
-    <div className="card-holder">
-      <h2>PENDING CHALLENGES</h2>
-      <DetailCard>
-        <p>
-          No pending challenges
-              </p>
-      </DetailCard>
-
-    </div>
-    <div className="user-data-holder">
-    <UserData level={state.currentUser.level} character_name={state.currentUser.character_name} />
-    </div>
-    <div className="card-holder">
-      <h2>CURRENT CHALLENGES</h2>
-      <DetailCard>
-        <p>
-          Versus: {opponent}
-          <br />
-          
-                Ends: {state.challenges.date_ending}
-        </p>
-      </DetailCard>
-    </div>
-  </div>)
+  return view();
   }
+
+  else {getOpponent();
+  return view();}
+}
+  
 
 };
