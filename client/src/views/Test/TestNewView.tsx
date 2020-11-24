@@ -1,5 +1,7 @@
 import React from 'react';
 
+ 
+
 import "./TestNewView.css";
 
 import Grid from '@material-ui/core/Grid';
@@ -35,7 +37,6 @@ export default function NewView() {
             </Grid>
             <Grid container spacing={2}className="dark-box">
                 <Grid item xs={12} >
-                    <p>dark box</p>
                 </Grid>
             </Grid>
             <Grid container spacing={2} className="veggie-footer-parent">

@@ -5,16 +5,13 @@
   justify-self: center;
  }
 
-/* div#root { */
-  /* width: 100vh;
-  height: 100vh; */
-  /* background: url("./svg/border.gif");
-  background-repeat: no-repeat; */
+/* div#root {
+  width: 100vh;
+  height: 100vh;
   /* display: grid;
   justify-content: center;
-  align-items: center; */
-/* } */
-
+  align-items: center;
+} */
 
 /* position: relative;
 margin: 1vh;

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import userAPI from '../../utils/userAPI';
 import { useStoreContext } from '../../state/GlobalState';
-import logo from '../../assets/images/Vegemon-logo.png';
+// import logo from '../../assets/images/Vegemon-logo.png';
 import { LOADING, SET_CURRENT_USER } from '../../state/actions';
 import { saveToLocalStorage } from '../../utils/persistUser';
 // import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -109,7 +109,7 @@ function Login(): JSX.Element {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} className="login-center">
-                <img width="500px" src={logo} alt="Vegemon" />
+                {/* <img width="500px" src={logo} alt="Vegemon" /> */}
             </Grid>
             <Grid className="login-center" item xs={12}>
                 <Link to="/">

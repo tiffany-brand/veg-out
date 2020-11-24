@@ -15,8 +15,8 @@ import { Link } from 'react-router-dom';
 import { SET_CURRENT_USER } from '../../state/actions';
 import ICharacterResponse from '../../interfaces/ICharacterResponse';
 
-import bunny from "../../svg/bunny.svg";
-import caterpillar from "../../svg/caterpillar_trimmed.svg";
+// import bunny from "../../svg/bunny.svg";
+// import caterpillar from "../../svg/caterpillar_trimmed.svg";
 
 
 interface IProps {
@@ -139,17 +139,17 @@ const CharacterCarousel: React.FC<IProps> = () => {
 
   }
 
-  let characterImage = "";
-  // let characterImageName = "";
-  if (characterChoices[currentCharacterIndex]) {
-    if (characterChoices[currentCharacterIndex].image === "./svg/caterpillar.svg") {
-      characterImage = caterpillar;
-      // characterImageName = "caterpillar";
-    } else if (characterChoices[currentCharacterIndex].image === "./svg/bunny.svg") {
-      characterImage = bunny;
-      // characterImageName = "bunny";
-    }
-  };
+  // let characterImage = "";
+  // // let characterImageName = "";
+  // if (characterChoices[currentCharacterIndex]) {
+  //   if (characterChoices[currentCharacterIndex].image === "./svg/caterpillar.svg") {
+  //     characterImage = caterpillar;
+  //     // characterImageName = "caterpillar";
+  //   } else if (characterChoices[currentCharacterIndex].image === "./svg/bunny.svg") {
+  //     characterImage = bunny;
+  //     // characterImageName = "bunny";
+  //   }
+  // };
 
   return (
     <Grid container spacing={3} className="carousel-grid">
@@ -161,7 +161,7 @@ const CharacterCarousel: React.FC<IProps> = () => {
           <CharacterArrow direction="left" clickFunction={previousCharacter} glyph="&#9664;" />
         </div>
         <div className={classes.center}>
-          <CharacterSlide url={characterImage} />
+          {/* <CharacterSlide url={characterImage} /> */}
         </div>
         <div className="right-arrow">
           <CharacterArrow direction="right" clickFunction={nextCharacter} glyph="&#9654;" />

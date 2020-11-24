@@ -15,7 +15,7 @@ import Register from './views/Register/Register';
 import Wrapper from './components/Wrapper/Wrapper';
 import PlayerDetails from './views/PlayerDetails/PlayerDetails'
 import Winner from './views/Winner/Winner';
-import GameBoard from './views/GameBoard/GameBoard';
+// import GameBoard from './views/GameBoard/GameBoard';
 import Menu from './components/Menu/Menu';
 import NewView from './views/Test/TestNewView';
 
@@ -36,8 +36,7 @@ function App() {
               <Route path="/plant-log" exact component={PlantLog} />
               <Route path="/register" exact component={Register} />
               <Route path="/winner" exact component={Winner} />
-              <Route path="/game-board" exact component={GameBoard} />
-              <Route path="/test-grid" exact component={NewView} />
+              <Route path="/test" exact component={NewView} />
             </Switch>
             {/* <Menu /> */}
           </Wrapper>
