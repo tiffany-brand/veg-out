@@ -23,8 +23,7 @@ export default function Challenges() {
   function getChal() {
 if(state.currentUser.currentChallenge!==undefined){
 
-      let tempId = state.currentUser.currentChallenge;
-      let chalID = tempId.toString();
+      let chalID = state.currentUser.currentChallenge;
 
       challengesAPI.getChallenge(chalID).then(res => {
 

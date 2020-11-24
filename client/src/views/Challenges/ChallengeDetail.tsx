@@ -17,8 +17,7 @@ function ChallengeDetail(): JSX.Element {
 
     if (state.challenges.date_started === "" && state.currentUser.currentChallenge != undefined) {
 
-      let tempId = state.currentUser.currentChallenge;
-      let chalID = tempId.toString();
+      let chalID = state.currentUser.currentChallenge;
 
       challengesAPI.getChallenge(chalID).then(res => {
 
