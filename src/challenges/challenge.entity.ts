@@ -69,7 +69,7 @@ export class Challenge {
     playerTwo_currentScore: number;
     
     @Column({
-        type:"datetime"
+        type:"date"
     })
     dateEnding: string;
 }
