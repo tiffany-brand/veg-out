@@ -30,5 +30,16 @@ export default {
         }
 
         return bonus;
+    },
+    // we may need to double check the types for "arrayOfMeals". I tested this function in javascript and it works.
+    totalVeggieArrayConstructor: (arrayOfMeals: []): string[] => {
+        const totalVeggieArray: string[] = [];
+        arrayOfMeals.forEach((meal: string[]) => {
+            meal.forEach((item: string) => {
+                totalVeggieArray.push(item);
+            })
+            
+        })
+        return totalVeggieArray;
     }
 }
