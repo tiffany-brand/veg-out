@@ -16,7 +16,6 @@ import Wrapper from './components/Wrapper/Wrapper';
 import KeithTestGrid from './views/KeithTestGrid/KeithTestGrid'
 import Winner from './views/Winner/Winner';
 import GameBoard from './views/GameBoard/GameBoard';
-import Menu from './components/Menu/Menu';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 
@@ -42,7 +41,6 @@ function App() {
                 <Route path="/game-board" exact component={GameBoard} />
               </Switch>
             </div>
-            {/* <Menu /> */}
             <Footer />
           </Wrapper>
         </StoreProvider>
