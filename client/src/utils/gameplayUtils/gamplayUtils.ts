@@ -1,14 +1,13 @@
 
 export default {
     // This function will take in 1 users meallogs and calculate their multiplier bonus.
-    calculateMultiplierBonus: (arrayOfMeals: string[]): number => {
+    calculateMultiplierBonus: (arrayOfMeals: []): number => {
         let bonus= 1;
         const mealsOf3OrMore = [];
         const mealsOf5OrMore = [];
         const mealsOf7OrMore = [];
         // This counts each meal entry and pushes it into the appropriate category according to meal length.
-        arrayOfMeals.forEach((meal) => {
-            console.log(`This is the meal: ${meal}`);
+        arrayOfMeals.forEach((meal: string[]) => {
             if(meal.length >= 7) {
                 mealsOf7OrMore.push(meal);
             } else  if(meal.length >= 5){
