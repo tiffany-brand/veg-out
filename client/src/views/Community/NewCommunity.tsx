@@ -29,6 +29,7 @@ function NewCommunity() {
     const [value, setValue] = React.useState<IUser | null>(allUsers[0]);
     const [inputValue, setInputValue] = React.useState('');
 
+    // loads state from local storage if page is refreshed
     useEffect(() => {
         if (!state.currentUser._id) {
             const storedState = loadFromLocalStorage()
@@ -39,10 +40,12 @@ function NewCommunity() {
         } else saveToLocalStorage(state);
     }, [])
 
+    // load users into Autocomplete to search for a challenger
     const loadUsers = () => {
         userAPI.getUsers()
             .then(res => {
-                setAllUsers(res.data);
+                const challengers = res.data.filter((user: IUser) => user._id !== state.currentUser._id)
+                setAllUsers(challengers);
                 setSearching(true);
             })
     }
@@ -82,6 +85,34 @@ function NewCommunity() {
 
     }
 
+    const isChallenged = () => {
+        if (state.currentUser.challenged) {
+            return <p>put already challenged component here</p>
+        } else {
+            return (
+                !searching ?
+                    <Button variant="contained" onClick={() => loadUsers()}>Choose a Challenger</Button> :
+                    <form>
+                        <Autocomplete
+                            id="challenger"
+                            options={allUsers}
+                            getOptionLabel={(option) => option.nickname}
+                            renderInput={(params) => <TextField {...params} label="Choose a Challenger" variant="outlined" />}
+                            value={value}
+                            onChange={(event: any, newValue: IUser | null) => {
+                                setValue(newValue);
+                            }}
+                            inputValue={inputValue}
+                            onInputChange={(event, newInputValue) => {
+                                setInputValue(newInputValue);
+                            }}
+                        />
+                        <Button variant="contained" onClick={handleSubmit}>Challenge!</Button>
+                    </form>
+            )
+        }
+    }
+
     useEffect(() => {
 
     }, [])
@@ -89,13 +120,11 @@ function NewCommunity() {
     return (
         <div className="community-container">
             <h1>Challenges</h1>
-            {/* If currently in a challenge, show challenge info */}
-            {!state.currentUser.challenged &&
 
-                <p>Put already challenged component here</p>
+            {isChallenged()}
 
-            }
-            {!searching ?
+
+            {/* {!searching ?
                 <Button variant="contained" onClick={() => loadUsers()}>Choose a Challenger</Button> :
                 <form>
                     <Autocomplete
@@ -113,7 +142,7 @@ function NewCommunity() {
                         }}
                     />
                     <Button variant="contained" onClick={handleSubmit}>Challenge!</Button>
-                </form>}
+                </form>} */}
 
         </div>
     )
