@@ -1,5 +1,6 @@
 import axios from "axios";
 import IChallenges from "../interfaces/IChallenges";
+import IChallNew from "../interfaces/IChallNew";
 
 
 export default {
@@ -19,6 +20,11 @@ export default {
     // Saves a Challenge to the database
     saveChallenge: function (challengeData: IChallenges) {
         return axios.post("/api/challenges", challengeData);
+    },
+
+    // Saves a Challenge to the database
+    saveChall: function (challData: IChallNew) {
+        return axios.post("/api/challenges", challData);
     },
 
 

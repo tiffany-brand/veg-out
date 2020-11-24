@@ -111,6 +111,7 @@ function Login(): JSX.Element {
                 state.currentUser.username && (
                     <>
                         <Link to="/home"><button>Go Home</button></Link>
+                        <Link to="/landing"><button>Landing</button></Link>
                     </>
                 )
             )}
@@ -119,6 +120,7 @@ function Login(): JSX.Element {
                 !state.currentUser.username && (
                     <>
                         <Link to="/register"><button>Choose a Character</button></Link>
+                        <Link to="/landing"><button>Landing</button></Link>
                     </>
                 )
             )}
