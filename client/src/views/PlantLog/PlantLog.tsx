@@ -31,6 +31,7 @@ export default function PlantLog() {
         setLoggingUser(userRes.data);
         setAvailablePlants(veggieRes.data);
         setSearchArray(availablePlants);
+
       }
       )
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -102,8 +103,6 @@ export default function PlantLog() {
     setCurrentMeal([]);
   };
 
-
-
   const searchDisplayArea = useRef(
     availablePlants.sort(() => .5 - Math.random()).slice(0, 5).map(function (plant, index) {
       return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
@@ -112,7 +111,7 @@ export default function PlantLog() {
   console.log(searchTerm);
 
   if (!searchTerm) {
-    searchDisplayArea.current = searchArray.sort(() => .5 - Math.random()).slice(0, 5).map(function (plant, index) {
+    searchDisplayArea.current = [...availablePlants].sort(() => .5 - Math.random()).slice(0, 5).map(function (plant, index) {
       return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
     })
   } else {
@@ -120,6 +119,8 @@ export default function PlantLog() {
       return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
     })
   }
+
+  // array.reduce conditionally apply sort to randomize
 
 
   return (
@@ -133,6 +134,10 @@ export default function PlantLog() {
             <ul className="search-results" id="search-results">
               {searchDisplayArea.current}
             </ul>
+            <div className="search-results" id="search-results">{availablePlants.slice(0, 5).map(function (plant, index) {
+              return <p onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</p>
+            })}</div>
+
           </DetailCard>
         </div>
         <div className="card-holder">
