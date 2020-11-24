@@ -2,13 +2,81 @@
 .white-background {
   background-color: #fff;
   align-items: center;
+  position: relative;
+  z-index: 999;
 }
 
 h1.veggie-header {
   margin: 0;
 }
 
-h4.veggie-menu {
-  margin: 0;
-  font-size: small;
+.mobile-menu div{
+  width: 25px;
+  height: 2px;
+  background-color: #156e58;
+  margin: 5px;
+}
+
+.mobile-menu-display {
+  height: 95px;
+}
+
+nav {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 8vh;
+  background-color: #fff;
+}
+
+.nav-bar{
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-bar li {
+  list-style: none;
+}
+
+.nav-bar a {
+  color: #e7e7e7;
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-size: 15px;
+}
+
+.nav-bar {
+  padding: 0px;
+  position: absolute;
+  right: 25px;
+  top: 63px;
+  width: 150px;
+  height: 0px;
+  background-color: #00000080;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* transform: translateX(100%);
+  transition: transform .5s ease-in; */
+  transition: height 500ms ease-in;
+  z-index: 0;
+}
+
+.nav-bar li {
+  font-size: 0px;
+  transition: font-size 500ms ease-in;
+}
+
+.mobile-menu {
+  cursor: pointer;
+  display: block;
+}
+
+.mobile-menu-display {
+  height: 125px;
+}
+.mobile-menu-display li {
+  font-size: 1em;
 }

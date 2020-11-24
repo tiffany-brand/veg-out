@@ -15,7 +15,6 @@ import Register from './views/Register/Register';
 import Wrapper from './components/Wrapper/Wrapper';
 import KeithTestGrid from './views/KeithTestGrid/KeithTestGrid'
 import Winner from './views/Winner/Winner';
-import Menu from './components/Menu/Menu';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 
