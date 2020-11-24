@@ -22,7 +22,7 @@ export default function NewView() {
 
 
   return (
-    <div>
+    <div className="component-style">
       <Grid item xs={12} container justify="space-around">
         <Grid item xs={8} sm={4}>
           <div className="veggie-box">Left Box</div>

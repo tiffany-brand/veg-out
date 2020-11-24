@@ -5,6 +5,10 @@
   justify-self: center;
  }
 
+ html {
+  overflow-x: hidden;
+}
+
 /* div#root {
   width: 100vh;
   height: 100vh;
@@ -24,5 +28,8 @@ min-height: 98vh; */
 body {
   background-image: url('./assets/images/veggie-BG.jpg');
   background-color: #ffffff;
+  background-repeat: no-repeat;
   margin: 0px;
+  overflow-x: hidden;
+
 }

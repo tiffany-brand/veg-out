@@ -21,10 +21,6 @@ createStyles({
 }),
 );
 
-import Grid from '@material-ui/core/Grid';
-
-import userAPI from '../../utils/userAPI'
-
 function Home() {
 
   const classes = useStyles();

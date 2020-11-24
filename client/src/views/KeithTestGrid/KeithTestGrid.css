@@ -6,3 +6,14 @@
   background-color: aquamarine;
 } */
 
+div.component-style {
+  color: #fff;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+div.veggie-box {
+  padding: 1em;
+}
