@@ -28,3 +28,11 @@ div.card-holder {
 .home-container h1 {
   padding-bottom: 15px;
 }
+
+div.veggie-box {
+  height: 250px;
+  text-align: center;
+  border: 1px solid #000000;
+  background-color: aquamarine;
+  margin-top: 15px;
+}

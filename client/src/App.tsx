@@ -13,10 +13,12 @@ import Landing from './views/Login/Landing';
 import PlantLog from './views/PlantLog/PlantLog';
 import Register from './views/Register/Register';
 import Wrapper from './components/Wrapper/Wrapper';
-import PlayerDetails from './views/PlayerDetails/PlayerDetails'
+import KeithTestGrid from './views/KeithTestGrid/KeithTestGrid'
 import Winner from './views/Winner/Winner';
 import GameBoard from './views/GameBoard/GameBoard';
 import Menu from './components/Menu/Menu';
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
@@ -24,23 +26,27 @@ function App() {
       <div className="app-container app-border">
         <StoreProvider>
           <Wrapper>
-            <Switch>
-              <Route path="/keith-dev" exact component={PlayerDetails} />
-              <Route path="/" exact component={Login} />
-              <Route path="/challenges" exact component={Challenges} />
-              <Route path="/challengeDetail" exact component={ChallengeDetail} />
-              <Route path="/community" exact component={Community} />
-              <Route path="/home" exact component={Home} />
-              <Route path="/landing" exact component={Landing} />
-              <Route path="/plant-log" exact component={PlantLog} />
-              <Route path="/register" exact component={Register} />
-              <Route path="/winner" exact component={Winner} />
-              <Route path="/game-board" exact component={GameBoard} />
-            </Switch>
-            <Menu />
+            <Header />
+            <div className="dark-box">
+              <Switch>
+                <Route path="/keith-dev" exact component={KeithTestGrid} />
+                <Route path="/" exact component={Login} />
+                <Route path="/challenges" exact component={Challenges} />
+                <Route path="/challengeDetail" exact component={ChallengeDetail} />
+                <Route path="/community" exact component={Community} />
+                <Route path="/home" exact component={Home} />
+                <Route path="/landing" exact component={Landing} />
+                <Route path="/plant-log" exact component={PlantLog} />
+                <Route path="/register" exact component={Register} />
+                <Route path="/winner" exact component={Winner} />
+                <Route path="/game-board" exact component={GameBoard} />
+              </Switch>
+            </div>
+            {/* <Menu /> */}
+            <Footer />
           </Wrapper>
         </StoreProvider>
-        </div>
+      </div>
     </div>
   );
 }

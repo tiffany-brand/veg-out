@@ -1,0 +1,15 @@
+
+.white-background {
+  background-color: #fff;
+  align-items: center;
+}
+
+h1.veggie-header {
+  margin: 0;
+}
+
+h4.veggie-menu {
+  margin: 0;
+  text-align: right;
+  padding-right: 5px;
+}
