@@ -15,10 +15,7 @@ export class VeggiesService {
   create(CreateVeggieDTO: CreateVeggieDTO): Promise<Veggie> {
     const veggie = new Veggie();
     veggie.plantName = CreateVeggieDTO.plantName;
-    veggie.total_HP = CreateVeggieDTO.total_HP;
-    veggie.offense = CreateVeggieDTO.offense;
-    veggie.defense = CreateVeggieDTO.defense;
-    veggie.info = CreateVeggieDTO.info;
+
 
     return this.veggiesRepository.save(veggie);
   }
