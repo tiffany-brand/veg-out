@@ -40,7 +40,7 @@ function Home() {
   console.log(loggedInUser.character_name);
   return (
     <div className="home-container">
-      <h1>{state.currentUser.username} DETAILS</h1>
+      {/* <h1>{state.currentUser.username} DETAILS</h1> */}
       <div className="card-container">
         <div className="card-holder">
           <h2>PLANT POWER</h2>

@@ -106,22 +106,15 @@ function Login(): JSX.Element {
                     </>
                 )}
             </Link>
-            {/* If logged in and have a username, go to the home page */}
+            {/* If logged in, go to the home page */}
             {isAuthenticated && (
-                state.currentUser.username && (
-                    <>
-                        <Link to="/home"><button>Go Home</button></Link>
-                    </>
-                )
+
+                <>
+                    <Link to="/home"><button>Go Home</button></Link>
+                </>
+
             )}
-            {/* If logged in but no username, go to the register page */}
-            {isAuthenticated && (
-                !state.currentUser.username && (
-                    <>
-                        <Link to="/register"><button>Choose a Character</button></Link>
-                    </>
-                )
-            )}
+
         </div>
     )
 

@@ -1,7 +1,7 @@
-div.App {
+/* div.App {
   position: relative;
   justify-content: center;
-  /* min-height: 98vh; */
+  /* min-height: 98vh; 
   display: flex;
   height: 100vh;
 }
@@ -62,4 +62,4 @@ div.app-border {
   background: url("./svg/border.svg");
   background-repeat: no-repeat;
 
-}
+} */
