@@ -18,7 +18,7 @@ export class MeallogService {
         newLog.date = createMealLogDTO.date;
         newLog.mealLabel = createMealLogDTO.mealLabel;
         newLog.mealVeggies = createMealLogDTO.mealVeggies;
-        newLog.userID = createMealLogDTO.userID;
+        newLog.user = createMealLogDTO.user;
         
 
         return this.meallogRepository.save(newLog);

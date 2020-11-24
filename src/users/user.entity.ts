@@ -19,17 +19,7 @@ export class User {
   @Column({
     nullable: true
   })
-  username: string;
-
-  @Column({
-    nullable: true
-  })
-  character_name: string;
-
-  @Column({
-    nullable: true
-  })
-  character_image: string;
+  nickname: string;
 
   @Column({
     nullable: false,
@@ -44,45 +34,21 @@ export class User {
 
   @Column({
     nullable: false,
-    default: 100
+    default: 0
   })
-  currenthealth: number;
-
-  @Column({
-    nullable: false,
-    default: 100
-  })
-  currentoffense: number;
-
-  @Column({
-    nullable: false,
-    default: 100
-  })
-  currentdefense: number;
+  wins: number;
 
   @Column({
     nullable: false,
     default: 0
   })
-  win: number;
+  losses: number;
 
   @Column({
     nullable: false,
     default: 0
   })
-  loss: number;
-
-  @Column({
-    nullable: false,
-    default: 0
-  })
-  tie: number;
-
-  @Column({
-    nullable: false,
-    default: 1
-  })
-  level: number;
+  ties: number;
 
   @Column({
     type: "simple-array",
@@ -90,7 +56,13 @@ export class User {
   })
   lifetimeUniqueVeggies: string[];
 
-  @OneToMany(() => MealLog, meallog => meallog.userID)
+  @Column({
+    type: "simple-array",
+    nullable: true
+  })
+  lifetimeTotalVeggies: string[];
+
+  @OneToMany(() => MealLog, meallog => meallog.user)
   mealLogs: MealLog;
 
   @OneToMany(() => Challenge, challenge => challenge.player_one)

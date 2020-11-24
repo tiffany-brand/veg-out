@@ -6,6 +6,6 @@ export class CreateMealLogDTO {
     date: string;
     mealLabel: string;
     mealVeggies: string[];
-    userID: User;
+    user: User;
     
 }
