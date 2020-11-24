@@ -37,7 +37,6 @@ export default {
             meal.forEach((item: string) => {
                 totalVeggieArray.push(item);
             })
-            
         })
         return totalVeggieArray;
     }
