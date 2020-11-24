@@ -3,19 +3,17 @@ import { User } from "src/users/user.entity";
 
 
 export class CreateChallengeDTO {
-    date_started: string;
-    player_one: User;
-    player_one_health: number;
-    player_one_offense: number;
-    player_one_defense: number;
-    player_one_plantTotal: number;
-    player_one_uniqueVeggies: string[];
-    player_two: User;
-    player_two_health: number;
-    player_two_offense: number;
-    player_two_defense: number;
-    player_two_plantTotal: number;
-    player_two_uniqueVeggies: string[];
-    date_ending: string;
+    dateStarted: string;
+    playerOne: User;
+    playerOne_totalVeggies: string[];
+    playerOne_uniqueVeggies: string[];
+    playerOne_currentMultiplier: number;
+    playerOne_currentScore: number;
+    playerTwo: User;
+    playerTwo_totalVeggies: string[];
+    playerTwo_uniqueVeggies: string[];
+    playerTwo_currentMultiplier: number;
+    playerTwo_currentScore: number;
+    dateEnding: string;
 
 }

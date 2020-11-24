@@ -65,10 +65,10 @@ export class User {
   @OneToMany(() => MealLog, meallog => meallog.user)
   mealLogs: MealLog;
 
-  @OneToMany(() => Challenge, challenge => challenge.player_one)
-  player_one: Challenge;
+  @OneToMany(() => Challenge, challenge => challenge.playerOne)
+  playerOne: Challenge;
 
-  @OneToMany(() => Challenge, challenge => challenge.player_two)
-  player_two: Challenge;
+  @OneToMany(() => Challenge, challenge => challenge.playerTwo)
+  playerTwo: Challenge;
 
 }
