@@ -39,5 +39,12 @@ export default {
             })
         })
         return totalVeggieArray;
+    },
+
+    uniqueVeggieArrayConstructor: (totalVeggieArray: string[]): string[] => {
+        const uniqueArray = totalVeggieArray.filter((item, index) => {
+            return totalVeggieArray.indexOf(item) === index;
+        })
+        return uniqueArray;
     }
 }
