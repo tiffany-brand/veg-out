@@ -1,6 +1,7 @@
 import React from 'react';
 import { CaterpillarComponent } from './CaterpillarComponent';
-import { Bunny } from './Bunny';
+import Bunny from "./Bunny/Bunny";
+import "./CharacterClass.css";
 
 interface IProps {
     character_name: string | undefined;
@@ -21,9 +22,9 @@ class CharacterClass extends React.Component<IProps> {
           };
 
         return (
-            <>
+            <div className="character-div">
                 {characterImage}
-            </>
+            </div>
         );
     };
 }

@@ -4,7 +4,7 @@ import { TestButton } from './TestButton';
 // import { LeafButton } from './Leaf';
 import { CaterpillarComponent } from '../Characters/CaterpillarComponent';
 // import { Border } from './Border';
-import { Bunny } from '../Characters/Bunny';
+import Bunny from '../Characters/Bunny/Bunny';
 
 // export default function ShowTheButton()
 class ShowTheButton extends React.Component {
@@ -15,7 +15,7 @@ class ShowTheButton extends React.Component {
         let button;
 
         if(isTrue) {
-            button = <Bunny />
+            // button = <Bunny />
         } else {
             button = <CaterpillarComponent />;
         }

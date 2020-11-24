@@ -1,12 +1,30 @@
-h3 {
-  margin-top: 10px;
+/* h3 {
+  margin: 10px;
 }
+
+h2 {
+  margin: 3%;
+}
+
+input.log-input {
+  margin-top: 20px;
+  max-width: 170px;
+  margin-bottom: 30px;
+}
+
+.center-button {
+  text-align: center;
+}
+
 button.log-button {
-  position: absolute;
-  bottom: 15px;
-  right: 50%;
-  transform: translate(50%);
-  width: 80%;
+  /* position: absolute; */
+  /* text-align: center; */
+  /* bottom: 15px; */
+  /* justify-content: center; */
+  /* right: 50%; */
+  /* transform: translate(50%); */
+  /* width: 100%;
+  max-width: 90px;
   padding: 5px 0px;
   border-radius: 10px;
   background-color: #f28327;
@@ -14,3 +32,12 @@ button.log-button {
   font-size: 24px;
   font-family: 'VT323', monospace;
 }
+
+div.search-results {
+  margin: 0;
+}
+
+p.search-suggest {
+  padding: 0;
+  margin: 0;
+}  */

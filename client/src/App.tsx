@@ -17,11 +17,12 @@ import PlayerDetails from './views/PlayerDetails/PlayerDetails'
 import Winner from './views/Winner/Winner';
 import GameBoard from './views/GameBoard/GameBoard';
 import Menu from './components/Menu/Menu';
+import NewView from './views/Test/TestNewView';
 
 function App() {
   return (
     <div className="App">
-      <div className="app-container app-border">
+      {/* <div className="app-container"> */}
         <StoreProvider>
           <Wrapper>
             <Switch>
@@ -36,11 +37,12 @@ function App() {
               <Route path="/register" exact component={Register} />
               <Route path="/winner" exact component={Winner} />
               <Route path="/game-board" exact component={GameBoard} />
+              <Route path="/test-grid" exact component={NewView} />
             </Switch>
-            <Menu />
+            {/* <Menu /> */}
           </Wrapper>
         </StoreProvider>
-        </div>
+        {/* </div> */}
     </div>
   );
 }

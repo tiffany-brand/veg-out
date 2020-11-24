@@ -1,20 +1,19 @@
-div.parent {
-  justify-content: flex-start;
-}
-div.detail-card {
-  position: relative;
-  background-color: #e9e5c2;
-  border-radius: 15px;
-  border: 2px solid #8eb9a6;
-  margin: 5px;
-  padding: 15px 20px;
-  height: 80%;
-  width: 100%;
-}
+/* div.detail-card {
+  background-color: #f1efd8;
+  border-radius: 8px;
+  height: 100%;
+  min-height: 250px;
+} */
 
 .detail-card li {
   margin-bottom: 3px;
   font-size: 28px;
   text-align: center;
   list-style: none;
+}
+
+.detail-card > ul {
+  text-align: center;
+  margin: 0 5px;
+  padding: 10px 0;
 }

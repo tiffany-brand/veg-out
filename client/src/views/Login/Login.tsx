@@ -6,6 +6,20 @@ import { useStoreContext } from '../../state/GlobalState';
 import logo from '../../assets/images/Vegemon-logo.png';
 import { LOADING, SET_CURRENT_USER } from '../../state/actions';
 import { saveToLocalStorage } from '../../utils/persistUser';
+// import { BrowserRouter, Route, Switch } from 'react-router-dom';
+// import Home from "../Home/Home";
+import "./Login.css";
+
+import Grid from '@material-ui/core/Grid';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+  }),
+);
 
 function Login(): JSX.Element {
 
@@ -93,36 +107,39 @@ function Login(): JSX.Element {
     }, [state])
 
     return (
-        <div>
-            <img width="500px" src={logo} alt="Vegemon" />
-            <br></br>
-            <Link to="/">
-                {/* If not logged, show the Log In button */}
-                {!isLoading && !user && (
-                    <>
-                        <button onClick={loginWithRedirect}>
-                            Log In
-                        </button>
-                    </>
+        <Grid container spacing={2}>
+            <Grid item xs={12} className="login-center">
+                <img width="500px" src={logo} alt="Vegemon" />
+            </Grid>
+            <Grid className="login-center" item xs={12}>
+                <Link to="/">
+                    {/* If not logged, show the Log In button */}
+                    {!isLoading && !user && (
+                        <>
+                            <button onClick={loginWithRedirect}>
+                                Log In
+                            </button>
+                        </>
+                    )}
+                </Link>
+                {/* If logged in and have a username, go to the home page */}
+                {isAuthenticated && (
+                    state.currentUser.username && (
+                        <>
+                            <Link to="/home"><button>Go</button></Link>
+                        </>
+                    )
                 )}
-            </Link>
-            {/* If logged in and have a username, go to the home page */}
-            {isAuthenticated && (
-                state.currentUser.username && (
-                    <>
-                        <Link to="/home"><button>Go Home</button></Link>
-                    </>
-                )
-            )}
-            {/* If logged in but no username, go to the register page */}
-            {isAuthenticated && (
-                !state.currentUser.username && (
-                    <>
-                        <Link to="/register"><button>Choose a Character</button></Link>
-                    </>
-                )
-            )}
-        </div>
+                {/* If logged in but no username, go to the register page */}
+                {isAuthenticated && (
+                    !state.currentUser.username && (
+                        <>
+                            <Link to="/register"><button>Choose a Character</button></Link>
+                        </>
+                    )
+                )}
+            </Grid>
+        </Grid>
     )
 
 

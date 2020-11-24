@@ -8,10 +8,23 @@ import { useStoreContext } from '../../state/GlobalState';
 import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUser';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { SET_CURRENT_USER, SET_CHALLENGES } from '../../state/actions';
+import userAPI from '../../utils/userAPI';
 
-import userAPI from '../../utils/userAPI'
+import Grid from '@material-ui/core/Grid';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+createStyles({
+  root: {
+    flexGrow: 1,
+  },
+}),
+);
+
 
 function Home() {
+
+  const classes = useStyles();
 
   const [state, dispatch] = useStoreContext();
   const [loggedInUser, setLoggedInUser] = useState<ICurrentUser>({});
@@ -36,13 +49,13 @@ function Home() {
     } else saveToLocalStorage(state);
   }, [])
 
-
-  console.log(loggedInUser.character_name);
   return (
-    <div className="home-container">
-      <h1>{state.currentUser.username} DETAILS</h1>
-      <div className="card-container">
-        <div className="card-holder">
+    <div className={classes.root}>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <h1>{state.currentUser.username} DETAILS</h1>
+        </Grid>
+        <Grid className="grid-card" item xs={4}>
           <h2>PLANT POWER</h2>
           <DetailCard>
             <ul>
@@ -51,12 +64,13 @@ function Home() {
               <li>DEFENSE: {loggedInUser.currentdefense}</li>
             </ul>
           </DetailCard>
-
-        </div>
-        <div className="user-data-holder">
-          <UserData level={loggedInUser.level} character_name={loggedInUser.character_name} />
-        </div>
-        <div className="card-holder">
+        </Grid>
+        <Grid className="grid-card" item xs={4}>
+          <div className="user-data-holder">
+            <UserData level={loggedInUser.level} character_name={loggedInUser.character_name} />
+          </div>
+        </Grid>
+        <Grid className="grid-card" item xs={4}>
           <h2>CHALLENGES</h2>
           <DetailCard>
             <ul>
@@ -65,8 +79,8 @@ function Home() {
               <li><Link to="/community">+ NEW CHALLENGE +</Link></li>
             </ul>
           </DetailCard>
-        </div>
-      </div>
+        </Grid>
+      </Grid>
     </div>
   )
 

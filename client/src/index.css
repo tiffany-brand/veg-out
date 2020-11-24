@@ -1,11 +1,11 @@
 * {
-  /* padding: 0;
-  margin: 0; */
-  /* box-sizing: border-box; */
-  /* justify-self: center; */
-}
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  justify-self: center;
+ }
 
-div#root {
+/* div#root { */
   /* width: 100vh;
   height: 100vh; */
   /* background: url("./svg/border.gif");
@@ -13,7 +13,7 @@ div#root {
   /* display: grid;
   justify-content: center;
   align-items: center; */
-}
+/* } */
 
 
 /* position: relative;
@@ -23,3 +23,8 @@ border: 4px solid #8eb9a6;
 /* display: flex; */
 /* justify-content: center;
 min-height: 98vh; */
+
+body {
+  background: url("../src/assets/images/veggies.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
