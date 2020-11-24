@@ -10,13 +10,16 @@ import { useStoreContext } from '../../state/GlobalState';
 
 import IUser from '../../interfaces/IUser';
 import INewChallenge from '../../interfaces/INewChallenge';
+import IChallenge from '../../interfaces/IChallenge';
 
 import userAPI from '../../utils/userAPI'
 import challengesAPI from '../../utils/challengesAPI';
 
 import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUser';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-import { SET_CURRENT_USER } from '../../state/actions';
+import { SET_CURRENT_USER, LOADING } from '../../state/actions';
+
+import ChallengeDisplay from '../../components/ChallengeDisplay/ChallengeDisplay';
 
 
 function NewCommunity() {
@@ -29,6 +32,18 @@ function NewCommunity() {
     const [value, setValue] = React.useState<IUser | null>(allUsers[0]);
     const [inputValue, setInputValue] = React.useState('');
 
+    const [currentChallenge, setCurrentChallenge] = useState<IChallenge | undefined>()
+    const [currentChallenger, setCurrentChallenger] = useState<IUser | undefined>()
+    const [position, setPosition] = useState(1);
+
+    const [isLoading, setIsLoading] = useState(true);
+
+
+    useEffect(() => {
+
+    }, [])
+
+
     // loads state from local storage if page is refreshed
     useEffect(() => {
         if (!state.currentUser._id) {
@@ -38,7 +53,29 @@ function NewCommunity() {
                 currentUser: storedState.currentUser
             });
         } else saveToLocalStorage(state);
+        if (state.currentUser.challenged) {
+            loadChallenge();
+            console.log(JSON.stringify(currentChallenge))
+
+        } else {
+            setIsLoading(false);
+        }
+
     }, [])
+
+    // useEffect(() => {
+    //     if (state.currentUser.challenged) {
+    //         loadChallenge();
+
+    //     }
+    // }, [state.currentUser.challenged])
+
+
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+
+
 
     // load users into Autocomplete to search for a challenger
     const loadUsers = () => {
@@ -57,7 +94,15 @@ function NewCommunity() {
             playerOne: state.currentUser._id,
             playerTwo: value!._id,
             dateStarted: today.toFormat('yyyyLLdd'),
-            dateEnding: today.plus({ days: 7 }).toFormat('yyyyLLdd')
+            dateEnding: today.plus({ days: 7 }).toFormat('yyyyLLdd'),
+            playerOne_totalVeggies: [],
+            playerOne_uniqueVeggies: [],
+            playerOne_currentMultiplier: 1,
+            playerOne_currentScore: 0,
+            playerTwo_totalVeggies: [],
+            playerTwo_uniqueVeggies: [],
+            playerTwo_currentMultiplier: 1,
+            playerTwo_currentScore: 0
         }
         console.log(newChallenge)
         // save the new challenge in the DB
@@ -65,57 +110,91 @@ function NewCommunity() {
             .then((res) => {
                 console.log(res);
                 setSearching(false);
+                const challengeId = res.data._id;
                 // set the current user to challenged
                 userAPI.saveUser({
+                    ...state.currentUser,
                     _id: state.currentUser._id,
-                    challenged: true
+                    challenged: true,
+                    currentChallenge: challengeId
                 })
                     // set the challenged user to challenged
                     .then((res) => {
+                        dispatch({
+                            type: SET_CURRENT_USER,
+                            currentUser: {
+                                ...state.currentUser,
+                                challenged: true
+                            }
+                        });
                         console.log(res)
                         userAPI.saveUser({
+                            ...value!,
                             _id: value!._id,
-                            challenged: true
+                            challenged: true,
+                            currentChallenge: challengeId
                         })
                             .then((res) => console.log(res))
                     })
             })
             .catch(err => console.log(err))
+    }
 
-
+    const loadChallenge = () => {
+        console.log("in loadChallenge")
+        challengesAPI.getChallenge(state.currentUser.currentChallenge)
+            .then(res => {
+                setCurrentChallenge(res.data);
+                console.log(JSON.stringify(res.data));
+                let challenger;
+                if (res.data.playerOne._id === state.currentUser._id) {
+                    challenger = res.data.playerTwo;
+                    setPosition(1) // current user is player one
+                } else {
+                    challenger = res.data.playerOne;
+                    setPosition(2) // current user is player two
+                }
+                setCurrentChallenger(challenger);
+                console.log(challenger);
+                setIsLoading(false);
+            })
+            .catch(err => console.log(err))
     }
 
     const isChallenged = () => {
-        if (state.currentUser.challenged) {
-            return <p>put already challenged component here</p>
-        } else {
-            return (
-                !searching ?
-                    <Button variant="contained" onClick={() => loadUsers()}>Choose a Challenger</Button> :
-                    <form>
-                        <Autocomplete
-                            id="challenger"
-                            options={allUsers}
-                            getOptionLabel={(option) => option.nickname}
-                            renderInput={(params) => <TextField {...params} label="Choose a Challenger" variant="outlined" />}
-                            value={value}
-                            onChange={(event: any, newValue: IUser | null) => {
-                                setValue(newValue);
-                            }}
-                            inputValue={inputValue}
-                            onInputChange={(event, newInputValue) => {
-                                setInputValue(newInputValue);
-                            }}
-                        />
-                        <Button variant="contained" onClick={handleSubmit}>Challenge!</Button>
-                    </form>
-            )
-        }
+        // if (state.currentUser.challenged) {
+
+        //     console.log(JSON.stringify(currentChallenge))
+        //     return (
+
+        //         <ChallengeDisplay currentChallenge={currentChallenge} currentChallenger={currentChallenger} position={position} />
+        //     )
+        // } else {
+        return (
+            !searching ?
+                <Button variant="contained" onClick={() => loadUsers()}>Choose a Challenger</Button> :
+                <form>
+                    <Autocomplete
+                        id="challenger"
+                        options={allUsers}
+                        getOptionLabel={(option) => option.nickname}
+                        renderInput={(params) => <TextField {...params} label="Choose a Challenger" variant="outlined" />}
+                        value={value}
+                        onChange={(event: any, newValue: IUser | null) => {
+                            setValue(newValue);
+                        }}
+                        inputValue={inputValue}
+                        onInputChange={(event, newInputValue) => {
+                            setInputValue(newInputValue);
+                        }}
+                    />
+                    <Button variant="contained" onClick={handleSubmit}>Challenge!</Button>
+                </form>
+        )
+        // }
     }
 
-    useEffect(() => {
 
-    }, [])
 
     return (
         <div className="community-container">

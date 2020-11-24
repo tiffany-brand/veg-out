@@ -1,4 +1,6 @@
 import axios from "axios";
+import IUser from '../interfaces/IUser';
+import INewUser from '../interfaces/INewUser';
 import ICurrentUser from '../interfaces/ICurrentUser';
 
 export default {
@@ -16,7 +18,7 @@ export default {
         return axios.delete("/api/users/" + id);
     },
     // Saves a user to the database
-    saveUser: function (userData: ICurrentUser) {
+    saveUser: function (userData: IUser | INewUser | ICurrentUser) {
         return axios.post("/api/users", userData);
     },
     // Gets the user with the give Auth0 id

@@ -26,7 +26,7 @@ const initialState: State = {
         auth0ID: "",
         nickname: "",
         challenged: false,
-        currentChallenge: 0,
+        currentChallenge: "",
         win: 0,
         loss: 0,
         tie: 0,

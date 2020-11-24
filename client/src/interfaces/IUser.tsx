@@ -4,7 +4,7 @@ export default interface IUser {
     _id: string;
     nickname: string;
     challenged: boolean;
-    currentChallenge?: number;
+    currentChallenge: string;
     win?: number;
     loss?: number;
     tie?: number;
