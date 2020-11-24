@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import { useStoreContext } from '../../state/GlobalState';
 import { DateTime } from 'luxon';
@@ -45,6 +45,7 @@ export default function PlantLog() {
         setLoggingUser(userRes.data);
         setAvailablePlants(veggieRes.data);
         setSearchArray(availablePlants);
+
       }
       )
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -116,36 +117,55 @@ export default function PlantLog() {
     setCurrentMeal([]);
   };
 
+  const searchDisplayArea = useRef(
+    availablePlants.sort(() => .5 - Math.random()).slice(0, 5).map(function (plant, index) {
+      return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
+    })
+  );
+  console.log(searchTerm);
+
+  if (!searchTerm) {
+    searchDisplayArea.current = [...availablePlants].sort(() => .5 - Math.random()).slice(0, 5).map(function (plant, index) {
+      return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
+    })
+  } else {
+    searchDisplayArea.current = searchArray.slice(0, 5).map(function (plant, index) {
+      return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
+    })
+  }
+
+  // array.reduce conditionally apply sort to randomize
+
+
   return (
-    <div className={classes.root}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <h1>PLANT LOG</h1>
-        </Grid>
-          <Grid item xs={6} className="card-holder">
-            <h2>ADD PLANTS</h2>
-            <DetailCard>
-              <h3>- Search Plants -</h3>
-              <input className="log-input" onChange={handleInputChange} type="text" name="user-name" placeholder="Enter Plant Name" value={searchTerm} />
-              <div className="search-results" id="search-results">{searchArray.slice(0, 4).map(function (plant, index) {
-                return <p className="search-suggest" onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</p>
-              })}</div>
-            </DetailCard>
-          </Grid>
-          <Grid item xs={6} className="card-holder">
-            <h2>CURRENT MEAL</h2>
-            <DetailCard>
-              <ul id="current-meal-area">
-                {currentMeal.map(function (plant, index) {
-                  return <li key={index}>{plant.plantName}</li>
-                })}
-              </ul>
-            </DetailCard>
-          </Grid>
-          <Grid className="center-button" item xs={6}>
-              <button onClick={logCurrentMeal} className="log-button">+ LOG +</button>
-          </Grid>
-      </Grid>
+    <div className="plant-log-container">
+      <h1>PLANT LOG</h1>
+      <div className="card-container">
+        <div className="card-holder">
+          <h2>ADD PLANTS</h2>
+          <DetailCard>
+            <input onChange={handleInputChange} type="text" name="user-name" placeholder="Search Plant Name" value={searchTerm} />
+            <ul className="search-results" id="search-results">
+              {searchDisplayArea.current}
+            </ul>
+            <div className="search-results" id="search-results">{availablePlants.slice(0, 5).map(function (plant, index) {
+              return <p onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</p>
+            })}</div>
+
+          </DetailCard>
+        </div>
+        <div className="card-holder">
+          <h2>CURRENT MEAL</h2>
+          <DetailCard>
+            <ul id="current-meal-area">
+              {currentMeal.map(function (plant, index) {
+                return <li key={index}>{plant.plantName}</li>
+              })}
+            </ul>
+            <button onClick={logCurrentMeal} className="log-button">+ LOG +</button>
+          </DetailCard>
+        </div>
+      </div>
     </div>
   )
 

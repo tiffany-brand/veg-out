@@ -33,11 +33,6 @@ button.log-button {
   font-family: 'VT323', monospace;
 }
 
-div.search-results {
-  margin: 0;
+ul.search-results {
+  padding-bottom: 15px;
 }
-
-p.search-suggest {
-  padding: 0;
-  margin: 0;
-}  */

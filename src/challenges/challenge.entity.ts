@@ -9,79 +9,67 @@ export class Challenge {
     @Column({
         type: "date"
     })
-    date_started: string;
+    dateStarted: string;
 
-    @ManyToOne(() => User, user => user.player_one,
+    @ManyToOne(() => User, user => user.playerOne,
     {eager: true} )
-    player_one: User;
+    playerOne: User;
 
+
+    @Column({
+        type: "simple-array",
+        nullable: true
+    })
+    playerOne_totalVeggies: string[];
+
+    @Column({
+        type: "simple-array",
+        nullable: true
+    })
+    playerOne_uniqueVeggies: string[];
 
     @Column({
         type: "int",
         nullable: true
     })
-    player_one_health: number;
+    playerOne_currentMultiplier: number;
 
     @Column({
         type: "int",
         nullable: true
     })
-    player_one_offense: number;
+    playerOne_currentScore: number;
 
-    @Column({
-        type: "int",
-        nullable: true
-    })
-    player_one_defense: number;
-
-    @Column({
-        type: "int",
-        nullable: true
-    })
-    player_one_plantTotal: number;
-
-    @Column({
-        type:"simple-array",
-        nullable: true
-    })
-    player_one_uniqueVeggies: string[];
-
-    @ManyToOne(() => User, user => user.player_two 
+    @ManyToOne(() => User, user => user.playerTwo 
     , {eager: true})
-    player_two: User;
+    playerTwo: User;
+
+    @Column({
+        type: "simple-array",
+        nullable: true
+    })
+    playerTwo_totalVeggies: string[];
+
+    @Column({
+        type: "simple-array",
+        nullable: true
+    })
+    playerTwo_uniqueVeggies: string[];
 
     @Column({
         type: "int",
         nullable: true
     })
-    player_two_health: number;
+    playerTwo_currentMultiplier: number;
 
     @Column({
         type: "int",
         nullable: true
     })
-    player_two_offense: number;
-
-    @Column({
-        type: "int",
-        nullable: true
-    })
-    player_two_defense: number;
-
-    @Column({
-        type: "int",
-        nullable: true
-    })
-    player_two_plantTotal: number;
-
-    @Column({
-        type:"simple-array",
-        nullable: true
-    })
-    player_two_uniqueVeggies: string[];
+    playerTwo_currentScore: number;
     
     @Column({
-        type:"datetime"
+        type:"date"
     })
-    date_ending: string;
+    dateEnding: string;
 }

@@ -34,7 +34,10 @@ div.card-holder {
   padding-bottom: 15px;
 }
 
-div.grid-card {
+div.veggie-box {
+  height: 250px;
   text-align: center;
-  flex-grow: 1;
-} */ 
+  border: 1px solid #000000;
+  background-color: aquamarine;
+  margin-top: 15px;
+}

@@ -21,6 +21,9 @@ createStyles({
 }),
 );
 
+import Grid from '@material-ui/core/Grid';
+
+import userAPI from '../../utils/userAPI'
 
 function Home() {
 
@@ -50,12 +53,39 @@ function Home() {
   }, [])
 
   return (
-    <div className={classes.root}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <h1>{state.currentUser.username} DETAILS</h1>
-        </Grid>
-        <Grid className="grid-card" item xs={4}>
+    <div>
+      <Grid item xs={12} container justify="space-around">
+        <DetailCard>
+          <ul>
+            <li>TOTAL HP: {loggedInUser.currenthealth}</li>
+            <li>OFFENSE: {loggedInUser.currentoffense}</li>
+            <li>DEFENSE: {loggedInUser.currentdefense}</li>
+          </ul>
+        </DetailCard>
+        <DetailCard>
+          <ul>
+            <li>TOTAL HP: {loggedInUser.currenthealth}</li>
+            <li>OFFENSE: {loggedInUser.currentoffense}</li>
+            <li>DEFENSE: {loggedInUser.currentdefense}</li>
+          </ul>
+
+        </DetailCard>
+
+      </Grid>
+
+    </div>
+  )
+
+};
+
+export default withAuthenticationRequired(Home, {
+  onRedirecting: () => (<div>Redirecting you to the login page...</div>)
+});
+
+{/* <div className="home-container">
+      <h1>{state.currentUser.username} DETAILS</h1>
+      <div className="card-container">
+        <div className="card-holder">
           <h2>PLANT POWER</h2>
           <DetailCard>
             <ul>
@@ -79,13 +109,23 @@ function Home() {
               <li><Link to="/community">+ NEW CHALLENGE +</Link></li>
             </ul>
           </DetailCard>
-        </Grid>
-      </Grid>
-    </div>
-  )
+        </div>
+      </div>
+    </div> */}
 
-};
-
-export default withAuthenticationRequired(Home, {
-  onRedirecting: () => (<div>Redirecting you to the login page...</div>)
-});
+// <Grid item xs={12} container justify="space-around">
+//   <Grid item xs={8} sm={4}>
+//     <div className="veggie-box"><ul>
+//       <li>TOTAL HP: {loggedInUser.currenthealth}</li>
+//       <li>OFFENSE: {loggedInUser.currentoffense}</li>
+//       <li>DEFENSE: {loggedInUser.currentdefense}</li>
+//     </ul></div>
+//   </Grid>
+//   <Grid item xs={8} sm={4}>
+//     <div className="veggie-box"> <ul>
+//       <li>RECORD: {loggedInUser.win} / {loggedInUser.loss}</li>
+//       <li>ACTIVE: {loggedInUser.currentChallenge}</li>
+//       <li><Link to="/community">+ NEW CHALLENGE +</Link></li>
+//     </ul></div>
+//   </Grid>
+// </Grid>
