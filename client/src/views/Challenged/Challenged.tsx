@@ -39,12 +39,10 @@ function Challenged() {
                 currentUser: storedState.currentUser
             });
         } else saveToLocalStorage(state);
-        console.log(state.currentUser._id);
+
     }, [])
 
     useEffect(() => {
-        console.log("in use Effect")
-        console.log(state.currentUser.currentChallenge)
         const storedState = loadFromLocalStorage();
         challengesAPI.getChallenge(state.currentUser.currentChallenge || storedState.currentUser.currentChallenge)
             .then(res => {
@@ -70,19 +68,11 @@ function Challenged() {
         return <div>Loading...</div>
     }
 
-    const loadStats = () => {
-        return <ChallengeDisplay currentChallenge={currentChallenge} currentChallenger={currentChallenger} position={position} />
-    }
 
     return (
         <div>
-            {currentChallenge ?
-                <ChallengeDisplay currentChallenge={currentChallenge} currentChallenger={currentChallenger} position={position} /> :
-                <Button variant="contained" onClick={() => loadStats()}>View Challenge Stats</Button>
 
-            }
-
-
+            <ChallengeDisplay currentChallenge={currentChallenge} currentChallenger={currentChallenger} position={position} />
 
         </div>
     )
