@@ -29,9 +29,13 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
 
     console.log(props.currentChallenger)
 
+    const startDate = DateTime.fromISO(props.currentChallenge!.dateStarted);
+    const endDate = DateTime.fromISO(props.currentChallenge!.dateEnding);
+
     return (
         <div className="challenge">
             <h1>Current Challenge</h1>
+            <h2>{startDate.toFormat('LLL. dd yyyy')} - {endDate.toFormat('LLL. dd yyyy')}</h2>
             <h2>{state.currentUser.nickname} Challenge Stats</h2>
             {props.position === 1 ? <p>Current Multiplier: {props.currentChallenge!.playerOne_currentMultiplier}</p> : <p>Current Multiplier: {props.currentChallenge!.playerTwo_currentMultiplier}</p>}
             { props.position === 1 ? <p>Current Score: {props.currentChallenge!.playerOne_currentScore}</p> : <p>Current Score: {props.currentChallenge!.playerTwo_currentScore}</p>}
