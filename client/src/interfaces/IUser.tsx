@@ -5,9 +5,9 @@ export default interface IUser {
     nickname: string;
     challenged: boolean;
     currentChallenge: string;
-    win?: number;
-    loss?: number;
-    tie?: number;
+    wins?: number;
+    losses?: number;
+    ties?: number;
     lifetimeUniqueVeggies?: string[];
     lifetimeTotalVeggies?: string[];
 

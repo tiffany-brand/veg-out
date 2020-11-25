@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import UserData from '../../components/UserData/UserData';
 import './Home.css';
-import ICurrentUser from '../../interfaces/ICurrentUser'
+import IUser from '../../interfaces/IUser'
 import { useStoreContext } from '../../state/GlobalState';
 import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUser';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
@@ -18,11 +18,24 @@ import userAPI from '../../utils/userAPI'
 function Home() {
 
   const [state, dispatch] = useStoreContext();
-  const [loggedInUser, setLoggedInUser] = useState<ICurrentUser>({});
+  const [loggedInUser, setLoggedInUser] = useState<IUser>({
+    email: "",
+    auth0ID: "",
+    _id: "",
+    nickname: "",
+    challenged: false,
+    currentChallenge: "",
+    wins: 0,
+    losses: 0,
+    ties: 0,
+    lifetimeUniqueVeggies: [],
+    lifetimeTotalVeggies: [],
+  });
 
   useEffect(() => {
     userAPI.getUser(state.currentUser._id)
       .then(res => setLoggedInUser(res.data))
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -41,19 +54,30 @@ function Home() {
   }, [])
 
 
-  console.log(loggedInUser.character_name);
   return (
     <div>
       <Grid item xs={12} container justify="space-around">
         <DetailCard>
-          <ul>
-            <li>TOTAL HP: {loggedInUser.currenthealth}</li>
-            <li>OFFENSE: {loggedInUser.currentoffense}</li>
-            <li>DEFENSE: {loggedInUser.currentdefense}</li>
-          </ul>
+          <div className="user-stats">
+            <h3>{loggedInUser.nickname} Stats</h3>
+            <h5>Plant Stats</h5>
+            <ul>
+              <li>Unique: {loggedInUser.lifetimeUniqueVeggies?.length} </li>
+              <li>Total: {loggedInUser.lifetimeTotalVeggies?.length}</li>
+            </ul>
+            <h5>Challenge Stats</h5>
+            <ul>
+              <li>Current Challenges: {loggedInUser.challenged ? "0" : "None"}</li>
+              <li>Wins: {loggedInUser.wins}</li>
+              <li>Losses {loggedInUser.losses}</li>
+            </ul>
+          </div>
         </DetailCard>
         <DetailCard>
-          <PlantLogSearch />
+          <div className="plant-log">
+            <h3>Plant Log</h3>
+            <PlantLogSearch />
+          </div>
 
         </DetailCard>
 
