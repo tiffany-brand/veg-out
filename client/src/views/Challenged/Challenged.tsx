@@ -30,26 +30,28 @@ function Challenged() {
 
 
     // loads state from local storage if page is refreshed
-    // useEffect(() => {
-    //     if (!state.currentUser._id) {
-    //         const storedState = loadFromLocalStorage()
-    //         dispatch({
-    //             type: SET_CURRENT_USER,
-    //             currentUser: storedState.currentUser
-    //         });
-    //     } else saveToLocalStorage(state);
+    useEffect(() => {
 
-    // }, [])
+        if (!state.currentUser._id) {
+            const storedState = loadFromLocalStorage()
+            dispatch({
+                type: SET_CURRENT_USER,
+                currentUser: storedState.currentUser
+            });
+        } else saveToLocalStorage(state);
+        console.log(state.currentUser._id);
+    }, [])
 
     useEffect(() => {
         console.log("in use Effect")
         console.log(state.currentUser.currentChallenge)
-        challengesAPI.getChallenge(state.currentUser.currentChallenge)
+        const storedState = loadFromLocalStorage();
+        challengesAPI.getChallenge(state.currentUser.currentChallenge || storedState.currentUser.currentChallenge)
             .then(res => {
                 setCurrentChallenge(res.data);
                 console.log(JSON.stringify(res.data));
                 let challenger;
-                if (res.data.playerOne._id === state.currentUser._id) {
+                if (res.data.playerOne._id === state.currentUser._id || res.data.playerOne._id === storedState.currentUser._id) {
                     challenger = res.data.playerTwo;
                     setPosition(1) // current user is player one
                 } else {
