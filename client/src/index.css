@@ -7,7 +7,9 @@
 
  html {
   overflow-x: hidden;
+  scroll-behavior: auto;
 }
+
 
 /* div#root {
   width: 100vh;
@@ -29,7 +31,7 @@ body {
   background-image: url('./assets/images/veggie-BG.jpg');
   background-color: #ffffff;
   background-repeat: no-repeat;
+  background-size: cover;
   margin: 0px;
-  overflow-x: hidden;
-
+  overflow-x: auto;
 }

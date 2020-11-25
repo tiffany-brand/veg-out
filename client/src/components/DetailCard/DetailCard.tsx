@@ -7,11 +7,13 @@ export default function DetailCard(props: any) {
 
   return (
 
-    <Grid item xs={8} sm={4}>
-      <div className="veggie-box">
-        {props.children}
-      </div>
-    </Grid>
+    // <div className="dark-box">
+      <Grid item xs={8} sm={4}>
+        <div className="veggie-box">
+          {props.children}
+        </div>
+      </Grid>
+    // </div>
 
     // <div className="parent">
     //   <div className="detail-card" >

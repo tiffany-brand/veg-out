@@ -24,7 +24,7 @@ function App() {
         <StoreProvider>
           <Wrapper>
             <Header />
-            <div className="dark-box">
+            {/* <div className="dark-box"> */}
               <Switch>
                 <Route path="/keith-dev" exact component={KeithTestGrid} />
                 <Route path="/" exact component={Login} />
@@ -37,7 +37,7 @@ function App() {
                 <Route path="/register" exact component={Register} />
                 <Route path="/winner" exact component={Winner} />
               </Switch>
-            </div>
+            {/* </div> */}
             <Footer />
           </Wrapper>
         </StoreProvider>
