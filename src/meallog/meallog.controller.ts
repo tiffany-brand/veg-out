@@ -29,8 +29,13 @@ export class MeallogController {
     }
 
     @Post('/dates')
-    findBetweenChallengeDates(@Body('userID') userID: User, @Body('startDate') startDate: Date, @Body('endDate') endDate: Date): Promise<MealLog[]> {
+   findBetweenChallengeDates(@Body('userID') userID: User, @Body('startDate') startDate: Date, @Body('endDate') endDate: Date): Promise<MealLog[]> {
         return this.meallogservice.findBetweenChallengeDates(userID, startDate, endDate);
+    }
+
+    @Post('/seed')
+    injectSeed(): Promise<MealLog[]> {
+        return this.meallogservice.injectSeed();
     }
     
 }

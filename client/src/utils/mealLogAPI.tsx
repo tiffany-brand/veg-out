@@ -21,5 +21,7 @@ export default {
         return axios.post("/api/meallog", meallogData);
     },
 
-
+    getChallengeMeallog: function(userID: string, startDate: string, endDate: string) {
+        return axios.post("/api/meallog/dates", {userID, startDate, endDate});
+    }
 };

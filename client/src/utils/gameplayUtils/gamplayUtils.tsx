@@ -1,7 +1,9 @@
+import IMealLog from "../../interfaces/IMealLog";
+import counting from './arrayCounting';
 
 export default {
     // This function will take in 1 users meallogs and calculate their multiplier bonus.
-    calculateMultiplierBonus: (arrayOfMeals: []): number => {
+    calculateMultiplierBonus: (arrayOfMeals: [][]): number => {
         let bonus= 1;
         const mealsOf3OrMore = [];
         const mealsOf5OrMore = [];
@@ -31,7 +33,7 @@ export default {
         return bonus;
     },
     // we may need to double check the types for "arrayOfMeals". I tested this function in javascript and it works.
-    totalVeggieArrayConstructor: (arrayOfMeals: []): string[] => {
+    totalVeggieArrayConstructor: (arrayOfMeals: [][]): string[] => {
         const totalVeggieArray: string[] = [];
         arrayOfMeals.forEach((meal: string[]) => {
             meal.forEach((item: string) => {
@@ -46,5 +48,21 @@ export default {
             return totalVeggieArray.indexOf(item) === index;
         })
         return uniqueArray;
+    },
+
+    returnsChallengeMeals: (mealLog: IMealLog[]): any[] => {
+        console.log('Challenge Meal function running');
+        const challengeMeals = mealLog.map((meal) => {
+                return meal.mealVeggies;
+            })
+            return challengeMeals;
+    },
+
+    scoreCalculator: (uniqueVeggieList: string[], totalVeggieList: string[], bonusMultiplier: number): number => {
+        const uniqueVeggiePoints = (uniqueVeggieList.length * 10);
+        const totalVeggieListOccurance = counting.itemOccuranceInArray(totalVeggieList);
+        return ((uniqueVeggiePoints + totalVeggieListOccurance) * bonusMultiplier);
     }
+
+
 }
