@@ -41,11 +41,10 @@ export class MeallogService {
         
         return this.meallogRepository.find({
                 where: 
-
                     {
                         user: userID,
-                        date: Between(startDate, endDate)}
-                
+                        date: Between(startDate, endDate)
+                    }
         });
     }
 }
