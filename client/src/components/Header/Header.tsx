@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import "./Header.css";
 
@@ -19,6 +20,11 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Header() {
   const classes = useStyles();
 
+  const [navActive, setNavActive] = useState(false);
+  const burgerReveal = () => {
+    setNavActive(!navActive);
+  };
+
   return (
     <div className={classes.root}>
       <Grid container spacing={2} className="white-background">
@@ -26,9 +32,29 @@ export default function Header() {
           {/* Header Component */}
           <h1 className="veggie-header">Veggie Challenge</h1>
         </Grid>
+
+        {/*Start nav*/}
         <Grid item xs={2}>
-          <h4 className="veggie-menu">Menu</h4>
-          {/* Menu Component */}
+          <nav>
+            <div className="mobile-menu" onClick={burgerReveal}>
+              <div className="top-bun"></div>
+              <div className="burger-patty"></div>
+              <div className="bottom-bun"></div>
+            </div>
+
+            <ul className={`nav-bar ${navActive ? "mobile-menu-display" : null}`}>
+              <Link to='/about'>
+                <li onClick={burgerReveal}>About</li>
+              </Link>
+              <Link to='/home'>
+                <li onClick={burgerReveal}>Home</li>
+              </Link>
+              <Link to='/challenges'>
+                <li onClick={burgerReveal}>Challenges</li>
+              </Link>
+            </ul>
+          </nav>
+
         </Grid>
       </Grid>
     </div>
