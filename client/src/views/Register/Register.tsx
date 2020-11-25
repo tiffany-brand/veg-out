@@ -9,7 +9,7 @@ import { useStoreContext } from '../../state/GlobalState';
 // ***** REMEMBER TO REMOVE *****
 //Import User Array for testing
 import { userList } from '../../utils/testUserArray'
-import CharacterCarousel from '../../components/CharacterCarousel/CharacterCarousel';
+// import CharacterCarousel from '../../components/CharacterCarousel/CharacterCarousel';
 import characterAPI from '../../utils/createCharacterChoiceAPI';
 
 export default function Register() {
@@ -65,7 +65,7 @@ export default function Register() {
   return (
     <div className="register-container">
       <h1>USERNAME/CHARACTER REGISTRATION</h1>
-      <CharacterCarousel onChange={commitCharacterChoice} />
+      {/* <CharacterCarousel onChange={commitCharacterChoice} /> */}
 
     </div>
   )
