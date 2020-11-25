@@ -27,9 +27,9 @@ const initialState: State = {
         nickname: "",
         challenged: false,
         currentChallenge: "",
-        win: 0,
-        loss: 0,
-        tie: 0,
+        wins: 0,
+        losses: 0,
+        ties: 0,
         lifetimeUniqueVeggies: [],
         lifetimeTotalVeggies: []
 

@@ -17,14 +17,7 @@ input.log-input {
 }
 
 button.log-button {
-  /* position: absolute; */
-  /* text-align: center; */
-  /* bottom: 15px; */
-  /* justify-content: center; */
-  /* right: 50%; */
-  /* transform: translate(50%); */
-  /* width: 100%;
-  max-width: 90px;
+  width: 80%;
   padding: 5px 0px;
   border-radius: 10px;
   background-color: #f28327;
@@ -33,8 +26,29 @@ button.log-button {
   font-family: 'VT323', monospace;
 }
 */
-/*
+
 ul.search-results {
   padding-bottom: 15px;
 }
-*/
+
+.plant-log-area ul {
+  padding: 0px;
+}
+.plant-log-area li {
+  list-style: none;
+}
+
+button.log-button, li.plant-log-item {
+  cursor: pointer;
+}
+
+.current-meal-area h5 {
+  margin: 45px 0px 0px 0px;
+  text-decoration: underline;
+
+}
+
+.current-meal-area ul {
+  margin: 4px;
+  padding-left: 15px;
+}

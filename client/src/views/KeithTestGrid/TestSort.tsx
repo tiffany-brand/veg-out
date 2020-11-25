@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './PlantLog.css'
+import './KeithTestGrid.css'
 
 // Gives us a formatted date object
 import { DateTime } from 'luxon';
@@ -26,7 +26,7 @@ const conditionallySort = <T,>(arr: T[], condition: boolean) => (
 const date = DateTime.local().toFormat('yyyyLLdd');
 
 
-const PlantLog: React.FC = () => {
+const PlantLogSearch: React.FC = () => {
 
   // Accessing global state for current user data
   const [state, dispatch] = useStoreContext();
@@ -104,7 +104,7 @@ const PlantLog: React.FC = () => {
   };
 
   return (
-    <div className="plant-log-area">
+    <div className="test-div">
       <input onChange={updateSearchArray} value={input} placeholder="Search Plants" />
       {searchArray.length
         ?
@@ -137,4 +137,4 @@ const PlantLog: React.FC = () => {
     </div>
   )
 }
-export default PlantLog;
+export default PlantLogSearch;
