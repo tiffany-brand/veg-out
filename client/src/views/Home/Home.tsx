@@ -9,7 +9,7 @@ import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUse
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { SET_CURRENT_USER, SET_CHALLENGES } from '../../state/actions';
 
-import PlantLogSearch from '../KeithTestGrid/TestSort';
+import PlantLog from '../PlantLog/PlantLog';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -76,7 +76,7 @@ function Home() {
         <DetailCard>
           <div className="plant-log">
             <h3>Plant Log</h3>
-            <PlantLogSearch />
+            <PlantLog />
           </div>
 
         </DetailCard>
@@ -91,50 +91,3 @@ function Home() {
 export default withAuthenticationRequired(Home, {
   onRedirecting: () => (<div>Redirecting you to the login page...</div>)
 });
-
-{/* <div className="home-container">
-      <h1>{state.currentUser.username} DETAILS</h1>
-      <div className="card-container">
-        <div className="card-holder">
-          <h2>PLANT POWER</h2>
-          <DetailCard>
-            <ul>
-              <li>TOTAL HP: {loggedInUser.currenthealth}</li>
-              <li>OFFENSE: {loggedInUser.currentoffense}</li>
-              <li>DEFENSE: {loggedInUser.currentdefense}</li>
-            </ul>
-          </DetailCard>
-
-        </div>
-        <div className="user-data-holder">
-          <UserData level={loggedInUser.level} character_name={loggedInUser.character_name} />
-        </div>
-        <div className="card-holder">
-          <h2>CHALLENGES</h2>
-          <DetailCard>
-            <ul>
-              <li>RECORD: {loggedInUser.win} / {loggedInUser.loss}</li>
-              <li>ACTIVE: {loggedInUser.currentChallenge}</li>
-              <li><Link to="/community">+ NEW CHALLENGE +</Link></li>
-            </ul>
-          </DetailCard>
-        </div>
-      </div>
-    </div> */}
-
-// <Grid item xs={12} container justify="space-around">
-//   <Grid item xs={8} sm={4}>
-//     <div className="veggie-box"><ul>
-//       <li>TOTAL HP: {loggedInUser.currenthealth}</li>
-//       <li>OFFENSE: {loggedInUser.currentoffense}</li>
-//       <li>DEFENSE: {loggedInUser.currentdefense}</li>
-//     </ul></div>
-//   </Grid>
-//   <Grid item xs={8} sm={4}>
-//     <div className="veggie-box"> <ul>
-//       <li>RECORD: {loggedInUser.win} / {loggedInUser.loss}</li>
-//       <li>ACTIVE: {loggedInUser.currentChallenge}</li>
-//       <li><Link to="/community">+ NEW CHALLENGE +</Link></li>
-//     </ul></div>
-//   </Grid>
-// </Grid>
