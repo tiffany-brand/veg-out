@@ -108,9 +108,21 @@ function Login(): JSX.Element {
 
                 <>
                     <Link to="/home"><button>Go Home</button></Link>
+                    <Link to="/"> <button onClick={() => logout({ returnTo: window.location.origin })}>
+                        Log Out
+                        </button></Link>
+
                 </>
 
             )}
+
+            {isAuthenticated && (!state.currentUser.challenged &&
+                <Link to="/community"><button>Start a Challenge</button></Link>)
+            }
+
+            {state.currentUser.challenged &&
+                <Link to="/challenged"><button>Current Challenge</button></Link>
+            }
 
         </div>
     )

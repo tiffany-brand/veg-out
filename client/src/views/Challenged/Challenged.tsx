@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Button from '@material-ui/core/Button';
 
 import { useStoreContext } from '../../state/GlobalState';
 
@@ -13,6 +14,8 @@ import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { SET_CURRENT_USER } from '../../state/actions';
 
 import ChallengeDisplay from '../../components/ChallengeDisplay/ChallengeDisplay';
+
+import { Link } from 'react-router-dom';
 
 function Challenged() {
 
@@ -39,6 +42,8 @@ function Challenged() {
     // }, [])
 
     useEffect(() => {
+        console.log("in use Effect")
+        console.log(state.currentUser.currentChallenge)
         challengesAPI.getChallenge(state.currentUser.currentChallenge)
             .then(res => {
                 setCurrentChallenge(res.data);
@@ -63,11 +68,19 @@ function Challenged() {
         return <div>Loading...</div>
     }
 
+    const loadStats = () => {
+        return <ChallengeDisplay currentChallenge={currentChallenge} currentChallenger={currentChallenger} position={position} />
+    }
 
     return (
         <div>
+            {currentChallenge ?
+                <ChallengeDisplay currentChallenge={currentChallenge} currentChallenger={currentChallenger} position={position} /> :
+                <Button variant="contained" onClick={() => loadStats()}>View Challenge Stats</Button>
 
-            <ChallengeDisplay currentChallenge={currentChallenge} currentChallenger={currentChallenger} position={position} />
+            }
+
+
 
         </div>
     )
