@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import { useStoreContext } from '../../state/GlobalState';
 import { DateTime } from 'luxon';
+import Grid from '@material-ui/core/Grid';
+
 import './PlantLog.css';
 
 // Importing our interfaces
@@ -30,8 +32,6 @@ export default function PlantLog() {
       .then(([userRes, veggieRes]) => {
         setLoggingUser(userRes.data);
         setAvailablePlants(veggieRes.data);
-        setSearchArray(availablePlants);
-
       }
       )
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,8 +42,6 @@ export default function PlantLog() {
 
   // Set state for veggie search
   const [currentMeal, setCurrentMeal] = useState<IVeggies[]>([]);
-  const [searchArray, setSearchArray] = useState<IVeggies[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>("");
 
   //Create state to hold tallied plant power prior to adding to current user
   const [mealStats, setMealStats] = useState({
@@ -51,16 +49,6 @@ export default function PlantLog() {
     mealDefense: 0,
     mealOffense: 0
   })
-
-  //As user types populate search results
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const activeSearch = event.target.value.toLowerCase()
-    const currentSearch = availablePlants.filter((el) => (
-      el.plantName.toLowerCase().includes(activeSearch)
-    ))
-    setSearchArray(currentSearch)
-    setSearchTerm(activeSearch);
-  };
 
   // Append added plant to current meal and tally total values
   const addPlant = (plant: IVeggies) => {
@@ -103,55 +91,30 @@ export default function PlantLog() {
     setCurrentMeal([]);
   };
 
-  const searchDisplayArea = useRef(
-    availablePlants.sort(() => .5 - Math.random()).slice(0, 5).map(function (plant, index) {
-      return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
-    })
-  );
-  console.log(searchTerm);
-
-  if (!searchTerm) {
-    searchDisplayArea.current = [...availablePlants].sort(() => .5 - Math.random()).slice(0, 5).map(function (plant, index) {
-      return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
-    })
-  } else {
-    searchDisplayArea.current = searchArray.slice(0, 5).map(function (plant, index) {
-      return <li onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</li>
-    })
-  }
-
-  // array.reduce conditionally apply sort to randomize
 
 
   return (
     <div className="plant-log-container">
       <h1>PLANT LOG</h1>
-      <div className="card-container">
-        <div className="card-holder">
-          <h2>ADD PLANTS</h2>
-          <DetailCard>
-            <input onChange={handleInputChange} type="text" name="user-name" placeholder="Search Plant Name" value={searchTerm} />
-            <ul className="search-results" id="search-results">
-              {searchDisplayArea.current}
-            </ul>
-            <div className="search-results" id="search-results">{availablePlants.slice(0, 5).map(function (plant, index) {
-              return <p onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</p>
-            })}</div>
+      <Grid item xs={12} container justify="space-around">
 
-          </DetailCard>
-        </div>
-        <div className="card-holder">
-          <h2>CURRENT MEAL</h2>
-          <DetailCard>
-            <ul id="current-meal-area">
-              {currentMeal.map(function (plant, index) {
-                return <li key={index}>{plant.plantName}</li>
-              })}
-            </ul>
-            <button onClick={logCurrentMeal} className="log-button">+ LOG +</button>
-          </DetailCard>
-        </div>
-      </div>
+
+
+        <DetailCard>
+
+        </DetailCard>
+
+
+        <DetailCard>
+          <ul id="current-meal-area">
+            {currentMeal.map(function (plant, index) {
+              return <li key={index}>{plant.plantName}</li>
+            })}
+          </ul>
+          <button onClick={logCurrentMeal} className="log-button">+ LOG +</button>
+        </DetailCard>
+
+      </Grid>
     </div>
   )
 

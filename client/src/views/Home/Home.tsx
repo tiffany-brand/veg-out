@@ -9,6 +9,8 @@ import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUse
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { SET_CURRENT_USER, SET_CHALLENGES } from '../../state/actions';
 
+import PlantLogSearch from '../KeithTestGrid/TestSort';
+
 import Grid from '@material-ui/core/Grid';
 
 import userAPI from '../../utils/userAPI'
@@ -51,11 +53,7 @@ function Home() {
           </ul>
         </DetailCard>
         <DetailCard>
-          <ul>
-            <li>TOTAL HP: {loggedInUser.currenthealth}</li>
-            <li>OFFENSE: {loggedInUser.currentoffense}</li>
-            <li>DEFENSE: {loggedInUser.currentdefense}</li>
-          </ul>
+          <PlantLogSearch />
 
         </DetailCard>
 

@@ -13,7 +13,7 @@ import Landing from './views/Login/Landing';
 import PlantLog from './views/PlantLog/PlantLog';
 import Register from './views/Register/Register';
 import Wrapper from './components/Wrapper/Wrapper';
-import KeithTestGrid from './views/KeithTestGrid/KeithTestGrid'
+import KeithTestGrid from './views/KeithTestGrid/TestSort'
 import Winner from './views/Winner/Winner';
 import GameBoard from './views/GameBoard/GameBoard';
 import Header from './components/Header/Header'
