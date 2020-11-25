@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Req } from '@nestjs/common';
+import { User } from '../users/user.entity';
 import { CreateMealLogDTO } from './dto/create-meallog.dto';
 import { MealLog } from './meallog.entity';
 import { MeallogService } from './meallog.service';
@@ -28,8 +29,8 @@ export class MeallogController {
     }
 
     @Post('/dates')
-    findBetweenChallengeDates(@Body('startDate') startDate: Date, @Body('endDate') endDate: Date): Promise<MealLog[]> {
-        return this.meallogservice.findBetweenChallengeDates(startDate, endDate);
+    findBetweenChallengeDates(@Body('userID') userID: User, @Body('startDate') startDate: Date, @Body('endDate') endDate: Date): Promise<MealLog[]> {
+        return this.meallogservice.findBetweenChallengeDates(userID, startDate, endDate);
     }
     
 }

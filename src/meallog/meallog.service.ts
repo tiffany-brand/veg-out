@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Repository } from 'typeorm';
 import { MealLog } from './meallog.entity';
 import { CreateMealLogDTO } from './dto/create-meallog.dto';
+import { User } from '../users/user.entity';
 
 
 @Injectable()
@@ -36,11 +37,14 @@ export class MeallogService {
         await this.meallogRepository.delete(id);
     }
 
-    findBetweenChallengeDates(startDate: Date, endDate: Date): Promise<MealLog[]> {
+    findBetweenChallengeDates(userID: User, startDate: Date, endDate: Date): Promise<MealLog[]> {
         
         return this.meallogRepository.find({
                 where: 
-                    {date: Between(startDate, endDate)}
+
+                    {
+                        user: userID,
+                        date: Between(startDate, endDate)}
                 
         });
     }
