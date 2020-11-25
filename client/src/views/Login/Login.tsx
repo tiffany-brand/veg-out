@@ -35,9 +35,14 @@ function Login(): JSX.Element {
                         console.log("No user found");
 
                         // if no user found, create new user in db, then set state
-                        userAPI.saveUser({ email: user.email, auth0ID: user.sub })
+                        userAPI.saveUser({
+                            email: user.email,
+                            auth0ID: user.sub,
+                            nickname: user.nickname,
+                        })
                             .then(res => {
-                                const { _id, email, auth0ID, username, character_name, character_image, character_id, challenged, currentChallenge, currenthealth, currentoffense, win, loss, tie, level
+                                const { _id,
+                                    email, auth0ID, nickname, challenged, currentChallenge, win, loss, tie, lifetimeUniqueVeggies, lifetimeTotalVeggies
                                 } = res.data;
                                 dispatch({ type: LOADING });
                                 dispatch({
@@ -47,18 +52,14 @@ function Login(): JSX.Element {
                                         _id,
                                         email,
                                         auth0ID,
-                                        username,
-                                        character_name,
-                                        character_image,
-                                        character_id,
+                                        nickname,
                                         challenged,
                                         currentChallenge,
-                                        currenthealth,
-                                        currentoffense,
                                         win,
                                         loss,
                                         tie,
-                                        level
+                                        lifetimeUniqueVeggies,
+                                        lifetimeTotalVeggies
                                     }
                                 })
                             })
@@ -66,7 +67,7 @@ function Login(): JSX.Element {
                     } else {
                         console.log("user found")
                         const { _id,
-                            email, auth0ID, username, character_name, character_image, character_id, challenged, currentChallenge, currenthealth, currentoffense, win, loss, tie, level
+                            email, auth0ID, nickname, challenged, currentChallenge, win, loss, tie, lifetimeUniqueVeggies, lifetimeTotalVeggies
                         } = res.data;
                         // if user found, set state for logged in user
                         dispatch({ type: LOADING });
@@ -77,18 +78,14 @@ function Login(): JSX.Element {
                                 _id,
                                 email,
                                 auth0ID,
-                                username,
-                                character_name,
-                                character_image,
-                                character_id,
+                                nickname,
                                 challenged,
                                 currentChallenge,
-                                currenthealth,
-                                currentoffense,
                                 win,
                                 loss,
                                 tie,
-                                level
+                                lifetimeUniqueVeggies,
+                                lifetimeTotalVeggies
 
                             }
                         })
@@ -140,6 +137,29 @@ function Login(): JSX.Element {
                 )}
             </Grid>
         </Grid>
+        //     </Link>
+        //     {/* If logged in, go to the home page */}
+        //     {isAuthenticated && (
+
+        //         <>
+        //             <Link to="/home"><button>Go Home</button></Link>
+        //             <Link to="/"> <button onClick={() => logout({ returnTo: window.location.origin })}>
+        //                 Log Out
+        //                 </button></Link>
+
+        //         </>
+
+        //     )}
+
+        //     {isAuthenticated && (!state.currentUser.challenged &&
+        //         <Link to="/community"><button>Start a Challenge</button></Link>)
+        //     }
+
+        //     {state.currentUser.challenged &&
+        //         <Link to="/challenged"><button>Current Challenge</button></Link>
+        //     }
+
+        // </div>
     )
 
 
