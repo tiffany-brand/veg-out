@@ -29,7 +29,7 @@ function Home() {
     losses: 0,
     ties: 0,
     lifetimeUniqueVeggies: [],
-    lifetimeTotalVeggies: [],
+    lifetimeTotalVeggies: 0,
   });
 
   useEffect(() => {
@@ -63,7 +63,7 @@ function Home() {
             <h5>Plant Stats</h5>
             <ul>
               <li>Unique: {loggedInUser.lifetimeUniqueVeggies?.length} </li>
-              <li>Total: {loggedInUser.lifetimeTotalVeggies?.length}</li>
+              <li>Total: {loggedInUser.lifetimeTotalVeggies}</li>
             </ul>
             <h5>Challenge Stats</h5>
             <ul>
