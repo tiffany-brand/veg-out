@@ -359,6 +359,7 @@ export const newVeggieSeed = [
     "Hubbard Squash",
     "Spaghetti Squash",
     "Tat Soi",
-    
+    "Cashews",
+    "Pistachios"
 
 ]
