@@ -6,6 +6,7 @@ import { useStoreContext } from '../../state/GlobalState';
 import logo from '../../assets/images/Vegemon-logo.png';
 import { LOADING, SET_CURRENT_USER } from '../../state/actions';
 import { saveToLocalStorage } from '../../utils/persistUser';
+import Home from '../Home/Home';
 
 function Login(): JSX.Element {
 
@@ -90,7 +91,20 @@ function Login(): JSX.Element {
     }, [state])
 
     return (
-        <img width="500px" src={logo} alt="Vegemon" />
+        <div>
+            {!isAuthenticated && <div>
+                <img width="500px" src={logo} alt="Vegemon" />
+
+                <button onClick={loginWithRedirect}> Log In </button>
+
+            </div>}
+
+            {isAuthenticated && <Home />}
+
+        </div>
+
+
+
 
         // <div>
         //     <img width="500px" src={logo} alt="Vegemon" />

@@ -5,7 +5,7 @@ import './Home.css';
 import { useStoreContext } from '../../state/GlobalState';
 import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUser';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-import { SET_CURRENT_USER, SET_CHALLENGES } from '../../state/actions';
+import { SET_CURRENT_USER } from '../../state/actions';
 
 // Plant logging functional component
 import PlantLog from '../PlantLog/PlantLog';
@@ -50,10 +50,6 @@ function Home() {
       dispatch({
         type: SET_CURRENT_USER,
         currentUser: storedState.currentUser
-      });
-      dispatch({
-        type: SET_CHALLENGES,
-        challenges: storedState.challenges
       })
     } else saveToLocalStorage(state);
   }, [])
@@ -91,6 +87,4 @@ function Home() {
 
 };
 
-export default withAuthenticationRequired(Home, {
-  onRedirecting: () => (<div>Redirecting you to the login page...</div>)
-});
+export default Home;
