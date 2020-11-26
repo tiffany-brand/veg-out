@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Between, Repository } from 'typeorm';
 import { MealLog } from './meallog.entity';
 import { CreateMealLogDTO } from './dto/create-meallog.dto';
+import { User } from '../users/user.entity';
+import { response } from 'express';
+import { mealLogSeed } from './seed/mealLogSeed';
 
 
 @Injectable()
@@ -34,5 +37,19 @@ export class MeallogService {
 
     async remove(id: string): Promise<void> {
         await this.meallogRepository.delete(id);
+    }
+
+    async findBetweenChallengeDates(userID: User, startDate: Date, endDate: Date): Promise<MealLog[]> {
+        return this.meallogRepository.find({
+            where: 
+                {
+                    user: userID,
+                    date: Between(startDate, endDate)
+                }
+    });
+    }
+
+    injectSeed(): Promise<MealLog[]> {
+        return this.meallogRepository.save(mealLogSeed);
     }
 }

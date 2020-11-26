@@ -52,7 +52,7 @@ const PlantLog: React.FC = () => {
     losses: 0,
     ties: 0,
     lifetimeUniqueVeggies: [],
-    lifetimeTotalVeggies: [],
+    lifetimeTotalVeggies: 0,
   })
 
 

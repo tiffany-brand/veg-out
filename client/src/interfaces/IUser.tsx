@@ -9,6 +9,6 @@ export default interface IUser {
     losses?: number;
     ties?: number;
     lifetimeUniqueVeggies?: string[];
-    lifetimeTotalVeggies?: string[];
+    lifetimeTotalVeggies?: number;
 
 }
