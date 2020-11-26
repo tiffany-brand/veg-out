@@ -10,75 +10,64 @@ import IMealLog from '../../interfaces/IMealLog';
 import challengeUtils from '../../utils/gameplayUtils/gamplayUtils';
 import gamplayUtils from '../../utils/gameplayUtils/gamplayUtils';
 
-function ChadTest() {
-    const userID = "1";
-    const startDate = '2020-11-20';
-    const endDate = '2020-11-24';
-    const [currentChallengeMealLog, setCurrentChallengeMealLog] = useState<IMealLog[]>([]);
-    const [challengeMeals, setchallengeMeals] = useState<[][]>([]);
-    const [totalVeggieArray, setTotalVeggieArray] = useState<string[]>([])
-    const [uniqueVeggieArray, setuniqueVeggieArray] = useState<string[]>([]);
-    const [currentBonusMultiplier, setCurrentBonusMultiplier] = useState<number>(1);
-    // initial loading brings up the challenge specific mealLog.
+function ChallengeStats(props: {userID:string, startDate: string, endDate: string}) {
+  const { userID, startDate, endDate } = props;
 
-    useEffect(() => {
-        mealLogAPI.getChallengeMeallog(userID, startDate, endDate).then((data) => {
-            setCurrentChallengeMealLog(data.data);
-            console.log(currentChallengeMealLog);
-            }).catch((err) => {
-                console.log(err);
-            });
-        console.log(currentChallengeMealLog);
-    }, []);
+  const [currentChallengeMealLog, setCurrentChallengeMealLog] = useState<IMealLog[]>([]);
+  const [challengeMeals, setchallengeMeals] = useState<[][]>([]);
+  const [totalVeggieArray, setTotalVeggieArray] = useState<string[]>([])
+  const [uniqueVeggieArray, setuniqueVeggieArray] = useState<string[]>([]);
+  const [currentBonusMultiplier, setCurrentBonusMultiplier] = useState<number>(1);
+  // initial loading brings up the challenge specific mealLog.
 
-    // After meallog loads, this will reduce to just the array of meals.
-    useEffect(() => {
-        setchallengeMeals(challengeUtils.returnsChallengeMeals(currentChallengeMealLog));
-        console.log(challengeMeals);
+  useEffect(() => {
+    mealLogAPI.getChallengeMeallog(userID, startDate, endDate).then((data) => {
+      setCurrentChallengeMealLog(data.data);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }, []);
 
-    }, [currentChallengeMealLog])
+  // After meallog loads, this will reduce to just the array of meals.
+  useEffect(() => {
+    setchallengeMeals(challengeUtils.returnsChallengeMeals(currentChallengeMealLog));
+  }, [currentChallengeMealLog])
 
-    // This gives us all of the veggies every eaten!  yum.
-    useEffect(() => {
-        setTotalVeggieArray(challengeUtils.totalVeggieArrayConstructor(challengeMeals));
-        console.log(totalVeggieArray);
-        setCurrentBonusMultiplier(challengeUtils.calculateMultiplierBonus(challengeMeals));
-        console.log(currentBonusMultiplier);
-    }, [challengeMeals])
+  // This gives us all of the veggies every eaten!  yum.
+  useEffect(() => {
+    setTotalVeggieArray(challengeUtils.totalVeggieArrayConstructor(challengeMeals));
+    setCurrentBonusMultiplier(challengeUtils.calculateMultiplierBonus(challengeMeals));
+  }, [challengeMeals])
 
-    // This reduces the total veggies into unique veggies
-    useEffect(() => {
-        setuniqueVeggieArray(challengeUtils.uniqueVeggieArrayConstructor(totalVeggieArray));
-        console.log(uniqueVeggieArray);
-    }, [totalVeggieArray])
+  // This reduces the total veggies into unique veggies
+  useEffect(() => {
+    setuniqueVeggieArray(challengeUtils.uniqueVeggieArrayConstructor(totalVeggieArray));
+  }, [totalVeggieArray])
 
 
 
 
   return (
-    <div>
-      <Grid item xs={12} container justify="space-around">
-        <DetailCard>
-          Score= {
-              
-              gamplayUtils.scoreCalculator(uniqueVeggieArray, totalVeggieArray, currentBonusMultiplier)
-          }
-         
-        </DetailCard>
-        <DetailCard>
-          <ul>
-            <li>TOTAL HP: </li>
-            <li>OFFENSE: </li>
-            <li>DEFENSE: </li>
-          </ul>
+    <div className="challenge-stats">
+      <ul>
+        <li>
+          Multiplier:{currentBonusMultiplier}
+        </li>
+        <li>
+          Veggies:{totalVeggieArray.length}
+        </li>
+        <li>
+          Unique Veggies:{uniqueVeggieArray.length}
+        </li>
+        <li>
+          Score:{gamplayUtils.scoreCalculator(uniqueVeggieArray, totalVeggieArray, currentBonusMultiplier)}
+        </li>
+      </ul>
 
-        </DetailCard>
-
-      </Grid>
 
     </div>
   )
 
 };
 
-export default ChadTest;
+export default ChallengeStats;

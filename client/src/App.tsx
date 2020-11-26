@@ -18,7 +18,7 @@ import KeithTestGrid from './views/KeithTestGrid/KeithTestGrid'
 import GameBoard from './views/GameBoard/GameBoard';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-import chadTest from './views/chadTest/chadTest';
+
 
 function App() {
   return (
@@ -40,7 +40,6 @@ function App() {
                 <Route path="/register" exact component={Register} />
                 {/* <Route path="/winner" exact component={Winner} /> */}
                 <Route path="/game-board" exact component={GameBoard} />
-                < Route path="/ChadTest" exact component={chadTest} />
               </Switch>
             </div>
             <Footer />
