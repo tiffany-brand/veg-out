@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 import "./Header.css";
 
 import Grid from '@material-ui/core/Grid';
@@ -18,6 +20,9 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Header() {
+
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+
   const classes = useStyles();
 
   const [navActive, setNavActive] = useState(false);
@@ -43,15 +48,25 @@ export default function Header() {
             </div>
 
             <ul className={`nav-bar ${navActive ? "mobile-menu-display" : null}`}>
+
+              {!isAuthenticated && <Link to='/' onClick={loginWithRedirect}>
+                <li onClick={burgerReveal}>Login</li>
+              </Link>}
+
               <Link to='/about'>
                 <li onClick={burgerReveal}>About</li>
               </Link>
               <Link to='/home'>
                 <li onClick={burgerReveal}>Home</li>
               </Link>
-              <Link to='/challenges'>
+              <Link to='/community'>
                 <li onClick={burgerReveal}>Challenges</li>
               </Link>
+
+              {isAuthenticated && <Link to='/' onClick={() => logout({ returnTo: window.location.origin })}>
+                <li onClick={burgerReveal}>Logout</li>
+              </Link>}
+
             </ul>
           </nav>
 

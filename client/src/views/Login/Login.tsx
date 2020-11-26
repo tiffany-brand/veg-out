@@ -90,41 +90,43 @@ function Login(): JSX.Element {
     }, [state])
 
     return (
-        <div>
-            <img width="500px" src={logo} alt="Vegemon" />
-            <br></br>
-            <Link to="/">
-                {/* If not logged, show the Log In button */}
-                {!isLoading && !user && (
-                    <>
-                        <button onClick={loginWithRedirect}>
-                            Log In
-                        </button>
-                    </>
-                )}
-            </Link>
-            {/* If logged in, go to the home page */}
-            {isAuthenticated && (
+        <img width="500px" src={logo} alt="Vegemon" />
 
-                <>
-                    <Link to="/home"><button>Go Home</button></Link>
-                    <Link to="/"> <button onClick={() => logout({ returnTo: window.location.origin })}>
-                        Log Out
-                        </button></Link>
+        // <div>
+        //     <img width="500px" src={logo} alt="Vegemon" />
+        //     <br></br>
+        //     <Link to="/">
+        //         {/* If not logged, show the Log In button */}
+        //         {!isLoading && !user && (
+        //             <>
+        //                 <button onClick={loginWithRedirect}>
+        //                     Log In
+        //                 </button>
+        //             </>
+        //         )}
+        //     </Link>
+        //     {/* If logged in, go to the home page */}
+        //     {isAuthenticated && (
 
-                </>
+        //         <>
+        //             <Link to="/home"><button>Go Home</button></Link>
+        //             <Link to="/" onClick={() => logout({ returnTo: window.location.origin })}>
+        //                 <button>Log Out</button>
+        //             </Link>
 
-            )}
+        //         </>
 
-            {isAuthenticated && (!state.currentUser.challenged &&
-                <Link to="/community"><button>Start a Challenge</button></Link>)
-            }
+        //     )}
 
-            {state.currentUser.challenged &&
-                <Link to="/challenged"><button>Current Challenge</button></Link>
-            }
+        //     {isAuthenticated && (!state.currentUser.challenged &&
+        //         <Link to="/community"><button>Start a Challenge</button></Link>)
+        //     }
 
-        </div>
+        //     {state.currentUser.challenged &&
+        //         <Link to="/challenged"><button>Current Challenge</button></Link>
+        //     }
+
+        // </div>
     )
 
 
