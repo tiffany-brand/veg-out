@@ -9,6 +9,6 @@ export class CreateUserDto {
     losses: number;
     ties: number;
     lifetimeUniqueVeggies: string[];
-    lifetimeTotalVeggies: string[];
+    lifetimeTotalVeggies: number;
 
 }

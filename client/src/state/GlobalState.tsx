@@ -31,7 +31,7 @@ const initialState: State = {
         losses: 0,
         ties: 0,
         lifetimeUniqueVeggies: [],
-        lifetimeTotalVeggies: []
+        lifetimeTotalVeggies: 0
 
     },
 
