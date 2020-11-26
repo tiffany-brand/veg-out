@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import DetailCard from '../../components/DetailCard/DetailCard';
-import UserData from '../../components/UserData/UserData';
 import './Home.css';
-import IUser from '../../interfaces/IUser'
+
+// Global state and authorization utilities
 import { useStoreContext } from '../../state/GlobalState';
 import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUser';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { SET_CURRENT_USER, SET_CHALLENGES } from '../../state/actions';
 
+// Plant logging functional component
 import PlantLog from '../PlantLog/PlantLog';
 
+// Structural imports
+import DetailCard from '../../components/DetailCard/DetailCard';
 import Grid from '@material-ui/core/Grid';
 
+// User data and shape
+import IUser from '../../interfaces/IUser'
 import userAPI from '../../utils/userAPI'
 
 function Home() {
 
+  // Get global state and set local state
   const [state, dispatch] = useStoreContext();
   const [loggedInUser, setLoggedInUser] = useState<IUser>({
     email: "",
@@ -32,13 +36,14 @@ function Home() {
     lifetimeTotalVeggies: 0,
   });
 
+  // Get logged in users states from the DB
   useEffect(() => {
     userAPI.getUser(state.currentUser._id)
       .then(res => setLoggedInUser(res.data))
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // Keep logged in user persistent using local storage 
   useEffect(() => {
     if (!state.currentUser._id) {
       const storedState = loadFromLocalStorage()
@@ -73,16 +78,14 @@ function Home() {
             </ul>
           </div>
         </DetailCard>
+
         <DetailCard>
           <div className="plant-log">
             <h3>Plant Log</h3>
             <PlantLog />
           </div>
-
         </DetailCard>
-
       </Grid>
-
     </div>
   )
 

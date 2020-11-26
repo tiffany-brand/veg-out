@@ -2,6 +2,6 @@ export default interface IMealLog {
     date: string;
     mealLabel?: string;
     mealVeggies: string[];
-    userID: string;
+    user: string;
     _id?: string;
 }
