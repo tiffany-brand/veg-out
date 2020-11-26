@@ -15,18 +15,18 @@ export class ChallengesService {
 
     create(createchallengeDTO: CreateChallengeDTO): Promise<Challenge> {
         const newChallenge = new Challenge();
-        newChallenge.date_started = createchallengeDTO.date_started;
-        newChallenge.player_one = createchallengeDTO.player_one;
-        newChallenge.player_one_health = createchallengeDTO.player_one_health;
-        newChallenge.player_one_offense = createchallengeDTO.player_one_offense;
-        newChallenge.player_one_defense = createchallengeDTO.player_one_defense;
-        newChallenge.player_one_uniqueVeggies = createchallengeDTO.player_one_uniqueVeggies;
-        newChallenge.player_two = createchallengeDTO.player_two;
-        newChallenge.player_two_health = createchallengeDTO.player_two_health;
-        newChallenge.player_two_offense = createchallengeDTO.player_two_offense;
-        newChallenge.player_two_defense = createchallengeDTO.player_two_defense;
-        newChallenge.player_two_uniqueVeggies = createchallengeDTO.player_two_uniqueVeggies;
-        newChallenge.date_ending = createchallengeDTO.date_ending;
+        newChallenge.dateStarted = createchallengeDTO.dateStarted;
+        newChallenge.playerOne = createchallengeDTO.playerOne;
+        newChallenge.playerOne_totalVeggies = createchallengeDTO.playerOne_totalVeggies;
+        newChallenge.playerOne_uniqueVeggies = createchallengeDTO.playerOne_uniqueVeggies;
+        newChallenge.playerOne_currentMultiplier = createchallengeDTO.playerOne_currentMultiplier;
+        newChallenge.playerOne_currentScore = createchallengeDTO.playerOne_currentScore;
+        newChallenge.playerTwo = createchallengeDTO.playerTwo;
+        newChallenge.playerTwo_totalVeggies = createchallengeDTO.playerTwo_totalVeggies;
+        newChallenge.playerTwo_uniqueVeggies = createchallengeDTO.playerTwo_uniqueVeggies;
+        newChallenge.playerTwo_currentMultiplier = createchallengeDTO.playerTwo_currentMultiplier;
+        newChallenge.playerTwo_currentScore = createchallengeDTO.playerTwo_currentScore;
+        newChallenge.dateEnding = createchallengeDTO.dateEnding;
 
         return this.challengeRepository.save(newChallenge);
     }

@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Req } from '@nestjs/common';
+import { User } from '../users/user.entity';
 import { CreateMealLogDTO } from './dto/create-meallog.dto';
 import { MealLog } from './meallog.entity';
 import { MeallogService } from './meallog.service';
@@ -25,6 +26,16 @@ export class MeallogController {
     @Delete(':id')
     remove(@Param('id') id: string): Promise<void> {
         return this.meallogservice.remove(id);
+    }
+
+    @Post('/dates')
+   findBetweenChallengeDates(@Body('userID') userID: User, @Body('startDate') startDate: Date, @Body('endDate') endDate: Date): Promise<MealLog[]> {
+        return this.meallogservice.findBetweenChallengeDates(userID, startDate, endDate);
+    }
+
+    @Post('/seed')
+    injectSeed(): Promise<MealLog[]> {
+        return this.meallogservice.injectSeed();
     }
     
 }

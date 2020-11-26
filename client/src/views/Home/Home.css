@@ -28,3 +28,27 @@ div.card-holder {
 .home-container h1 {
   padding-bottom: 15px;
 }
+
+div.veggie-box {
+  text-align: center;
+  border: 1px solid #000000;
+  background-color: aquamarine;
+  margin-top: 15px;
+}
+
+div.user-stats {
+  text-align: left;
+  padding-left: 10px;
+}
+.user-stats ul {
+  margin: 4px;
+  padding-left: 15px;
+}
+.user-stats li {
+  list-style: none;
+}
+.user-stats h5 {
+  margin: 0px;
+  text-decoration: underline;
+
+}

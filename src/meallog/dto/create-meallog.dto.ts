@@ -2,9 +2,10 @@ import { User } from "src/users/user.entity";
 
 
 export class CreateMealLogDTO {
-    date: string;
+    _id: string;
+    date: Date;
     mealLabel: string;
     mealVeggies: string[];
-    userID: User;
+    user: User;
     
 }

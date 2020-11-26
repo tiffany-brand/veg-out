@@ -9,7 +9,7 @@ export class MealLog {
     @Column({
         type: "date"
     })
-    date: string;
+    date: Date;
 
     @Column({
         type:"varchar",
@@ -24,10 +24,7 @@ export class MealLog {
     mealVeggies: string[];
 
     @ManyToOne(() => User, user => user.mealLogs)
-    @Column({
-        type: 'varchar'
-    })
-    userID: User;
+    user: User;
 
 
 

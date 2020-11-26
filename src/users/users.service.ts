@@ -17,19 +17,14 @@ export class UsersService {
     user._id = createUserDto._id;
     user.email = createUserDto.email;
     user.auth0ID = createUserDto.auth0ID;
-    user.username = createUserDto.username;
-    user.character_name = createUserDto.character_name;
-    user.character_image = createUserDto.character_image;
+    user.nickname = createUserDto.nickname;
     user.challenged = createUserDto.challenged;
     user.currentChallenge = createUserDto.currentChallenge;
-    user.currenthealth = createUserDto.currenthealth;
-    user.currentdefense = createUserDto.currentdefense;
-    user.currentoffense = createUserDto.currentoffense;
-    user.win = createUserDto.win;
-    user.loss = createUserDto.loss;
-    user.tie = createUserDto.tie;
-    user.level = createUserDto.level;
+    user.wins = createUserDto.wins;
+    user.losses = createUserDto.losses;
+    user.ties = createUserDto.ties;
     user.lifetimeUniqueVeggies = createUserDto.lifetimeUniqueVeggies;
+    user.lifetimeTotalVeggies = createUserDto.lifetimeTotalVeggies;
 
     return this.usersRepository.save(user);
   }

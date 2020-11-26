@@ -1,16 +1,19 @@
-div.App {
+/* div.App {
   position: relative;
   justify-content: center;
-  /* min-height: 98vh; */
-  display: flex;
+   min-height: 98vh; 
+   display: flex;
   height: 100vh;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
 }
 
-div.card-container {
+/* div.card-container {
   width: 700px;
   display: flex;
   justify-content: space-around;
-}
+} */
 
 div.card-holder {
   margin-top: 10px;
@@ -37,13 +40,11 @@ input[type=text]:focus {
 } 
 
 body {
-  background-color: #a0d2bc;
-  font-family: 'VT323', monospace;
   font-size: 18px;
   color: #156e58;
 }
 
-div.app-container {
+/* div.app-container {
   max-width: 736px;
   width: 100%;
   max-height: 414px;
@@ -56,10 +57,22 @@ div.app-container {
   top: 0;
   bottom: 0;
   margin: auto;
-}
-
+} */
+/* 
 div.app-border {
   background: url("./svg/border.svg");
   background-repeat: no-repeat;
 
+}  */
+
+div.app-container {
+  width: 100%;
+  height: 100%;
+}
+
+div.dark-box {
+  margin-top: 15vh;
+  width: 100%;
+  height:65vh;
+  background-color: #0000007a;
 }

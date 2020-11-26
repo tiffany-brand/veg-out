@@ -6,6 +6,7 @@ import { useStoreContext } from '../../state/GlobalState';
 import logo from '../../assets/images/Vegemon-logo.png';
 import { LOADING, SET_CURRENT_USER } from '../../state/actions';
 import { saveToLocalStorage } from '../../utils/persistUser';
+import Home from '../Home/Home';
 
 function Login(): JSX.Element {
 
@@ -21,9 +22,21 @@ function Login(): JSX.Element {
                         console.log("No user found");
 
                         // if no user found, create new user in db, then set state
-                        userAPI.saveUser({ email: user.email, auth0ID: user.sub })
+                        userAPI.saveUser({
+                            email: user.email,
+                            auth0ID: user.sub,
+                            nickname: user.nickname,
+                            challenged: false,
+                            currentChallenge: "",
+                            wins: 0,
+                            losses: 0,
+                            ties: 0,
+                            lifetimeUniqueVeggies: [],
+                            lifetimeTotalVeggies: 0
+                        })
                             .then(res => {
-                                const { _id, email, auth0ID, username, character_name, character_image, character_id, challenged, currentChallenge, currenthealth, currentoffense, win, loss, tie, level
+                                const { _id,
+                                    email, auth0ID, nickname, challenged, currentChallenge, wins, losses, ties, lifetimeUniqueVeggies, lifetimeTotalVeggies
                                 } = res.data;
                                 dispatch({ type: LOADING });
                                 dispatch({
@@ -33,18 +46,14 @@ function Login(): JSX.Element {
                                         _id,
                                         email,
                                         auth0ID,
-                                        username,
-                                        character_name,
-                                        character_image,
-                                        character_id,
+                                        nickname,
                                         challenged,
                                         currentChallenge,
-                                        currenthealth,
-                                        currentoffense,
-                                        win,
-                                        loss,
-                                        tie,
-                                        level
+                                        wins,
+                                        losses,
+                                        ties,
+                                        lifetimeUniqueVeggies,
+                                        lifetimeTotalVeggies
                                     }
                                 })
                             })
@@ -52,7 +61,7 @@ function Login(): JSX.Element {
                     } else {
                         console.log("user found")
                         const { _id,
-                            email, auth0ID, username, character_name, character_image, character_id, challenged, currentChallenge, currenthealth, currentoffense, win, loss, tie, level
+                            email, auth0ID, nickname, challenged, currentChallenge, wins, losses, ties, lifetimeUniqueVeggies, lifetimeTotalVeggies
                         } = res.data;
                         // if user found, set state for logged in user
                         dispatch({ type: LOADING });
@@ -63,18 +72,14 @@ function Login(): JSX.Element {
                                 _id,
                                 email,
                                 auth0ID,
-                                username,
-                                character_name,
-                                character_image,
-                                character_id,
+                                nickname,
                                 challenged,
                                 currentChallenge,
-                                currenthealth,
-                                currentoffense,
-                                win,
-                                loss,
-                                tie,
-                                level
+                                wins,
+                                losses,
+                                ties,
+                                lifetimeUniqueVeggies,
+                                lifetimeTotalVeggies
 
                             }
                         })
@@ -94,35 +99,55 @@ function Login(): JSX.Element {
 
     return (
         <div>
-            <img width="500px" src={logo} alt="Vegemon" />
-            <br></br>
-            <Link to="/">
-                {/* If not logged, show the Log In button */}
-                {!isLoading && !user && (
-                    <>
-                        <button onClick={loginWithRedirect}>
-                            Log In
-                        </button>
-                    </>
-                )}
-            </Link>
-            {/* If logged in and have a username, go to the home page */}
-            {isAuthenticated && (
-                state.currentUser.username && (
-                    <>
-                        <Link to="/home"><button>Go Home</button></Link>
-                    </>
-                )
-            )}
-            {/* If logged in but no username, go to the register page */}
-            {isAuthenticated && (
-                !state.currentUser.username && (
-                    <>
-                        <Link to="/register"><button>Choose a Character</button></Link>
-                    </>
-                )
-            )}
+            {!isAuthenticated && <div>
+                <img width="500px" src={logo} alt="Vegemon" />
+
+                <button onClick={loginWithRedirect}> Log In </button>
+
+            </div>}
+
+            {isAuthenticated && <Home />}
+
         </div>
+
+
+
+
+        // <div>
+        //     <img width="500px" src={logo} alt="Vegemon" />
+        //     <br></br>
+        //     <Link to="/">
+        //         {/* If not logged, show the Log In button */}
+        //         {!isLoading && !user && (
+        //             <>
+        //                 <button onClick={loginWithRedirect}>
+        //                     Log In
+        //                 </button>
+        //             </>
+        //         )}
+        //     </Link>
+        //     {/* If logged in, go to the home page */}
+        //     {isAuthenticated && (
+
+        //         <>
+        //             <Link to="/home"><button>Go Home</button></Link>
+        //             <Link to="/" onClick={() => logout({ returnTo: window.location.origin })}>
+        //                 <button>Log Out</button>
+        //             </Link>
+
+        //         </>
+
+        //     )}
+
+        //     {isAuthenticated && (!state.currentUser.challenged &&
+        //         <Link to="/community"><button>Start a Challenge</button></Link>)
+        //     }
+
+        //     {state.currentUser.challenged &&
+        //         <Link to="/challenged"><button>Current Challenge</button></Link>
+        //     }
+
+        // </div>
     )
 
 

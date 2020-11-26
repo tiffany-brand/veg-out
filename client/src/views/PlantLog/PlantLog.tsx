@@ -1,28 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import DetailCard from '../../components/DetailCard/DetailCard';
-import { useStoreContext } from '../../state/GlobalState';
+import React, { useState, useEffect } from "react";
+import './PlantLog.css'
+
+// Gives us a formatted date object
 import { DateTime } from 'luxon';
-import './PlantLog.css';
+
+// access to global state for current user data
+import { useStoreContext } from '../../state/GlobalState';
+import { SET_CURRENT_USER } from '../../state/actions';
+
+// Component to return unique plants
+import arraySortUniqueVeggies from '../../utils/arraySortingMachine'
 
 // Importing our interfaces
 import IVeggies from "../../interfaces/IVeggies";
-import ICurrentUser from '../../interfaces/ICurrentUser';
+import IUser from '../../interfaces/IUser';
 
 // Importing APIs
 import veggieAPI from '../../utils/veggiesAPI';
 import userAPI from '../../utils/userAPI';
 import mealLogAPI from '../../utils/mealLogAPI';
 
+// Function to create random suggestions
+const conditionallySort = <T,>(arr: T[], condition: boolean) => (
+  condition ? arr : [...arr].sort(() => .5 - Math.random())
+);
+
+// Creating our current date/time object
 const date = DateTime.local().toFormat('yyyyLLdd');
 
-// Begin functional component.
-export default function PlantLog() {
-  // Bring in Global Sate to identify logged in user.
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+const PlantLog: React.FC = () => {
+
+  // Accessing global state for current user data
   const [state, dispatch] = useStoreContext();
 
-  // Set state for currently logging user
-  const [loggingUser, setLoggingUser] = useState<ICurrentUser>({})
+  // Set state for plant search and logging
+  const [availablePlants, setAvailablePlants] = useState<IVeggies[]>([])
+  const [searchArray, setSearchArray] = useState<IVeggies[]>([]);
+  const [input, setInput] = useState("");
+
+  //State for holding current meal
+  const [currentMeal, setCurrentMeal] = useState<IVeggies[]>([]);
+
+
+  // State to hold userAPI data
+  const [loggingUser, setLoggingUser] = useState<IUser>({
+    email: "",
+    auth0ID: "",
+    _id: "",
+    nickname: "",
+    challenged: false,
+    currentChallenge: "",
+    wins: 0,
+    losses: 0,
+    ties: 0,
+    lifetimeUniqueVeggies: [],
+    lifetimeTotalVeggies: 0,
+  })
+
 
   // Call the APIs for veggies and user data
   useEffect(() => {
@@ -30,72 +65,57 @@ export default function PlantLog() {
       .then(([userRes, veggieRes]) => {
         setLoggingUser(userRes.data);
         setAvailablePlants(veggieRes.data);
-        setSearchArray(availablePlants);
       }
       )
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Put veggie API into state
-  const [availablePlants, setAvailablePlants] = useState<IVeggies[]>([])
+  // Function called when search begins
+  const updateSearchArray = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(event.currentTarget.value.toLowerCase())
 
-  // Set state for veggie search
-  const [currentMeal, setCurrentMeal] = useState<IVeggies[]>([]);
-  const [searchArray, setSearchArray] = useState<IVeggies[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-
-  //Create state to hold tallied plant power prior to adding to current user
-  const [mealStats, setMealStats] = useState({
-    mealHealth: 0,
-    mealDefense: 0,
-    mealOffense: 0
-  })
-
-  //As user types populate search results
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const activeSearch = event.target.value.toLowerCase()
-    const currentSearch = availablePlants.filter((el) => (
-      el.plantName.toLowerCase().includes(activeSearch)
-    ))
-    setSearchArray(currentSearch)
-    setSearchTerm(activeSearch);
-  };
+    setSearchArray(availablePlants.filter((el) => (
+      el.plantName.toLowerCase().includes(input)
+    )))
+  }
 
   // Append added plant to current meal and tally total values
   const addPlant = (plant: IVeggies) => {
     setCurrentMeal([...currentMeal, plant])
-    const newHealth = mealStats.mealHealth + plant.total_HP;
-    const newDefense = mealStats.mealDefense + plant.defense;
-    const newOffense = mealStats.mealOffense + plant.offense;
-    setMealStats({ mealHealth: newHealth, mealDefense: newDefense, mealOffense: newOffense })
-
-  };
+  };;
 
   // Update DB with current meal
   const logCurrentMeal = () => {
 
-    // Get the needed data from current meal and existing user totals
-    const { currenthealth, currentoffense, currentdefense } = loggingUser;
-    const { mealHealth, mealDefense, mealOffense } = mealStats;
-    const updatedStats = {
-      health: (currenthealth || 0) + mealHealth,
-      defense: (currentdefense || 0) + mealDefense,
-      offense: (currentoffense || 0) + mealOffense
-    }
-
-    // **** Update User table ****
-    userAPI.saveUser({ ...loggingUser, currenthealth: updatedStats.health, currentdefense: updatedStats.defense, currentoffense: updatedStats.offense })
-
     // Build array from meal's veggies
     const mealVeggiesArray = currentMeal.map((item: any) => {
-      return item._id;
+      return item.plantName;
     })
+
+    // Call utility to add unique items
+    let newUniqueVeggies
+    if (!loggingUser.lifetimeUniqueVeggies) {
+      newUniqueVeggies = mealVeggiesArray;
+    } else {
+      newUniqueVeggies = arraySortUniqueVeggies(mealVeggiesArray, loggingUser.lifetimeUniqueVeggies!)
+    }
+    // Update user with total and unique veggies
+    userAPI.saveUser({ ...loggingUser, lifetimeUniqueVeggies: newUniqueVeggies, lifetimeTotalVeggies: mealVeggiesArray.length })
 
     // **** Update Meal-Log table
     mealLogAPI.saveMealLog({
       date: date,
       mealVeggies: mealVeggiesArray,
-      userID: loggingUser._id!
+      user: loggingUser._id!
+    })
+
+    dispatch({
+      type: SET_CURRENT_USER,
+      currentUser: {
+        ...state.currentUser,
+        lifetimeUniqueVeggies: loggingUser.lifetimeUniqueVeggies?.concat(newUniqueVeggies),
+        lifetimeTotalVeggies: loggingUser.lifetimeTotalVeggies! + mealVeggiesArray.length,
+      }
     })
 
     // Clear the current meal area
@@ -103,32 +123,37 @@ export default function PlantLog() {
   };
 
   return (
-    <div className="plant-log-container">
-      <h1>PLANT LOG</h1>
-      <div className="card-container">
-        <div className="card-holder">
-          <h2>ADD PLANTS</h2>
-          <DetailCard>
-            <h3>- Search Plants -</h3>
-            <input onChange={handleInputChange} type="text" name="user-name" placeholder="Enter Plant Name" value={searchTerm} />
-            <div className="search-results" id="search-results">{searchArray.slice(0, 4).map(function (plant, index) {
-              return <p onClick={() => addPlant(plant)} key={index}>{plant.plantName} +</p>
-            })}</div>
-          </DetailCard>
-        </div>
-        <div className="card-holder">
-          <h2>CURRENT MEAL</h2>
-          <DetailCard>
-            <ul id="current-meal-area">
-              {currentMeal.map(function (plant, index) {
-                return <li key={index}>{plant.plantName}</li>
-              })}
-            </ul>
-            <button onClick={logCurrentMeal} className="log-button">+ LOG +</button>
-          </DetailCard>
-        </div>
+    <div className="plant-log-area">
+      <input onChange={updateSearchArray} value={input} placeholder="Search Plants" />
+      {searchArray.length
+        ?
+        <ul>{searchArray.slice(0, 5).map(function (plant, idx) {
+          return <li className="plant-log-item" onClick={() => addPlant(plant)} key={idx}>{plant.plantName} +</li>
+        })}</ul>
+
+        :
+        <ul>
+          {conditionallySort(availablePlants, !!input)
+            .reduce<React.ReactElement[]>((acc, curr, idx) => {
+              if (acc.length < 5) {
+                acc.push(<li className="plant-log-item" onClick={() => addPlant(curr)} key={idx}>{curr.plantName} +</li>)
+              }
+              return acc;
+            }, [])
+          }
+        </ul>
+      }
+      <div className="current-meal-area">
+        <h5>Current Meal</h5>
+        <ul>
+          {currentMeal.map(function (plant, index) {
+            return <li key={index}>{plant.plantName}</li>
+          })}
+        </ul>
+        <button onClick={logCurrentMeal} className="log-button">+ LOG +</button>
       </div>
+
     </div>
   )
-
-};
+}
+export default PlantLog;

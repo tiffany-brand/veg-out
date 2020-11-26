@@ -1,28 +1,22 @@
 import React, { createContext, useReducer, useContext } from "react";
-import ICurrentUser from "../interfaces/ICurrentUser";
-import IPlayerCharacter from "../interfaces/IPlayerCharacter";
-import IChallenges from "../interfaces/IChallenges"
+import IUser from "../interfaces/IUser";
+
+
 
 
 import {
     SET_CURRENT_USER,
-    SET_CHARACTER,
-    SET_CHALLENGES,
     LOADING
 } from "./actions";
 
 type State = {
-    currentUser: ICurrentUser;
-    userCharacter: IPlayerCharacter; 
-    challenges: IChallenges
+    currentUser: IUser;
     loading: boolean;
-   
+
 }
 
 type Action =
-    | { type: 'SET_CURRENT_USER', currentUser: ICurrentUser }
-    | { type: 'SET_CHARACTER', userCharacter: IPlayerCharacter }
-    | {type: 'SET_CHALLENGES', challenges: IChallenges}
+    | { type: 'SET_CURRENT_USER', currentUser: IUser }
     | { type: 'LOADING' };
 
 const initialState: State = {
@@ -30,46 +24,14 @@ const initialState: State = {
         _id: "",
         email: "",
         auth0ID: "",
-        username: "",
-        character_name: "",
-        character_image: "",
-        character_id: "",
+        nickname: "",
         challenged: false,
         currentChallenge: "",
-        currenthealth: 0,
-        currentoffense: 0,
-        currentdefense: 0,
-        win: 0,
-        loss: 0,
-        tie: 0,
-        level: 1
-
-    },
-    userCharacter: {
-        _id: "",
-        character_id: "",
-        currentdefense: 0,
-        currentoffense: 0,
-        currenthealth: 0,
-        character_name: "",
-        user_id: ""
-    },
-    challenges: {
-
-        _id:"",
-        date_started: "",
-        player_one: {},
-        player_one_health: 0,
-        player_one_offense: 0,
-        player_one_defense: 0,
-        player_one_plantTotal: 0,
-        player_two: {},
-
-        player_two_health: 0,
-        player_two_offense: 0,
-        player_two_defense: 0,
-        player_two_plantTotal: 0,
-        date_ending: "",
+        wins: 0,
+        losses: 0,
+        ties: 0,
+        lifetimeUniqueVeggies: [],
+        lifetimeTotalVeggies: 0
 
     },
 
@@ -85,20 +47,6 @@ const reducer = (state: State, action: Action) => {
             return {
                 ...state,
                 currentUser: action.currentUser,
-                loading: false
-            };
-
-        case SET_CHARACTER:
-            return {
-                ...state,
-                userCharacter: action.userCharacter,
-                loading: false
-            };
-
-        case SET_CHALLENGES:
-            return {
-                ...state,
-                challenges: action.challenges,
                 loading: false
             };
 
