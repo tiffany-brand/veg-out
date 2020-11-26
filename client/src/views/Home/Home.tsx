@@ -24,19 +24,19 @@ function Home() {
 
   // Get global state and set local state
   const [state, dispatch] = useStoreContext();
-  const [loggedInUser, setLoggedInUser] = useState<IUser>({
-    email: "",
-    auth0ID: "",
-    _id: "",
-    nickname: "",
-    challenged: false,
-    currentChallenge: "",
-    wins: 0,
-    losses: 0,
-    ties: 0,
-    lifetimeUniqueVeggies: [],
-    lifetimeTotalVeggies: 0,
-  });
+  // const [loggedInUser, setLoggedInUser] = useState<IUser>({
+  //   email: "",
+  //   auth0ID: "",
+  //   _id: "",
+  //   nickname: "",
+  //   challenged: false,
+  //   currentChallenge: "",
+  //   wins: 0,
+  //   losses: 0,
+  //   ties: 0,
+  //   lifetimeUniqueVeggies: [],
+  //   lifetimeTotalVeggies: 0,
+  // });
 
 
 
