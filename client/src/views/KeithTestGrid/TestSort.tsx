@@ -96,7 +96,7 @@ const PlantLogSearch: React.FC = () => {
     mealLogAPI.saveMealLog({
       date: date,
       mealVeggies: mealVeggiesArray,
-      userID: loggingUser._id!
+      user: loggingUser._id!
     })
 
     // Clear the current meal area
