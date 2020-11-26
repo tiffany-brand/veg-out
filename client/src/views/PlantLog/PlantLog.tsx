@@ -6,6 +6,7 @@ import { DateTime } from 'luxon';
 
 // access to global state for current user data
 import { useStoreContext } from '../../state/GlobalState';
+import { SET_CURRENT_USER } from '../../state/actions';
 
 // Component to return unique plants
 import arraySortUniqueVeggies from '../../utils/arraySortingMachine'
@@ -92,8 +93,12 @@ const PlantLog: React.FC = () => {
     })
 
     // Call utility to add unique items
-    const newUniqueVeggies = arraySortUniqueVeggies(mealVeggiesArray, loggingUser.lifetimeUniqueVeggies!)
-
+    let newUniqueVeggies
+    if (!loggingUser.lifetimeUniqueVeggies) {
+      newUniqueVeggies = mealVeggiesArray;
+    } else {
+      newUniqueVeggies = arraySortUniqueVeggies(mealVeggiesArray, loggingUser.lifetimeUniqueVeggies!)
+    }
     // Update user with total and unique veggies
     userAPI.saveUser({ ...loggingUser, lifetimeUniqueVeggies: newUniqueVeggies, lifetimeTotalVeggies: mealVeggiesArray.length })
 
@@ -102,6 +107,15 @@ const PlantLog: React.FC = () => {
       date: date,
       mealVeggies: mealVeggiesArray,
       user: loggingUser._id!
+    })
+
+    dispatch({
+      type: SET_CURRENT_USER,
+      currentUser: {
+        ...state.currentUser,
+        lifetimeUniqueVeggies: loggingUser.lifetimeUniqueVeggies?.concat(newUniqueVeggies),
+        lifetimeTotalVeggies: loggingUser.lifetimeTotalVeggies! + mealVeggiesArray.length,
+      }
     })
 
     // Clear the current meal area
