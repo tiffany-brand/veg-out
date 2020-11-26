@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import DetailCard from '../../components/DetailCard/DetailCard';
+import DetailCard from '../DetailCard/DetailCard';
 
 
 import Grid from '@material-ui/core/Grid';
