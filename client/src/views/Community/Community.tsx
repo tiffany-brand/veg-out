@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 import { DateTime } from 'luxon';
 
@@ -132,12 +133,25 @@ function Community() {
 
     const isChallenged = () => {
 
-        return (
-            !searching ?
-                <div>
-                    {!state.currentUser.challenged && <Button variant="contained" onClick={() => loadUsers()}>Choose a Challenger</Button>}
-                    {state.currentUser.challenged && <Link to="/challenged"><Button variant="contained">View Challenge Stats</Button></Link>}
-                </div> :
+
+        if (!searching) {
+
+            return (
+                <Grid item xs={12} container justify="space-around">
+                    <div>
+                        {!state.currentUser.challenged && <Button variant="contained" onClick={() => loadUsers()}>Choose a Challenger</Button>}
+                        {state.currentUser.challenged && <div>
+                            <h2>Challenge In Progress</h2>
+                            <Link to="/challenged"><Button variant="contained">View Challenge Stats</Button></Link>
+                        </div>}
+
+                    </div>
+                </Grid>
+            )
+        } else {
+
+            return (
+
                 <form>
                     <Autocomplete
                         id="challenger"
@@ -154,11 +168,14 @@ function Community() {
                         }}
                     />
 
-                    <Button variant="contained" onClick={(e: any) => handleSubmit(e)}>Challenge!</Button>
+                    <Button variant="contained" disabled={!value} onClick={(e: any) => handleSubmit(e)}>Challenge!</Button>
 
 
                 </form>
-        )
+
+            )
+        }
+
 
     }
 
