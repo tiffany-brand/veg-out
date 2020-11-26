@@ -22,24 +22,25 @@ export default function About() {
 
                         To begin, log into your account and select 'Start a Challenge'. 
                         You can search for a friend, family member, or choose randomly from the VegIn community.
-                        Each challenge will last for one week.  During this period, log each of the vegetables in your meals in the app.
-                        To check your status, navigate to the home page to review your stats
+                        Each challenge will last for one week.  During this period, log each of the vegetables or fruit in your meals in the app.
+                        To check your status, navigate to the home page to review your stats and see your current score.
 
                         How is the winner chosen?
                         At the end of the week-long challenge period the final points will be calculated and compared.  
                         Scoring is based on:
 
-                        Unique Veggies
-                        Each unique veggie will be worth 10 points.
+                        Unique Veggies/Fruits
+                        Each unique plant will be worth 10 points.
 
-                        Total Veggies
-                        Each veggie will be worth 1 point each time logged, with a maximum of 3 points per veggie.  This is to help promote diversity in your diet!
+                        Total Veggies/Fruits
+                        Each plant will be worth 1 point each time logged, with a maximum of 3 points per plant.  This is to help promote diversity in your diet!
 
                         Consistency Bonus Multiplier
-                        Did you have at least 3 veggies for 12 or more meals? Thats a 3X bonus.
-                        5 veggies? 5X.
-                        7 veggies?!? That's right, 7X bonus.  
+                        Did you have at least 3 plants for 12 or more meals? Thats a 3X bonus.
+                        5 plants? 5X.
+                        7 plants?!? That's right, 7X bonus.  
                         
+                        Now get out there and eat some plants!!!
 
                         This application was developed by Chad Laflamme, Tiffany Brand,
                         Keith Tharp, Rachel Campbell, and Marc Langlois.
