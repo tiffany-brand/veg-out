@@ -57,7 +57,7 @@ export class User {
   lifetimeUniqueVeggies: string[];
 
   @Column({
-    nullable: true
+    default: 0
   })
   lifetimeTotalVeggies: number;
 
