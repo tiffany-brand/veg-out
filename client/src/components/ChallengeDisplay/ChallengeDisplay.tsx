@@ -45,12 +45,12 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
 
                 <DetailCard>
                     <h3>{state.currentUser.nickname} Stats</h3>
-                    <ChallengeStats userID={state.currentUser._id} startDate={startDate.toFormat('yyyLLdd')} endDate={endDate.toFormat('yyyLLdd')} />
+                    <ChallengeStats userID={state.currentUser._id} startDate={startDate.toFormat('yyyyLLdd')} endDate={endDate.toFormat('yyyyLLdd')} />
                 </DetailCard>
 
                 <DetailCard>
                     <h3>{props.currentChallenger!.nickname} Stats</h3>
-                    <ChallengeStats userID={props.currentChallenger!._id} startDate={startDate.toFormat('yyyLLdd')} endDate={endDate.toFormat('yyyLLdd')} />
+                    <ChallengeStats userID={props.currentChallenger!._id} startDate={startDate.toFormat('yyyyLLdd')} endDate={endDate.toFormat('yyyyLLdd')} />
                 </DetailCard>
 
             </Grid>
