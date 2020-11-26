@@ -26,10 +26,17 @@ function Login(): JSX.Element {
                             email: user.email,
                             auth0ID: user.sub,
                             nickname: user.nickname,
+                            challenged: false,
+                            currentChallenge: "",
+                            wins: 0,
+                            losses: 0,
+                            ties: 0,
+                            lifetimeUniqueVeggies: [],
+                            lifetimeTotalVeggies: 0
                         })
                             .then(res => {
                                 const { _id,
-                                    email, auth0ID, nickname, challenged, currentChallenge, win, loss, tie, lifetimeUniqueVeggies, lifetimeTotalVeggies
+                                    email, auth0ID, nickname, challenged, currentChallenge, wins, losses, ties, lifetimeUniqueVeggies, lifetimeTotalVeggies
                                 } = res.data;
                                 dispatch({ type: LOADING });
                                 dispatch({
@@ -42,9 +49,9 @@ function Login(): JSX.Element {
                                         nickname,
                                         challenged,
                                         currentChallenge,
-                                        win,
-                                        loss,
-                                        tie,
+                                        wins,
+                                        losses,
+                                        ties,
                                         lifetimeUniqueVeggies,
                                         lifetimeTotalVeggies
                                     }
@@ -54,7 +61,7 @@ function Login(): JSX.Element {
                     } else {
                         console.log("user found")
                         const { _id,
-                            email, auth0ID, nickname, challenged, currentChallenge, win, loss, tie, lifetimeUniqueVeggies, lifetimeTotalVeggies
+                            email, auth0ID, nickname, challenged, currentChallenge, wins, losses, ties, lifetimeUniqueVeggies, lifetimeTotalVeggies
                         } = res.data;
                         // if user found, set state for logged in user
                         dispatch({ type: LOADING });
@@ -68,9 +75,9 @@ function Login(): JSX.Element {
                                 nickname,
                                 challenged,
                                 currentChallenge,
-                                win,
-                                loss,
-                                tie,
+                                wins,
+                                losses,
+                                ties,
                                 lifetimeUniqueVeggies,
                                 lifetimeTotalVeggies
 

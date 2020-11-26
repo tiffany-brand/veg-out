@@ -20,6 +20,8 @@ import userAPI from '../../utils/userAPI'
 
 function Home() {
 
+  const [isLoading, setIsLoading] = useState(true);
+
   // Get global state and set local state
   const [state, dispatch] = useStoreContext();
   const [loggedInUser, setLoggedInUser] = useState<IUser>({
@@ -36,12 +38,7 @@ function Home() {
     lifetimeTotalVeggies: 0,
   });
 
-  // Get logged in users states from the DB
-  useEffect(() => {
-    userAPI.getUser(state.currentUser._id)
-      .then(res => setLoggedInUser(res.data))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+
 
   // Keep logged in user persistent using local storage 
   useEffect(() => {
@@ -54,23 +51,35 @@ function Home() {
     } else saveToLocalStorage(state);
   }, [])
 
+  // Get logged in users states from the DB
+  useEffect(() => {
+    // const storedState = loadFromLocalStorage()
+    // userAPI.getUser(state.currentUser._id || storedState.currentUser._id)
+    //   .then(res => {
+    //     setLoggedInUser(res.data)
+    //     setIsLoading(false);
+    //   })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
 
   return (
     <div>
       <Grid item xs={12} container justify="space-around">
         <DetailCard>
           <div className="user-stats">
-            <h3>{loggedInUser.nickname} Stats</h3>
+            <h3>{state.currentUser.nickname} Stats</h3>
             <h5>Plant Stats</h5>
             <ul>
-              <li>Unique: {loggedInUser.lifetimeUniqueVeggies?.length} </li>
-              <li>Total: {loggedInUser.lifetimeTotalVeggies}</li>
+              <li>Unique: {state.currentUser.lifetimeUniqueVeggies?.length} </li>
+              <li>Total: {state.currentUser.lifetimeTotalVeggies}</li>
             </ul>
             <h5>Challenge Stats</h5>
             <ul>
-              <li>Current Challenges: {loggedInUser.challenged ? "0" : "None"}</li>
-              <li>Wins: {loggedInUser.wins}</li>
-              <li>Losses {loggedInUser.losses}</li>
+              <li>Current Challenges: {state.currentUser.challenged ? "1" : "None"}</li>
+              <li>Wins: {state.currentUser.wins}</li>
+              <li>Losses {state.currentUser.losses}</li>
             </ul>
           </div>
         </DetailCard>
