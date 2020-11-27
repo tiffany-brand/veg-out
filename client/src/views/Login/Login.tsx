@@ -26,13 +26,7 @@ function Login(): JSX.Element {
                             email: user.email,
                             auth0ID: user.sub,
                             nickname: user.nickname,
-                            challenged: false,
-                            currentChallenge: "",
-                            wins: 0,
-                            losses: 0,
-                            ties: 0,
-                            lifetimeUniqueVeggies: [],
-                            lifetimeTotalVeggies: 0
+
                         })
                             .then(res => {
                                 const { _id,
