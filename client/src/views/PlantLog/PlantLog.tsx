@@ -6,7 +6,10 @@ import { DateTime } from 'luxon';
 
 // access to global state for current user data
 import { useStoreContext } from '../../state/GlobalState';
+import { SET_CURRENT_USER } from '../../state/actions';
 
+// Component to return unique plants
+import arraySortUniqueVeggies from '../../utils/arraySortingMachine'
 
 // Importing our interfaces
 import IVeggies from "../../interfaces/IVeggies";
@@ -52,7 +55,7 @@ const PlantLog: React.FC = () => {
     losses: 0,
     ties: 0,
     lifetimeUniqueVeggies: [],
-    lifetimeTotalVeggies: [],
+    lifetimeTotalVeggies: 0,
   })
 
 
@@ -79,24 +82,40 @@ const PlantLog: React.FC = () => {
   // Append added plant to current meal and tally total values
   const addPlant = (plant: IVeggies) => {
     setCurrentMeal([...currentMeal, plant])
-  };
+  };;
 
   // Update DB with current meal
   const logCurrentMeal = () => {
 
-    // **** Update User table ****
-    // I need to figure out how to get unique plants added to unique column
-
     // Build array from meal's veggies
     const mealVeggiesArray = currentMeal.map((item: any) => {
-      return item._id;
+      return item.plantName;
     })
+
+    // Call utility to add unique items
+    let newUniqueVeggies
+    if (!loggingUser.lifetimeUniqueVeggies) {
+      newUniqueVeggies = mealVeggiesArray;
+    } else {
+      newUniqueVeggies = arraySortUniqueVeggies(mealVeggiesArray, loggingUser.lifetimeUniqueVeggies!)
+    }
+    // Update user with total and unique veggies
+    userAPI.saveUser({ ...loggingUser, lifetimeUniqueVeggies: newUniqueVeggies, lifetimeTotalVeggies: mealVeggiesArray.length })
 
     // **** Update Meal-Log table
     mealLogAPI.saveMealLog({
       date: date,
       mealVeggies: mealVeggiesArray,
-      userID: loggingUser._id!
+      user: loggingUser._id!
+    })
+
+    dispatch({
+      type: SET_CURRENT_USER,
+      currentUser: {
+        ...state.currentUser,
+        lifetimeUniqueVeggies: loggingUser.lifetimeUniqueVeggies?.concat(newUniqueVeggies),
+        lifetimeTotalVeggies: loggingUser.lifetimeTotalVeggies! + mealVeggiesArray.length,
+      }
     })
 
     // Clear the current meal area

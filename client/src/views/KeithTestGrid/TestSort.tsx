@@ -52,7 +52,7 @@ const PlantLogSearch: React.FC = () => {
     losses: 0,
     ties: 0,
     lifetimeUniqueVeggies: [],
-    lifetimeTotalVeggies: [],
+    lifetimeTotalVeggies: 0,
   })
 
 
@@ -96,7 +96,7 @@ const PlantLogSearch: React.FC = () => {
     mealLogAPI.saveMealLog({
       date: date,
       mealVeggies: mealVeggiesArray,
-      userID: loggingUser._id!
+      user: loggingUser._id!
     })
 
     // Clear the current meal area

@@ -6,6 +6,7 @@ import { useStoreContext } from '../../state/GlobalState';
 // import logo from '../../assets/images/Vegemon-logo.png';
 import { LOADING, SET_CURRENT_USER } from '../../state/actions';
 import { saveToLocalStorage } from '../../utils/persistUser';
+import Home from '../Home/Home';
 
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -40,10 +41,11 @@ function Login(): JSX.Element {
                             email: user.email,
                             auth0ID: user.sub,
                             nickname: user.nickname,
+
                         })
                             .then(res => {
                                 const { _id,
-                                    email, auth0ID, nickname, challenged, currentChallenge, win, loss, tie, lifetimeUniqueVeggies, lifetimeTotalVeggies
+                                    email, auth0ID, nickname, challenged, currentChallenge, wins, losses, ties, lifetimeUniqueVeggies, lifetimeTotalVeggies
                                 } = res.data;
                                 dispatch({ type: LOADING });
                                 dispatch({
@@ -56,9 +58,9 @@ function Login(): JSX.Element {
                                         nickname,
                                         challenged,
                                         currentChallenge,
-                                        win,
-                                        loss,
-                                        tie,
+                                        wins,
+                                        losses,
+                                        ties,
                                         lifetimeUniqueVeggies,
                                         lifetimeTotalVeggies
                                     }
@@ -68,7 +70,7 @@ function Login(): JSX.Element {
                     } else {
                         console.log("user found")
                         const { _id,
-                            email, auth0ID, nickname, challenged, currentChallenge, win, loss, tie, lifetimeUniqueVeggies, lifetimeTotalVeggies
+                            email, auth0ID, nickname, challenged, currentChallenge, wins, losses, ties, lifetimeUniqueVeggies, lifetimeTotalVeggies
                         } = res.data;
                         // if user found, set state for logged in user
                         dispatch({ type: LOADING });
@@ -82,9 +84,9 @@ function Login(): JSX.Element {
                                 nickname,
                                 challenged,
                                 currentChallenge,
-                                win,
-                                loss,
-                                tie,
+                                wins,
+                                losses,
+                                ties,
                                 lifetimeUniqueVeggies,
                                 lifetimeTotalVeggies
 
@@ -106,40 +108,55 @@ function Login(): JSX.Element {
 
     return (
         <div>
-            <Link to="/">
-                {/* If not logged, show the Log In button */}
-                {!isLoading && !user && (
-                    <>
-                        <Grid>
-                            <button onClick={loginWithRedirect}>
-                                Log In
-                            </button>
-                        </Grid>
-                    </>
-                )}
-            </Link>
-            {/* If logged in, go to the home page */}
-            {isAuthenticated && (
+            {!isAuthenticated && <div>
+                <img width="500px" src={logo} alt="Vegemon" />
 
-                <>
-                    <Link to="/home"><button>Go Home</button></Link>
-                    <Link to="/"> <button onClick={() => logout({ returnTo: window.location.origin })}>
-                        Log Out
-                        </button></Link>
+                <button onClick={loginWithRedirect}> Log In </button>
 
-                </>
+            </div>}
 
-            )}
-
-            {isAuthenticated && (!state.currentUser.challenged &&
-                <Link to="/community"><button>Start a Challenge</button></Link>)
-            }
-
-            {state.currentUser.challenged &&
-                <Link to="/challenged"><button>Current Challenge</button></Link>
-            }
+            {isAuthenticated && <Home />}
 
         </div>
+
+
+
+
+        // <div>
+        //     <img width="500px" src={logo} alt="Vegemon" />
+        //     <br></br>
+        //     <Link to="/">
+        //         {/* If not logged, show the Log In button */}
+        //         {!isLoading && !user && (
+        //             <>
+        //                 <button onClick={loginWithRedirect}>
+        //                     Log In
+        //                 </button>
+        //             </>
+        //         )}
+        //     </Link>
+        //     {/* If logged in, go to the home page */}
+        //     {isAuthenticated && (
+
+        //         <>
+        //             <Link to="/home"><button>Go Home</button></Link>
+        //             <Link to="/" onClick={() => logout({ returnTo: window.location.origin })}>
+        //                 <button>Log Out</button>
+        //             </Link>
+
+        //         </>
+
+        //     )}
+
+        //     {isAuthenticated && (!state.currentUser.challenged &&
+        //         <Link to="/community"><button>Start a Challenge</button></Link>)
+        //     }
+
+        //     {state.currentUser.challenged &&
+        //         <Link to="/challenged"><button>Current Challenge</button></Link>
+        //     }
+
+        // </div>
     )
 
 

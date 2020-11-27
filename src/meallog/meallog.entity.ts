@@ -9,7 +9,7 @@ export class MealLog {
     @Column({
         type: "date"
     })
-    date: string;
+    date: Date;
 
     @Column({
         type:"varchar",

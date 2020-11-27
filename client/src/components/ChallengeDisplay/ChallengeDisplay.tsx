@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+
+import DetailCard from '../../components/DetailCard/DetailCard';
+import ChallengeStats from '../../components/ChallengeStats/ChallengeStats';
 
 import { DateTime } from 'luxon';
 
@@ -36,21 +40,25 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
         <div className="challenge">
             <h1>Current Challenge</h1>
             <h2>{startDate.toFormat('LLL. dd yyyy')} - {endDate.toFormat('LLL. dd yyyy')}</h2>
-            <h2>{state.currentUser.nickname} Challenge Stats</h2>
-            {props.position === 1 ? <p>Current Multiplier: {props.currentChallenge!.playerOne_currentMultiplier}</p> : <p>Current Multiplier: {props.currentChallenge!.playerTwo_currentMultiplier}</p>}
-            { props.position === 1 ? <p>Total Veggies: {props.currentChallenge!.playerOne_totalVeggies.length}</p> : <p>Total Veggies: {props.currentChallenge!.playerTwo_totalVeggies.length}</p>}
-            { props.position === 1 ? <p>Total Unique Veggies: {props.currentChallenge!.playerOne_uniqueVeggies.length}</p> : <p>Total Unique Veggies: {props.currentChallenge!.playerTwo_uniqueVeggies.length}</p>}
-            { props.position === 1 ? <h3>Score: {props.currentChallenge!.playerOne_currentScore}</h3> : <h3>Score: {props.currentChallenge!.playerTwo_currentScore}</h3>}
 
-            <h2>{props.currentChallenger!.nickname} Challenge Stats</h2>
-            {props.position === 2 ? <p>Current Multiplier: {props.currentChallenge!.playerOne_currentMultiplier}</p> : <p>Current Multiplier: {props.currentChallenge!.playerTwo_currentMultiplier}</p>}
-            { props.position === 2 ? <p>Total Veggies: {props.currentChallenge!.playerOne_totalVeggies.length}</p> : <p>Total Veggies: {props.currentChallenge!.playerTwo_totalVeggies.length}</p>}
-            { props.position === 2 ? <p>Total Unique Veggies: {props.currentChallenge!.playerOne_uniqueVeggies.length}</p> : <p>Total Unique Veggies: {props.currentChallenge!.playerTwo_uniqueVeggies.length}</p>}
-            { props.position === 2 ? <h3>Score: {props.currentChallenge!.playerOne_currentScore} </h3> : <h3>Score: {props.currentChallenge!.playerTwo_currentScore}</h3>}
+            <Grid item xs={12} container justify="space-around">
+
+                <DetailCard>
+                    <h3>{state.currentUser.nickname} Stats</h3>
+                    <ChallengeStats userID={state.currentUser._id} startDate={startDate.toFormat('yyyyLLdd')} endDate={endDate.toFormat('yyyyLLdd')} />
+                </DetailCard>
+
+                <DetailCard>
+                    <h3>{props.currentChallenger!.nickname} Stats</h3>
+                    <ChallengeStats userID={props.currentChallenger!._id} startDate={startDate.toFormat('yyyyLLdd')} endDate={endDate.toFormat('yyyyLLdd')} />
+                </DetailCard>
+
+            </Grid>
 
 
-            <Link to="/"> <Button variant="contained">Back to Login</Button> </Link>
         </div>
+
+
     )
 
 }

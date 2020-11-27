@@ -57,10 +57,9 @@ export class User {
   lifetimeUniqueVeggies: string[];
 
   @Column({
-    type: "simple-array",
-    nullable: true
+    default: 0
   })
-  lifetimeTotalVeggies: string[];
+  lifetimeTotalVeggies: number;
 
   @OneToMany(() => MealLog, meallog => meallog.user)
   mealLogs: MealLog;
