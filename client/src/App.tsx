@@ -15,19 +15,18 @@ import Register from './views/Register/Register';
 import Wrapper from './components/Wrapper/Wrapper';
 import KeithTestGrid from './views/KeithTestGrid/KeithTestGrid'
 // import Winner from './views/Winner/Winner';
-import GameBoard from './views/GameBoard/GameBoard';
+// import GameBoard from './views/GameBoard/GameBoard';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-
+import RachelTest from './views/RachelTest/RachelTest';
 
 function App() {
   return (
     <div className="App">
-      <div className="app-container app-border">
         <StoreProvider>
           <Wrapper>
             <Header />
-            <div className="dark-box">
+            {/* <div className="dark-box"> */}
               <Switch>
                 <Route path="/keith-dev" exact component={KeithTestGrid} />
                 <Route path="/" exact component={Login} />
@@ -38,14 +37,14 @@ function App() {
                 <Route path="/landing" exact component={Landing} />
                 <Route path="/plant-log" exact component={PlantLog} />
                 <Route path="/register" exact component={Register} />
+                <Route path="/rachel" exact component={RachelTest} />
                 {/* <Route path="/winner" exact component={Winner} /> */}
-                <Route path="/game-board" exact component={GameBoard} />
+                {/* <Route path="/game-board" exact component={GameBoard} /> */}
               </Switch>
-            </div>
+            {/* </div> */}
             <Footer />
           </Wrapper>
         </StoreProvider>
-      </div>
     </div>
   );
 }
