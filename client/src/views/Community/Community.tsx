@@ -22,7 +22,9 @@ import { SET_CURRENT_USER, LOADING } from '../../state/actions';
 
 import { Link, Redirect } from 'react-router-dom';
 
-import ChallengeDisplay from '../../components/ChallengeDisplay/ChallengeDisplay';
+import Challenged from '../Challenged/Challenged';
+
+import './Community.css';
 
 
 function Community() {
@@ -138,11 +140,12 @@ function Community() {
 
             return (
                 <Grid item xs={12} container justify="space-around">
-                    <div>
+                    <div className="community-display">
                         {!state.currentUser.challenged && <Button variant="contained" onClick={() => loadUsers()}>Choose a Challenger</Button>}
                         {state.currentUser.challenged && <div>
                             <h2>Challenge In Progress</h2>
-                            <Link to="/challenged"><Button variant="contained">View Challenge Stats</Button></Link>
+                            {/* <Link to="/challenged"><Button variant="contained">View Challenge Stats</Button></Link> */}
+                            <Challenged />
                         </div>}
 
                     </div>

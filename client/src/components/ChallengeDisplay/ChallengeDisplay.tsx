@@ -38,7 +38,7 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
 
     return (
         <div className="challenge">
-            <h1>Current Challenge</h1>
+
             <h2>{startDate.toFormat('LLL. dd yyyy')} - {endDate.toFormat('LLL. dd yyyy')}</h2>
 
             <Grid item xs={12} container justify="space-around">
