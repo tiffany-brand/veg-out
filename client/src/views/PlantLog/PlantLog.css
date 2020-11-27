@@ -1,6 +1,21 @@
-h3 {
-  margin-top: 10px;
+/* h3 {
+  margin: 10px;
 }
+
+h2 {
+  margin: 3%;
+}
+
+input.log-input {
+  margin-top: 20px;
+  max-width: 170px;
+  margin-bottom: 30px;
+}
+
+.center-button {
+  text-align: center;
+}
+
 button.log-button {
   width: 80%;
   padding: 5px 0px;
@@ -10,6 +25,7 @@ button.log-button {
   font-size: 24px;
   font-family: 'VT323', monospace;
 }
+*/
 
 ul.search-results {
   padding-bottom: 15px;
