@@ -109,6 +109,8 @@ const PlantLog: React.FC = () => {
       user: loggingUser._id!
     })
 
+    console.log(loggingUser.lifetimeTotalVeggies);
+
     dispatch({
       type: SET_CURRENT_USER,
       currentUser: {
