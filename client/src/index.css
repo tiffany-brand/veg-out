@@ -5,9 +5,9 @@
   justify-self: center;
  }
 
- html {
+html {
   overflow-x: hidden;
-  scroll-behavior: auto;
+  /* scroll-behavior: auto; */
 }
 
 
@@ -33,5 +33,5 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0px;
-  overflow-x: auto;
+  overflow-x: hidden;
 }

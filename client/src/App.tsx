@@ -18,7 +18,7 @@ import KeithTestGrid from './views/KeithTestGrid/KeithTestGrid'
 // import GameBoard from './views/GameBoard/GameBoard';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-
+import RachelTest from './views/RachelTest/RachelTest';
 
 function App() {
   return (
@@ -37,6 +37,7 @@ function App() {
                 <Route path="/landing" exact component={Landing} />
                 <Route path="/plant-log" exact component={PlantLog} />
                 <Route path="/register" exact component={Register} />
+                <Route path="/rachel" exact component={RachelTest} />
                 {/* <Route path="/winner" exact component={Winner} /> */}
                 {/* <Route path="/game-board" exact component={GameBoard} /> */}
               </Switch>

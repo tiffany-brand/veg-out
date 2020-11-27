@@ -67,7 +67,7 @@ function Home() {
 
   return (
     <div>
-      <Grid item xs={12} container justify="space-around">
+      <Grid item xs={12} container className="component-style" justify="space-around">
         <DetailCard>
           <div className="user-stats">
             <h3>{state.currentUser.nickname} Stats</h3>

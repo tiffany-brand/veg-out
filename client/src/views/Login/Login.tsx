@@ -109,7 +109,7 @@ function Login(): JSX.Element {
     return (
         <div>
             {!isAuthenticated && <div>
-                <img width="500px" src={logo} alt="Vegemon" />
+                {/* <img width="500px" src={logo} alt="Vegemon" /> */}
 
                 <button onClick={loginWithRedirect}> Log In </button>
 
