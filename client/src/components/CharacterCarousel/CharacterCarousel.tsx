@@ -15,8 +15,8 @@ import { Link } from 'react-router-dom';
 import { SET_CURRENT_USER } from '../../state/actions';
 import ICharacterResponse from '../../interfaces/ICharacterResponse';
 
-import bunny from "../../svg/bunny.svg";
-import caterpillar from "../../svg/caterpillar_trimmed.svg";
+// import bunny from "../../svg/bunny.svg";
+// import caterpillar from "../../svg/caterpillar_trimmed.svg";
 
 
 // interface IProps {

@@ -3,10 +3,25 @@ import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import userAPI from '../../utils/userAPI';
 import { useStoreContext } from '../../state/GlobalState';
-import logo from '../../assets/images/Vegemon-logo.png';
+// import logo from '../../assets/images/Vegemon-logo.png';
 import { LOADING, SET_CURRENT_USER } from '../../state/actions';
 import { saveToLocalStorage } from '../../utils/persistUser';
 import Home from '../Home/Home';
+
+import Grid from '@material-ui/core/Grid';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+
+    },
+    center: {
+      align: 'center',
+    }
+  }),
+);
 
 function Login(): JSX.Element {
 
@@ -94,7 +109,7 @@ function Login(): JSX.Element {
     return (
         <div>
             {!isAuthenticated && <div>
-                <img width="500px" src={logo} alt="Vegemon" />
+                {/* <img width="500px" src={logo} alt="Vegemon" /> */}
 
                 <button onClick={loginWithRedirect}> Log In </button>
 

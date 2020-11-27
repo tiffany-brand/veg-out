@@ -1,19 +1,33 @@
 
 .white-background {
+  padding-top:7px;
+  padding-right: 5px;
   background-color: #fff;
+  height: 100%;
   align-items: center;
   position: relative;
   z-index: 999;
 }
 
+.MuiGrid-spacing-xs-2 {
+  margin: 0;
+}
+
+/* .MuiGrid-spacing-xs-2 > .MuiGrid-item {
+  padding: 0;
+} */
+
 h1.veggie-header {
   margin: 0;
+  padding-left: 20%;
+  text-align: center;
+  height: 50%;
 }
 
 .mobile-menu div{
   width: 25px;
   height: 2px;
-  background-color: #156e58;
+  background-color: #1f1f1f;
   margin: 5px;
 }
 
@@ -26,8 +40,8 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 8vh;
   background-color: #fff;
+  /* margin-top: 1px; */
 }
 
 .nav-bar{
@@ -77,6 +91,21 @@ nav {
 .mobile-menu-display {
   height: 125px;
 }
+
 .mobile-menu-display li {
   font-size: 1em;
+}
+
+@media screen and (max-width: 415px) {
+  h1 {
+    font-size: x-large;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  h1 {
+    font-size: x-large;
+    text-align: left;
+  }
 }

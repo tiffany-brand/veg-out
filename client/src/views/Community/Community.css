@@ -1,11 +1,7 @@
-div.community-container {
-  width: 96vw;
-}
-
-h1 {
-  display: block;
+/* h1 {
   text-align: center;
-}
+} 
+
 
 h3 {
   padding-bottom: 10px;
@@ -20,4 +16,9 @@ div.search-results {
   margin-bottom: 20px;
   font-size: 28px;
   color: #f28327;
-}
+} 
+
+input.input {
+  max-width: 9vw;
+  margin: 1vw;
+} */

@@ -7,8 +7,9 @@ export default function DetailCard(props: any) {
 
   return (
 
-    <Grid item xs={8} sm={4}>
-      <div className="veggie-box">
+    // <Grid className="zero-out" item xs={8} sm={4}>
+    <Grid className="zero-out"  item xs={12} md={6}>
+      <div className="dark-box">
         {props.children}
       </div>
     </Grid>

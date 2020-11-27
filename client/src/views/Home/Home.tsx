@@ -13,6 +13,7 @@ import PlantLog from '../PlantLog/PlantLog';
 // Structural imports
 import DetailCard from '../../components/DetailCard/DetailCard';
 import Grid from '@material-ui/core/Grid';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 // User data and shape
 import IUser from '../../interfaces/IUser'
@@ -66,7 +67,7 @@ function Home() {
 
   return (
     <div>
-      <Grid item xs={12} container justify="space-around">
+      <Grid item xs={12} container className="component-style" justify="space-around">
         <DetailCard>
           <div className="user-stats">
             <h3>{state.currentUser.nickname} Stats</h3>

@@ -7,6 +7,8 @@ import { useStoreContext } from "../../state/GlobalState";
 import { SET_CHALLENGES } from "../../state/actions";
 import { Link } from 'react-router-dom';
 
+import Grid from '@material-ui/core/Grid';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 // export default function Challenges() {
 

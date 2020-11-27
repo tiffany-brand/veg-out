@@ -1,20 +1,23 @@
 * {
-  /* padding: 0;
-  margin: 0; */
-  /* box-sizing: border-box; */
-  /* justify-self: center; */
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  justify-self: center;
+ }
+
+html {
+  overflow-x: hidden;
+  /* scroll-behavior: auto; */
 }
 
-div#root {
-  /* width: 100vh;
-  height: 100vh; */
-  /* background: url("./svg/border.gif");
-  background-repeat: no-repeat; */
+
+/* div#root {
+  width: 100vh;
+  height: 100vh;
   /* display: grid;
   justify-content: center;
-  align-items: center; */
-}
-
+  align-items: center;
+} */
 
 /* position: relative;
 margin: 1vh;
@@ -27,5 +30,8 @@ min-height: 98vh; */
 body {
   background-image: url('./assets/images/veggie-BG.jpg');
   background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-size: cover;
   margin: 0px;
+  overflow-x: hidden;
 }
