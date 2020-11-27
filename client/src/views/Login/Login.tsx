@@ -7,6 +7,21 @@ import { useStoreContext } from '../../state/GlobalState';
 import { LOADING, SET_CURRENT_USER } from '../../state/actions';
 import { saveToLocalStorage } from '../../utils/persistUser';
 
+import Grid from '@material-ui/core/Grid';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+
+    },
+    center: {
+      align: 'center',
+    }
+  }),
+);
+
 function Login(): JSX.Element {
 
     const { isLoading, user, loginWithRedirect, logout, isAuthenticated } = useAuth0();
@@ -91,15 +106,15 @@ function Login(): JSX.Element {
 
     return (
         <div>
-            {/* <img width="500px" src={logo} alt="Vegemon" /> */}
-            <br></br>
             <Link to="/">
                 {/* If not logged, show the Log In button */}
                 {!isLoading && !user && (
                     <>
-                        <button onClick={loginWithRedirect}>
-                            Log In
-                        </button>
+                        <Grid>
+                            <button onClick={loginWithRedirect}>
+                                Log In
+                            </button>
+                        </Grid>
                     </>
                 )}
             </Link>
