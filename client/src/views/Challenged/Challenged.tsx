@@ -57,7 +57,7 @@ function Challenged() {
                     setPosition(2) // current user is player two
                 }
                 setCurrentChallenger(challenger);
-                console.log(challenger);
+
                 setIsLoading(false);
             })
             .catch(err => console.log(err))

@@ -24,6 +24,8 @@ import { Link, Redirect } from 'react-router-dom';
 
 import Challenged from '../Challenged/Challenged';
 
+import { endChallenge } from '../../utils/gameplayUtils/endChallenge';
+
 import './Community.css';
 
 
@@ -44,7 +46,6 @@ function Community() {
     const [isLoading, setIsLoading] = useState(true);
 
 
-
     // loads state from local storage if page is refreshed
     useEffect(() => {
         if (!state.currentUser._id) {
@@ -60,10 +61,10 @@ function Community() {
     }, [])
 
 
+
     if (isLoading) {
         return <div>Loading...</div>
     }
-
 
 
     // load users into Autocomplete to search for a challenger
@@ -94,7 +95,7 @@ function Community() {
             playerTwo_currentMultiplier: 1,
             playerTwo_currentScore: 0
         }
-        console.log(newChallenge)
+
         // save the new challenge in the DB
         challengesAPI.saveChallenge(newChallenge)
             .then((res) => {
@@ -144,7 +145,6 @@ function Community() {
                         {!state.currentUser.challenged && <Button variant="contained" onClick={() => loadUsers()}>Choose a Challenger</Button>}
                         {state.currentUser.challenged && <div>
                             <h2>Challenge In Progress</h2>
-                            {/* <Link to="/challenged"><Button variant="contained">View Challenge Stats</Button></Link> */}
                             <Challenged />
                         </div>}
 
