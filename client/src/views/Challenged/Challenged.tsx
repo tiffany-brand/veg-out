@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 import { useStoreContext } from '../../state/GlobalState';
 
@@ -43,24 +44,27 @@ function Challenged() {
     }, [])
 
     useEffect(() => {
+        // load current challenge if one is running
         const storedState = loadFromLocalStorage();
-        challengesAPI.getChallenge(state.currentUser.currentChallenge || storedState.currentUser.currentChallenge)
-            .then(res => {
-                setCurrentChallenge(res.data);
-                console.log(JSON.stringify(res.data));
-                let challenger;
-                if (res.data.playerOne._id === state.currentUser._id || res.data.playerOne._id === storedState.currentUser._id) {
-                    challenger = res.data.playerTwo;
-                    setPosition(1) // current user is player one
-                } else {
-                    challenger = res.data.playerOne;
-                    setPosition(2) // current user is player two
-                }
-                setCurrentChallenger(challenger);
-                console.log(challenger);
-                setIsLoading(false);
-            })
-            .catch(err => console.log(err))
+        if (state.currentUser.challenged) {
+            challengesAPI.getChallenge(state.currentUser.currentChallenge || storedState.currentUser.currentChallenge)
+                .then(res => {
+                    setCurrentChallenge(res.data);
+                    console.log(JSON.stringify(res.data));
+                    let challenger;
+                    if (res.data.playerOne._id === state.currentUser._id || res.data.playerOne._id === storedState.currentUser._id) {
+                        challenger = res.data.playerTwo;
+                        setPosition(1) // current user is player one
+                    } else {
+                        challenger = res.data.playerOne;
+                        setPosition(2) // current user is player two
+                    }
+                    setCurrentChallenger(challenger);
+
+                    setIsLoading(false);
+                })
+                .catch(err => console.log(err))
+        } else setIsLoading(false);
 
     }, [])
 
@@ -71,8 +75,17 @@ function Challenged() {
 
     return (
         <div>
+            {state.currentUser.challenged && currentChallenger &&
+                <div>
+                    <h2>Challenge In Progress</h2>
+                    <ChallengeDisplay currentChallenge={currentChallenge} currentChallenger={currentChallenger} position={position} />
+                </div>
+            }
+            <div>
+                <h2>Past Challenges</h2>
+                <p>Past Challenges Component Goes Here</p>
 
-            <ChallengeDisplay currentChallenge={currentChallenge} currentChallenger={currentChallenger} position={position} />
+            </div>
 
         </div>
     )
