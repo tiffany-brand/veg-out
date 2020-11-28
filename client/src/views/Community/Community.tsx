@@ -20,28 +20,31 @@ import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUse
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { SET_CURRENT_USER, LOADING } from '../../state/actions';
 
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Challenged from '../Challenged/Challenged';
-
-import { endChallenge } from '../../utils/gameplayUtils/endChallenge';
 
 import './Community.css';
 
 
 function Community() {
 
+    const defaultUser = {
+        email: "",
+        auth0ID: "",
+        _id: "",
+        nickname: "",
+        challenged: true,
+        currentChallenge: ""
+    }
+
     const [state, dispatch] = useStoreContext();
 
     const [allUsers, setAllUsers] = useState<IUser[]>([]);
     const [searching, setSearching] = useState(false);
 
-    const [value, setValue] = React.useState<IUser | null>(allUsers[0]);
+    const [value, setValue] = React.useState<IUser | null>(allUsers[0] || defaultUser);
     const [inputValue, setInputValue] = React.useState('');
-
-    const [currentChallenge, setCurrentChallenge] = useState<IChallenge | undefined>()
-    const [currentChallenger, setCurrentChallenger] = useState<IUser | undefined>()
-    const [position, setPosition] = useState(1);
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -69,11 +72,13 @@ function Community() {
 
     // load users into Autocomplete to search for a challenger
     const loadUsers = () => {
+        setIsLoading(true)
         userAPI.getUsers()
             .then(res => {
                 const challengers = res.data.filter((user: IUser) => !user.challenged && user._id !== state.currentUser._id)
                 setAllUsers(challengers);
                 setSearching(true);
+                setIsLoading(false)
             })
     }
 
@@ -162,7 +167,7 @@ function Community() {
             return (
 
                 <form>
-                    <Autocomplete
+                    { allUsers[0] && <div> <Autocomplete
                         id="challenger"
                         options={allUsers}
                         getOptionLabel={(option) => option.nickname}
@@ -177,9 +182,9 @@ function Community() {
                         }}
                     />
 
-                    <Button variant="contained" disabled={!value} onClick={(e: any) => handleSubmit(e)}>Challenge!</Button>
+                        <Button variant="contained" disabled={!value} onClick={(e: any) => handleSubmit(e)}>Challenge!</Button>
 
-
+                    </div>}
                 </form>
 
             )
