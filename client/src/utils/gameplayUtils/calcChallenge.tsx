@@ -46,8 +46,8 @@ export const calcChallenge = (playerOne: string, playerTwo: string, challengeId:
                             playerTwo_uniqueVeggies: playerTwoUnique,
                             playerTwo_currentMultiplier: playerTwoMultiplier,
                             playerTwo_currentScore: playerTwoScore,
-                            playerOne_id: playerOne,
-                            playerTwo_id: playerTwo
+                            playerOne: playerOne,
+                            playerTwo: playerTwo
                         }
                         challengesAPI.saveChallenge(scoredChallenge)
                             .then((res) => {
