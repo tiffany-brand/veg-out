@@ -20,9 +20,11 @@ import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUse
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { SET_CURRENT_USER, LOADING } from '../../state/actions';
 
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import ChallengeDisplay from '../../components/ChallengeDisplay/ChallengeDisplay';
+import Challenged from '../Challenged/Challenged';
+
+import './Community.css';
 
 
 function Community() {
@@ -35,12 +37,7 @@ function Community() {
     const [value, setValue] = React.useState<IUser | null>(allUsers[0]);
     const [inputValue, setInputValue] = React.useState('');
 
-    const [currentChallenge, setCurrentChallenge] = useState<IChallenge | undefined>()
-    const [currentChallenger, setCurrentChallenger] = useState<IUser | undefined>()
-    const [position, setPosition] = useState(1);
-
     const [isLoading, setIsLoading] = useState(true);
-
 
 
     // loads state from local storage if page is refreshed
@@ -53,25 +50,29 @@ function Community() {
             });
         } else saveToLocalStorage(state);
 
-        setIsLoading(false);
-
     }, [])
 
+    // load users for challenger choice input
+    useEffect(() => {
+
+        userAPI.getUsers()
+            .then(res => {
+                const challengers = res.data.filter((user: IUser) => !user.challenged && user._id !== state.currentUser._id)
+                setAllUsers(challengers);
+                setValue(allUsers[0]);
+                setIsLoading(false)
+            })
+
+    }, [])
 
     if (isLoading) {
         return <div>Loading...</div>
     }
 
 
-
-    // load users into Autocomplete to search for a challenger
+    // show the search box
     const loadUsers = () => {
-        userAPI.getUsers()
-            .then(res => {
-                const challengers = res.data.filter((user: IUser) => !user.challenged && user._id !== state.currentUser._id)
-                setAllUsers(challengers);
-                setSearching(true);
-            })
+        setSearching(true);
     }
 
     const handleSubmit = (e: any) => {
@@ -92,12 +93,13 @@ function Community() {
             playerTwo_currentMultiplier: 1,
             playerTwo_currentScore: 0
         }
-        console.log(newChallenge)
+
         // save the new challenge in the DB
         challengesAPI.saveChallenge(newChallenge)
             .then((res) => {
-                console.log(res);
+
                 setSearching(false);
+                setIsLoading(true)
                 const challengeId = res.data._id;
                 // set the current user to challenged
                 const challengedUser = {
@@ -121,8 +123,11 @@ function Community() {
                                 challenged: true,
                                 currentChallenge: challengeId
                             }
+
                         })
+
                     }).then(res => {
+                        setIsLoading(false)
                         return <Link to="/challenged"><Button variant="contained">View Challenge Stats</Button></Link>
                     })
             })
@@ -138,17 +143,19 @@ function Community() {
 
             return (
                 <Grid item xs={12} container justify="space-around">
-                    <div>
-                        {!state.currentUser.challenged && <Button variant="contained" onClick={() => loadUsers()}>Choose a Challenger</Button>}
-                        {state.currentUser.challenged && <div>
-                            <h2>Challenge In Progress</h2>
-                            <Link to="/challenged"><Button variant="contained">View Challenge Stats</Button></Link>
+                    <div className="community-display">
+                        {!state.currentUser.challenged && <div>
+                            <Button variant="contained" onClick={() => loadUsers()}>Choose a New Challenger</Button>
+
                         </div>}
+
+                        <Challenged />
+
 
                     </div>
                 </Grid>
             )
-        } else {
+        } else if (allUsers[0]) {
 
             return (
 
@@ -158,7 +165,7 @@ function Community() {
                         options={allUsers}
                         getOptionLabel={(option) => option.nickname}
                         renderInput={(params) => <TextField {...params} label="Choose a Challenger" variant="outlined" />}
-                        value={value}
+                        value={value || allUsers[0]}
                         onChange={(event: any, newValue: IUser | null) => {
                             setValue(newValue);
                         }}

@@ -3,6 +3,7 @@ import { User } from "src/users/user.entity";
 
 
 export class CreateChallengeDTO {
+    _id: string;
     dateStarted: string;
     playerOne: User;
     playerOne_totalVeggies: string[];
