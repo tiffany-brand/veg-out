@@ -29,21 +29,12 @@ import './Community.css';
 
 function Community() {
 
-    const defaultUser = {
-        email: "",
-        auth0ID: "",
-        _id: "",
-        nickname: "",
-        challenged: true,
-        currentChallenge: ""
-    }
-
     const [state, dispatch] = useStoreContext();
 
     const [allUsers, setAllUsers] = useState<IUser[]>([]);
     const [searching, setSearching] = useState(false);
 
-    const [value, setValue] = React.useState<IUser | null>(allUsers[0] || defaultUser);
+    const [value, setValue] = React.useState<IUser | null>(allUsers[0]);
     const [inputValue, setInputValue] = React.useState('');
 
     const [isLoading, setIsLoading] = useState(true);
@@ -59,27 +50,29 @@ function Community() {
             });
         } else saveToLocalStorage(state);
 
-        setIsLoading(false);
-
     }, [])
 
+    // load users for challenger choice input
+    useEffect(() => {
 
+        userAPI.getUsers()
+            .then(res => {
+                const challengers = res.data.filter((user: IUser) => !user.challenged && user._id !== state.currentUser._id)
+                setAllUsers(challengers);
+                setValue(allUsers[0]);
+                setIsLoading(false)
+            })
+
+    }, [])
 
     if (isLoading) {
         return <div>Loading...</div>
     }
 
 
-    // load users into Autocomplete to search for a challenger
+    // show the search box
     const loadUsers = () => {
-        setIsLoading(true)
-        userAPI.getUsers()
-            .then(res => {
-                const challengers = res.data.filter((user: IUser) => !user.challenged && user._id !== state.currentUser._id)
-                setAllUsers(challengers);
-                setSearching(true);
-                setIsLoading(false)
-            })
+        setSearching(true);
     }
 
     const handleSubmit = (e: any) => {
@@ -162,17 +155,17 @@ function Community() {
                     </div>
                 </Grid>
             )
-        } else {
+        } else if (allUsers[0]) {
 
             return (
 
                 <form>
-                    { allUsers[0] && <div> <Autocomplete
+                    <Autocomplete
                         id="challenger"
                         options={allUsers}
                         getOptionLabel={(option) => option.nickname}
                         renderInput={(params) => <TextField {...params} label="Choose a Challenger" variant="outlined" />}
-                        value={value}
+                        value={value || allUsers[0]}
                         onChange={(event: any, newValue: IUser | null) => {
                             setValue(newValue);
                         }}
@@ -182,9 +175,9 @@ function Community() {
                         }}
                     />
 
-                        <Button variant="contained" disabled={!value} onClick={(e: any) => handleSubmit(e)}>Challenge!</Button>
+                    <Button variant="contained" disabled={!value} onClick={(e: any) => handleSubmit(e)}>Challenge!</Button>
 
-                    </div>}
+
                 </form>
 
             )
