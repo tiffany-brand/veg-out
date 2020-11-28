@@ -2,7 +2,7 @@ import challengesAPI from '../challengesAPI';
 import mealLogAPI from '../mealLogAPI';
 import challengeUtils from '../gameplayUtils/gamplayUtils';
 
-import { DateTime } from 'luxon';
+
 
 
 export const calcChallenge = (playerOne: string, playerTwo: string, challengeId: string) => {

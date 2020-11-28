@@ -99,7 +99,7 @@ function Community() {
         // save the new challenge in the DB
         challengesAPI.saveChallenge(newChallenge)
             .then((res) => {
-                console.log(res);
+
                 setSearching(false);
                 setIsLoading(true)
                 const challengeId = res.data._id;
