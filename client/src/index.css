@@ -35,3 +35,23 @@ body {
   margin: 0px;
   overflow-x: hidden;
 }
+
+div.component-style {
+  color: #fff;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  min-height: 300px;
+  align-items: center;
+}
+
+div.dark-box {
+  margin-top: 10%;
+  height:65vh;
+  padding-top: 10px;
+  width: 100%;
+  min-height: 300px;
+  background-color: #1a1a1a83;
+  align-items: center;
+  justify-content: center;
+}
