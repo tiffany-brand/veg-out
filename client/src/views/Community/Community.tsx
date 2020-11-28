@@ -142,11 +142,13 @@ function Community() {
             return (
                 <Grid item xs={12} container justify="space-around">
                     <div className="community-display">
-                        {!state.currentUser.challenged && <Button variant="contained" onClick={() => loadUsers()}>Choose a Challenger</Button>}
-                        {state.currentUser.challenged && <div>
-                            <h2>Challenge In Progress</h2>
-                            <Challenged />
+                        {!state.currentUser.challenged && <div>
+                            <Button variant="contained" onClick={() => loadUsers()}>Choose a New Challenger</Button>
+
                         </div>}
+
+                        <Challenged />
+
 
                     </div>
                 </Grid>
