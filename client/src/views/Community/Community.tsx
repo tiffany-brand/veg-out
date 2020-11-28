@@ -101,6 +101,7 @@ function Community() {
             .then((res) => {
                 console.log(res);
                 setSearching(false);
+                setIsLoading(true)
                 const challengeId = res.data._id;
                 // set the current user to challenged
                 const challengedUser = {
@@ -124,8 +125,11 @@ function Community() {
                                 challenged: true,
                                 currentChallenge: challengeId
                             }
+
                         })
+
                     }).then(res => {
+                        setIsLoading(false)
                         return <Link to="/challenged"><Button variant="contained">View Challenge Stats</Button></Link>
                     })
             })

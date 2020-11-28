@@ -75,7 +75,7 @@ function Challenged() {
 
     return (
         <div>
-            {state.currentUser.challenged &&
+            {state.currentUser.challenged && currentChallenger &&
                 <div>
                     <h2>Challenge In Progress</h2>
                     <ChallengeDisplay currentChallenge={currentChallenge} currentChallenger={currentChallenger} position={position} />

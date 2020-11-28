@@ -48,7 +48,7 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
         // determine if the current user is player one or two
         let playerOne: string;
         let playerTwo: string;
-
+        console.log("position " + props.position)
         if (props.position === 1) {
             playerOne = state.currentUser._id;
             playerTwo = props.currentChallenger!._id;
@@ -134,12 +134,14 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
 
                     <DetailCard>
                         <h3>{state.currentUser.nickname} Stats</h3>
-                        <ChallengeScore multiplier={calcedChallenge!.playerOne_currentMultiplier} veggies={calcedChallenge!.playerOne_totalVeggies.length} unique={calcedChallenge!.playerOne_uniqueVeggies.length} score={calcedChallenge!.playerOne_currentScore} />
+                        {playerOne && <ChallengeScore multiplier={calcedChallenge!.playerOne_currentMultiplier} veggies={calcedChallenge!.playerOne_totalVeggies.length} unique={calcedChallenge!.playerOne_uniqueVeggies.length} score={calcedChallenge!.playerOne_currentScore} />}
+                        {!playerOne && <ChallengeScore multiplier={calcedChallenge!.playerTwo_currentMultiplier} veggies={calcedChallenge!.playerTwo_totalVeggies.length} unique={calcedChallenge!.playerTwo_uniqueVeggies.length} score={calcedChallenge!.playerTwo_currentScore} />}
                     </DetailCard>
 
                     <DetailCard>
                         <h3>{props.currentChallenger!.nickname} Stats</h3>
-                        <ChallengeScore multiplier={calcedChallenge!.playerTwo_currentMultiplier} veggies={calcedChallenge!.playerTwo_totalVeggies.length} unique={calcedChallenge!.playerTwo_uniqueVeggies.length} score={calcedChallenge!.playerTwo_currentScore} />
+                        {playerOne && <ChallengeScore multiplier={calcedChallenge!.playerTwo_currentMultiplier} veggies={calcedChallenge!.playerTwo_totalVeggies.length} unique={calcedChallenge!.playerTwo_uniqueVeggies.length} score={calcedChallenge!.playerTwo_currentScore} />}
+                        {!playerOne && <ChallengeScore multiplier={calcedChallenge!.playerOne_currentMultiplier} veggies={calcedChallenge!.playerOne_totalVeggies.length} unique={calcedChallenge!.playerOne_uniqueVeggies.length} score={calcedChallenge!.playerOne_currentScore} />}
                     </DetailCard>
 
                 </Grid>
