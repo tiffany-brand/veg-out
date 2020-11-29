@@ -42,28 +42,10 @@ const PlantLog: React.FC = () => {
   //State for holding current meal
   const [currentMeal, setCurrentMeal] = useState<IVeggies[]>([]);
 
-
-  // State to hold userAPI data
-  const [loggingUser, setLoggingUser] = useState<IUser>({
-    email: "",
-    auth0ID: "",
-    _id: "",
-    nickname: "",
-    challenged: false,
-    currentChallenge: "",
-    wins: 0,
-    losses: 0,
-    ties: 0,
-    lifetimeUniqueVeggies: [],
-    lifetimeTotalVeggies: 0,
-  })
-
-
   // Call the APIs for veggies and user data
   useEffect(() => {
     Promise.all([userAPI.getUser(state.currentUser._id), veggieAPI.getVeggies()])
       .then(([userRes, veggieRes]) => {
-        setLoggingUser(userRes.data);
         setAvailablePlants(veggieRes.data);
       }
       )
@@ -79,11 +61,12 @@ const PlantLog: React.FC = () => {
     )))
   }
 
-  // Append added plant to current meal and tally total values
+  // Append added plant to current meal list
   const addPlant = (plant: IVeggies) => {
     setCurrentMeal([...currentMeal, plant])
   };;
 
+  // Remove plant from current meal list
   const removePlant = (plant: IVeggies) => {
     const updatedList = currentMeal.filter(item => item.plantName !== plant.plantName)
     setCurrentMeal(updatedList)
@@ -99,32 +82,25 @@ const PlantLog: React.FC = () => {
 
     // Call utility to add unique items
     let newUniqueVeggies
-    if (!loggingUser.lifetimeUniqueVeggies) {
+    if (!state.currentUser.lifetimeUniqueVeggies) {
       newUniqueVeggies = mealVeggiesArray;
     } else {
-      newUniqueVeggies = arraySortUniqueVeggies(mealVeggiesArray, loggingUser.lifetimeUniqueVeggies!)
+      newUniqueVeggies = arraySortUniqueVeggies(mealVeggiesArray, state.currentUser.lifetimeUniqueVeggies!)
     }
 
-    console.log(`Logging user = 
-    ${JSON.stringify(loggingUser)}`);
-
     // Update user with total and unique veggies
-    userAPI.saveUser({ ...loggingUser, lifetimeUniqueVeggies: newUniqueVeggies })
-
+    userAPI.saveUser({ ...state.currentUser, lifetimeUniqueVeggies: newUniqueVeggies, lifetimeTotalVeggies: (mealVeggiesArray.length + state.currentUser.lifetimeTotalVeggies) })
+      .then(res => {
+        dispatch({
+          type: SET_CURRENT_USER,
+          currentUser: res.data
+        })
+      })
     // **** Update Meal-Log table
     mealLogAPI.saveMealLog({
       date: date,
       mealVeggies: mealVeggiesArray,
-      user: loggingUser._id!
-    })
-
-    dispatch({
-      type: SET_CURRENT_USER,
-      currentUser: {
-        ...state.currentUser,
-        lifetimeUniqueVeggies: loggingUser.lifetimeUniqueVeggies ? loggingUser.lifetimeUniqueVeggies.concat(newUniqueVeggies) : newUniqueVeggies,
-        lifetimeTotalVeggies: loggingUser.lifetimeTotalVeggies + mealVeggiesArray.length,
-      }
+      user: state.currentUser._id!
     })
 
     // Clear the current meal area

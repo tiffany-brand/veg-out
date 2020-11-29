@@ -41,7 +41,7 @@ function Home() {
             <h3 className="underlined-header">Plant Stats</h3>
             <div className="list-container">
               <ul>
-                <li>Unique: {state.currentUser.lifetimeUniqueVeggies.length ? state.currentUser.lifetimeUniqueVeggies.length : "0"} </li>
+                <li>Unique: {state.currentUser.lifetimeUniqueVeggies ? state.currentUser.lifetimeUniqueVeggies.length : "0"} </li>
                 <li>Total: {state.currentUser.lifetimeTotalVeggies}</li>
               </ul>
             </div>
