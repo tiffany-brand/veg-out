@@ -4,7 +4,6 @@ import './Home.css';
 // Global state and authorization utilities
 import { useStoreContext } from '../../state/GlobalState';
 import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUser';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { SET_CURRENT_USER } from '../../state/actions';
 
 // Plant logging functional component
@@ -13,33 +12,11 @@ import PlantLog from '../PlantLog/PlantLog';
 // Structural imports
 import DetailCard from '../../components/DetailCard/DetailCard';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-
-// User data and shape
-import IUser from '../../interfaces/IUser'
-import userAPI from '../../utils/userAPI'
 
 function Home() {
 
-  const [isLoading, setIsLoading] = useState(true);
-
   // Get global state and set local state
   const [state, dispatch] = useStoreContext();
-  // const [loggedInUser, setLoggedInUser] = useState<IUser>({
-  //   email: "",
-  //   auth0ID: "",
-  //   _id: "",
-  //   nickname: "",
-  //   challenged: false,
-  //   currentChallenge: "",
-  //   wins: 0,
-  //   losses: 0,
-  //   ties: 0,
-  //   lifetimeUniqueVeggies: [],
-  //   lifetimeTotalVeggies: 0,
-  // });
-
-
 
   // Keep logged in user persistent using local storage 
   useEffect(() => {
@@ -52,25 +29,12 @@ function Home() {
     } else saveToLocalStorage(state);
   }, [])
 
-  // Get logged in users states from the DB
-  useEffect(() => {
-    // const storedState = loadFromLocalStorage()
-    // userAPI.getUser(state.currentUser._id || storedState.currentUser._id)
-    //   .then(res => {
-    //     setLoggedInUser(res.data)
-    //     setIsLoading(false);
-    //   })
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-
   return (
     <div>
+      <h2 className="view-title">{state.currentUser.nickname} Stats</h2>
       <Grid item xs={12} container className="component-style" justify="space-around">
         <DetailCard>
-          <div className="user-stats">
-            <h3>{state.currentUser.nickname} Stats</h3>
+          <div className="user-stats detail-helper">
             <h5>Plant Stats</h5>
             <ul>
               <li>Unique: {state.currentUser.lifetimeUniqueVeggies?.length} </li>

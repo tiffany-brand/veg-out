@@ -20,7 +20,7 @@ div.component-style {
     align-items: center;
   }
   
-  div.dark-box {
+  /* div.dark-box {
     margin-top: 10%;
     height:65vh;
     padding-top: 10px;
@@ -29,13 +29,9 @@ div.component-style {
     background-color: #0e0e0e91;
     align-items: center;
     justify-content: center;
-  }
+  } */
   
-  .zero-out {
+  /* .zero-out {
     padding: 0 !important;
     margin-top: 10px;
-  }
-  
-  /* h2.box-header {
-    padding: 10px
   } */

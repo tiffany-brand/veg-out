@@ -9,15 +9,15 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
+    createStyles({
+        root: {
+            flexGrow: 1,
 
-    },
-    center: {
-      align: 'center',
-    }
-  }),
+        },
+        center: {
+            align: 'center',
+        }
+    }),
 );
 
 
@@ -35,18 +35,15 @@ function Landing(): JSX.Element {
     return (
         <>
             <Grid container justify="space-around" spacing={3} className="component-style">
-                {/* <img width="300px" src={logo} alt="Vegemon" /> */}
-                <Grid className="zero-out zero-out-top"  item xs={12} md={6}>
+                <Grid className="zero-out" item xs={12} md={6}>
                     <div className="dark-box">
                         <h1>Welcome to the landing page, {user.name}</h1>
+                        <h2>User Object</h2>
+                        <p>{JSON.stringify(user, null, 2)}</p>
+                        <Link to="/"><button>Go Back</button></Link>
                     </div>
                 </Grid>
-                <Grid className="zero-out zero-out-top"  item xs={12} md={6}>
-                    <img src={user.picture} alt={user.name} />
-                </Grid>
-                <h2>User Object</h2>
-                <p>{JSON.stringify(user, null, 2)}</p>
-                <Link to="/"><button>Go Back</button></Link>
+
             </Grid>
         </ >
     );
