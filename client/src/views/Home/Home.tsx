@@ -29,6 +29,9 @@ function Home() {
     } else saveToLocalStorage(state);
   }, [])
 
+  console.log(state.currentUser.lifetimeUniqueVeggies);
+
+
   return (
     <div>
       <h2 className="view-title">{state.currentUser.nickname} Stats</h2>
@@ -38,7 +41,7 @@ function Home() {
             <h3 className="underlined-header">Plant Stats</h3>
             <div className="list-container">
               <ul>
-                <li>Unique: {state.currentUser.lifetimeUniqueVeggies?.length} </li>
+                <li>Unique: {state.currentUser.lifetimeUniqueVeggies.length ? state.currentUser.lifetimeUniqueVeggies.length : "0"} </li>
                 <li>Total: {state.currentUser.lifetimeTotalVeggies}</li>
               </ul>
             </div>

@@ -104,8 +104,12 @@ const PlantLog: React.FC = () => {
     } else {
       newUniqueVeggies = arraySortUniqueVeggies(mealVeggiesArray, loggingUser.lifetimeUniqueVeggies!)
     }
+
+    console.log(`Logging user = 
+    ${JSON.stringify(loggingUser)}`);
+
     // Update user with total and unique veggies
-    userAPI.saveUser({ ...loggingUser, lifetimeUniqueVeggies: newUniqueVeggies, lifetimeTotalVeggies: mealVeggiesArray.length })
+    userAPI.saveUser({ ...loggingUser, lifetimeUniqueVeggies: newUniqueVeggies })
 
     // **** Update Meal-Log table
     mealLogAPI.saveMealLog({
@@ -114,14 +118,12 @@ const PlantLog: React.FC = () => {
       user: loggingUser._id!
     })
 
-    console.log(loggingUser.lifetimeTotalVeggies);
-
     dispatch({
       type: SET_CURRENT_USER,
       currentUser: {
         ...state.currentUser,
-        lifetimeUniqueVeggies: loggingUser.lifetimeUniqueVeggies?.concat(newUniqueVeggies),
-        lifetimeTotalVeggies: loggingUser.lifetimeTotalVeggies! + mealVeggiesArray.length,
+        lifetimeUniqueVeggies: loggingUser.lifetimeUniqueVeggies ? loggingUser.lifetimeUniqueVeggies.concat(newUniqueVeggies) : newUniqueVeggies,
+        lifetimeTotalVeggies: loggingUser.lifetimeTotalVeggies + mealVeggiesArray.length,
       }
     })
 
