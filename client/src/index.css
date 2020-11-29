@@ -10,18 +10,6 @@ html {
   /* scroll-behavior: auto; */
 }
 
-h2.view-title {
-  background-color: #0000009a;
-  margin: 0px;
-  padding-bottom: 5px;
-  text-align: center;
-  color: #ffffff;
-  font-size: 36px;
-  margin-top: 15px;
-  font-weight: 700;
-  text-shadow: 2px 2px 4px #000;
-}
-
 /* .zero-out {
   padding: 0 !important;
   margin-top: 10px;
@@ -54,10 +42,5 @@ div.dark-box {
   background-color: #0000009a;
   align-items: center;
   justify-content: center;
-}
-
-div.detail-helper {
-  width: 35vw;
-  align-items: center;
 }
 

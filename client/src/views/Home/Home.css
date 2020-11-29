@@ -8,7 +8,6 @@ div.user-stats {
 }
 .user-stats li {
   list-style: none;
-  text-align: left;
 }
 .user-stats h5 {
   margin: 0px;

@@ -34,24 +34,28 @@ function Home() {
       <h2 className="view-title">{state.currentUser.nickname} Stats</h2>
       <Grid item xs={12} container className="component-style" justify="space-around">
         <DetailCard>
-          <div className="user-stats detail-helper">
-            <h5>Plant Stats</h5>
-            <ul>
-              <li>Unique: {state.currentUser.lifetimeUniqueVeggies?.length} </li>
-              <li>Total: {state.currentUser.lifetimeTotalVeggies}</li>
-            </ul>
-            <h5>Challenge Stats</h5>
-            <ul>
-              <li>Current Challenges: {state.currentUser.challenged ? "1" : "None"}</li>
-              <li>Wins: {state.currentUser.wins}</li>
-              <li>Losses {state.currentUser.losses}</li>
-            </ul>
+          <div className="user-stats">
+            <h3 className="underlined-header">Plant Stats</h3>
+            <div className="list-container">
+              <ul>
+                <li>Unique: {state.currentUser.lifetimeUniqueVeggies?.length} </li>
+                <li>Total: {state.currentUser.lifetimeTotalVeggies}</li>
+              </ul>
+            </div>
+            <h3 className="underlined-header">Challenge Stats</h3>
+            <div className="list-container">
+              <ul>
+                <li>Current Challenges: {state.currentUser.challenged ? "1" : "None"}</li>
+                <li>Wins: {state.currentUser.wins}</li>
+                <li>Losses {state.currentUser.losses}</li>
+              </ul>
+            </div>
           </div>
         </DetailCard>
 
         <DetailCard>
           <div className="plant-log">
-            <h3>Plant Log</h3>
+            <h3 className="underlined-header">Plant Log</h3>
             <PlantLog />
           </div>
         </DetailCard>
