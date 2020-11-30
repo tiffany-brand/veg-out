@@ -6,32 +6,42 @@
  }
 
 html {
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   /* scroll-behavior: auto; */
 }
 
-
-/* div#root {
-  width: 100vh;
-  height: 100vh;
-  /* display: grid;
-  justify-content: center;
-  align-items: center;
+/* .zero-out {
+  padding: 0 !important;
+  margin-top: 10px;
 } */
-
-/* position: relative;
-margin: 1vh;
-padding: 5px;
-border: 4px solid #8eb9a6;
-/* display: flex; */
-/* justify-content: center;
-min-height: 98vh; */
 
 body {
   background-image: url('./assets/images/veggie-BG.jpg');
   background-color: #ffffff;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   background-size: cover;
   margin: 0px;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
+
+div.component-style {
+  color: #fff;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  align-items: center;
+}
+
+div.dark-box {
+  text-align: center;
+  margin-top: 5%;
+  height:65vh;
+  padding-top: 15px;
+  width: 100%;
+  min-height: 300px;
+  background-color: #0000009a;
+  align-items: center;
+  justify-content: center;
+}
+

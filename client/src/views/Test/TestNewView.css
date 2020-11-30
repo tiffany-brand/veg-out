@@ -13,11 +13,6 @@ h4.veggie-menu {
     padding-right: 5px;
 }
 
-.dark-box {
-    background-color: rgba(0, 0, 0, 0.582);
-    justify-self: center;
-    align-self: center;
-}
 
 footer.veggie-footer {
     position: fixed;

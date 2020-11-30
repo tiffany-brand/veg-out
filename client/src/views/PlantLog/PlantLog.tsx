@@ -42,28 +42,10 @@ const PlantLog: React.FC = () => {
   //State for holding current meal
   const [currentMeal, setCurrentMeal] = useState<IVeggies[]>([]);
 
-
-  // State to hold userAPI data
-  const [loggingUser, setLoggingUser] = useState<IUser>({
-    email: "",
-    auth0ID: "",
-    _id: "",
-    nickname: "",
-    challenged: false,
-    currentChallenge: "",
-    wins: 0,
-    losses: 0,
-    ties: 0,
-    lifetimeUniqueVeggies: [],
-    lifetimeTotalVeggies: 0,
-  })
-
-
   // Call the APIs for veggies and user data
   useEffect(() => {
     Promise.all([userAPI.getUser(state.currentUser._id), veggieAPI.getVeggies()])
       .then(([userRes, veggieRes]) => {
-        setLoggingUser(userRes.data);
         setAvailablePlants(veggieRes.data);
       }
       )
@@ -79,10 +61,16 @@ const PlantLog: React.FC = () => {
     )))
   }
 
-  // Append added plant to current meal and tally total values
+  // Append added plant to current meal list
   const addPlant = (plant: IVeggies) => {
     setCurrentMeal([...currentMeal, plant])
   };;
+
+  // Remove plant from current meal list
+  const removePlant = (plant: IVeggies) => {
+    const updatedList = currentMeal.filter(item => item.plantName !== plant.plantName)
+    setCurrentMeal(updatedList)
+  };
 
   // Update DB with current meal
   const logCurrentMeal = () => {
@@ -94,28 +82,25 @@ const PlantLog: React.FC = () => {
 
     // Call utility to add unique items
     let newUniqueVeggies
-    if (!loggingUser.lifetimeUniqueVeggies) {
+    if (!state.currentUser.lifetimeUniqueVeggies) {
       newUniqueVeggies = mealVeggiesArray;
     } else {
-      newUniqueVeggies = arraySortUniqueVeggies(mealVeggiesArray, loggingUser.lifetimeUniqueVeggies!)
+      newUniqueVeggies = arraySortUniqueVeggies(mealVeggiesArray, state.currentUser.lifetimeUniqueVeggies!)
     }
-    // Update user with total and unique veggies
-    userAPI.saveUser({ ...loggingUser, lifetimeUniqueVeggies: newUniqueVeggies, lifetimeTotalVeggies: mealVeggiesArray.length })
 
+    // Update user with total and unique veggies
+    userAPI.saveUser({ ...state.currentUser, lifetimeUniqueVeggies: newUniqueVeggies, lifetimeTotalVeggies: (mealVeggiesArray.length + state.currentUser.lifetimeTotalVeggies) })
+      .then(res => {
+        dispatch({
+          type: SET_CURRENT_USER,
+          currentUser: res.data
+        })
+      })
     // **** Update Meal-Log table
     mealLogAPI.saveMealLog({
       date: date,
       mealVeggies: mealVeggiesArray,
-      user: loggingUser._id!
-    })
-
-    dispatch({
-      type: SET_CURRENT_USER,
-      currentUser: {
-        ...state.currentUser,
-        lifetimeUniqueVeggies: loggingUser.lifetimeUniqueVeggies?.concat(newUniqueVeggies),
-        lifetimeTotalVeggies: loggingUser.lifetimeTotalVeggies! + mealVeggiesArray.length,
-      }
+      user: state.currentUser._id!
     })
 
     // Clear the current meal area
@@ -125,31 +110,35 @@ const PlantLog: React.FC = () => {
   return (
     <div className="plant-log-area">
       <input onChange={updateSearchArray} value={input} placeholder="Search Plants" />
-      {searchArray.length
-        ?
-        <ul>{searchArray.slice(0, 5).map(function (plant, idx) {
-          return <li className="plant-log-item" onClick={() => addPlant(plant)} key={idx}>{plant.plantName} +</li>
-        })}</ul>
+      <div className="list-container">
+        {searchArray.length
+          ?
+          <ul className="add-plant">{searchArray.slice(0, 5).map(function (plant, idx) {
+            return <li className="plant-log-item" onClick={() => addPlant(plant)} key={idx}>{plant.plantName}</li>
+          })}</ul>
 
-        :
-        <ul>
-          {conditionallySort(availablePlants, !!input)
-            .reduce<React.ReactElement[]>((acc, curr, idx) => {
-              if (acc.length < 5) {
-                acc.push(<li className="plant-log-item" onClick={() => addPlant(curr)} key={idx}>{curr.plantName} +</li>)
-              }
-              return acc;
-            }, [])
-          }
-        </ul>
-      }
+          :
+          <ul className="add-plant">
+            {conditionallySort(availablePlants, !!input)
+              .reduce<React.ReactElement[]>((acc, curr, idx) => {
+                if (acc.length < 5) {
+                  acc.push(<li className="plant-log-item" onClick={() => addPlant(curr)} key={idx}>{curr.plantName}</li>)
+                }
+                return acc;
+              }, [])
+            }
+          </ul>
+        }
+      </div>
       <div className="current-meal-area">
-        <h5>Current Meal</h5>
-        <ul>
-          {currentMeal.map(function (plant, index) {
-            return <li key={index}>{plant.plantName}</li>
-          })}
-        </ul>
+        <h3 className="underlined-header">Current Meal</h3>
+        <div className="list-container">
+          <ul className="remove-plant">
+            {currentMeal.map(function (plant, index) {
+              return <li className="plant-log-item" onClick={() => removePlant(plant)} key={index}>{plant.plantName}</li>
+            })}
+          </ul>
+        </div>
         <button onClick={logCurrentMeal} className="log-button">+ LOG +</button>
       </div>
 

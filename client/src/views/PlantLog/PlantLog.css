@@ -1,51 +1,27 @@
-/* h3 {
-  margin: 10px;
-}
-
-h2 {
-  margin: 3%;
-}
-
-input.log-input {
-  margin-top: 20px;
-  max-width: 170px;
-  margin-bottom: 30px;
-}
-
-.center-button {
-  text-align: center;
-}
-
-button.log-button {
-  width: 80%;
-  padding: 5px 0px;
-  border-radius: 10px;
-  background-color: #f28327;
-  color: #afe4cd;
-  font-size: 24px;
-  font-family: 'VT323', monospace;
-}
-*/
-
 ul.search-results {
   padding-bottom: 15px;
 }
 
 .plant-log-area ul {
-  padding: 0px;
+  padding: 10px 0px 10px 0px;
 }
-.plant-log-area li {
-  list-style: none;
-}
+
+.add-plant li {
+  list-style-position: inside;
+  vertical-align: middle;
+  line-height: 25px;
+  list-style-image: url(../../assets/images/add-bullet.png);
+} 
+
+.remove-plant li {
+  list-style-position: inside;
+  vertical-align: middle;
+  line-height: 25px;
+  list-style-image: url(../../assets/images/remove-bullet.png);
+} 
 
 button.log-button, li.plant-log-item {
   cursor: pointer;
-}
-
-.current-meal-area h5 {
-  margin: 45px 0px 0px 0px;
-  text-decoration: underline;
-
 }
 
 .current-meal-area ul {
