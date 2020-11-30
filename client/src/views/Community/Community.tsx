@@ -158,9 +158,9 @@ function Community() {
         if (!searching) {
 
             return (
-                <div className="community-display">
+                <div className="community-display component-style">
                     {!state.currentUser.challenged && <div>
-                        <Button variant="contained" onClick={() => loadUsers()}>Choose a New Challenger</Button>
+                        <Button variant="contained" onClick={() => loadUsers()}>Start a New Challenge</Button>
 
                     </div>}
 
@@ -204,13 +204,13 @@ function Community() {
     return (
         <div>
             <h2 className="view-title">{state.currentUser.nickname} Challenges</h2>
-            <Grid item xs={12} container justify="space-around">
-                <div className="dark-box">
 
-                    {isChallenged()}
+            <div className="community-dark-box">
 
-                </div>
-            </Grid>
+                {isChallenged()}
+
+            </div>
+
         </div>
     )
 }
