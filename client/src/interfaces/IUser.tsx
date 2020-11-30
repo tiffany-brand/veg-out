@@ -8,7 +8,7 @@ export default interface IUser {
     wins?: number;
     losses?: number;
     ties?: number;
-    lifetimeUniqueVeggies?: string[];
-    lifetimeTotalVeggies?: number;
+    lifetimeUniqueVeggies: string[];
+    lifetimeTotalVeggies: number;
 
 }

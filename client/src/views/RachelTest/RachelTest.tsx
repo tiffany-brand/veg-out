@@ -46,15 +46,15 @@ export default function NewView() {
     // </>
     <>
       <Grid container justify="space-around" spacing={3} className="component-style">
-        <Grid className="zero-out"  item xs={12} md={6}>
+        <Grid className="zero-out" item xs={12} md={6}>
           <div className="dark-box">
-            <h2 className="box-header">Your Stats</h2>
+            <h2 >Your Stats</h2>
             <p>This is my paragraph</p>
           </div>
         </Grid>
         <Grid className="zero-out" item xs={12} md={6}>
           <div className="dark-box">
-            <h2 className="box-header">Log Veggies</h2>
+            <h2 >Log Veggies</h2>
           </div>
         </Grid>
       </Grid>

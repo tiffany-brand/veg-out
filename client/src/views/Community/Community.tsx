@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 import { DateTime } from 'luxon';
 
@@ -26,8 +27,23 @@ import Challenged from '../Challenged/Challenged';
 
 import './Community.css';
 
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& > *': {
+                margin: theme.spacing(1),
+                width: '25ch',
+            },
+        },
+        textfield: {
+            border: "1px solid #fff"
+        }
+    }),
+);
+
 
 function Community() {
+    const classes = useStyles();
 
     const [state, dispatch] = useStoreContext();
 
@@ -142,29 +158,26 @@ function Community() {
         if (!searching) {
 
             return (
-                <Grid item xs={12} container justify="space-around">
-                    <div className="community-display">
-                        {!state.currentUser.challenged && <div>
-                            <Button variant="contained" onClick={() => loadUsers()}>Choose a New Challenger</Button>
+                <div className="community-display">
+                    {!state.currentUser.challenged && <div>
+                        <Button variant="contained" onClick={() => loadUsers()}>Choose a New Challenger</Button>
 
-                        </div>}
+                    </div>}
 
-                        <Challenged />
+                    <Challenged />
 
-
-                    </div>
-                </Grid>
+                </div>
             )
         } else if (allUsers[0]) {
 
             return (
 
-                <form>
+                <form className="challenge-form">
                     <Autocomplete
                         id="challenger"
                         options={allUsers}
                         getOptionLabel={(option) => option.nickname}
-                        renderInput={(params) => <TextField {...params} label="Choose a Challenger" variant="outlined" />}
+                        renderInput={(params) => <TextField {...params} label="Search Challengers" variant="outlined" className={classes.textfield} />}
                         value={value || allUsers[0]}
                         onChange={(event: any, newValue: IUser | null) => {
                             setValue(newValue);
@@ -189,14 +202,17 @@ function Community() {
 
 
     return (
-        <div className="community-container">
-            <h1>Challenges</h1>
+        <div>
+            <h2 className="view-title">{state.currentUser.nickname} Challenges</h2>
+            <Grid item xs={12} container justify="space-around">
+                <div className="dark-box">
 
-            {isChallenged()}
+                    {isChallenged()}
 
+                </div>
+            </Grid>
         </div>
     )
-
 }
 
 export default withAuthenticationRequired(Community, {

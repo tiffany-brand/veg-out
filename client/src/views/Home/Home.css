@@ -1,49 +1,6 @@
-/* div.home-container {
-  max-width: inherit;
-  width: inherit;
-  max-height: inherit;
-  height: inherit;
-}
-
-h3 {
-  padding: 0;
-  margin: 0;
-}
-
-div.card-container {
-  /* display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center; */
-
-  /* right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0; */
-  /* margin: auto;
-}
-
-div.card-holder {
-  justify-content: space-around;
-  margin-top: 2px;
-  text-align: center;
-  width: 10%;
-}
-
-.home-container h1 {
-  padding-bottom: 15px;
-}*/
-/*
-
-div.veggie-box {
-  text-align: center;
-  border: 1px solid #000000;
-  background-color: aquamarine;
-  margin-top: 15px;
-} */
 div.user-stats {
-  text-align: left;
-  padding-left: 10px;
+  /* text-align: left; */
+  /* padding-left: 10px; */
 }
 .user-stats ul {
   margin: 4px;
@@ -56,12 +13,4 @@ div.user-stats {
   margin: 0px;
   text-decoration: underline;
 
-}
-div.component-style {
-  color: #fff;
-  text-align: center;
-  align-content: center;
-  justify-content: center;
-  min-height: 300px;
-  align-items: center;
 }
