@@ -1,12 +1,28 @@
 import React, { useEffect } from "react";
+import './Login.css'
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import userAPI from '../../utils/userAPI';
 import { useStoreContext } from '../../state/GlobalState';
-import logo from '../../assets/images/Vegemon-logo.png';
+import logo from '../../assets/images/stroked-vedgeIn-logo-1200.png';
 import { LOADING, SET_CURRENT_USER } from '../../state/actions';
 import { saveToLocalStorage } from '../../utils/persistUser';
 import Home from '../Home/Home';
+
+import Grid from '@material-ui/core/Grid';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            flexGrow: 1,
+
+        },
+        center: {
+            align: 'center',
+        }
+    }),
+);
 
 function Login(): JSX.Element {
 
@@ -26,13 +42,7 @@ function Login(): JSX.Element {
                             email: user.email,
                             auth0ID: user.sub,
                             nickname: user.nickname,
-                            challenged: false,
-                            currentChallenge: "",
-                            wins: 0,
-                            losses: 0,
-                            ties: 0,
-                            lifetimeUniqueVeggies: [],
-                            lifetimeTotalVeggies: 0
+
                         })
                             .then(res => {
                                 const { _id,
@@ -100,10 +110,16 @@ function Login(): JSX.Element {
     return (
         <div>
             {!isAuthenticated && <div>
-                <img width="500px" src={logo} alt="Vegemon" />
+                <div className="splash-container">
+                    <div className="splash-screen">
+                        <img className="splash-logo" src={logo} alt="Vedge-In logo" />
 
-                <button onClick={loginWithRedirect}> Log In </button>
+                        <p></p>
 
+                        <button className="splash-button" onClick={loginWithRedirect}> Log In &#8594; </button>
+
+                    </div>
+                </div>
             </div>}
 
             {isAuthenticated && <Home />}

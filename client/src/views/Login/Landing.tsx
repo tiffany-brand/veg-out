@@ -1,14 +1,31 @@
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-import logo from '../../assets/images/Vegemon-logo.png';
+// import logo from '../../assets/images/Vegemon-logo.png';
 import { useStoreContext } from '../../state/GlobalState';
+import "./Landing.css";
+
+import Grid from '@material-ui/core/Grid';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            flexGrow: 1,
+
+        },
+        center: {
+            align: 'center',
+        }
+    }),
+);
 
 
 function Landing(): JSX.Element {
 
     const { user } = useAuth0();
     const [state, dispatch] = useStoreContext();
+    const classes = useStyles();
 
     useEffect(() => {
         console.log(state.currentUser);
@@ -16,16 +33,19 @@ function Landing(): JSX.Element {
     }, [])
 
     return (
-        <div>
-            <img width="300px" src={logo} alt="Vegemon" />
-            <h1>Welcome to the landing page, {user.name}</h1>
-            <img src={user.picture} alt={user.name} />
-            <br></br>
-            <h2>User Object</h2>
-            <p>{JSON.stringify(user, null, 2)}</p>
-            <Link to="/"><button>Go Back</button></Link>
+        <>
+            <Grid container justify="space-around" spacing={3} className="component-style">
+                <Grid className="zero-out" item xs={12} md={6}>
+                    <div className="dark-box">
+                        <h1>Welcome to the landing page, {user.name}</h1>
+                        <h2>User Object</h2>
+                        <p>{JSON.stringify(user, null, 2)}</p>
+                        <Link to="/"><button>Go Back</button></Link>
+                    </div>
+                </Grid>
 
-        </div >
+            </Grid>
+        </ >
     );
 
 }

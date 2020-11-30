@@ -1,19 +1,29 @@
 
 .white-background {
+  padding-top:7px;
+  padding-right: 5px;
   background-color: #fff;
+  height: 100%;
   align-items: center;
   position: relative;
   z-index: 999;
 }
 
+.MuiGrid-spacing-xs-2 {
+  margin: 0;
+}
+
 h1.veggie-header {
   margin: 0;
+  padding-left: 20%;
+  text-align: center;
+  height: 50%;
 }
 
 .mobile-menu div{
   width: 25px;
   height: 2px;
-  background-color: #156e58;
+  background-color: #1f1f1f;
   margin: 5px;
 }
 
@@ -26,8 +36,8 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 8vh;
   background-color: #fff;
+  /* margin-top: 1px; */
 }
 
 .nav-bar{
@@ -44,17 +54,18 @@ nav {
   color: #e7e7e7;
   text-decoration: none;
   letter-spacing: 3px;
-  font-size: 15px;
+  font-size: 17px;
+  font-weight: 500;
 }
 
 .nav-bar {
   padding: 0px;
   position: absolute;
   right: 25px;
-  top: 63px;
+  top: 100px;
   width: 150px;
   height: 0px;
-  background-color: #00000080;
+  background-color: #000000a1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,8 +86,24 @@ nav {
 }
 
 .mobile-menu-display {
-  height: 125px;
+  height: 250px;
+  padding: 15px;
 }
+
 .mobile-menu-display li {
   font-size: 1em;
+}
+
+@media screen and (max-width: 415px) {
+  h1 {
+    font-size: x-large;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  h1 {
+    font-size: x-large;
+    text-align: left;
+  }
 }

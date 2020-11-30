@@ -1,19 +1,4 @@
 div.parent {
   justify-content: flex-start;
 }
-div.detail-card {
-  position: relative;
-  background-color: #e9e5c2;
-  border-radius: 15px;
-  border: 2px solid #8eb9a6;
-  margin: 5px;
-  padding: 15px 20px;
-  width: 100%;
-}
 
-.detail-card li {
-  margin-bottom: 3px;
-  font-size: 28px;
-  text-align: center;
-  list-style: none;
-}

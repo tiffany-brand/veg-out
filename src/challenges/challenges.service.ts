@@ -15,6 +15,7 @@ export class ChallengesService {
 
     create(createchallengeDTO: CreateChallengeDTO): Promise<Challenge> {
         const newChallenge = new Challenge();
+        newChallenge._id = createchallengeDTO._id;
         newChallenge.dateStarted = createchallengeDTO.dateStarted;
         newChallenge.playerOne = createchallengeDTO.playerOne;
         newChallenge.playerOne_totalVeggies = createchallengeDTO.playerOne_totalVeggies;

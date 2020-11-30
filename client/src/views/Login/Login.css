@@ -1,0 +1,31 @@
+div.splash-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 90vh;
+  width: 100vw;
+}
+
+div.splash-screen {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.753);
+  width: 100%;
+  height: 55vh;
+}
+
+img.splash-logo {
+  margin-top: 40px;
+  width: 65%;
+  height: auto;
+}
+
+button.splash-button {
+  margin-top: 15px;
+  font-size: 28px;
+  font-weight: 500;
+  padding: 5px 30px;
+  border: 2px solid #017f01;
+  border-radius: 15px;
+  /* transform: translate(85vw); */
+}
