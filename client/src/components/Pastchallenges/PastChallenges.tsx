@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
 import { useStoreContext } from '../../state/GlobalState';
 import challengesAPI from '../../utils/challengesAPI';
@@ -10,34 +10,71 @@ function PastChallenges() {
 
     const [pastArray, setPastArray] = useState<any>();
 
-    const [isLoading, setIsLoading] = useState<boolean>();
+    const [chals, setChals] = useState<any>("Loading...");
 
-    let tempArray: any = [];
+    const [isLoading, setIsLoading] = useState(true);
 
 
 
-    if (isLoading !== false) {
 
+
+    useEffect(() => {
+
+        let tempArray: any = [];
 
         challengesAPI.getChallenges().then((res) => {
 
             res.data.forEach((item: { _id: any, playerOne: { _id: string; }; playerTwo: { _id: string; }; }) => {
                 if (item.playerOne._id == state.currentUser._id && state.currentUser.currentChallenge !== item._id || item.playerTwo._id == state.currentUser._id && state.currentUser.currentChallenge !== item._id) {
                     tempArray.push(item);
-                };
-                setPastArray(tempArray);
-                setIsLoading(false);
-            })
-        }).catch(err => console.log(err));
+                }
+            });
+            setPastArray(tempArray);
 
-        return (
-            <div>
-                Loading...
-            </div>
-        )
+            setChals(pastArray.map((item: { dateEnding: React.ReactNode; playerOne: { nickname: React.ReactNode; }; playerOne_currentScore: React.ReactNode; playerTwo: { nickname: React.ReactNode; }; playerTwo_currentScore: React.ReactNode; }) =>
+                <DetailCard children={
+                    <div>
+
+                        <h3>Ended On {item.dateEnding}</h3>
+                        <br />
+                        <p>Player One: {item.playerOne.nickname}
+                            <br />
+                        Score: {item.playerOne_currentScore}
+                            <br />
+
+                        Player Two: {item.playerTwo.nickname}
+                            <br />
+
+                        Score: {item.playerTwo_currentScore}
+
+                        </p>
+                    </div>
+                }
+                />
+            ));
+
+            setIsLoading(false);
+
+
+
+
+
+
+
+
+        }
+        ).catch(err => console.log(err));
+
+    });
+
+
+    if (isLoading || pastArray === undefined) {
+        return (<div>
+            Loading...
+        </div>)
     }
-    else {
 
+    else {
         return (
             <div>
                 <h2>Current Record:</h2>
@@ -52,30 +89,20 @@ function PastChallenges() {
                 <br />
 
 
-                {pastArray.map((item: any) => (
-                    <DetailCard children={
-                        <div>
-                            <h3>Ended On {item.dateEnding}</h3>
-                            <br />
-                            <p>Player One: {item.playerOne.nickname}
-                                <br />
-            Score: {item.playerOne_currentScore}
-                                <br />
 
-            Player Two: {item.playerTwo.nickname}
-                                <br />
 
-            Score: {item.playerTwo_currentScore}
 
-                            </p>
-                        </div>}
-                    />))}
+
+                {chals}
 
 
             </div>
         )
+
     }
 
 }
+
+
 
 export default PastChallenges;
