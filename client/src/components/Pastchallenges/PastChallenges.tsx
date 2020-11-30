@@ -1,25 +1,7 @@
-import React, { useEffect, useState } from 'react';
-
-
-import Button from '@material-ui/core/Button';
-
+import React, { useState } from 'react';
 import DetailCard from '../../components/DetailCard/DetailCard';
-
-
-import { DateTime } from 'luxon';
-
 import { useStoreContext } from '../../state/GlobalState';
-import { SET_CURRENT_USER } from '../../state/actions';
-
-import IUser from '../../interfaces/IUser';
-import INewChallenge from '../../interfaces/INewChallenge';
-import IChallenge from '../../interfaces/IChallenge';
-
-import { Link } from 'react-router-dom';
-
-import userAPI from '../../utils/userAPI';
 import challengesAPI from '../../utils/challengesAPI';
-import { isBuffer } from 'lodash';
 
 
 function PastChallenges() {
@@ -38,7 +20,7 @@ function PastChallenges() {
 
 
         challengesAPI.getChallenges().then((res) => {
-            console.log(res);
+            
             res.data.forEach((item: { _id: any, playerOne: { _id: string; }; playerTwo: { _id: string; }; }) => {
                 if (item.playerOne._id == state.currentUser._id && state.currentUser.currentChallenge !== item._id|| item.playerTwo._id == state.currentUser._id && state.currentUser.currentChallenge !== item._id) {
                     tempArray.push(item);
@@ -55,7 +37,7 @@ function PastChallenges() {
         )
     }
     else {
-        console.log(pastArray)
+        
         return (
             <div>
 

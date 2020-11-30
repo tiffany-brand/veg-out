@@ -84,7 +84,6 @@ function Challenged() {
             }
             <div>
                 <h2>Past Challenges</h2>
-                
                 <PastChallenges />
 
             </div>
