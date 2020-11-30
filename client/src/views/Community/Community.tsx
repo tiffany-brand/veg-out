@@ -142,18 +142,15 @@ function Community() {
         if (!searching) {
 
             return (
-                <Grid item xs={12} container justify="space-around">
-                    <div className="community-display">
-                        {!state.currentUser.challenged && <div>
-                            <Button variant="contained" onClick={() => loadUsers()}>Choose a New Challenger</Button>
+                <div className="community-display">
+                    {!state.currentUser.challenged && <div>
+                        <Button variant="contained" onClick={() => loadUsers()}>Choose a New Challenger</Button>
 
-                        </div>}
+                    </div>}
 
-                        <Challenged />
+                    <Challenged />
 
-
-                    </div>
-                </Grid>
+                </div>
             )
         } else if (allUsers[0]) {
 
@@ -189,11 +186,12 @@ function Community() {
 
 
     return (
-        <div className="community-container">
-            <h1>Challenges</h1>
+        <div>
+            <h2 className="view-title">{state.currentUser.nickname} Challenges</h2>
+            <Grid item xs={12} container justify="space-around">
 
-            {isChallenged()}
-
+                {isChallenged()}
+            </Grid>
         </div>
     )
 
