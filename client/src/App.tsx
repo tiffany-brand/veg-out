@@ -5,6 +5,7 @@ import { StoreProvider } from './state/GlobalState';
 import './App.css';
 
 import Login from './views/Login/Login';
+import AboutView from './views/AboutView/AboutView'
 // import Challenges from './views/Challenges/Challenges';
 import Challenged from './views/Challenged/Challenged';
 import Community from './views/Community/Community'
@@ -27,6 +28,7 @@ function App() {
           {/* <div className="dark-box"> */}
           <Switch>
             <Route path="/" exact component={Login} />
+            <Route path="/about" exact component={AboutView} />
             <Route path="/challenged" exact component={Challenged} />
             {/* <Route path="/challengeDetail" exact component={ChallengeDetail} /> */}
             <Route path="/community" exact component={Community} />

@@ -4,10 +4,7 @@ import DetailCard from "../DetailCard/DetailCard";
 export default function About() {
 
     return (
-        <div className="card-container">
-            <div className="card-holder">
-                <h2>Welcome To Vegemon!</h2>
-                <DetailCard>
+        <div>
                     <p>
                         This is app is designed to help you broaden your veggie horizons!
 
@@ -47,8 +44,6 @@ export default function About() {
 
                         UNH Coding Bootcamp 2020
             </p>
-                </DetailCard>
-            </div>
         </div>
     )
 }

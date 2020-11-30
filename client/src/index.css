@@ -6,7 +6,7 @@
  }
 
 html {
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   /* scroll-behavior: auto; */
 }
 
@@ -18,25 +18,26 @@ html {
 body {
   background-image: url('./assets/images/veggie-BG.jpg');
   background-color: #ffffff;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   background-size: cover;
   margin: 0px;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
-/* div.component-style {
+div.component-style {
   color: #fff;
   text-align: center;
   align-items: center;
   justify-content: center;
   min-height: 300px;
   align-items: center;
-} */
+}
 
 div.dark-box {
-  margin-top: 10%;
+  text-align: center;
+  margin-top: 5%;
   height:65vh;
-  padding-top: 10px;
+  padding-top: 15px;
   width: 100%;
   min-height: 300px;
   background-color: #0000009a;

@@ -1,4 +1,18 @@
+form.challenge-form {
+  margin-top: 10px;
+  width: 100%;
+}
 
+#challenger-label {
+  color: #fff;
+  /* background-color: rgba(0, 0, 0, 0.747); */
+  padding: 3px;
+  /* border: 1px solid #fff; */
+  border-bottom: 0px;
+  margin-bottom: 4px;
+  margin-left: 30px;
+  transform: translateY(-20px);
+}
 
 .community-display {
   color: white;
