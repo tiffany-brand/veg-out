@@ -9,19 +9,19 @@ export default function About() {
                 <h2>Welcome To Vegemon!</h2>
                 <DetailCard>
                     <p>
-                        This is app is designed to help you broaden your veggie horizons!
+                        This is app is designed to help you broaden your plant horizons!
 
-                        Log your veggie intake, challenge your friends, and watch you
+                        Log your plant intake, challenge your friends, and watch you
                         and your community get stronger and healthier!
 
                         Having a whole foods, plant-based diet is key to living a
-                        long and healthy life. Eating a diverse array of vegetables
+                        long and healthy life. Eating a diverse array of vegetables and fruits
                         gives you a nutrient-rich diet and promotes positive gut
                         health. Eating a largely plant-based diet also lowers your
                         chances of preventable illness.
 
                         To begin, log into your account and select 'Start a Challenge'. 
-                        You can search for a friend, family member, or choose randomly from the VegIn community.
+                        You can search for a friend, family member, or choose randomly from the Vedge-In community.
                         Each challenge will last for one week.  During this period, log each of the vegetables or fruit in your meals in the app.
                         To check your status, navigate to the home page to review your stats and see your current score.
 
