@@ -12,7 +12,7 @@ function PastChallenges() {
 
     const [chals, setChals] = useState<any>("Loading...");
 
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState<any>();
 
 
 
@@ -30,37 +30,7 @@ function PastChallenges() {
                 }
             });
             setPastArray(tempArray);
-
-            setChals(pastArray.map((item: { dateEnding: React.ReactNode; playerOne: { nickname: React.ReactNode; }; playerOne_currentScore: React.ReactNode; playerTwo: { nickname: React.ReactNode; }; playerTwo_currentScore: React.ReactNode; }) =>
-                <DetailCard children={
-                    <div>
-
-                        <h3>Ended On {item.dateEnding}</h3>
-                        <br />
-                        <p>Player One: {item.playerOne.nickname}
-                            <br />
-                        Score: {item.playerOne_currentScore}
-                            <br />
-
-                        Player Two: {item.playerTwo.nickname}
-                            <br />
-
-                        Score: {item.playerTwo_currentScore}
-
-                        </p>
-                    </div>
-                }
-                />
-            ));
-
             setIsLoading(false);
-
-
-
-
-
-
-
 
         }
         ).catch(err => console.log(err));
@@ -68,13 +38,15 @@ function PastChallenges() {
     });
 
 
-    if (isLoading || pastArray === undefined) {
+    if (isLoading !== false || pastArray === undefined) {
         return (<div>
             Loading...
         </div>)
     }
 
     else {
+
+        
         return (
             <div>
                 <h2>Current Record:</h2>
@@ -88,12 +60,27 @@ function PastChallenges() {
                 <h2>Past Challenge Details:</h2>
                 <br />
 
+               { pastArray.map((item: { dateEnding: any; playerOne: { nickname: any; }; playerOne_currentScore: any; playerTwo: { nickname: any; }; playerTwo_currentScore: any; }) =>
+        <DetailCard children={
+            <div key={item.dateEnding}>
 
+                <h3>Ended On {item.dateEnding}</h3>
+                <br />
+                <p>Player One: {item.playerOne.nickname}
+                    <br />
+                Score: {item.playerOne_currentScore}
+                    <br />
 
+                Player Two: {item.playerTwo.nickname}
+                    <br />
 
+                Score: {item.playerTwo_currentScore}
 
-
-                {chals}
+                </p>
+            </div>
+        }
+        />
+    ) }
 
 
             </div>
