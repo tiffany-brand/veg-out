@@ -9,6 +9,8 @@ import IVeggies from '../../interfaces/IVeggies';
 
 function AdminPage(): JSX.Element {
     const [input, setInput] = useState("");
+    const [submissionResponse, setSubmissionResponse] = useState(null);
+    // This local state will record wether the most recent submission cleared or not. 
 
     const updateSearchArray = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInput(event.currentTarget.value)  
@@ -17,8 +19,8 @@ function AdminPage(): JSX.Element {
 
     const submitNewPlant = () => {
         VeggieAPI.saveVeggie({plantName: input}).then((res) => {
-            console.log(res);
             setInput("");
+            console.log(res);
         }).catch((err) => {
             console.log(err);
         })
@@ -34,6 +36,7 @@ function AdminPage(): JSX.Element {
         <h3>Input your new fruit or veggie below. Be certain of spelling before your submission!</h3>
         <input value={input} onChange={updateSearchArray} type="text" />
           <button type="button" onClick={submitNewPlant}>Press To Submit Your New Plant.</button>
+        {/* Put a conditional block here that confirms if the submission worked or not. */}
         </div>
       </Grid>
     </div>
