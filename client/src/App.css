@@ -40,7 +40,7 @@ input[type=text]:focus {
   border: 2px solid #000;
 } 
 
-h1, h1, h3, h4, h5, div {
+h1, h1, h3, h4, h5{
   font-family: 'Poiret One', cursive;
   letter-spacing: 1.5px;
 }
@@ -73,12 +73,15 @@ h3.underlined-header {
   padding-bottom: 6px;
 }
 
-p, li, ul, span {
+p, li, ul, span, div  {
   font-family: 'Lora', serif;
+  letter-spacing: 2px;
 }
 
 ul {
   padding: 6px 0px;
+  display: inline-block; 
+	text-align: left; 
 }
 
 li {
@@ -98,9 +101,9 @@ div.App {
 } */
 
 div.list-container {
-  width: 200px;
+  /* width: 200px; */
   margin: auto;
-  text-align: left;
+  text-align: center;
 }
 
 div.component-style {

@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './PlantLog.css'
-
-// Dropdown Menu for meals
-import MealLabel from '../../components/MealLabel/MealLabel'
 
 // Gives us a formatted date object
 import { DateTime } from 'luxon';
@@ -67,12 +64,22 @@ const PlantLog: React.FC = () => {
   // Append added plant to current meal list
   const addPlant = (plant: IVeggies) => {
     setCurrentMeal([...currentMeal, plant])
+    setInput("")
   };;
 
   // Remove plant from current meal list
   const removePlant = (plant: IVeggies) => {
     const updatedList = currentMeal.filter(item => item.plantName !== plant.plantName)
     setCurrentMeal(updatedList)
+  };
+
+  // Meal Label assets
+  const [menuActive, setMenuActive] = useState<boolean>(false);
+  const [menuLabel, setMenuLabel] = useState<string>("Meal Label ⇩")
+
+  const menuEvent = (event: React.MouseEvent<HTMLInputElement>) => {
+    setMenuActive(!menuActive);
+    setMenuLabel(event.currentTarget.dataset.menu_item!)
   };
 
   // Update DB with current meal
@@ -103,7 +110,8 @@ const PlantLog: React.FC = () => {
     mealLogAPI.saveMealLog({
       date: date,
       mealVeggies: mealVeggiesArray,
-      user: state.currentUser._id!
+      user: state.currentUser._id,
+      mealLabel: menuLabel
     })
 
     // Clear the current meal area
@@ -112,7 +120,9 @@ const PlantLog: React.FC = () => {
 
   return (
     <div className="plant-log-area">
+
       <input onChange={updateSearchArray} value={input} placeholder="Search Plants" />
+
       <div className="list-container">
         {searchArray.length
           ?
@@ -142,9 +152,20 @@ const PlantLog: React.FC = () => {
             })}
           </ul>
         </div>
-        <MealLabel />
-        <button onClick={logCurrentMeal} className="log-button">+ LOG +</button>
+        <div className="dropdown">
+
+          <div className="dropbtn" onClick={menuEvent} data-menu_item="Meal Label ⇩">{menuLabel}</div>
+
+          {/* <div className="dropdown-content"> */}
+          <div className={`dropdown-content ${menuActive ? "display-meal-menu" : null}`}>
+            <p onClick={menuEvent} data-menu_item="Breakfast">Breakfast</p>
+            <p onClick={menuEvent} data-menu_item="Lunch">Lunch</p>
+            <p onClick={menuEvent} data-menu_item="Dinner">Dinner</p>
+            <p onClick={menuEvent} data-menu_item="Snack">Snack</p>
+          </div>
+        </div>
       </div>
+      <button onClick={logCurrentMeal} className={`log-button`}>+ LOG +</button>
 
     </div>
   )

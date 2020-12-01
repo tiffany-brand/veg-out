@@ -49,7 +49,7 @@ function Home() {
               <h3 className="underlined-header">Challenge Stats</h3>
               <div className="list-container">
                 <ul>
-                  <li>Current Challenges: {state.currentUser.challenged ? "1" : "None"}</li>
+                  <li>Current: {state.currentUser.challenged ? "1" : "None"}</li>
                   <li>Wins: {state.currentUser.wins}</li>
                   <li>Losses {state.currentUser.losses}</li>
                 </ul>

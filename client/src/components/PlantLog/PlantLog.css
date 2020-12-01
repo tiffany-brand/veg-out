@@ -4,6 +4,8 @@ ul.search-results {
 
 .plant-log-area ul {
   padding: 10px 0px 10px 0px;
+  /* display: inline-block; 
+	text-align: left;  */
 }
 
 .add-plant li {
@@ -24,7 +26,62 @@ button.log-button, li.plant-log-item {
   cursor: pointer;
 }
 
+button.log-button {
+  color: #fff;
+  background-color: #017f01;
+  font-size: 24px;
+  margin-top: 25px;
+  padding: 3px 17px;
+  border-radius: 8px;
+}
+
+button.disabled {
+  pointer-events: none;
+  background-color: #406e40;
+  color: #82b982;
+}
+
 .current-meal-area ul {
   margin: 4px;
   padding-left: 15px;
 }
+
+/* Meal Label styles */
+.dropbtn {
+  color: white;
+  padding: 0px 5px 3px 5px;
+  font-size: 22px;
+  border: 1px solid #fff;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  padding: 15px;
+  line-height: 35px;
+  position: absolute;
+  background-color: #0000009a;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content p {
+  margin: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+  .display-meal-menu {
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+    background-color: #017f01;
+    cursor: pointer;
+  }
