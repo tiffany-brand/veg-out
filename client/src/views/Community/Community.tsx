@@ -11,15 +11,13 @@ import { DateTime } from 'luxon';
 import { useStoreContext } from '../../state/GlobalState';
 
 import IUser from '../../interfaces/IUser';
-import INewChallenge from '../../interfaces/INewChallenge';
-import IChallenge from '../../interfaces/IChallenge';
 
 import userAPI from '../../utils/userAPI'
 import challengesAPI from '../../utils/challengesAPI';
 
 import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUser';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-import { SET_CURRENT_USER, LOADING } from '../../state/actions';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { SET_CURRENT_USER } from '../../state/actions';
 
 import { Link } from 'react-router-dom';
 
