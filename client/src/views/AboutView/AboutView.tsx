@@ -13,11 +13,11 @@ function AboutView(): JSX.Element {
 
     <div className="about-screen">
 
-      <img className="about-logo" src={logo} alt="Vedge-In logo" />
       <h2 className="view-title">Welcome To Vedge-In!</h2>
       <Grid item xs={12} container justify="space-around">
         <div className="about-dark-box component-style">
           <About />
+          <img className="about-logo" src={logo} alt="Vedge-In logo" />
         </div>
       </Grid>
     </div>

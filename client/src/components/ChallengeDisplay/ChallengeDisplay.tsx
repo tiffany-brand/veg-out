@@ -130,7 +130,7 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
                     <Button variant="contained" onClick={() => archiveChallenge()}>Archive Challenge</Button>
                 </div>}
                 <Grid item xs={12} container justify="space-around">
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={6} className="pad-div-bottom">
                         <h3 className="underlined-header">{state.currentUser.nickname} Stats</h3>
                         {playerOne && <ChallengeScore multiplier={calcedChallenge!.playerOne_currentMultiplier} veggies={calcedChallenge!.playerOne_totalVeggies.length} unique={calcedChallenge!.playerOne_uniqueVeggies.length} score={calcedChallenge!.playerOne_currentScore} />}
                         {!playerOne && <ChallengeScore multiplier={calcedChallenge!.playerTwo_currentMultiplier} veggies={calcedChallenge!.playerTwo_totalVeggies.length} unique={calcedChallenge!.playerTwo_uniqueVeggies.length} score={calcedChallenge!.playerTwo_currentScore} />}

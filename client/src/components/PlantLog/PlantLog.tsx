@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import './PlantLog.css'
 
+// Dropdown Menu for meals
+import MealLabel from '../../components/MealLabel/MealLabel'
+
 // Gives us a formatted date object
 import { DateTime } from 'luxon';
 
@@ -139,6 +142,7 @@ const PlantLog: React.FC = () => {
             })}
           </ul>
         </div>
+        <MealLabel />
         <button onClick={logCurrentMeal} className="log-button">+ LOG +</button>
       </div>
 
