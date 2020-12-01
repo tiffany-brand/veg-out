@@ -14,10 +14,7 @@ import { useStoreContext } from '../../state/GlobalState';
 import { SET_CURRENT_USER } from '../../state/actions';
 
 import IUser from '../../interfaces/IUser';
-import INewChallenge from '../../interfaces/INewChallenge';
 import IChallenge from '../../interfaces/IChallenge';
-
-import { Link } from 'react-router-dom';
 
 import './ChallengeDisplay.css'
 
