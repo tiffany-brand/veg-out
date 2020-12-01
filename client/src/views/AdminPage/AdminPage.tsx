@@ -18,6 +18,7 @@ function AdminPage(): JSX.Element {
     const submitNewPlant = () => {
         VeggieAPI.saveVeggie({plantName: input}).then((res) => {
             console.log(res);
+            setInput("");
         }).catch((err) => {
             console.log(err);
         })
@@ -30,9 +31,9 @@ function AdminPage(): JSX.Element {
     <Grid item xs={12} container justify="space-around">
         <div className="about-dark-box component-style">
         <h1>This is the admin page!  Don't tell anyone.</h1>
-        <h3>Input your fruit or veggie below. Be certain of spelling before your submission!</h3>
+        <h3>Input your new fruit or veggie below. Be certain of spelling before your submission!</h3>
         <input value={input} onChange={updateSearchArray} type="text" />
-          <button type="button">Press To Submit</button>
+          <button type="button" onClick={submitNewPlant}>Press To Submit Your New Plant.</button>
         </div>
       </Grid>
     </div>
