@@ -10,7 +10,6 @@ function PastChallenges() {
 
     const [pastArray, setPastArray] = useState<any>();
 
-    const [chals, setChals] = useState<any>("Loading...");
 
     const [isLoading, setIsLoading] = useState<any>();
 
@@ -46,7 +45,7 @@ function PastChallenges() {
 
     else {
 
-        
+
         return (
             <div>
                 <h2>Current Record:</h2>
@@ -60,27 +59,27 @@ function PastChallenges() {
                 <h2>Past Challenge Details:</h2>
                 <br />
 
-               { pastArray.map((item: { _id: any, dateEnding: any; playerOne: { nickname: any; }; playerOne_currentScore: any; playerTwo: { nickname: any; }; playerTwo_currentScore: any; }) =>
-        <DetailCard key={item._id} children={
-            <div >
+                { pastArray.map((item: { _id: any, dateEnding: any; playerOne: { nickname: any; }; playerOne_currentScore: any; playerTwo: { nickname: any; }; playerTwo_currentScore: any; }) =>
 
-                <h3>Ended On {item.dateEnding}</h3>
-                <br />
-                <p>Player One: {item.playerOne.nickname}
-                    <br />
+                    <div key={item._id}>
+
+                        <h3>Ended On {item.dateEnding}</h3>
+                        <br />
+                        <p>Player One: {item.playerOne.nickname}
+                            <br />
                 Score: {item.playerOne_currentScore}
-                    <br />
+                            <br />
 
                 Player Two: {item.playerTwo.nickname}
-                    <br />
+                            <br />
 
                 Score: {item.playerTwo_currentScore}
 
-                </p>
-            </div>
-        }
-        />
-    ) }
+                        </p>
+                    </div>
+
+
+                )}
 
 
             </div>
