@@ -18,6 +18,7 @@ import Wrapper from './components/Wrapper/Wrapper';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import RachelTest from './views/RachelTest/RachelTest';
+import AdminPage from './views/AdminPage/AdminPage';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/rachel" exact component={RachelTest} />
             {/* <Route path="/winner" exact component={Winner} /> */}
             {/* <Route path="/game-board" exact component={GameBoard} /> */}
+            <Route path="/topsecretadminpage" exact component={AdminPage} />
           </Switch>
           {/* </div> */}
           <Footer />
