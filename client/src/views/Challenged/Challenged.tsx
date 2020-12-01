@@ -15,6 +15,7 @@ import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { SET_CURRENT_USER } from '../../state/actions';
 
 import ChallengeDisplay from '../../components/ChallengeDisplay/ChallengeDisplay';
+import PastChallenges from '../../components/Pastchallenges/PastChallenges';
 
 import { Link } from 'react-router-dom';
 
@@ -83,7 +84,7 @@ function Challenged() {
             }
             <div>
                 <h2>Past Challenges</h2>
-                <p>Past Challenges Component Goes Here</p>
+                <PastChallenges />
 
             </div>
 
