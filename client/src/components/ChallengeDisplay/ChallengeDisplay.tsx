@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
 import DetailCard from '../../components/DetailCard/DetailCard';
-// import ChallengeStats from '../../components/ChallengeStats/ChallengeStats';
+
 import ChallengeScore from '../../components/ChallengeScore/ChallengeScore';
 
 import { DateTime } from 'luxon';
@@ -21,8 +21,6 @@ import './ChallengeDisplay.css'
 import { calcChallenge } from '../../utils/gameplayUtils/calcChallenge';
 
 import userAPI from '../../utils/userAPI';
-
-
 
 
 
@@ -102,6 +100,7 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
         const user = {
             ...state.currentUser,
             challenged: false,
+            currentChallenge: "",
             wins: state.currentUser.wins! + winLossTie.win,
             losses: state.currentUser.losses! + winLossTie.loss,
             ties: state.currentUser.ties! + winLossTie.tie
