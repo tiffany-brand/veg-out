@@ -16,3 +16,11 @@ div.about-dark-box {
   align-items: center;
   justify-content: center;
 }
+
+ul.challenge-rules-list {
+  list-style-position: inside;
+}
+
+span.list-title {
+  text-decoration: underline;
+}
