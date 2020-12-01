@@ -11,15 +11,13 @@ import { DateTime } from 'luxon';
 import { useStoreContext } from '../../state/GlobalState';
 
 import IUser from '../../interfaces/IUser';
-import INewChallenge from '../../interfaces/INewChallenge';
-import IChallenge from '../../interfaces/IChallenge';
 
 import userAPI from '../../utils/userAPI'
 import challengesAPI from '../../utils/challengesAPI';
 
 import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUser';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-import { SET_CURRENT_USER, LOADING } from '../../state/actions';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { SET_CURRENT_USER } from '../../state/actions';
 
 import { Link } from 'react-router-dom';
 
@@ -98,8 +96,8 @@ function Community() {
         const newChallenge = {
             playerOne: state.currentUser._id,
             playerTwo: value!._id,
-            dateStarted: today.toFormat('yyyyLLdd'),
-            dateEnding: today.plus({ days: 7 }).toFormat('yyyyLLdd'),
+            dateStarted: today.plus({ days: 1 }).toFormat('yyyyLLdd'),
+            dateEnding: today.plus({ days: 8 }).toFormat('yyyyLLdd'),
             playerOne_totalVeggies: [],
             playerOne_uniqueVeggies: [],
             playerOne_currentMultiplier: 1,
@@ -164,6 +162,7 @@ function Community() {
 
                     </div>}
 
+                    {/* Display current challenge and/or past challenges */}
                     <Challenged />
 
                 </div>
@@ -171,12 +170,12 @@ function Community() {
         } else if (allUsers[0]) {
 
             return (
-
+                // If searching, display the challenger search input
                 <form className="challenge-form">
                     <Autocomplete
                         id="challenger"
                         options={allUsers}
-                        getOptionLabel={(option) => option.nickname}
+                        getOptionLabel={(option) => option.email}
                         renderInput={(params) => <TextField {...params} label="Search Challengers" variant="outlined" className={classes.textfield} />}
                         value={value || allUsers[0]}
                         onChange={(event: any, newValue: IUser | null) => {
@@ -189,7 +188,6 @@ function Community() {
                     />
 
                     <Button variant="contained" disabled={!value} onClick={(e: any) => handleSubmit(e)}>Challenge!</Button>
-
 
                 </form>
 

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import './Login.css'
-import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import userAPI from '../../utils/userAPI';
 import { useStoreContext } from '../../state/GlobalState';
@@ -9,7 +8,6 @@ import { LOADING, SET_CURRENT_USER } from '../../state/actions';
 import { saveToLocalStorage } from '../../utils/persistUser';
 import Home from '../Home/Home';
 
-import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -126,44 +124,6 @@ function Login(): JSX.Element {
 
         </div>
 
-
-
-
-        // <div>
-        //     <img width="500px" src={logo} alt="Vegemon" />
-        //     <br></br>
-        //     <Link to="/">
-        //         {/* If not logged, show the Log In button */}
-        //         {!isLoading && !user && (
-        //             <>
-        //                 <button onClick={loginWithRedirect}>
-        //                     Log In
-        //                 </button>
-        //             </>
-        //         )}
-        //     </Link>
-        //     {/* If logged in, go to the home page */}
-        //     {isAuthenticated && (
-
-        //         <>
-        //             <Link to="/home"><button>Go Home</button></Link>
-        //             <Link to="/" onClick={() => logout({ returnTo: window.location.origin })}>
-        //                 <button>Log Out</button>
-        //             </Link>
-
-        //         </>
-
-        //     )}
-
-        //     {isAuthenticated && (!state.currentUser.challenged &&
-        //         <Link to="/community"><button>Start a Challenge</button></Link>)
-        //     }
-
-        //     {state.currentUser.challenged &&
-        //         <Link to="/challenged"><button>Current Challenge</button></Link>
-        //     }
-
-        // </div>
     )
 
 

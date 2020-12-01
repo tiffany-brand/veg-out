@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
 
 import { useStoreContext } from '../../state/GlobalState';
 
 import IUser from '../../interfaces/IUser';
 import IChallenge from '../../interfaces/IChallenge';
 
-import userAPI from '../../utils/userAPI'
 import challengesAPI from '../../utils/challengesAPI';
 
 import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUser';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { SET_CURRENT_USER } from '../../state/actions';
 
 import ChallengeDisplay from '../../components/ChallengeDisplay/ChallengeDisplay';
+import PastChallenges from '../../components/Pastchallenges/PastChallenges';
 
-import { Link } from 'react-router-dom';
+
 
 function Challenged() {
 
@@ -83,7 +81,7 @@ function Challenged() {
             }
             <div>
                 <h2>Past Challenges</h2>
-                <p>Past Challenges Component Goes Here</p>
+                <PastChallenges />
 
             </div>
 
