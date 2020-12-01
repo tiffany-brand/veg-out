@@ -60,9 +60,9 @@ function PastChallenges() {
                 <h2>Past Challenge Details:</h2>
                 <br />
 
-               { pastArray.map((item: { dateEnding: any; playerOne: { nickname: any; }; playerOne_currentScore: any; playerTwo: { nickname: any; }; playerTwo_currentScore: any; }) =>
-        <DetailCard children={
-            <div key={item.dateEnding}>
+               { pastArray.map((item: { _id: any, dateEnding: any; playerOne: { nickname: any; }; playerOne_currentScore: any; playerTwo: { nickname: any; }; playerTwo_currentScore: any; }) =>
+        <DetailCard key={item._id} children={
+            <div >
 
                 <h3>Ended On {item.dateEnding}</h3>
                 <br />
