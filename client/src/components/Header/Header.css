@@ -1,4 +1,3 @@
-
 .white-background {
   padding-top:7px;
   padding-right: 5px;
@@ -37,7 +36,6 @@ nav {
   justify-content: space-around;
   align-items: center;
   background-color: #fff;
-  /* margin-top: 1px; */
 }
 
 .nav-bar{
@@ -69,8 +67,6 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* transform: translateX(100%);
-  transition: transform .5s ease-in; */
   transition: height 500ms ease-in;
   z-index: 0;
 }
