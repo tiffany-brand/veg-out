@@ -35,7 +35,9 @@ To begin, log into your account and start a challenge on the Challenges page. Yo
 
 How is the winner chosen? At the end of the week-long challenge period the final points will be calculated and compared. Scoring is based on: Unique Veggies/Fruits Each unique plant will be worth 10 points. Total Veggies/Fruits Each plant will be worth 1 point each time logged, with a maximum of 3 points per plant. This is to help promote diversity in your diet! Consistency Bonus Multiplier Did you have at least 3 plants for 12 or more meals? Thats a 3X bonus. 5 plants? 5X. 7 plants?!? That's right, 7X bonus. Now get out there and eat some plants!!!
 
+### Screenshots
 
+![Vedge-In-Splash](https://user-images.githubusercontent.com/16748389/100818146-88444600-3417-11eb-8cde-dc7efe156937.JPG)
 
  ## Installation <a href="installation"></a>
 
