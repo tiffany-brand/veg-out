@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import './PlantLog.css'
 
 // Gives us a formatted date object
@@ -13,7 +13,6 @@ import arraySortUniqueVeggies from '../../utils/arraySortingMachine'
 
 // Importing our interfaces
 import IVeggies from "../../interfaces/IVeggies";
-import IUser from '../../interfaces/IUser';
 
 // Importing APIs
 import veggieAPI from '../../utils/veggiesAPI';
@@ -27,7 +26,6 @@ const conditionallySort = <T,>(arr: T[], condition: boolean) => (
 
 // Creating our current date/time object
 const date = DateTime.local().toFormat('yyyyLLdd');
-
 
 const PlantLog: React.FC = () => {
 
@@ -73,7 +71,7 @@ const PlantLog: React.FC = () => {
     setCurrentMeal(updatedList)
   };
 
-  // Meal Label assets
+  // Meal Label/menu assets
   const [menuActive, setMenuActive] = useState<boolean>(false);
   const [menuLabel, setMenuLabel] = useState<string>("Meal Label ⇩")
 
@@ -156,7 +154,6 @@ const PlantLog: React.FC = () => {
 
           <div className="dropbtn" onClick={menuEvent} data-menu_item="Meal Label ⇩">{menuLabel}</div>
 
-          {/* <div className="dropdown-content"> */}
           <div className={`dropdown-content ${menuActive ? "display-meal-menu" : null}`}>
             <p onClick={menuEvent} data-menu_item="Breakfast">Breakfast</p>
             <p onClick={menuEvent} data-menu_item="Lunch">Lunch</p>

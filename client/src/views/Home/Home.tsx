@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './Home.css';
 
 // Global state and authorization utilities
@@ -10,7 +10,6 @@ import { SET_CURRENT_USER } from '../../state/actions';
 import PlantLog from '../../components/PlantLog/PlantLog';
 
 // Structural imports
-import DetailCard from '../../components/DetailCard/DetailCard';
 import Grid from '@material-ui/core/Grid';
 
 function Home() {
@@ -21,16 +20,14 @@ function Home() {
   // Keep logged in user persistent using local storage 
   useEffect(() => {
     if (!state.currentUser._id) {
-      const storedState = loadFromLocalStorage()
+      const storedState = loadFromLocalStorage();
       dispatch({
         type: SET_CURRENT_USER,
         currentUser: storedState.currentUser
-      })
+      });
     } else saveToLocalStorage(state);
-  }, [])
-
-  console.log(state.currentUser.lifetimeUniqueVeggies);
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="home-screen">
@@ -66,7 +63,6 @@ function Home() {
       </div>
     </div>
   )
-
 };
 
 export default Home;

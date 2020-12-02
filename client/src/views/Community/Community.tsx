@@ -204,9 +204,13 @@ function Community() {
             <h2 className="view-title">{state.currentUser.nickname} Challenges</h2>
 
             <div className="community-dark-box">
+                <Grid item xs={12} container className="component-style" justify="space-around">
+                    <Grid item xs={12} md={8}>
 
-                {isChallenged()}
+                        {isChallenged()}
 
+                    </Grid>
+                </Grid>
             </div>
 
         </div>

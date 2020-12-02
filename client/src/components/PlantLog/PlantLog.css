@@ -4,8 +4,6 @@ ul.search-results {
 
 .plant-log-area ul {
   padding: 10px 0px 10px 0px;
-  /* display: inline-block; 
-	text-align: left;  */
 }
 
 .add-plant li {
@@ -46,7 +44,7 @@ button.disabled {
   padding-left: 15px;
 }
 
-/* Meal Label styles */
+/* Meal Label/menu styles */
 .dropbtn {
   color: white;
   padding: 0px 5px 3px 5px;
