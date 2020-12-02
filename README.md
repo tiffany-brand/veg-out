@@ -27,7 +27,7 @@
 
  ## Description <a href="description"></a>
 
-Broaden your veggies horizons with the Vedge-In Challenge! Vedge-In is an application designed to help users eat healthier by encouraging them to increase the amount and diversity of vegetables in their diet. Log your veggie intake, challenge your friends, and watch you and your community get stronger and healthier! 
+Broaden your veggie horizons with the Vedge-In Challenge! Vedge-In is an application designed to help users eat healthier by encouraging them to increase the amount and diversity of vegetables in their diet. Log your veggie intake, challenge your friends, and watch you and your community get stronger and healthier! 
 
 Having a whole foods, plant-based diet is key to living a long and healthy life. Eating a diverse array of vegetables gives you a nutrient-rich diet and promotes positive gut health. Eating a largely plant-based diet also lowers your chances of preventable illness. 
 
