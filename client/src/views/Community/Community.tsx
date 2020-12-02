@@ -86,6 +86,7 @@ function Community() {
 
     // show the search box
     const loadUsers = () => {
+        setValue(allUsers[0]);
         setSearching(true);
     }
 
