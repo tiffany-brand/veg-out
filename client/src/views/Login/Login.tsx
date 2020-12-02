@@ -33,7 +33,7 @@ function Login(): JSX.Element {
             userAPI.getAuthUser(user.sub)
                 .then(res => {
                     if (res.data === "") {
-                        console.log("No user found");
+
 
                         // if no user found, create new user in db, then set state
                         userAPI.saveUser({
@@ -67,7 +67,7 @@ function Login(): JSX.Element {
                             })
                             .catch(err => console.log(err));
                     } else {
-                        console.log("user found")
+
                         const { _id,
                             email, auth0ID, nickname, challenged, currentChallenge, wins, losses, ties, lifetimeUniqueVeggies, lifetimeTotalVeggies
                         } = res.data;
@@ -96,7 +96,7 @@ function Login(): JSX.Element {
                 })
                 .catch(err => console.log(err));
 
-            console.log(state.currentUser);
+
 
         }
     }, [])

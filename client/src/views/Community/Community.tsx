@@ -91,7 +91,7 @@ function Community() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log(JSON.stringify(value))
+
         const today = DateTime.local();
         const newChallenge = {
             playerOne: state.currentUser._id,

@@ -48,7 +48,7 @@ function Challenged() {
             challengesAPI.getChallenge(state.currentUser.currentChallenge || storedState.currentUser.currentChallenge)
                 .then(res => {
                     setCurrentChallenge(res.data);
-                    console.log(JSON.stringify(res.data));
+
                     let challenger;
                     if (res.data.playerOne._id === state.currentUser._id || res.data.playerOne._id === storedState.currentUser._id) {
                         challenger = res.data.playerTwo;

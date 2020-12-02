@@ -43,7 +43,7 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
         // determine if the current user is player one or two
         let playerOne: string;
         let playerTwo: string;
-        console.log("position " + props.position)
+
         if (props.position === 1) {
             playerOne = state.currentUser._id;
             playerTwo = props.currentChallenger!._id;
@@ -54,7 +54,7 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
         // calculate and save challenge stats for both players
         calcChallenge(playerOne, playerTwo, state.currentUser.currentChallenge)
             .then((res: any) => {
-                console.log("calcChallenge " + JSON.stringify(res))
+
                 setCalcedChallenge(res);
                 setIsLoading(false);
             })
@@ -90,7 +90,7 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
         } if (playerWinner) {
             win++
         } else loss++
-        console.log("win, loss, tie" + win + loss + tie)
+
         return { win, loss, tie }
     }
 
