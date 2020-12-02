@@ -86,12 +86,13 @@ function Community() {
 
     // show the search box
     const loadUsers = () => {
+        setValue(allUsers[0]);
         setSearching(true);
     }
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log(JSON.stringify(value))
+
         const today = DateTime.local();
         const newChallenge = {
             playerOne: state.currentUser._id,
@@ -156,10 +157,11 @@ function Community() {
         if (!searching) {
 
             return (
-                <div className="community-display">
-                    {/* if the user is not in a challenge, display the button to choose a new challenger */}
-                    {!state.currentUser.challenged &&
-                        <div><Button variant="contained" onClick={() => loadUsers()}>Choose a New Challenger</Button> </div>}
+                <div className="community-display component-style">
+                    {!state.currentUser.challenged && <div>
+                        <Button variant="contained" onClick={() => loadUsers()}>Start a New Challenge</Button>
+
+                    </div>}
 
                     {/* Display current challenge and/or past challenges */}
                     <Challenged />
@@ -201,13 +203,13 @@ function Community() {
     return (
         <div>
             <h2 className="view-title">{state.currentUser.nickname} Challenges</h2>
-            <Grid item xs={12} container justify="space-around">
-                <div className="dark-box">
 
-                    {isChallenged()}
+            <div className="community-dark-box">
 
-                </div>
-            </Grid>
+                {isChallenged()}
+
+            </div>
+
         </div>
     )
 }

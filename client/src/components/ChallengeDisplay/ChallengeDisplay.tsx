@@ -43,7 +43,7 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
         // determine if the current user is player one or two
         let playerOne: string;
         let playerTwo: string;
-        console.log("position " + props.position)
+
         if (props.position === 1) {
             playerOne = state.currentUser._id;
             playerTwo = props.currentChallenger!._id;
@@ -54,7 +54,7 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
         // calculate and save challenge stats for both players
         calcChallenge(playerOne, playerTwo, state.currentUser.currentChallenge)
             .then((res: any) => {
-                console.log("calcChallenge " + JSON.stringify(res))
+
                 setCalcedChallenge(res);
                 setIsLoading(false);
             })
@@ -85,12 +85,12 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
         let win = 0;
         let loss = 0;
         let tie = 0;
-        if (playerTie) {
-            tie++
-        } if (playerWinner) {
+        if (playerWinner) {
             win++
+        } else if (playerTie) {
+            tie++
         } else loss++
-        console.log("win, loss, tie" + win + loss + tie)
+
         return { win, loss, tie }
     }
 
@@ -119,27 +119,24 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
 
             {calcedChallenge && <div>
 
-                <h2>{startDate.toFormat('LLL. dd yyyy')} - {endDate.toFormat('LLL. dd yyyy')}</h2>
+                <h2 className="h2-pad-bottom">{startDate.toFormat('LLL. dd yyyy')} - {endDate.toFormat('LLL. dd yyyy')}</h2>
 
                 {!challOn && <div>
                     <h3>Challenge Complete!</h3>
                     <Button variant="contained" onClick={() => archiveChallenge()}>Archive Challenge</Button>
                 </div>}
-
                 <Grid item xs={12} container justify="space-around">
-
-                    <DetailCard>
-                        <h3>{state.currentUser.nickname} Stats</h3>
+                    <Grid item xs={12} md={6} className="pad-div-bottom">
+                        <h3 className="underlined-header">{state.currentUser.nickname} Stats</h3>
                         {playerOne && <ChallengeScore multiplier={calcedChallenge!.playerOne_currentMultiplier} veggies={calcedChallenge!.playerOne_totalVeggies.length} unique={calcedChallenge!.playerOne_uniqueVeggies.length} score={calcedChallenge!.playerOne_currentScore} />}
                         {!playerOne && <ChallengeScore multiplier={calcedChallenge!.playerTwo_currentMultiplier} veggies={calcedChallenge!.playerTwo_totalVeggies.length} unique={calcedChallenge!.playerTwo_uniqueVeggies.length} score={calcedChallenge!.playerTwo_currentScore} />}
-                    </DetailCard>
+                    </Grid>
 
-                    <DetailCard>
-                        <h3>{props.currentChallenger!.nickname} Stats</h3>
+                    <Grid item xs={12} md={6}>
+                        <h3 className="underlined-header">{props.currentChallenger!.nickname} Stats</h3>
                         {playerOne && <ChallengeScore multiplier={calcedChallenge!.playerTwo_currentMultiplier} veggies={calcedChallenge!.playerTwo_totalVeggies.length} unique={calcedChallenge!.playerTwo_uniqueVeggies.length} score={calcedChallenge!.playerTwo_currentScore} />}
                         {!playerOne && <ChallengeScore multiplier={calcedChallenge!.playerOne_currentMultiplier} veggies={calcedChallenge!.playerOne_totalVeggies.length} unique={calcedChallenge!.playerOne_uniqueVeggies.length} score={calcedChallenge!.playerOne_currentScore} />}
-                    </DetailCard>
-
+                    </Grid>
                 </Grid>
             </div>}
 
