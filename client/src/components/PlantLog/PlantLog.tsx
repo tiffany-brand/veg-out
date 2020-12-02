@@ -83,6 +83,13 @@ const PlantLog: React.FC = () => {
   // Update DB with current meal
   const logCurrentMeal = () => {
 
+    // if (menuLabel === "Meal Label ⇩") {
+    //   console.log("please select a meal label");
+    //   return;
+    // }
+
+    // if (!currentMeal)
+
     // Build array from meal's veggies
     const mealVeggiesArray = currentMeal.map((item: any) => {
       return item.plantName;
@@ -115,6 +122,9 @@ const PlantLog: React.FC = () => {
     // Clear the current meal area
     setCurrentMeal([]);
   };
+
+  console.log(currentMeal);
+
 
   return (
     <div className="plant-log-area">
@@ -162,7 +172,7 @@ const PlantLog: React.FC = () => {
           </div>
         </div>
       </div>
-      <button onClick={logCurrentMeal} className={`log-button`}>+ LOG +</button>
+      <button onClick={logCurrentMeal} className={`log-button ${(currentMeal.length === 0 || menuLabel === "Meal Label ⇩") ? "disabled" : null}`}>+ LOG +</button>
 
     </div>
   )

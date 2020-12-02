@@ -8,6 +8,7 @@ div.community-dark-box {
   background-color: #0000009a;
   align-items: center;
   justify-content: center;
+  padding-bottom: 25px;
 }
 
 form.challenge-form {
@@ -30,6 +31,6 @@ form.challenge-form {
   list-style: none;
 }
 
-.past-challenge-padding {
-  padding-bottom: 15px;
+.past-challenge-container {
+  border-top: 4px solid rgba(255, 255, 255, 0.562);
 }

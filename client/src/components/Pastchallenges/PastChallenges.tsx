@@ -5,7 +5,6 @@ import challengesAPI from '../../utils/challengesAPI';
 // Structural imports
 import Grid from '@material-ui/core/Grid';
 
-
 function PastChallenges() {
 
     const [state, dispatch] = useStoreContext();
@@ -60,13 +59,12 @@ function PastChallenges() {
                 <br />
                 <h2>Past Challenge Details:</h2>
                 <br />
-                <Grid item xs={12} container className="component-style" justify="space-around">
+                <Grid item xs={12} spacing={6} container className="component-style" justify="space-around">
                     {pastArray.map((item: { _id: any, dateEnding: any; playerOne: { nickname: any; }; playerOne_currentScore: any; playerTwo: { nickname: any; }; playerTwo_currentScore: any; }) =>
 
-                        // <div key={item._id}>
-                        <Grid key={item._id} className="zero-out past-challenge-padding" item xs={12} md={6}>
+                        <Grid key={item._id} className="past-challenge-container" item xs={12} md={6}>
 
-                            <h3>Ended On {item.dateEnding}</h3>
+                            <h3>Ended {item.dateEnding}</h3>
                             <br />
                             <p>Player One: {item.playerOne.nickname}
                                 <br />
@@ -80,7 +78,6 @@ function PastChallenges() {
 
                             </p>
                         </Grid>
-                        // </div>
 
 
                     )}
