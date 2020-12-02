@@ -85,10 +85,10 @@ const ChallengeDisplay: React.FC<Props> = (props) => {
         let win = 0;
         let loss = 0;
         let tie = 0;
-        if (playerTie) {
-            tie++
-        } if (playerWinner) {
+        if (playerWinner) {
             win++
+        } else if (playerTie) {
+            tie++
         } else loss++
 
         return { win, loss, tie }
