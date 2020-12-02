@@ -9,8 +9,8 @@
  1. [User Stories](#user-stories)
  2. [Description](#description)
  3. [Installation](#installation)
- 4. [Technologies Used](#usage)
- 5. [Future Developments](#futuredevelopments)
+ 4. [Technologies Used](#technologies)
+ 5. [Future Developments](#future-developments)
  6. [Contributors](#contributors)
  7. [License](#license)
 
@@ -83,14 +83,14 @@ yarn install
 
  ## Contributors
 
-[Tiffany Brand](https://github.com/tiffany-brand)
-[Rachel Campbell](https://github.com/relizabet)
-[Chad Laflamme](https://github.com/cjlaflamme1)
-[Marc Langlois](https://github.com/mlanglois333)
-[Keith Tharp](https://github.com/keiththarp)
+* [Tiffany Brand](https://github.com/tiffany-brand)
+* [Rachel Campbell](https://github.com/relizabet)
+* [Chad Laflamme](https://github.com/cjlaflamme1)
+* [Marc Langlois](https://github.com/mlanglois333)
+* [Keith Tharp](https://github.com/keiththarp)
 
 
  ## License
-MIT License
+[MIT License](./LICENSE)
 
  
