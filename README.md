@@ -27,13 +27,14 @@
 
  ## Description <a href="description"></a>
 
- Vegemon is an application designed to help users eat healthier by encouraging them to increase the amount and diversity of vegetables in their diet.
+Broaden your veggies horizons with the Vedge-In Challenge! Vedge-In is an application designed to help users eat healthier by encouraging them to increase the amount and diversity of vegetables in their diet. Log your veggie intake, challenge your friends, and watch you and your community get stronger and healthier! 
 
-When a user creates an account, they choose a playable character. The character starts with a base levels of the following stats: Health, Defense, and Offense. As the use goes through their day, they log the vegetables that they eat at each meal. The characters' stats are increased for each vegetable that is logged, with the type of stat being corellated to the actual benefits of the vegetable itself. 
+Having a whole foods, plant-based diet is key to living a long and healthy life. Eating a diverse array of vegetables gives you a nutrient-rich diet and promotes positive gut health. Eating a largely plant-based diet also lowers your chances of preventable illness. 
 
-Users can choose to set time-based challenges with eachother, and at the end of the alotted time whichever character has the best stats wins. 
+To begin, log into your account and start a challenge on the Challenges page. You can search for a friend, family member, or choose randomly from the Vedge-In community. Each challenge will last for one week. During this period, log each of the vegetables or fruit in your meals in the app. To check your status, navigate to the home page to review your stats and see your current score on the challenges page. 
 
-Users are presented with information about the health benefits of the foods they are eating as they are inputted, and have access to a log of all inputted items. 
+How is the winner chosen? At the end of the week-long challenge period the final points will be calculated and compared. Scoring is based on: Unique Veggies/Fruits Each unique plant will be worth 10 points. Total Veggies/Fruits Each plant will be worth 1 point each time logged, with a maximum of 3 points per plant. This is to help promote diversity in your diet! Consistency Bonus Multiplier Did you have at least 3 plants for 12 or more meals? Thats a 3X bonus. 5 plants? 5X. 7 plants?!? That's right, 7X bonus. Now get out there and eat some plants!!!
+
 
 
  ## Installation <a href="installation"></a>
@@ -63,7 +64,9 @@ yarn install
 
  ## Future Developments <a href="futuredevelopments"></a>
 
- Connecting the application to a nutritional database for a broader informational component
+ * Connecting the application to a nutritional database for a broader informational component
+ * Adding a leaderboard for challenge stats
+
 
  ## Contributors <a href="contributors"></a>
 
