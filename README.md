@@ -1,6 +1,6 @@
-<img src="client/src/assets/images/Vegemon-logo.png" alt="Vegemon" />
+<img src="client/src/assets/images/stroked-vedgeIn-logo-480.png" alt="Vedge-In" />
 
-<a href="/">Deployed on Heroku!</a>
+<a href="https://vegemon.herokuapp.com/">Vedge-In Deployed on Heroku!</a>
 
  ## Table Of Contents
 
