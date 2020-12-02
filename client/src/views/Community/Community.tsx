@@ -187,7 +187,7 @@ function Community() {
                         }}
                     />
 
-                    <Button variant="contained" onClick={(e: any) => handleSubmit(e)}>Challenge!</Button>
+                    <Button variant="contained" disabled={!value} onClick={(e: any) => handleSubmit(e)}>Challenge!</Button>
 
                 </form>
 
