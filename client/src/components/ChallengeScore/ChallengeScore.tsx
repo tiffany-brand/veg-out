@@ -12,16 +12,16 @@ export default function ChallengeScore(props: { multiplier: number, veggies: num
         <div className="challenge-stats">
             <ul>
                 <li>
-                    Multiplier:{multiplier}
+                    Multiplier: {multiplier}
                 </li>
                 <li>
-                    Veggies:{veggies}
+                    Veggies: {veggies}
                 </li>
                 <li>
-                    Unique Veggies:{unique}
+                    Unique Veggies: {unique}
                 </li>
                 <li>
-                    Score:{score}
+                    Score: {score}
                 </li>
             </ul>
 

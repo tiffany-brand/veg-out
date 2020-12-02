@@ -7,7 +7,7 @@ import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/persistUse
 import { SET_CURRENT_USER } from '../../state/actions';
 
 // Plant logging functional component
-import PlantLog from '../PlantLog/PlantLog';
+import PlantLog from '../../components/PlantLog/PlantLog';
 
 // Structural imports
 import DetailCard from '../../components/DetailCard/DetailCard';
@@ -33,36 +33,37 @@ function Home() {
 
 
   return (
-    <div>
+    <div className="home-screen">
       <h2 className="view-title">{state.currentUser.nickname} Stats</h2>
-      <Grid item xs={12} container className="component-style" justify="space-around">
-        <DetailCard>
-          <div className="user-stats">
-            <h3 className="underlined-header">Plant Stats</h3>
-            <div className="list-container">
-              <ul>
-                <li>Unique: {state.currentUser.lifetimeUniqueVeggies ? state.currentUser.lifetimeUniqueVeggies.length : "0"} </li>
-                <li>Total: {state.currentUser.lifetimeTotalVeggies}</li>
-              </ul>
+      <div className="home-dark-box">
+        <Grid item xs={12} container className="component-style" justify="space-around">
+          <Grid className="zero-out" item xs={12} md={6}>
+            <div className="user-stats">
+              <h3 className="underlined-header">Plant Stats</h3>
+              <div className="list-container">
+                <ul>
+                  <li>Unique: {state.currentUser.lifetimeUniqueVeggies ? state.currentUser.lifetimeUniqueVeggies.length : "0"} </li>
+                  <li>Total: {state.currentUser.lifetimeTotalVeggies}</li>
+                </ul>
+              </div>
+              <h3 className="underlined-header">Challenge Stats</h3>
+              <div className="list-container">
+                <ul>
+                  <li>Current: {state.currentUser.challenged ? "1" : "None"}</li>
+                  <li>Wins: {state.currentUser.wins}</li>
+                  <li>Losses {state.currentUser.losses}</li>
+                </ul>
+              </div>
             </div>
-            <h3 className="underlined-header">Challenge Stats</h3>
-            <div className="list-container">
-              <ul>
-                <li>Current Challenges: {state.currentUser.challenged ? "1" : "None"}</li>
-                <li>Wins: {state.currentUser.wins}</li>
-                <li>Losses {state.currentUser.losses}</li>
-              </ul>
+          </Grid>
+          <Grid className="zero-out" item xs={12} md={6}>
+            <div className="plant-log">
+              <h3 className="underlined-header">Plant Log</h3>
+              <PlantLog />
             </div>
-          </div>
-        </DetailCard>
-
-        <DetailCard>
-          <div className="plant-log">
-            <h3 className="underlined-header">Plant Log</h3>
-            <PlantLog />
-          </div>
-        </DetailCard>
-      </Grid>
+          </Grid>
+        </Grid>
+      </div>
     </div>
   )
 
