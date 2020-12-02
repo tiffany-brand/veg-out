@@ -86,12 +86,13 @@ function Community() {
 
     // show the search box
     const loadUsers = () => {
+        setValue(allUsers[0]);
         setSearching(true);
     }
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log(JSON.stringify(value))
+
         const today = DateTime.local();
         const newChallenge = {
             playerOne: state.currentUser._id,

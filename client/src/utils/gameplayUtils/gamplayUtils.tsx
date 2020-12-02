@@ -4,23 +4,23 @@ import counting from './arrayCounting';
 export default {
     // This function will take in 1 users meallogs and calculate their multiplier bonus.
     calculateMultiplierBonus: (arrayOfMeals: [][]): number => {
-        let bonus= 1;
+        let bonus = 1;
         const mealsOf3OrMore = [];
         const mealsOf5OrMore = [];
         const mealsOf7OrMore = [];
         // This counts each meal entry and pushes it into the appropriate category according to meal length.
         arrayOfMeals.forEach((meal: string[]) => {
-            if(meal.length >= 7) {
+            if (meal.length >= 7) {
                 mealsOf7OrMore.push(meal);
-            } else  if(meal.length >= 5){
+            } else if (meal.length >= 5) {
                 mealsOf5OrMore.push(meal);
-            } else if(meal.length >= 3) {
+            } else if (meal.length >= 3) {
                 mealsOf3OrMore.push(meal);
             }
         });
         // This will assess the quantity of each diverse meal, delivering the highest bonus.
         // This system is based on a week long challenge, for selecting challenge length we will need add length of challenge parameter.
-        if(mealsOf7OrMore.length >= 12) {
+        if (mealsOf7OrMore.length >= 12) {
             bonus = 7;
         } else if (mealsOf5OrMore.length >= 12) {
             bonus = 5;
@@ -51,11 +51,11 @@ export default {
     },
 
     returnsChallengeMeals: (mealLog: IMealLog[]): any[] => {
-        console.log('Challenge Meal function running');
+
         const challengeMeals = mealLog.map((meal) => {
-                return meal.mealVeggies;
-            })
-            return challengeMeals;
+            return meal.mealVeggies;
+        })
+        return challengeMeals;
     },
 
     scoreCalculator: (uniqueVeggieList: string[], totalVeggieList: string[], bonusMultiplier: number): number => {
