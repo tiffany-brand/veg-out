@@ -1,10 +1,12 @@
 <img src="client/src/assets/images/stroked-vedgeIn-logo-480.png" alt="Vedge-In" />
 
+[![License: MIT](https://img.shields.io/github/license/tiffany-brand/veg-out?style=plastic)](./LICENSE)
+
 <a href="https://vegemon.herokuapp.com/">Vedge-In Deployed on Heroku!</a>
 
  ## Table Of Contents
 
- 1. [User Story](#userstory)
+ 1. [User Stories](#user-stories)
  2. [Description](#description)
  3. [Installation](#installation)
  4. [Technologies Used](#usage)
@@ -12,20 +14,29 @@
  6. [Contributors](#contributors)
  7. [License](#license)
 
- ## User Story <a href="userstory"></a>
+ ## User Stories
 
    ``` 
-   AS an individual trying to better my health
+   AS AN individual trying to be healthy
    I WANT to better my health and increase plant diversity in my diet
+   SO THAT I feel good and have better health
 
    AS a user
    I WANT an application that helps track my diet
    AND to have incentives and healthy competition
    SO THAT I stay on track with my goals
 
+   AS A parent
+   I WANT to encourage my family and friends to eat a more plant-based diet
+   SO THAT they become healthier
+
+   AS A doctor
+   I WANT an application to motivate my patients to eat more plant-based foods
+   SO THAT they will enjoy improved health
+
    ```
 
- ## Description <a href="description"></a>
+ ## Description
 
 Broaden your veggie horizons with the Vedge-In Challenge! Vedge-In is an application designed to help users eat healthier by encouraging them to increase the amount and diversity of vegetables in their diet. Log your veggie intake, challenge your friends, and watch you and your community get stronger and healthier! 
 
@@ -39,7 +50,7 @@ How is the winner chosen? At the end of the week-long challenge period the final
 
 ![Vedge-In-Splash](https://user-images.githubusercontent.com/16748389/100818146-88444600-3417-11eb-8cde-dc7efe156937.JPG)
 
- ## Installation <a href="installation"></a>
+ ## Installation
 
  Installation can be performed with
 
@@ -53,37 +64,33 @@ yarn install
 ```
 
 
- ## Technologies Used <a href="usage"></a>
+ ## Technologies
 
- <ul>
- <li>NestJS</li>
- <li>TypeORM</li>
- <li>TypeScript</li>
- <li>SocketIO</li>
- <li>Express</li>
- <li>React</li>
-</ul>
+| Front-end          | Back-end         | 
+|--------------------|------------------|
+| React              | NestJS           |     
+| Material UI        | TypeORM          | 
+| Luxon              | MySQL            |
+| Lodash             | Heroku           | 
 
- ## Future Developments <a href="futuredevelopments"></a>
+
+
+ ## Future Developments
 
  * Connecting the application to a nutritional database for a broader informational component
  * Adding a leaderboard for challenge stats
 
 
- ## Contributors <a href="contributors"></a>
+ ## Contributors
 
-<ul>
-<li>Tiffany Brand</li>
-<li>Chad Laflamme</li>
-<li>Keith Tharp</li>
-<li>Rachel Campbell</li>
-<li>Marc Langlois</li>
-</ul>
+[Tiffany Brand](https://github.com/tiffany-brand)
+[Rachel Campbell](https://github.com/relizabet)
+[Chad Laflamme](https://github.com/cjlaflamme1)
+[Marc Langlois](https://github.com/mlanglois333)
+[Keith Tharp](https://github.com/keiththarp)
 
 
-
- ## License <a href="license"></a>
-
+ ## License
 MIT License
 
  
