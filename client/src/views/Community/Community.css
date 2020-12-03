@@ -1,13 +1,14 @@
 div.community-dark-box {
   text-align: center;
   margin-top: 5%;
-  height:100vh;
   padding-top: 15px;
   width: 100%;
-  min-height: 300px;
+  /* min-height: 300px; */
+  /* height: 100%; */
   background-color: #0000009a;
   align-items: center;
   justify-content: center;
+  padding-bottom: 25px;
 }
 
 form.challenge-form {
@@ -28,4 +29,8 @@ form.challenge-form {
 
 .community-display li{
   list-style: none;
+}
+
+.past-challenge-container {
+  border-top: 4px solid rgba(255, 255, 255, 0.562);
 }
