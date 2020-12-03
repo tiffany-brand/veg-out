@@ -51,6 +51,7 @@ function Home() {
                   <li>Losses {state.currentUser.losses}</li>
                 </ul>
               </div>
+              <hr className="home-rule" />
             </div>
           </Grid>
           <Grid className="zero-out" item xs={12} md={6}>

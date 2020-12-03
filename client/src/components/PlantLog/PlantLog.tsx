@@ -27,6 +27,8 @@ const conditionallySort = <T,>(arr: T[], condition: boolean) => (
 // Creating our current date/time object
 const date = DateTime.local().toFormat('yyyyLLdd');
 
+let loggedMealStats: string;
+
 const PlantLog: React.FC = () => {
 
   // Accessing global state for current user data
@@ -121,6 +123,7 @@ const PlantLog: React.FC = () => {
 
     // Clear the current meal area
     setCurrentMeal([]);
+    loggedMealStats = `Added ${mealVeggiesArray.length} plants!`;
   };
 
   console.log(currentMeal);
@@ -137,7 +140,6 @@ const PlantLog: React.FC = () => {
           <ul className="add-plant">{searchArray.slice(0, 5).map(function (plant, idx) {
             return <li className="plant-log-item" onClick={() => addPlant(plant)} key={idx}>{plant.plantName}</li>
           })}</ul>
-
           :
           <ul className="add-plant">
             {conditionallySort(availablePlants, !!input)
@@ -154,12 +156,20 @@ const PlantLog: React.FC = () => {
       <div className="current-meal-area">
         <h3 className="underlined-header">Current Meal</h3>
         <div className="list-container">
-          <ul className="remove-plant">
-            {currentMeal.map(function (plant, index) {
-              return <li className="plant-log-item" onClick={() => removePlant(plant)} key={index}>{plant.plantName}</li>
-            })}
-          </ul>
+          {loggedMealStats
+            ?
+            <div className="logged-meal-stats">
+              {loggedMealStats}
+            </div>
+            :
+            <ul className="remove-plant">
+              {currentMeal.map(function (plant, index) {
+                return <li className="plant-log-item" onClick={() => removePlant(plant)} key={index}>{plant.plantName}</li>
+              })}
+            </ul>
+          }
         </div>
+
         <div className="dropdown">
 
           <div className="dropbtn" onClick={menuEvent} data-menu_item="Meal Label ⇩">{menuLabel}</div>
