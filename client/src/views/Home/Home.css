@@ -30,3 +30,13 @@ div.home-dark-box {
   align-items: center;
   justify-content: center;
 }
+
+@media only screen and (max-width: 959px) {
+  hr.home-rule {
+    margin: 25px auto;
+    background-color: rgba(255, 255, 255, 0.562);
+    padding: 4px;
+    width: 45%;
+    border: 0px;
+  }
+}
