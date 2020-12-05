@@ -27,8 +27,6 @@ const conditionallySort = <T,>(arr: T[], condition: boolean) => (
 // Creating our current date/time object
 const date = DateTime.local().toFormat('yyyyLLdd');
 
-let loggedMealStats: string;
-
 const PlantLog: React.FC = () => {
 
   // Accessing global state for current user data
@@ -38,6 +36,9 @@ const PlantLog: React.FC = () => {
   const [availablePlants, setAvailablePlants] = useState<IVeggies[]>([])
   const [searchArray, setSearchArray] = useState<IVeggies[]>([]);
   const [input, setInput] = useState("");
+
+  // State for log display
+  const [loggedMealStats, setLoggedMealStats] = useState<number>(0)
 
   //State for holding current meal
   const [currentMeal, setCurrentMeal] = useState<IVeggies[]>([]);
@@ -65,6 +66,7 @@ const PlantLog: React.FC = () => {
   const addPlant = (plant: IVeggies) => {
     setCurrentMeal([...currentMeal, plant])
     setInput("")
+    setLoggedMealStats(0)
   };;
 
   // Remove plant from current meal list
@@ -123,7 +125,7 @@ const PlantLog: React.FC = () => {
 
     // Clear the current meal area
     setCurrentMeal([]);
-    loggedMealStats = `Added ${mealVeggiesArray.length} plants!`;
+    setLoggedMealStats(mealVeggiesArray.length);
   };
 
   console.log(currentMeal);
@@ -156,10 +158,10 @@ const PlantLog: React.FC = () => {
       <div className="current-meal-area">
         <h3 className="underlined-header">Current Meal</h3>
         <div className="list-container">
-          {loggedMealStats
+          {loggedMealStats > 0
             ?
             <div className="logged-meal-stats">
-              {loggedMealStats}
+              {`Added ${loggedMealStats} plants!`}
             </div>
             :
             <ul className="remove-plant">
