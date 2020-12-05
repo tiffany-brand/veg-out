@@ -132,7 +132,7 @@ const PlantLog: React.FC = () => {
   return (
     <div className="plant-log-area">
 
-      <input onChange={updateSearchArray} value={input} placeholder="Search Plants" />
+      <input className="plant-log-input" onChange={updateSearchArray} value={input} placeholder="Search Plants" />
 
       <div className="list-container">
         {searchArray.length

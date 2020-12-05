@@ -20,6 +20,11 @@ ul.search-results {
   list-style-image: url(../../assets/images/remove-bullet.png);
 } 
 
+.plant-log-input {
+  height: 35px;
+  width: 55%;
+}
+
 button.log-button, li.plant-log-item {
   cursor: pointer;
 }
