@@ -1,3 +1,4 @@
+import { Challenge } from '../challenges/challenge.entity';
 import { MealLog } from '../meallog/meallog.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
@@ -12,24 +13,13 @@ export class User {
   @Column({
     type: "varchar",
     length: 255,
-    unique: true,
   })
   auth0ID: string;
 
   @Column({
     nullable: true
   })
-  username: string;
-
-  @Column({
-    nullable: true
-  })
-  character_name: string;
-
-  @Column({
-    nullable: true
-  })
-  character_id: number;
+  nickname: string;
 
   @Column({
     nullable: false,
@@ -40,51 +30,44 @@ export class User {
   @Column({
     nullable: true
   })
-  currentChallenge: number;
-
-  @Column({
-    nullable: false,
-    default: 100
-  })
-  currenthealth: number;
-
-  @Column({
-    nullable: false,
-    default: 100
-  })
-  currentoffense: number;
-
-  @Column({
-    nullable: false,
-    default: 100
-  })
-  currentdefense: number;
+  currentChallenge: string;
 
   @Column({
     nullable: false,
     default: 0
   })
-  win: number;
+  wins: number;
 
   @Column({
     nullable: false,
     default: 0
   })
-  loss: number;
+  losses: number;
 
   @Column({
     nullable: false,
     default: 0
   })
-  tie: number;
+  ties: number;
 
   @Column({
-    nullable: false,
-    default: 1
+    type: "simple-array",
+    nullable: true
   })
-  level: number;
+  lifetimeUniqueVeggies: string[];
 
-  @OneToMany(() => MealLog, meallog => meallog.userID)
+  @Column({
+    default: 0
+  })
+  lifetimeTotalVeggies: number;
+
+  @OneToMany(() => MealLog, meallog => meallog.user)
   mealLogs: MealLog;
+
+  @OneToMany(() => Challenge, challenge => challenge.playerOne)
+  playerOne: Challenge;
+
+  @OneToMany(() => Challenge, challenge => challenge.playerTwo)
+  playerTwo: Challenge;
 
 }

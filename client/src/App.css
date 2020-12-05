@@ -1,38 +1,108 @@
-div.App {
-  position: relative;
-  margin: 1vh;
-  padding: 5px;
-  border: 4px solid #8eb9a6;
-  display: flex;
-  justify-content: center;
-  min-height: 98vh;
-}
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100;200;300;400&family=Montserrat:wght@100;200;300;400&family=Poiret+One&family=Raleway:wght@100;200;300;400&=Roboto:wght@100;300;400&family=Lora:wght@400;500;600;700&&display=swap');
 
-div.card-container {
-  width: 96vw;
-  display: flex;
-  justify-content: space-around;
-}
-
-div.card-holder {
-  margin-top: 10px;
-  text-align: center;
-  width: 35vw;
+body {
+  background-image: url('./assets/images/veggie-BG.jpg');
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0px;
+  overflow-x: hidden;
+  font-size: 20px;
+  padding-bottom: 75px;
 }
 
 input[type=text] {
   height:35px;
   padding: 0px 10px;
-  color: #156e58;
-  font-family: 'VT323', monospace;
   font-size: 25px;
   width: 96%;
   margin-bottom: 10px;
-  border: 2px solid #8eb9a6;
   border-radius: 5px;
   background-color: #dddddd;
 }
+
 input[type=text]:focus {
   outline: none;
   border: 2px solid #000;
+} 
+
+h1, h1, h3, h4, h5{
+  font-family: 'Poiret One', cursive;
+  letter-spacing: 1.5px;
+}
+
+h1 {
+  font-size: 38px;
+}
+
+h2 {
+  font-size: 34px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+h2.view-title {
+  background-color: #0000009a;
+  margin: 0px;
+  padding-bottom: 5px;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 15px;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px #000;
+}
+
+h3.underlined-header {
+  text-decoration: underline;
+  padding-bottom: 6px;
+}
+
+p, li, ul, span, div  {
+  font-family: 'Lora', serif;
+  letter-spacing: 2px;
+}
+
+ul {
+  padding: 6px 0px;
+  display: inline-block; 
+	text-align: left; 
+}
+
+li {
+  padding: 2px 0px;
+}
+
+div.list-container {
+  margin: auto;
+  text-align: center;
+}
+
+div.component-style {
+  color: #fff;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  align-items: center;
+}
+
+div.dark-box {
+  text-align: center;
+  margin-top: 5%;
+  padding-top: 15px;
+  padding-bottom: 25px;
+  width: 100%;
+  background-color: #0000009a;
+  align-items: center;
+  justify-content: center;
+}
+
+div.pad-div-bottom {
+  padding-bottom: 15px;
+}
+
+h2.h2-pad-bottom {
+  padding-bottom: 15px;
 }

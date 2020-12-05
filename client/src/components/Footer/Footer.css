@@ -1,0 +1,12 @@
+.veggie-footer-parent {
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+}
+
+footer.veggie-footer {
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  padding-bottom: 6px;
+}

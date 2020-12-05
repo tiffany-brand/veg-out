@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { Repository } from 'typeorm';
 import { Challenge } from './challenge.entity';
 import { CreateChallengeDTO } from './dto/create-challenge.dto'
@@ -14,12 +15,19 @@ export class ChallengesService {
 
     create(createchallengeDTO: CreateChallengeDTO): Promise<Challenge> {
         const newChallenge = new Challenge();
-        newChallenge.date_started = createchallengeDTO.date_started;
-        newChallenge.player_one = createchallengeDTO.player_one;
-        newChallenge.player_two = createchallengeDTO.player_two;
-        newChallenge.user_one = createchallengeDTO.user_one;
-        newChallenge.user_two = createchallengeDTO.user_two;
-        newChallenge.date_ending = createchallengeDTO.date_ending;
+        newChallenge._id = createchallengeDTO._id;
+        newChallenge.dateStarted = createchallengeDTO.dateStarted;
+        newChallenge.playerOne = createchallengeDTO.playerOne;
+        newChallenge.playerOne_totalVeggies = createchallengeDTO.playerOne_totalVeggies;
+        newChallenge.playerOne_uniqueVeggies = createchallengeDTO.playerOne_uniqueVeggies;
+        newChallenge.playerOne_currentMultiplier = createchallengeDTO.playerOne_currentMultiplier;
+        newChallenge.playerOne_currentScore = createchallengeDTO.playerOne_currentScore;
+        newChallenge.playerTwo = createchallengeDTO.playerTwo;
+        newChallenge.playerTwo_totalVeggies = createchallengeDTO.playerTwo_totalVeggies;
+        newChallenge.playerTwo_uniqueVeggies = createchallengeDTO.playerTwo_uniqueVeggies;
+        newChallenge.playerTwo_currentMultiplier = createchallengeDTO.playerTwo_currentMultiplier;
+        newChallenge.playerTwo_currentScore = createchallengeDTO.playerTwo_currentScore;
+        newChallenge.dateEnding = createchallengeDTO.dateEnding;
 
         return this.challengeRepository.save(newChallenge);
     }
@@ -34,4 +42,5 @@ export class ChallengesService {
     async remove(id: string): Promise<void> {
         await this.challengeRepository.delete(id);
     }
+
 }

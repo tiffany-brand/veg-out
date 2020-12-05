@@ -1,17 +1,14 @@
 export class CreateUserDto {
+    _id: string;
     email: string;
     auth0ID: string;
-    username: string;
-    character_name:string;
-    character_id: number;
+    nickname: string;
     challenged: boolean;
-    currentChallenge: number;
-    currenthealth: number;
-    currentoffense: number;
-    currentdefense:number;
-    win: number;
-    loss: number;
-    tie: number;
-    level: number;
+    currentChallenge: string;
+    wins: number;
+    losses: number;
+    ties: number;
+    lifetimeUniqueVeggies: string[];
+    lifetimeTotalVeggies: number;
 
 }

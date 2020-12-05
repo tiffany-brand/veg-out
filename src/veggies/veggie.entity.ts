@@ -6,30 +6,15 @@ export class Veggie {
     @PrimaryGeneratedColumn("uuid")
     _id: string;
 
-    @Column()
+    @Column({
+        type: "varchar", 
+        unique: true
+    })
     plantName: string;
 
-    @Column({
-        type: "smallint"
-    })
-    total_HP: number;
 
-    @Column({
-        type: "smallint"
-    })
-    offense: number;
-
-    @Column({
-        type: "smallint"
-    })
-    defense: number;
-
-    @Column({
-        type: "text"
-    })
-    info: string;
-
-    @OneToMany(() => MealLog, meallog => meallog.veggieID)
-    meallogs: MealLog;
+    // Please leave column below for potential post MVP work.
+    // @OneToMany(() => MealLog, meallog => meallog.veggieID)
+    // meallogs: MealLog;
 
 }

@@ -1,22 +1,22 @@
 import React, { createContext, useReducer, useContext } from "react";
-import ICurrentUser from "../interfaces/ICurrentUser";
-import IPlayerCharacter from "../interfaces/IPlayerCharacter";
+import IUser from "../interfaces/IUser";
+
+
+
 
 import {
     SET_CURRENT_USER,
-    SET_CHARACTER,
     LOADING
 } from "./actions";
 
 type State = {
-    currentUser: ICurrentUser;
-    userCharacter: IPlayerCharacter;
+    currentUser: IUser;
     loading: boolean;
+
 }
 
 type Action =
-    | { type: 'SET_CURRENT_USER', currentUser: ICurrentUser }
-    | { type: 'SET_CHARACTER', userCharacter: IPlayerCharacter }
+    | { type: 'SET_CURRENT_USER', currentUser: IUser }
     | { type: 'LOADING' };
 
 const initialState: State = {
@@ -24,19 +24,17 @@ const initialState: State = {
         _id: "",
         email: "",
         auth0ID: "",
-        firstName: "",
-        lastName: "",
-        username: ""
+        nickname: "",
+        challenged: false,
+        currentChallenge: "",
+        wins: 0,
+        losses: 0,
+        ties: 0,
+        lifetimeUniqueVeggies: [],
+        lifetimeTotalVeggies: 0
+
     },
-    userCharacter: {
-        _id: "",
-        character_id: "",
-        currentdefense: 0,
-        currentoffense: 0,
-        currenthealth: 0,
-        character_name: "",
-        user_id: ""
-    },
+
     loading: false
 }
 
@@ -49,13 +47,6 @@ const reducer = (state: State, action: Action) => {
             return {
                 ...state,
                 currentUser: action.currentUser,
-                loading: false
-            };
-
-        case SET_CHARACTER:
-            return {
-                ...state,
-                userCharacter: action.userCharacter,
                 loading: false
             };
 

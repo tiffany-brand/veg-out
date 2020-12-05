@@ -1,0 +1,27 @@
+div.about-screen {
+  text-align: center;
+  margin-bottom: 35px;
+}
+img.about-logo {
+  margin-top: 15px;
+  width: 55%;
+  height: auto;
+}
+
+div.about-dark-box {
+  text-align: center;
+  margin: 5% 0%;
+  padding: 15px 5%;
+  width: 100%;
+  background-color: #0000009a;
+  align-items: center;
+  justify-content: center;
+}
+
+ul.challenge-rules-list {
+  list-style-position: inside;
+}
+
+span.list-title {
+  text-decoration: underline;
+}

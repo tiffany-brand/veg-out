@@ -2,11 +2,27 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  justify-self: center;
+ }
+
+html {
+  overflow-x: hidden;
+  /* scroll-behavior: auto; */
 }
 
-body {
-  background-color: #afe4cd;
-  font-family: 'VT323', monospace;
-  font-size: 18px;
-  color: #156e58;
-}
+/* .zero-out {
+  padding: 0 !important;
+  margin-top: 10px;
+} */
+
+/* body {
+  background-image: url('./assets/images/veggie-BG.jpg');
+  background-color: #ffffff;
+  background-repeat: no-repeat; 
+  background-size: cover;
+  margin: 0px;
+  overflow-x: hidden;
+} */
+
+
+

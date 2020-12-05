@@ -1,5 +1,6 @@
 import axios from "axios";
-import ICurrentUser from '../interfaces/ICurrentUser';
+import IUser from '../interfaces/IUser';
+import INewUser from '../interfaces/INewUser';
 
 export default {
 
@@ -8,7 +9,7 @@ export default {
         return axios.get("/api/users");
     },
     // Gets the user with the given id
-    getUser: function (id: string) {
+    getUser: function (id: string | undefined) {
         return axios.get("/api/users/" + id);
     },
     // Deletes the user with the given id
@@ -16,7 +17,7 @@ export default {
         return axios.delete("/api/users/" + id);
     },
     // Saves a user to the database
-    saveUser: function (userData: ICurrentUser) {
+    saveUser: function (userData: IUser | INewUser) {
         return axios.post("/api/users", userData);
     },
     // Gets the user with the give Auth0 id

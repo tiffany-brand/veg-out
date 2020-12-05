@@ -8,16 +8,13 @@ import { Connection } from 'typeorm';
 import { User } from './users/user.entity';
 import { Veggie } from './veggies/veggie.entity';
 import { MealLog } from './meallog/meallog.entity';
-import { CharacterChoice } from './characterchoices/characterchoice.entity';
-import { PlayerCharacter } from './playercharacter/playercharacter.entity';
 import { Challenge } from './challenges/challenge.entity';
 // Module Imports
 import { UsersModule } from './users/users.module';
 import { VeggiesModule } from './veggies/veggies.module';
 import { MeallogModule } from './meallog/meallog.module';
-import { CharacterchoicesModule } from './characterchoices/characterchoices.module';
 import { ChallengesModule } from './challenges/challenges.module';
-import { PlayercharacterModule } from './playercharacter/playercharacter.module';
+
 
 @Global()
 @Module({
@@ -29,9 +26,9 @@ import { PlayercharacterModule } from './playercharacter/playercharacter.module'
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    entities: [User, Veggie, MealLog, CharacterChoice, PlayerCharacter, Challenge],
+    entities: [User, Veggie, MealLog, Challenge],
     synchronize: true
-  }), UsersModule, VeggiesModule, MeallogModule, CharacterchoicesModule, ChallengesModule, PlayercharacterModule],
+  }), UsersModule, VeggiesModule, MeallogModule, ChallengesModule],
   controllers: [AppController],
   providers: [AppService, AppGateway],
   exports: [AppGateway]

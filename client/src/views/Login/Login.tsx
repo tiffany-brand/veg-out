@@ -1,10 +1,26 @@
 import React, { useEffect } from "react";
-import { Link } from 'react-router-dom';
+import './Login.css'
 import { useAuth0 } from '@auth0/auth0-react';
 import userAPI from '../../utils/userAPI';
 import { useStoreContext } from '../../state/GlobalState';
-import logo from '../../assets/images/Vegemon-logo.png';
+import logo from '../../assets/images/stroked-vedgeIn-logo-1200.png';
 import { LOADING, SET_CURRENT_USER } from '../../state/actions';
+import { saveToLocalStorage } from '../../utils/persistUser';
+import Home from '../Home/Home';
+
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            flexGrow: 1,
+
+        },
+        center: {
+            align: 'center',
+        }
+    }),
+);
 
 function Login(): JSX.Element {
 
@@ -17,31 +33,62 @@ function Login(): JSX.Element {
             userAPI.getAuthUser(user.sub)
                 .then(res => {
                     if (res.data === "") {
+
+
                         // if no user found, create new user in db, then set state
-                        userAPI.saveUser({ email: user.email, auth0ID: user.sub })
+                        userAPI.saveUser({
+                            email: user.email,
+                            auth0ID: user.sub,
+                            nickname: user.nickname,
+
+                        })
                             .then(res => {
+                                const { _id,
+                                    email, auth0ID, nickname, challenged, currentChallenge, wins, losses, ties, lifetimeUniqueVeggies, lifetimeTotalVeggies
+                                } = res.data;
                                 dispatch({ type: LOADING });
                                 dispatch({
                                     type: SET_CURRENT_USER,
                                     currentUser: {
-                                        _id: res.data._id,
-                                        email: res.data.email,
-                                        auth0ID: res.data.auth0ID
+                                        ...state.currentUser,
+                                        _id,
+                                        email,
+                                        auth0ID,
+                                        nickname,
+                                        challenged,
+                                        currentChallenge,
+                                        wins,
+                                        losses,
+                                        ties,
+                                        lifetimeUniqueVeggies,
+                                        lifetimeTotalVeggies
                                     }
                                 })
                             })
                             .catch(err => console.log(err));
                     } else {
-                        console.log("user found")
+
+                        const { _id,
+                            email, auth0ID, nickname, challenged, currentChallenge, wins, losses, ties, lifetimeUniqueVeggies, lifetimeTotalVeggies
+                        } = res.data;
                         // if user found, set state for logged in user
                         dispatch({ type: LOADING });
                         dispatch({
                             type: SET_CURRENT_USER,
                             currentUser: {
-                                _id: res.data._id,
-                                email: res.data.email,
-                                auth0ID: res.data.auth0ID,
-                                username: res.data.username
+                                ...state.currentUser,
+                                _id,
+                                email,
+                                auth0ID,
+                                nickname,
+                                challenged,
+                                currentChallenge,
+                                wins,
+                                losses,
+                                ties,
+                                lifetimeUniqueVeggies,
+                                lifetimeTotalVeggies
+
                             }
                         })
 
@@ -49,49 +96,34 @@ function Login(): JSX.Element {
                 })
                 .catch(err => console.log(err));
 
-            console.log(state.currentUser);
+
+
         }
     }, [])
 
+    useEffect(() => {
+        saveToLocalStorage(state);
+    }, [state])
+
     return (
         <div>
-            <img width="500px" src={logo} alt="Vegemon" />
-            <br></br>
-            <Link to="/">
-                {/* If not logged, show the Log In button */}
-                {!isLoading && !user && (
-                    <>
-                        <button onClick={loginWithRedirect}>
-                            Log In
-                        </button>
-                    </>
-                )}
+            {!isAuthenticated && <div>
+                <div className="splash-container">
+                    <div className="splash-screen">
+                        <img className="splash-logo" src={logo} alt="Vedge-In logo" />
 
-                {/* If logged in, show the Log Out button  */}
-                {/* {!isLoading && user && (
-                    <>
-                        <button onClick={() => logout({ returnTo: window.location.origin })}>
-                            Log Out
-                        </button>
-                    </>
-                )} */}
-            </Link>
-            {/* If logged in and have a username, go to the home page */}
-            {isAuthenticated && (
-                state.currentUser.username && (
-                    <>
-                        <Link to="/home"><button>Go Home</button></Link>
-                    </>
-                )
-            )}
-            {/* If logged in but no username, go to the register page */}
-            {isAuthenticated && (
-                <>
-                    <Link to="/register"><button>Choose a Character</button></Link>
+                        <p></p>
 
-                </>
-            )}
+                        <button className="splash-button" onClick={loginWithRedirect}> Log In &#8594; </button>
+
+                    </div>
+                </div>
+            </div>}
+
+            {isAuthenticated && <Home />}
+
         </div>
+
     )
 
 
