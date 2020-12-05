@@ -3,8 +3,8 @@
 body {
   background-image: url('./assets/images/veggie-BG.jpg');
   background-color: #ffffff;
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background-repeat: no-repeat; */
+  background-size: auto;
   margin: 0px;
   overflow-x: hidden;
   font-size: 20px;
