@@ -56,12 +56,16 @@ function Leaderboard() {
                     challArr.push({ nickname: chall.playerOne.nickname, score: chall.playerOne_currentScore });
                     challArr.push({ nickname: chall.playerTwo.nickname, score: chall.playerTwo_currentScore });
                 })
+                // remove any scores of 0
+                const filteredChallArr = challArr.filter((chall: any) => {
+                    return chall.score !== 0
+                })
                 // sort the scores highest to lowest
-                challArr.sort(function (a, b) {
+                filteredChallArr.sort(function (a, b) {
                     return b.score - a.score;
                 })
                 // slice the top ten and save in state
-                const topTenArr: IScore[] = challArr.slice(0, 10)
+                const topTenArr: IScore[] = filteredChallArr.slice(0, 10)
                 setAllScores(topTenArr);
 
                 setIsLoading(false)
