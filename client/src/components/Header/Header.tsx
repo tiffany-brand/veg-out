@@ -26,9 +26,7 @@ export default function Header() {
               <div className="bottom-bun"></div>
             </div>
             <ul className={`nav-bar ${navActive ? "mobile-menu-display" : null}`}>
-              {!isAuthenticated && <Link to='/' onClick={loginWithRedirect}>
-                <li onClick={burgerReveal}>Login</li>
-              </Link>}
+
               <Link to='/about'>
                 <li onClick={burgerReveal}>About</li>
               </Link>
@@ -38,6 +36,12 @@ export default function Header() {
               <Link to='/community'>
                 <li onClick={burgerReveal}>Challenges</li>
               </Link>
+              <Link to='/leaderboard'>
+                <li onClick={burgerReveal}>Leaderboard</li>
+              </Link>
+              {!isAuthenticated && <Link to='/' onClick={loginWithRedirect}>
+                <li onClick={burgerReveal}>Login</li>
+              </Link>}
               {isAuthenticated && <Link to='/' onClick={() => logout({ returnTo: window.location.origin })}>
                 <li onClick={burgerReveal}>Logout</li>
               </Link>}
