@@ -1,0 +1,15 @@
+div.leaderboard-dark-box {
+    text-align: center;
+    margin-top: 5%;
+    padding-top: 15px;
+    width: 100%;
+    /* min-height: 300px; */
+    /* height: 100%; */
+    background-color: #0000009a;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 25px;
+  }
+
+  
+ 
