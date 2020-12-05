@@ -1,8 +1,9 @@
-<img src="client/src/assets/images/stroked-vedgeIn-logo-480.png" alt="Vedge-In" />
+
+![Vedge-In](client/src/assets/images/stroked-vedgeIn-logo-480.png)
 
 [![License: MIT](https://img.shields.io/github/license/tiffany-brand/veg-out?style=plastic)](./LICENSE)
 
-<a href="https://vegemon.herokuapp.com/">Vedge-In Deployed on Heroku!</a>
+[Vedge-In Deployed on Heroku!](https://vedge-in.herokuapp.com/)
 
  ## Table Of Contents
 
@@ -50,6 +51,9 @@ How is the winner chosen? At the end of the week-long challenge period the final
 
 ![Vedge-In-Splash](https://user-images.githubusercontent.com/16748389/100818146-88444600-3417-11eb-8cde-dc7efe156937.JPG)
 
+![Vedge-In-Challenge](https://user-images.githubusercontent.com/16748389/101248010-c462f980-36ea-11eb-8392-0c26d155eb86.JPG)
+
+
  ## Installation
 
  Installation can be performed with
@@ -68,17 +72,22 @@ yarn install
 
 | Front-end          | Back-end         | 
 |--------------------|------------------|
-| React              | NestJS           |     
+| React              | NestJS           |  
+| TypeScript         | TypeScript       |   
 | Material UI        | TypeORM          | 
 | Luxon              | MySQL            |
-| Lodash             | Heroku           | 
+| Socket.io          | Socket.io        |  
+| Lodash             | Heroku           |
+
 
 
 
  ## Future Developments
 
- * Connecting the application to a nutritional database for a broader informational component
- * Adding a leaderboard for challenge stats
+ * Connect the application to a nutritional database for a broader informational component
+ * Leaderboard for challenge stats
+ * Authorization for Admin users to add additional plants to the database
+ * Community to connect with friends for challenges
 
 
  ## Contributors
