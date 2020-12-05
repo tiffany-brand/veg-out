@@ -57,7 +57,7 @@ function Leaderboard() {
                     challArr.push({ nickname: chall.playerTwo.nickname, score: chall.playerTwo_currentScore });
                 })
                 // remove any scores of 0
-                const filteredChallArr = challArr.filter((chall: any) => {
+                const filteredChallArr = challArr.filter((chall: IScore) => {
                     return chall.score !== 0
                 })
                 // sort the scores highest to lowest
