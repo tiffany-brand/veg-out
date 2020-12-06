@@ -37,6 +37,9 @@ const PlantLog: React.FC = () => {
   const [searchArray, setSearchArray] = useState<IVeggies[]>([]);
   const [input, setInput] = useState("");
 
+  // State for log display
+  const [loggedMealStats, setLoggedMealStats] = useState<number>(0)
+
   //State for holding current meal
   const [currentMeal, setCurrentMeal] = useState<IVeggies[]>([]);
 
@@ -63,6 +66,7 @@ const PlantLog: React.FC = () => {
   const addPlant = (plant: IVeggies) => {
     setCurrentMeal([...currentMeal, plant])
     setInput("")
+    setLoggedMealStats(0)
   };;
 
   // Remove plant from current meal list
@@ -121,6 +125,7 @@ const PlantLog: React.FC = () => {
 
     // Clear the current meal area
     setCurrentMeal([]);
+    setLoggedMealStats(mealVeggiesArray.length);
   };
 
   console.log(currentMeal);
@@ -129,7 +134,7 @@ const PlantLog: React.FC = () => {
   return (
     <div className="plant-log-area">
 
-      <input onChange={updateSearchArray} value={input} placeholder="Search Plants" />
+      <input className="plant-log-input" onChange={updateSearchArray} value={input} placeholder="Search Plants" />
 
       <div className="list-container">
         {searchArray.length
@@ -137,7 +142,6 @@ const PlantLog: React.FC = () => {
           <ul className="add-plant">{searchArray.slice(0, 5).map(function (plant, idx) {
             return <li className="plant-log-item" onClick={() => addPlant(plant)} key={idx}>{plant.plantName}</li>
           })}</ul>
-
           :
           <ul className="add-plant">
             {conditionallySort(availablePlants, !!input)
@@ -154,12 +158,20 @@ const PlantLog: React.FC = () => {
       <div className="current-meal-area">
         <h3 className="underlined-header">Current Meal</h3>
         <div className="list-container">
-          <ul className="remove-plant">
-            {currentMeal.map(function (plant, index) {
-              return <li className="plant-log-item" onClick={() => removePlant(plant)} key={index}>{plant.plantName}</li>
-            })}
-          </ul>
+          {loggedMealStats > 0
+            ?
+            <div className="logged-meal-stats">
+              {`Added ${loggedMealStats} plants!`}
+            </div>
+            :
+            <ul className="remove-plant">
+              {currentMeal.map(function (plant, index) {
+                return <li className="plant-log-item" onClick={() => removePlant(plant)} key={index}>{plant.plantName}</li>
+              })}
+            </ul>
+          }
         </div>
+
         <div className="dropdown">
 
           <div className="dropbtn" onClick={menuEvent} data-menu_item="Meal Label ⇩">{menuLabel}</div>
