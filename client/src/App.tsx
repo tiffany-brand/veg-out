@@ -5,13 +5,14 @@ import { StoreProvider } from './state/GlobalState';
 import './App.css';
 
 import Login from './views/Login/Login';
-import AboutView from './views/AboutView/AboutView'
+import AboutView from './views/AboutView/AboutView';
 import Challenged from './views/Challenged/Challenged';
 import Community from './views/Community/Community'
-import Home from './views/Home/Home'
+import Home from './views/Home/Home';
 import Wrapper from './components/Wrapper/Wrapper';
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import MyProfile from './views/MyProfile/MyProfile';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/challenged" exact component={Challenged} />
             <Route path="/community" exact component={Community} />
             <Route path="/home" exact component={Home} />
+            <Route path="/my-profile" exact component={MyProfile} />
           </Switch>
           <Footer />
         </Wrapper>
