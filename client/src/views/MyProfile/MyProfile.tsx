@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import UpdateUsername from "../../components/UpdateUsername/UpdateUsername";
 import Grid from '@material-ui/core/Grid';
 
 import { useStoreContext } from '../../state/GlobalState';
@@ -23,6 +24,7 @@ function MyProfile() {
     return (
         <div className="my-profile">
             <h1>{state.currentUser.nickname}'s Profile</h1>
+            <UpdateUsername />
         </div>
     );
 

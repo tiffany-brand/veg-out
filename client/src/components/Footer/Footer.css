@@ -9,4 +9,19 @@ footer.veggie-footer {
   text-align: center;
   background-color: #fff;
   padding-bottom: 6px;
+  font-size: small;
+  font-family: 'Poiret One', cursive;
+  color: rgb(89, 89, 89);
+
+}
+
+footer > a {
+  text-decoration: none;
+  color: rgb(89, 89, 89);
+
+}
+
+footer > a:hover {
+  color: rgb(140, 140, 140);
+
 }

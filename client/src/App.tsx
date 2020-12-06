@@ -14,6 +14,7 @@ import Wrapper from './components/Wrapper/Wrapper';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import AdminPage from './views/AdminPage/AdminPage';
+import MyProfile from './views/MyProfile/MyProfile';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/community" exact component={Community} />
             <Route path="/home" exact component={Home} />
             <Route path="/leaderboard" exact component={Leaderboard} />
+            <Route path="/profile" exact component={MyProfile} />
             <Route path="/topsecretadminpage" exact component={AdminPage} />
           </Switch>
           <Footer />
