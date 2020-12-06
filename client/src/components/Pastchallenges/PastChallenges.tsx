@@ -9,13 +9,15 @@ function PastChallenges() {
 
     const [state, dispatch] = useStoreContext();
 
+    //pastArray is used to save results from the API call
+
     const [pastArray, setPastArray] = useState<any>();
 
 
     const [isLoading, setIsLoading] = useState<any>();
 
 
-
+// Upon mount, GET non-current challenges where the current user is player 1 or 2, then save to pastArray
 
 
     useEffect(() => {
@@ -37,12 +39,16 @@ function PastChallenges() {
 
     });
 
+    //Loading display
+
 
     if (isLoading !== false || pastArray === undefined) {
         return (<div>
             Loading...
         </div>)
     }
+
+    //Maps array of results saved from the API call
 
     else {
 
