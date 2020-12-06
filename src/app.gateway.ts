@@ -1,35 +1,34 @@
-import { Logger } from '@nestjs/common';
-import {OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit, SubscribeMessage, WebSocketGateway, WebSocketServer, WsResponse} from '@nestjs/websockets';
-
-@WebSocketGateway()
-export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect{
-
-    @WebSocketServer() server;
-
-    users: number=0;
-
-
+import {
+    SubscribeMessage,
+    WebSocketGateway,
+    OnGatewayInit,
+    WebSocketServer,
+    OnGatewayConnection,
+    OnGatewayDisconnect,
+   } from '@nestjs/websockets';
+   import { Logger } from '@nestjs/common';
+   import { Socket, Server } from 'socket.io';
+   
+   @WebSocketGateway()
+   export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
+   
+    @WebSocketServer() server: Server;
     private logger: Logger = new Logger('AppGateway');
-
-    afterInit(server:any){
-        this.logger.log('this log worked!');
-        
+   
+    @SubscribeMessage('msgToServer')
+    handleMessage(client: Socket, payload: string): void {
+     this.server.emit('msgToClient', payload);
     }
-
-    async handleConnection(){
-        this.users++;
-        this.server.emit('users', this.users);
+   
+    afterInit(server: Server) {
+     this.logger.log('Init');
     }
-
-    async handleDisconnect(){
-        this.users--;
-        this.server.emit('users', this.users);
+   
+    handleDisconnect(client: Socket) {
+     this.logger.log(`Client disconnected: ${client.id}`);
     }
-
-
-    @SubscribeMessage('chat')
-    async onChat(client, message){
-        client.broadcast.emit('chat', message);
+   
+    handleConnection(client: Socket, ...args: any[]) {
+     this.logger.log(`Client connected: ${client.id}`);
     }
-
-    }
+   }
