@@ -32,7 +32,7 @@ function Home() {
   return (
     <div className="home-screen">
       <div className="home-dark-box">
-      <h2 className="view-title">{state.currentUser.nickname} Stats</h2>
+        <h2 className="view-title">{state.currentUser.nickname}'s Stats</h2>
         <Grid item xs={12} container className="component-style" justify="space-around">
           <Grid className="zero-out" item xs={12} md={6}>
             <div className="user-stats">
