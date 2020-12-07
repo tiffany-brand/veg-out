@@ -15,7 +15,7 @@ export default function Header() {
     <div>
       <Grid container spacing={2} className="white-background">
         <Grid item xs={10}>
-          <h1 className="veggie-header">Vedge-In Challenge</h1>
+          <h1 className="veggie-header">Vedge-In</h1>
         </Grid>
         {/*Start nav*/}
         <Grid item xs={2}>

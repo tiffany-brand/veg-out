@@ -78,6 +78,7 @@ yarn install
 | Luxon              | MySQL            |
 | Socket.io          | Socket.io        |  
 | Lodash             | Heroku           |
+| Auth0              |                  |
 
 
 
