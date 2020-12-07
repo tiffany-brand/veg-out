@@ -15,7 +15,7 @@ export default function Header() {
     <div>
       <Grid container spacing={2} className="white-background">
         <Grid item xs={10}>
-          <h1 className="veggie-header">Vedge-In Challenge</h1>
+          <h1 className="veggie-header">Vedge-In</h1>
         </Grid>
         {/*Start nav*/}
         <Grid item xs={2}>
@@ -38,6 +38,9 @@ export default function Header() {
               </Link>
               <Link to='/leaderboard'>
                 <li onClick={burgerReveal}>Leaderboard</li>
+              </Link>
+              <Link to='/profile'>
+                <li onClick={burgerReveal}>My Profile</li>
               </Link>
               {!isAuthenticated && <Link to='/' onClick={loginWithRedirect}>
                 <li onClick={burgerReveal}>Login</li>
