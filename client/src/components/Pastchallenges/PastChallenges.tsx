@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 
 function PastChallenges() {
 
-    const [state, dispatch] = useStoreContext();
+    const [state] = useStoreContext();
 
     //pastArray is used to save results from the API call
 
@@ -27,7 +27,7 @@ function PastChallenges() {
         challengesAPI.getChallenges().then((res) => {
 
             res.data.forEach((item: { _id: any, playerOne: { _id: string; }; playerTwo: { _id: string; }; }) => {
-                if (item.playerOne._id == state.currentUser._id && state.currentUser.currentChallenge !== item._id || item.playerTwo._id == state.currentUser._id && state.currentUser.currentChallenge !== item._id) {
+                if ((item.playerOne._id === state.currentUser._id && state.currentUser.currentChallenge !== item._id) || (item.playerTwo._id === state.currentUser._id && state.currentUser.currentChallenge !== item._id)) {
                     tempArray.push(item);
                 }
             });
