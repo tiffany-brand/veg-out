@@ -78,6 +78,7 @@ yarn install
 | Luxon              | MySQL            |
 | Socket.io          | Socket.io        |  
 | Lodash             | Heroku           |
+| Auth0              |                  |
 
 
 
@@ -85,8 +86,10 @@ yarn install
  ## Future Developments
 
  * Connect the application to a nutritional database for a broader informational component
+ * Upload Proof of Plants - photos of meals
  * Authorization for Admin users to add additional plants to the database
  * Community to connect with friends for challenges
+ * View past meals
 
 
  ## Contributors

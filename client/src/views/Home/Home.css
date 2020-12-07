@@ -15,6 +15,11 @@ div.user-stats {
 
 }
 
+h2.view-title {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 div.home-screen {
   padding-bottom: 85px;
 }
