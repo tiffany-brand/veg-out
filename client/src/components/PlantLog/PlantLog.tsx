@@ -87,13 +87,6 @@ const PlantLog: React.FC = () => {
   // Update DB with current meal
   const logCurrentMeal = () => {
 
-    // if (menuLabel === "Meal Label ⇩") {
-    //   console.log("please select a meal label");
-    //   return;
-    // }
-
-    // if (!currentMeal)
-
     // Build array from meal's veggies
     const mealVeggiesArray = currentMeal.map((item: any) => {
       return item.plantName;
@@ -127,9 +120,6 @@ const PlantLog: React.FC = () => {
     setCurrentMeal([]);
     setLoggedMealStats(mealVeggiesArray.length);
   };
-
-  console.log(currentMeal);
-
 
   return (
     <div className="plant-log-area">

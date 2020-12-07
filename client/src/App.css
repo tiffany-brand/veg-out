@@ -82,10 +82,8 @@ div.list-container {
 div.component-style {
   color: #fff;
   text-align: center;
-  align-items: center;
   justify-content: center;
   min-height: 300px;
-  align-items: center;
 }
 
 div.dark-box {
