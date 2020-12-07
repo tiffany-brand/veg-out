@@ -1,0 +1,19 @@
+button.green-button {
+    background-color: #0B7D0C;
+    color: #fff;
+    padding: 3px 5px;
+    border-radius: 3px;
+    border: none;
+    margin-left: 10px;
+}
+
+button.green-button:active {
+    background-color: #1e9720;
+}
+
+div.username-div {
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

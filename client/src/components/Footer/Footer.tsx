@@ -9,7 +9,7 @@ export default function Footer() {
     <div>
       <Grid container spacing={2} className="veggie-footer-parent">
         <Grid item xs={12}>
-          <footer className="veggie-footer">Veggies
+          <footer className="veggie-footer"><a href="about">About</a> | <a href="https://github.com/tiffany-brand/veg-out">Source Code</a> | © 2020
           </footer>
         </Grid>
       </Grid>

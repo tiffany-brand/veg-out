@@ -39,6 +39,9 @@ export default function Header() {
               <Link to='/leaderboard'>
                 <li onClick={burgerReveal}>Leaderboard</li>
               </Link>
+              <Link to='/profile'>
+                <li onClick={burgerReveal}>My Profile</li>
+              </Link>
               {!isAuthenticated && <Link to='/' onClick={loginWithRedirect}>
                 <li onClick={burgerReveal}>Login</li>
               </Link>}
