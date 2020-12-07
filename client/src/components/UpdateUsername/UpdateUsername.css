@@ -1,0 +1,17 @@
+button.green-button {
+    background-color: #0B7D0C;
+    color: #fff;
+    padding: 3px;
+    border-radius: 3px;
+    border: none;
+}
+
+
+
+button.green-button:focus {
+    background-color: #5ca55d;
+    color: #fff;
+    padding: 3px;
+    border-radius: 3px;
+    border: none;
+}

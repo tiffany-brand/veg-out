@@ -49,7 +49,7 @@ nav {
 }
 
 .nav-bar a {
-  color: #e7e7e7;
+  color: #000000;
   text-decoration: none;
   letter-spacing: 3px;
   font-size: 17px;
@@ -63,7 +63,7 @@ nav {
   top: 100px;
   width: 150px;
   height: 0px;
-  background-color: #000000a1;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
