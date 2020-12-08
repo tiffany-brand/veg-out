@@ -99,10 +99,3 @@ nav {
     text-align: left;
   }
 }
-
-@media screen and (max-width: 330px) {
-  h1 {
-    font-size: x-large;
-    text-align: left;
-  }
-}

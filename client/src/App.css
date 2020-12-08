@@ -3,8 +3,8 @@
 body {
   background-image: url('./assets/images/veggie-BG.jpg');
   background-color: #ffffff;
-  /* background-repeat: no-repeat; */
-  background-size: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
   margin: 0px;
   overflow-x: hidden;
   font-size: 20px;
@@ -103,4 +103,13 @@ div.pad-div-bottom {
 
 h2.h2-pad-bottom {
   padding-bottom: 15px;
+}
+
+@media screen and (max-width: 960px) {
+  body {
+    background-image: url('./assets/images/veggie-BG-vert.jpg');
+    background-color: #ffffff;
+    background-repeat: repeat;
+    background-size: cover;
+  }
 }
