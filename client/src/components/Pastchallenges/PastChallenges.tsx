@@ -23,8 +23,8 @@ function PastChallenges() {
         let tempArray: any = [];
 
         challengesAPI.getChallenges().then((res) => {
-            console.log("getting challenges")
-            res.data.forEach((item: { _id: any, playerOne: { _id: string; }; playerTwo: { _id: string; }; }) => {
+
+            res.data.forEach((item: { _id: string, playerOne: { _id: string; }; playerTwo: { _id: string; }; }) => {
                 if (item.playerOne._id == state.currentUser._id && state.currentUser.currentChallenge !== item._id || item.playerTwo._id == state.currentUser._id && state.currentUser.currentChallenge !== item._id) {
                     tempArray.push(item);
                 }
@@ -38,7 +38,7 @@ function PastChallenges() {
     }, []);
 
 
-    if (isLoading !== false || pastArray === undefined) {
+    if (isLoading || pastArray === undefined) {
         return (<div>
             Loading...
         </div>)
