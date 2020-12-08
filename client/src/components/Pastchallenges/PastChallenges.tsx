@@ -35,7 +35,7 @@ function PastChallenges() {
         }
         ).catch(err => console.log(err));
 
-    });
+    }, []);
 
 
     if (isLoading !== false || pastArray === undefined) {
