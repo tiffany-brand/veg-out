@@ -76,7 +76,6 @@ yarn install
 | TypeScript         | TypeScript       |   
 | Material UI        | TypeORM          | 
 | Luxon              | MySQL            |
-| Socket.io          | Socket.io        |  
 | Lodash             | Heroku           |
 | Auth0              |                  |
 
@@ -89,7 +88,7 @@ yarn install
  * Upload Proof of Plants - photos of meals
  * Authorization for Admin users to add additional plants to the database
  * Community to connect with friends for challenges
- * View past meals
+ * View and edit past meals
 
 
  ## Contributors
