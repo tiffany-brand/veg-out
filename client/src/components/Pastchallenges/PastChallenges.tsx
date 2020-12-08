@@ -9,10 +9,10 @@ function PastChallenges() {
 
     const [state, dispatch] = useStoreContext();
 
-    const [pastArray, setPastArray] = useState<any>();
+    const [pastArray, setPastArray] = useState<any>([]);
 
 
-    const [isLoading, setIsLoading] = useState<any>();
+    const [isLoading, setIsLoading] = useState<any>(true);
 
 
 
@@ -23,7 +23,7 @@ function PastChallenges() {
         let tempArray: any = [];
 
         challengesAPI.getChallenges().then((res) => {
-
+            console.log("getting challenges")
             res.data.forEach((item: { _id: any, playerOne: { _id: string; }; playerTwo: { _id: string; }; }) => {
                 if (item.playerOne._id == state.currentUser._id && state.currentUser.currentChallenge !== item._id || item.playerTwo._id == state.currentUser._id && state.currentUser.currentChallenge !== item._id) {
                     tempArray.push(item);
