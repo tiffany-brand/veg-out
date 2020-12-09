@@ -1,18 +1,18 @@
 import React from "react";
+import Grid from '@material-ui/core/Grid';
 import DetailCard from "../DetailCard/DetailCard";
+import "./About.css";
 
 export default function About() {
 
     return (
 
-        <div>
+        <Grid container className="paragraph-wrapper">
             <p>
                 This is app is designed to help you broaden your plant horizons!
                 Log your plant intake, challenge your friends, and watch you
                 and your community get stronger and healthier!
             </p>
-        <br />
-          
             <p>
                 Having a whole foods, plant-based diet is key to living a
                 long and healthy life. Eating a diverse array of vegetables and fruits
@@ -20,7 +20,6 @@ export default function About() {
                 health. Eating a largely plant-based diet also lowers your
                 chances of preventable illness.
             </p>
-            <br />
             <p>
                 To begin, log into your account and select 'Start a Challenge'.
                 You can search for a friend, family member, or choose randomly from the Vedge-In community.
@@ -28,7 +27,6 @@ export default function About() {
                 To check your status, navigate to the home page to review your stats and see your current score.
 
             </p>
-            <br />
             <p>
                 How is the winner chosen?
                 At the end of the week-long challenge period the final points will be calculated and compared.
@@ -54,17 +52,15 @@ export default function About() {
 
                 </li>
             </ul>
-            <br />
             <p>
             Now get out there and eat some plants!!!
             </p>
-            <br />
             <p>
             This application was developed by Chad Laflamme, Tiffany Brand,
             Keith Tharp, Rachel Campbell, and Marc Langlois.
             UNH Coding Bootcamp 2020
             </p>
-        </div>
+        </Grid>
 
     )
 }

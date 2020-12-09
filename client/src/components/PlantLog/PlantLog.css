@@ -23,6 +23,10 @@ ul.search-results {
 .plant-log-input {
   height: 35px;
   width: 55%;
+  max-width: 180px;
+  /* padding-left: 10px; */
+  text-align: center;
+  margin: 15px;
 }
 
 button.log-button, li.plant-log-item {

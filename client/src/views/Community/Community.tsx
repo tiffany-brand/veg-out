@@ -202,9 +202,9 @@ function Community() {
 
     return (
         <div>
-            <h2 className="view-title">{state.currentUser.nickname}'s Challenges</h2>
 
             <div className="community-dark-box">
+            <h2 className="view-title">{state.currentUser.nickname}'s Challenges</h2>
                 <Grid item xs={12} container className="component-style" justify="space-around">
                     <Grid item xs={12} md={8}>
 

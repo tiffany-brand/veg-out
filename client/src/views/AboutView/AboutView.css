@@ -3,14 +3,15 @@ div.about-screen {
   margin-bottom: 35px;
 }
 img.about-logo {
-  margin-top: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   width: 55%;
   height: auto;
 }
 
 div.about-dark-box {
   text-align: center;
-  margin: 5% 0%;
+  margin: 10% 0%;
   padding: 15px 5%;
   width: 100%;
   background-color: #0000009a;
@@ -20,6 +21,8 @@ div.about-dark-box {
 
 ul.challenge-rules-list {
   list-style-position: inside;
+  padding: 5% 18%;
+
 }
 
 span.list-title {

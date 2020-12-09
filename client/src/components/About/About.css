@@ -1,0 +1,7 @@
+div.paragraph-wrapper {
+    margin: auto;
+}
+
+div.paragraph-wrapper > p {
+    padding: 10px;
+}

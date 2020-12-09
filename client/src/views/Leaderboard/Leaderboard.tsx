@@ -81,9 +81,9 @@ function Leaderboard() {
     return (
         <div>
 
-            <h2 className="view-title">Leaderboard</h2>
 
             <div className="leaderboard-dark-box">
+            <h2 className="view-title">Leaderboard</h2>
                 <Grid item xs={12} container className="component-style" justify="space-around">
                     {allScores[0] &&
                         <Grid item xs={12} md={8} container justify="center">

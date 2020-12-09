@@ -13,9 +13,9 @@ function AboutView(): JSX.Element {
 
     <div className="about-screen">
 
-      <h2 className="view-title">Welcome To Vedge-In!</h2>
       <Grid item xs={12} container justify="space-around">
         <div className="about-dark-box component-style">
+        <h2 className="view-title">Welcome To Vedge-In!</h2>
           <About />
           <img className="about-logo" src={logo} alt="Vedge-In logo" />
         </div>
